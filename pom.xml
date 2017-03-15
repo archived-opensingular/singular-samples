@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.opensingular</groupId>
-    <artifactId>singular</artifactId>
+    <artifactId>singular-samples</artifactId>
 
     <version>1.6.0-SNAPSHOT</version>
-    <name>[singular]</name>
-    <description>Singular Core Technologies</description>
+    <name>[singular-samples]</name>
+    <description>Singular Samples and Showcase</description>
     <url>http://opensingular.org</url>
     <packaging>pom</packaging>
 
@@ -39,12 +39,9 @@
     </developers>
 
     <modules>
-        <module>flow</module>
-        <module>form</module>
-		<module>flow-form</module>
-        <module>lib</module>
-        <module>resources</module>
-        <module>ws</module>
+        <module>alocpro-mock-client</module>
+        <module>form-samples</module>
+		<module>ui-showcase</module>
     </modules>
 
     <build>
