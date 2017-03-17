@@ -17,7 +17,13 @@
 package org.opensingular.form.exemplos.notificacaosimplificada.form.baixorisco;
 
 import org.apache.commons.lang3.tuple.Triple;
-import org.opensingular.form.*;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
+import org.opensingular.form.SInstance;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
+import org.opensingular.form.STypeSimple;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.exemplos.notificacaosimplificada.common.STypeSubstanciaPopulator;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.STypeAcondicionamento;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeFormaFarmaceutica;
@@ -33,7 +39,7 @@ public class STypeNotificacaoSimplificadaBaixoRisco extends STypeComposite<SICom
 
 
     static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupService(DominioService.class);
+        return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
 

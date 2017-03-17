@@ -16,23 +16,22 @@
 
 package org.opensingular.form.exemplos.notificacaosimplificada.common;
 
-import java.util.List;
-import java.util.function.Function;
-
 import org.apache.commons.lang3.tuple.Triple;
-
-import org.opensingular.form.exemplos.notificacaosimplificada.domain.Substancia;
-import org.opensingular.form.exemplos.util.TripleConverter;
-import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.STypeSimple;
+import org.opensingular.form.exemplos.notificacaosimplificada.domain.Substancia;
+import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
+import org.opensingular.form.exemplos.util.TripleConverter;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.SViewReadOnly;
+
+import java.util.List;
+import java.util.function.Function;
 
 public class STypeSubstanciaPopulator {
 
@@ -53,7 +52,7 @@ public class STypeSubstanciaPopulator {
     }
 
     private DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupService(DominioService.class);
+        return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
     public STypeList<STypeComposite<SIComposite>, SIComposite> populate() {

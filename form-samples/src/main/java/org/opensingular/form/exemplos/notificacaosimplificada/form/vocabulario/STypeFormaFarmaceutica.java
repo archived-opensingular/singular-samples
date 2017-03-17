@@ -16,12 +16,12 @@
 
 package org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario;
 
-import org.opensingular.form.exemplos.notificacaosimplificada.domain.FormaFarmaceuticaBasica;
-import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.exemplos.notificacaosimplificada.domain.FormaFarmaceuticaBasica;
+import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 import org.opensingular.form.provider.STextQueryProvider;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
@@ -54,7 +54,7 @@ public class STypeFormaFarmaceutica extends STypeComposite<SIComposite> {
                         builder
                                 .getCurrentInstance()
                                 .getDocument()
-                                .lookupService(DominioService.class)
+                                .lookupServiceOrException(DominioService.class)
                                 .buscarVocabulario(FormaFarmaceuticaBasica.class, query)
                                 .forEach(vc -> builder.add().set(id, vc.getId()).set(descricao, vc.getDescricao()));
                     });

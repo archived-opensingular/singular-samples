@@ -50,8 +50,8 @@ public class ShowcaseDocumentFactory extends SpringSDocumentFactory {
             Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "Could not create temporary file folder, using memory instead", e);
             document.setAttachmentPersistenceTemporaryHandler(RefService.of(new InMemoryAttachmentPersistenceHandler()));
         }
-        document.setAttachmentPersistencePermanentHandler(
-                RefService.of(getServiceRegistry().lookupService(IAttachmentPersistenceHandler.class)));
+        IAttachmentPersistenceHandler<?> persist = getServiceRegistry().lookupServiceOrException(IAttachmentPersistenceHandler.class);
+        document.setAttachmentPersistencePermanentHandler(RefService.ofToBeDescartedIfSerialized(persist));
         document.addServiceRegistry(NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG);
     }
 

@@ -18,7 +18,15 @@ package org.opensingular.form.exemplos.notificacaosimplificada.form.dinamizado;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.tuple.Triple;
-import org.opensingular.form.*;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SIList;
+import org.opensingular.form.SInfoType;
+import org.opensingular.form.SInstance;
+import org.opensingular.form.STypeAttachmentList;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
+import org.opensingular.form.STypeSimple;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.ValueToSICompositeConverter;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.FormaFarmaceuticaBasica;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.STypeAcondicionamento;
@@ -34,10 +42,18 @@ import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.util.transformer.Value;
-import org.opensingular.form.view.*;
+import org.opensingular.form.view.SViewByBlock;
+import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.SViewListByTable;
+import org.opensingular.form.view.SViewSearchModal;
+import org.opensingular.form.view.SViewTextArea;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -46,7 +62,7 @@ public class STypeNotificacaoSimplificadaDinamizado extends STypeComposite<SICom
 
 
     static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupService(DominioService.class);
+        return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
     @Override
@@ -355,7 +371,7 @@ class FormaFarmaceuticaProvider implements FilteredPagedProvider<FormaFarmaceuti
     }
 
     private DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupService(DominioService.class);
+        return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
 
