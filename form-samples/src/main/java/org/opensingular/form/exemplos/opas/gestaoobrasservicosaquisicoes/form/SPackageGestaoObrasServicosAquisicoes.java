@@ -15,17 +15,17 @@
  */
 package org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.form;
 
-import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;
+import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 
 public class SPackageGestaoObrasServicosAquisicoes extends SPackage {
 
     public static final String PACOTE = "mform.peticao.opas.gestaoobrasservicosaquisicoes";
 
     public static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupService(DominioService.class);
+        return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
     public SPackageGestaoObrasServicosAquisicoes() {

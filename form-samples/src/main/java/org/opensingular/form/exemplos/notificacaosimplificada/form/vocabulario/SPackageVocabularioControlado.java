@@ -16,11 +16,11 @@
 
 package org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario;
 
-import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;
+import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 
 @SInfoPackage(name = SPackageVocabularioControlado.PACOTE)
 public class SPackageVocabularioControlado extends SPackage {
@@ -30,7 +30,7 @@ public class SPackageVocabularioControlado extends SPackage {
     public static final String NOME_COMPLETO = PACOTE + "." + TIPO;
 
     public static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupService(DominioService.class);
+        return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
     public SPackageVocabularioControlado() {

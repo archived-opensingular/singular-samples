@@ -16,14 +16,14 @@
 
 package org.opensingular.form.exemplos.notificacaosimplificada.form;
 
-import org.opensingular.form.exemplos.notificacaosimplificada.form.gas.STypeAcondicionamentoGAS;
-import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.SPackageVocabularioControlado;
-import org.opensingular.form.exemplos.notificacaosimplificada.form.vegetal.STypeEnsaioControleQualidade;
-import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;
+import org.opensingular.form.exemplos.notificacaosimplificada.form.gas.STypeAcondicionamentoGAS;
+import org.opensingular.form.exemplos.notificacaosimplificada.form.vegetal.STypeEnsaioControleQualidade;
+import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.SPackageVocabularioControlado;
+import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 
 @SInfoPackage(name = SPackageNotificacaoSimplificada.PACOTE)
 public class SPackageNotificacaoSimplificada extends SPackage {
@@ -33,7 +33,7 @@ public class SPackageNotificacaoSimplificada extends SPackage {
     public static final String NOME_COMPLETO = PACOTE + "." + TIPO;
 
     static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupService(DominioService.class);
+        return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
     public SPackageNotificacaoSimplificada() {

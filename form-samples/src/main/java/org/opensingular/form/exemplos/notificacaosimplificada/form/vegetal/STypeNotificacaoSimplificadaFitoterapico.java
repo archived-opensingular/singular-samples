@@ -17,9 +17,7 @@
 package org.opensingular.form.exemplos.notificacaosimplificada.form.vegetal;
 
 
-import org.opensingular.form.exemplos.notificacaosimplificada.form.STypeAcondicionamento;
-import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
-import org.opensingular.form.exemplos.util.PairConverter;
+import org.apache.commons.lang3.tuple.Pair;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SIList;
 import org.opensingular.form.SInfoType;
@@ -29,13 +27,15 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.STypeSimple;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.exemplos.notificacaosimplificada.form.STypeAcondicionamento;
+import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
+import org.opensingular.form.exemplos.util.PairConverter;
 import org.opensingular.form.type.core.STypeDecimal;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.view.SViewListByTable;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -45,7 +45,7 @@ public class STypeNotificacaoSimplificadaFitoterapico extends STypeComposite<SIC
 
 
     static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupService(DominioService.class);
+        return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
     @Override
