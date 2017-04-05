@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
-    <context-root>/showcase</context-root>
+    <context-root>/</context-root>
     <session-config>
         <cookie-config>
-            <path>/showcase</path>
+            <path>/</path>
         </cookie-config>
     </session-config>
 </jboss-web>
