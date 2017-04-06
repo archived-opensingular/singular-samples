@@ -58,6 +58,7 @@ public class ShowCaseTable {
 
         // @formatter:off
         addGroup(Group.INPUT);
+        addGroup(Group.COUNTRY);
         addGroup(Group.FILE);
         addGroup(Group.LAYOUT);
         addGroup(Group.VALIDATION);

@@ -24,28 +24,25 @@ import org.opensingular.form.type.country.brazil.STypeCEP;
 import org.opensingular.form.type.country.brazil.STypeCNPJ;
 import org.opensingular.form.type.country.brazil.STypeCPF;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
+import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
 /**
- * Campos básicos regionais - Brasil
+ * Campos de endereço - Brasil
  */
 
-@CaseItem(componentName = "Regional", group = Group.INPUT)
-public class CaseBrazilFieldsBasicPackage extends SPackage {
+@CaseItem(componentName = "Brasil", subCaseName = "Endereço", group = Group.COUNTRY)
+public class CaseBrazilAddressPackage extends SPackage {
 
     @Override
     protected void onLoadPackage(PackageBuilder pb) {
         
     	STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        tipoMyForm.addField("cnpj", STypeCNPJ.class);
-        tipoMyForm.addField("cpf", STypeCPF.class);
-        tipoMyForm.addField("cep", STypeCEP.class);
-        tipoMyForm.addField("telefone", STypeTelefoneNacional.class);
         
+        tipoMyForm.asAtr().label("Dados Cadastrais:").asAtrBootstrap();
         tipoMyForm.addField("Endereco", STypeAddress.class);
-        
-        
+
         super.onLoadPackage(pb);
     }
 }
