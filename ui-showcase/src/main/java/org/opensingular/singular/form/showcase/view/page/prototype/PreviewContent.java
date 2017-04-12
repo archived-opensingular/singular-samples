@@ -21,10 +21,15 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.lang.Bytes;
-import org.opensingular.form.*;
+import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SDictionary;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SIList;
+import org.opensingular.form.SType;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
 import org.opensingular.form.context.SFormConfig;
-import org.opensingular.form.document.RefType;
-import org.opensingular.form.document.SDocumentFactory;
+import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.wicket.component.SingularFormWicket;
 import org.opensingular.form.wicket.model.SInstanceRootModel;
 import org.opensingular.form.wicket.panel.SingularFormPanel;
@@ -138,6 +143,7 @@ class TypeBuilder {
     private SType<?> addListFieldType(STypeComposite<? extends SIComposite> root, SType<?> typeOfField, String name, String genName) {
         STypeList fieldType = addAppropriateListFieldType(root, typeOfField, genName);
         fieldType.asAtr().label(name);
+        fieldType.withView(SViewListByTable::new);
         return fieldType.getElementsType();
     }
 

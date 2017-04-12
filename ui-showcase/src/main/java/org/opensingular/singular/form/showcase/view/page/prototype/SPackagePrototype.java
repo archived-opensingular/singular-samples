@@ -16,6 +16,7 @@
 
 package org.opensingular.singular.form.showcase.view.page.prototype;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInstance;
@@ -42,10 +43,10 @@ import org.opensingular.form.type.util.STypeLatitudeLongitude;
 import org.opensingular.form.type.util.STypePersonName;
 import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.form.view.SViewListByMasterDetail;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -207,13 +208,11 @@ public class SPackagePrototype extends SPackage {
                 .getTipo().withView(SViewListByMasterDetail::new)
                 .withExists(
                         (instance) -> {
-                            Optional<String> optType = instance.findNearestValue(type, String.class);
-                            if (!optType.isPresent()) return false;
-                            return optType.get().equals(typeName(pb, STypeComposite.class));
+                            SInstance t = instance.getParent().getField("type");
+                            return Objects.equals(t.getValue(), typeName(pb, STypeComposite.class));
                         })
                 .asAtr().dependsOn(() -> {
-            return newArrayList(type);
-        })
-        ;
+                    return newArrayList(type);
+                });
     }
 }
