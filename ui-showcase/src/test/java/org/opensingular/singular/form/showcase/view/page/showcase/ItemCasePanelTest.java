@@ -1,27 +1,26 @@
 package org.opensingular.singular.form.showcase.view.page.showcase;
 
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 import static org.junit.Assert.assertNotNull;
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.opensingular.singular.form.showcase.component.CaseBaseForm;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import org.opensingular.form.context.SFormConfig;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.singular.form.showcase.SpringWicketTester;
+import org.opensingular.singular.form.showcase.component.CaseBaseForm;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCoreIntegerPackage;
 import org.opensingular.singular.form.showcase.view.page.FormItemCasePanel;
 import org.opensingular.singular.form.showcase.view.page.ItemCasePanel;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * TODO TESTE BUGADO, QUEBRA A BUILD NO SERVER??

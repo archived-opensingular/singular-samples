@@ -16,7 +16,18 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import com.google.common.base.Throwables;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
+
 import org.apache.wicket.util.string.StringValue;
 import org.opensingular.form.SPackage;
 import org.opensingular.lib.commons.base.SingularUtil;
@@ -26,8 +37,7 @@ import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2
 import org.reflections.Reflections;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
-import java.util.*;
+import com.google.common.base.Throwables;
 
 @Service
 public class ShowCaseTable {

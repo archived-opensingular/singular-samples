@@ -20,7 +20,7 @@ import org.opensingular.lib.wicket.util.resource.Icone;
 
 public enum Group {
     INPUT("Input", Icone.PUZZLE, ShowCaseType.FORM),
-    COUNTRY("Região", Icone.PUZZLE, ShowCaseType.FORM),
+    COUNTRY("Região", Icone.COUNTRY, ShowCaseType.FORM),
     FILE("File", Icone.FOLDER, ShowCaseType.FORM),
     LAYOUT("Layout", Icone.GRID, ShowCaseType.FORM),
     VALIDATION("Validation", Icone.BAN, ShowCaseType.FORM),

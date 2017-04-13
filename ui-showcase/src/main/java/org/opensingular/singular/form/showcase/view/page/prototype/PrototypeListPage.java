@@ -16,10 +16,9 @@
 
 package org.opensingular.singular.form.showcase.view.page.prototype;
 
-import org.wicketstuff.annotation.mount.MountPath;
-
 import org.opensingular.singular.form.showcase.view.template.Content;
 import org.opensingular.singular.form.showcase.view.template.Template;
+import org.wicketstuff.annotation.mount.MountPath;
 
 @MountPath("prototype/list")
 public class PrototypeListPage extends Template {

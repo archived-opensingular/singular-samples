@@ -16,6 +16,18 @@
 
 package org.opensingular.singular.form.showcase.view.page.prototype;
 
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -54,17 +66,6 @@ import org.opensingular.singular.form.showcase.view.template.Content;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 public class PrototypeListContent extends Content
         implements SingularWicketContainer<PrototypeListContent, Void> {

@@ -16,6 +16,9 @@
 
 package org.opensingular.singular.form.showcase.view.template;
 
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
+
 import java.util.Optional;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -27,10 +30,8 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.opensingular.lib.commons.base.SingularProperties;
 import org.opensingular.lib.wicket.util.template.SkinOptions;
-import org.opensingular.singular.form.showcase.wicket.UIAdminSession;
 import org.opensingular.lib.wicket.util.template.SkinOptions.Skin;
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
+import org.opensingular.singular.form.showcase.wicket.UIAdminSession;
 
 public class TopMenu extends Panel {
 
@@ -48,7 +49,6 @@ public class TopMenu extends Panel {
         super.onInitialize();
         queue(new WebMarkupContainer("sideBarToggle").setVisible(withSideBar));
         Label label = new Label("nome", $m.ofValue(UIAdminSession.get().getName()));
-        label.add($b.visibleIf(()->SingularProperties.get().isTrue(SingularProperties.SINGULAR_DEV_MODE)));
         queue(label);
 
         WebMarkupContainer avatar    = new WebMarkupContainer("codrh");

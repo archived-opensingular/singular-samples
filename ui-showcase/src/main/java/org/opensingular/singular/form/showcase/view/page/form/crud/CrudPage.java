@@ -19,10 +19,9 @@ package org.opensingular.singular.form.showcase.view.page.form.crud;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.util.string.StringValue;
-import org.wicketstuff.annotation.mount.MountPath;
-
 import org.opensingular.singular.form.showcase.view.template.Content;
 import org.opensingular.singular.form.showcase.view.template.Template;
+import org.wicketstuff.annotation.mount.MountPath;
 
 @MountPath("form/crud")
 @SuppressWarnings("serial")

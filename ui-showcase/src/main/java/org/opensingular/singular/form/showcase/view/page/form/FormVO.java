@@ -16,12 +16,12 @@
 
 package org.opensingular.singular.form.showcase.view.page.form;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 import org.apache.wicket.model.IModel;
 import org.opensingular.form.SType;
 import org.opensingular.singular.form.showcase.dao.form.ShowcaseTypeLoader;
-
-import java.io.Serializable;
-import java.util.Objects;
 
 @SuppressWarnings("serial")
 public class FormVO implements Serializable, IModel<String> {

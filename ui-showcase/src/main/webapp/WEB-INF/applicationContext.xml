@@ -12,13 +12,16 @@
 
     <util:properties id="admin" location="classpath:/admin-config.properties"/>
 
-    <context:component-scan base-package="org.opensingular.singular.form.showcase"/>
+    <context:component-scan base-package="org.opensingular.singular.form.showcase, org.opensingular.lib.support.spring.util"/>
     <import resource="conf/database.xml"/>
     <import resource="conf/cache.xml"/>
 
     <bean id="uiAdminWicketFilterContext" class="org.opensingular.singular.form.showcase.wicket.UIAdminWicketFilterContext"/>
 
-
+<!-- 	<bean id="sessionListener" class="org.opensingular.singular.form.showcase.db.DataSourceSessionListener"> -->
+<!-- 	</bean> -->
+	
+	
     <bean id="singularFormConfig" class="org.opensingular.form.wicket.SingularFormConfigWicketImpl">
         <property name="serviceRegistry" ref="springServiceRegistry"/>
     </bean>

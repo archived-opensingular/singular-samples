@@ -16,6 +16,11 @@
 
 package org.opensingular.singular.form.showcase.view.page.form.crud;
 
+import java.util.Optional;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -42,10 +47,6 @@ import org.opensingular.singular.form.showcase.dao.form.ExampleDataDAO;
 import org.opensingular.singular.form.showcase.dao.form.ExampleDataDTO;
 import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
 import org.opensingular.singular.form.showcase.view.template.Content;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.Optional;
 
 public class FormContent extends Content implements SingularWicketContainer<CrudContent, Void> {
 

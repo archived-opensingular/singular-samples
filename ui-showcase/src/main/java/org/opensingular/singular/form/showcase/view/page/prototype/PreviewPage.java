@@ -16,13 +16,13 @@
 
 package org.opensingular.singular.form.showcase.view.page.prototype;
 
+import org.apache.wicket.Page;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.wicket.model.SInstanceRootModel;
 import org.opensingular.singular.form.showcase.view.template.Content;
 import org.opensingular.singular.form.showcase.view.template.Template;
-import org.apache.wicket.Page;
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 
 public class PreviewPage extends Template {
 

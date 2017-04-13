@@ -16,11 +16,9 @@
 
 package org.opensingular.singular.form.showcase.wicket;
 
-import org.opensingular.lib.commons.base.SingularProperties;
-import org.opensingular.singular.form.showcase.view.page.form.ListPage;
-import org.opensingular.lib.wicket.util.application.SkinnableApplication;
-import org.opensingular.lib.wicket.util.page.error.Error403Page;
-import org.opensingular.lib.wicket.util.template.SingularTemplate;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
@@ -33,14 +31,16 @@ import org.apache.wicket.request.Response;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.util.lang.Bytes;
 import org.apache.wicket.util.time.Duration;
+import org.opensingular.lib.commons.base.SingularProperties;
+import org.opensingular.lib.wicket.util.application.SkinnableApplication;
+import org.opensingular.lib.wicket.util.page.error.Error403Page;
+import org.opensingular.lib.wicket.util.template.SingularTemplate;
+import org.opensingular.singular.form.showcase.view.page.form.ListPage;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 
 public class ShowcaseApplication extends AuthenticatedWebApplication
         implements ApplicationContextAware, SkinnableApplication {

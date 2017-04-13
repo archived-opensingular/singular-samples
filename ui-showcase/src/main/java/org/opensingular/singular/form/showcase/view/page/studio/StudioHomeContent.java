@@ -16,12 +16,12 @@
 
 package org.opensingular.singular.form.showcase.view.page.studio;
 
-import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
-import org.opensingular.singular.form.showcase.view.template.Content;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
+import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
+import org.opensingular.singular.form.showcase.view.template.Content;
 
 public class StudioHomeContent extends Content implements SingularWicketContainer<StudioHomeContent, Void> {
 

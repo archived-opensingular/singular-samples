@@ -21,10 +21,10 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.singular.form.showcase.view.page.form.crud.services.MFileIdsOptionsProvider;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.view.page.form.crud.services.MFileIdsOptionsProvider;
 
 /**
  * É permitido alterar o provedor de dados de forma que estes sejam carregados de forma dinâmica ou de outras fontes de informação.
