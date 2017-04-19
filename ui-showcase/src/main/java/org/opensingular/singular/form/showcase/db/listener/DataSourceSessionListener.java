@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.opensingular.singular.form.showcase.db;
+package org.opensingular.singular.form.showcase.db.listener;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,6 +31,8 @@ import org.apache.commons.io.IOUtils;
 import org.hibernate.id.CompositeNestedGeneratedValueGenerator.GenerationContextLocator;
 import org.opensingular.lib.commons.util.Loggable;
 import org.opensingular.lib.support.spring.util.ApplicationContextProvider;
+import org.opensingular.singular.form.showcase.db.IdSessionLocator;
+import org.opensingular.singular.form.showcase.db.SessionDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,12 +73,12 @@ public class DataSourceSessionListener implements HttpSessionListener, Loggable 
     private void generateDB(HttpSessionEvent se) {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            byte[] result = IOUtils.toByteArray(classLoader.getResourceAsStream("/db/singulardb.mv.db"));
+            byte[] result = IOUtils.toByteArray(classLoader.getResourceAsStream("/"+SessionDataSource.DATABASE_FOLDER+"/singulardb.mv.db"));
             
             //cria pasta caso nao existir
-            new File("db").mkdirs();
+            new File(SessionDataSource.DATABASE_FOLDER).mkdirs();
             
-            File file = new File(String.format("db/singulardb_%s.mv.db", se.getSession().getId()));
+            File file = new File(String.format(SessionDataSource.DATABASE_FOLDER+"/singulardb_%s.mv.db", se.getSession().getId()));
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(result);
             fos.close();
@@ -89,12 +91,12 @@ public class DataSourceSessionListener implements HttpSessionListener, Loggable 
     }
     
     private void destroyDB(HttpSessionEvent se){
-        final File folder = new File("db");
+        final File folder = new File(SessionDataSource.DATABASE_FOLDER);
         final File[] files = folder.listFiles((File dir, String name)->name.startsWith(String.format("singulardb_%s", se.getSession().getId())));
 
         for ( final File file : files ) {
             if ( !file.delete() ) {
-                getLogger().error("Can't remove " + file.getAbsolutePath());
+                getLogger().error("O arquivo do banco de dados não pode ser deletado " + file.getAbsolutePath());
             }
         }
     }

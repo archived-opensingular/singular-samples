@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.opensingular.singular.form.showcase.db;
+package org.opensingular.singular.form.showcase.db.listener;
 
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServletRequest;
+
+import org.opensingular.singular.form.showcase.db.IdSessionLocator;
 
 /**
  * 

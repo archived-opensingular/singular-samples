@@ -22,14 +22,21 @@ import java.util.Map;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.opensingular.lib.commons.util.Loggable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.opensingular.singular.form.showcase.db.job.DBCollectorJob;
 
 /**
- * Datasource capaz de criar um pool de datasources para cada sessão http. 
- *
+ * Datasource capaz de criar um pool de datasources para cada sessão http.<br>
+ * Os banco são criado dentro da uma pasta "db" e ao encerrar a sessão serão
+ * apagados.<br>
+ * <br>
+ * Existe o job {@link DBCollectorJob} que é executado a cada 12h, que verifica
+ * se o arquivo do banco tem mais que 24h de criado, caso seja positivo, o
+ * arquivo é deletado.
+ * 
  */
 public class SessionDataSource extends BasicDataSource implements Loggable {
+
+    public static final String DATABASE_FOLDER = "db";
 
     private static Map<String, BasicDataSource> internalPoolDS = new HashMap<String, BasicDataSource>();
 
@@ -43,7 +50,7 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
 
     public BasicDataSource createNewDb(String sessionId) {
         BasicDataSource ddss = new BasicDataSource();
-        ddss.setUrl(String.format("jdbc:h2:file:./db/singulardb_%s;", sessionId));
+        ddss.setUrl(String.format("jdbc:h2:file:./" + DATABASE_FOLDER + "/singulardb_%s;", sessionId));
         ddss.setDriverClassName("org.h2.Driver");
         ddss.setUsername("sa");
         ddss.setPassword("sa");
@@ -58,9 +65,9 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
     public void removeDB(String sessionId) {
         BasicDataSource basicDataSource = internalPoolDS.get(sessionId);
         try {
-            if(basicDataSource != null){
-            basicDataSource.close();
-        }
+            if (basicDataSource != null) {
+                basicDataSource.close();
+            }
         } catch (SQLException e) {
             getLogger().error("Erro ao fechar a conexão com o banco");
         }
