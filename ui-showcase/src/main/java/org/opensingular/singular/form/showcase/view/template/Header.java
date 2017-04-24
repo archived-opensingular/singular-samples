@@ -19,16 +19,17 @@ package org.opensingular.singular.form.showcase.view.template;
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
-import org.opensingular.lib.wicket.util.template.SkinOptions;
-import org.opensingular.singular.form.showcase.component.ShowCaseType;
-import org.opensingular.singular.form.showcase.view.page.form.ListPage;
-import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
+import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-
+import org.opensingular.lib.commons.base.SingularProperties;
 import org.opensingular.lib.wicket.util.metronic.menu.DropdownMenu;
+import org.opensingular.lib.wicket.util.template.SkinOptions;
+import org.opensingular.singular.form.showcase.component.ShowCaseType;
+import org.opensingular.singular.form.showcase.view.page.form.ListPage;
+import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
 
 public class Header extends Panel {
 
@@ -56,8 +57,13 @@ public class Header extends Panel {
         add(new WebMarkupContainer("togglerButton")
                 .add($b.attrAppender("class", "hide", " ", $m.ofValue(!withTogglerButton))));
         add(new WebMarkupContainer("_TopAction"));
-        add(buildShowcaseOptions());
-        add(new TopMenu("_TopMenu", withSideBar, option));
+        
+        Behavior devMode = $b.visibleIf(()->SingularProperties.get().isTrue(SingularProperties.SINGULAR_DEV_MODE));
+        
+    	DropdownMenu d = buildShowcaseOptions();	
+    	add(d.add(devMode));
+    	TopMenu topMenu = new TopMenu("_TopMenu", withSideBar, option);
+    	add(topMenu.add(devMode));
         add(new WebMarkupContainer("brandLogo"));
     }
 

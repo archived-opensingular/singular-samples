@@ -1,16 +1,16 @@
 package org.opensingular.singular.form.showcase.view;
 
-import org.opensingular.singular.form.showcase.SpringWicketTester;
-import org.opensingular.singular.form.showcase.view.page.form.crud.CrudPage;
+import javax.inject.Inject;
+
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.opensingular.singular.form.showcase.SpringWicketTester;
+import org.opensingular.singular.form.showcase.view.page.form.crud.CrudPage;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.inject.Inject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/applicationContext.xml"})

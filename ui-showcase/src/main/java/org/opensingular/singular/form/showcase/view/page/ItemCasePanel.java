@@ -28,12 +28,11 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-
 import org.opensingular.form.SInstance;
-import org.opensingular.singular.form.showcase.component.CaseBase;
-import org.opensingular.singular.form.showcase.component.ResourceRef;
 import org.opensingular.form.wicket.util.ProcessadorCodigoFonte;
 import org.opensingular.lib.wicket.util.tab.BSTabPanel;
+import org.opensingular.singular.form.showcase.component.CaseBase;
+import org.opensingular.singular.form.showcase.component.ResourceRef;
 
 public abstract class ItemCasePanel<T extends CaseBase> extends Panel {
 

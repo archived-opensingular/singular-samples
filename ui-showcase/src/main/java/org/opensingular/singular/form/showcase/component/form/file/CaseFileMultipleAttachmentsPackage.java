@@ -17,7 +17,6 @@
 package org.opensingular.singular.form.showcase.component.form.file;
 
 import org.apache.commons.lang3.StringUtils;
-
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;

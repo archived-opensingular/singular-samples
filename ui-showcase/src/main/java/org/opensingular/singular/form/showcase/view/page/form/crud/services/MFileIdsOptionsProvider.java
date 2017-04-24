@@ -18,12 +18,11 @@ package org.opensingular.singular.form.showcase.view.page.form.crud.services;
 
 import javax.inject.Inject;
 
-import org.opensingular.form.type.core.attachment.IAttachmentPersistenceHandler;
-import org.springframework.stereotype.Component;
-
 import org.opensingular.form.provider.SSimpleProvider;
+import org.opensingular.form.type.core.attachment.IAttachmentPersistenceHandler;
 import org.opensingular.form.type.core.attachment.IAttachmentRef;
 import org.opensingular.form.util.transformer.SCompositeListBuilder;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("serial")
 @Component("filesChoiceProvider")

@@ -12,12 +12,12 @@
 
     <util:properties id="admin" location="classpath:/admin-config.properties"/>
 
-    <context:component-scan base-package="org.opensingular.singular.form.showcase"/>
+    <context:component-scan base-package="org.opensingular.singular.form.showcase, org.opensingular.lib.support.spring.util"/>
     <import resource="conf/database.xml"/>
     <import resource="conf/cache.xml"/>
+    <import resource="conf/schedule.xml"/>
 
     <bean id="uiAdminWicketFilterContext" class="org.opensingular.singular.form.showcase.wicket.UIAdminWicketFilterContext"/>
-
 
     <bean id="singularFormConfig" class="org.opensingular.form.wicket.SingularFormConfigWicketImpl">
         <property name="serviceRegistry" ref="springServiceRegistry"/>
@@ -53,5 +53,6 @@
     <bean id="filePersistence" class="org.opensingular.form.persistence.service.AttachmentPersistenceService" />
 	<bean id="attachmentContentDao" class="org.opensingular.form.persistence.dao.AttachmentContentDao" />
     <bean id="attachmentDao" class="org.opensingular.form.persistence.dao.AttachmentDao" />
+
 
 </beans>

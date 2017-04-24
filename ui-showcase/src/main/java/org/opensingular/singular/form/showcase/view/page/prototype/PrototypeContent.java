@@ -16,6 +16,9 @@
 
 package org.opensingular.singular.form.showcase.view.page.prototype;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
@@ -28,7 +31,6 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.context.SFormConfig;
 import org.opensingular.form.document.RefType;
-import org.opensingular.form.internal.xml.MElement;
 import org.opensingular.form.io.SFormXMLUtil;
 import org.opensingular.form.wicket.component.SingularFormWicket;
 import org.opensingular.form.wicket.model.SInstanceRootModel;
@@ -38,9 +40,6 @@ import org.opensingular.lib.wicket.util.ajax.ActionAjaxButton;
 import org.opensingular.singular.form.showcase.dao.form.Prototype;
 import org.opensingular.singular.form.showcase.dao.form.PrototypeDAO;
 import org.opensingular.singular.form.showcase.view.template.Content;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 public class PrototypeContent extends Content {
 

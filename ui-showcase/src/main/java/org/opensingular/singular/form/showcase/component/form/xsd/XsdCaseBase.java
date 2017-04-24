@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.xsd;
 
+import java.util.Optional;
+
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SDictionary;
 import org.opensingular.form.SType;
@@ -23,8 +25,6 @@ import org.opensingular.form.SingularFormException;
 import org.opensingular.form.io.FormXSDUtil;
 import org.opensingular.singular.form.showcase.component.CaseBaseForm;
 import org.opensingular.singular.form.showcase.component.ResourceRef;
-
-import java.util.Optional;
 
 public abstract class XsdCaseBase extends CaseBaseForm {
 

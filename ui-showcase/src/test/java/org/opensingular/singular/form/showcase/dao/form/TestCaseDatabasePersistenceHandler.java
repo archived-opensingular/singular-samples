@@ -1,7 +1,5 @@
 package org.opensingular.singular.form.showcase.dao.form;
 
-import static org.fest.assertions.api.Assertions.assertThat;
-
 import javax.inject.Inject;
 
 import org.junit.Test;

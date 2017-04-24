@@ -16,9 +16,9 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import org.opensingular.form.wicket.enums.AnnotationMode;
-
 import java.util.Optional;
+
+import org.opensingular.form.wicket.enums.AnnotationMode;
 
 public class CaseBaseStudio extends CaseBase {
 

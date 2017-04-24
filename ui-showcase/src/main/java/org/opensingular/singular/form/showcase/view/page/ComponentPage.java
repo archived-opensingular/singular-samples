@@ -16,15 +16,15 @@
 
 package org.opensingular.singular.form.showcase.view.page;
 
-import org.opensingular.singular.form.showcase.view.template.Content;
-import org.opensingular.singular.form.showcase.view.template.Template;
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
+
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.opensingular.singular.form.showcase.view.template.Content;
+import org.opensingular.singular.form.showcase.view.template.Template;
 import org.wicketstuff.annotation.mount.MountPath;
-
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 @MountPath("component/component")
 @SuppressWarnings("serial")

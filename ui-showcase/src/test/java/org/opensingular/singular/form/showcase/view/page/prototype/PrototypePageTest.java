@@ -1,5 +1,11 @@
 package org.opensingular.singular.form.showcase.view.page.prototype;
 
+import static org.fest.assertions.api.Assertions.assertThat;
+import static org.opensingular.form.wicket.helpers.TestFinders.findOnForm;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.util.string.StringValue;
 import org.apache.wicket.util.tester.FormTester;
@@ -20,12 +26,6 @@ import org.opensingular.singular.form.showcase.dao.form.Prototype;
 import org.opensingular.singular.form.showcase.view.template.Content;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import static org.fest.assertions.api.Assertions.assertThat;
-import static org.opensingular.form.wicket.helpers.TestFinders.findOnForm;
 
 @Ignore("Problems with maven environment")
 @RunWith(Enclosed.class)
