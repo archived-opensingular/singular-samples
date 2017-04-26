@@ -16,6 +16,17 @@
 
 package org.opensingular.singular.form.showcase.view.page;
 
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -28,7 +39,7 @@ import org.apache.wicket.util.lang.Bytes;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.context.SFormConfig;
 import org.opensingular.form.document.RefType;
-import org.opensingular.form.internal.xml.MElement;
+import org.opensingular.internal.lib.commons.xml.MElement;
 import org.opensingular.form.io.SFormXMLUtil;
 import org.opensingular.form.wicket.component.BFModalBorder;
 import org.opensingular.form.wicket.component.SingularFormWicket;
@@ -42,16 +53,6 @@ import org.opensingular.singular.form.showcase.component.CaseBaseForm;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.dao.form.ShowcaseTypeLoader;
 import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 public class FormItemCasePanel extends ItemCasePanel<CaseBaseForm> implements SingularWicketContainer<FormItemCasePanel, Void> {
 

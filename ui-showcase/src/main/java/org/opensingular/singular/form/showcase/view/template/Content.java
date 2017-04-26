@@ -20,15 +20,15 @@ import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
 
 import javax.inject.Inject;
 
-import org.opensingular.singular.form.showcase.wicket.UIAdminWicketFilterContext;
-import org.opensingular.lib.wicket.util.toastr.ToastrHelper;
-import de.alpharogroup.wicket.js.addon.toastr.ToastrType;
-
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
+import org.opensingular.lib.wicket.util.toastr.ToastrHelper;
+import org.opensingular.singular.form.showcase.wicket.UIAdminWicketFilterContext;
+
+import de.alpharogroup.wicket.js.addon.toastr.ToastrType;
 
 
 public abstract class Content extends Panel {

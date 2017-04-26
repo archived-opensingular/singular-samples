@@ -16,15 +16,15 @@
 
 package org.opensingular.singular.form.showcase.dao.form.studio;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import org.opensingular.form.SDictionary;
 import org.opensingular.form.SFormUtil;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.SType;
 import org.opensingular.form.spring.SpringTypeLoader;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 
 public class ShowcaseStudioTypeLoader extends SpringTypeLoader<Class<SType<?>>> {

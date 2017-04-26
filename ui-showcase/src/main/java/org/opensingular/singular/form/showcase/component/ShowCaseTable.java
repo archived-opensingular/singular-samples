@@ -16,18 +16,29 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import com.google.common.base.Throwables;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
+
 import org.apache.wicket.util.string.StringValue;
 import org.opensingular.form.SPackage;
 import org.opensingular.lib.commons.base.SingularUtil;
 import org.opensingular.lib.wicket.util.resource.Icone;
+import org.opensingular.lib.wicket.util.resource.SingularIcon;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
 import org.reflections.Reflections;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
-import java.util.*;
+import com.google.common.base.Throwables;
 
 @Service
 public class ShowCaseTable {
@@ -58,6 +69,7 @@ public class ShowCaseTable {
 
         // @formatter:off
         addGroup(Group.INPUT);
+        addGroup(Group.COUNTRY);
         addGroup(Group.FILE);
         addGroup(Group.LAYOUT);
         addGroup(Group.VALIDATION);
@@ -127,7 +139,7 @@ public class ShowCaseTable {
         }
     }
 
-    private ShowCaseGroup addGroup(String groupName, Icone icon, ShowCaseType tipo) {
+    private ShowCaseGroup addGroup(String groupName, SingularIcon icon, ShowCaseType tipo) {
         Map<String, ShowCaseGroup> groups;
         if (ShowCaseType.FORM == tipo) {
             groups = formGroups;
@@ -164,12 +176,12 @@ public class ShowCaseTable {
     public static class ShowCaseGroup implements Serializable {
 
         private final String groupName;
-        private final Icone icon;
+        private final SingularIcon icon;
         private final ShowCaseType tipo;
 
         private final Map<String, ShowCaseItem> itens = new TreeMap<>();
 
-        public ShowCaseGroup(String groupName, Icone icon, ShowCaseType tipo) {
+        public ShowCaseGroup(String groupName, SingularIcon icon, ShowCaseType tipo) {
             this.groupName = groupName;
             this.icon = icon;
             this.tipo = tipo;
@@ -201,7 +213,7 @@ public class ShowCaseTable {
             return itens.values();
         }
 
-        public Icone getIcon() {
+        public SingularIcon getIcon() {
             return icon;
         }
 

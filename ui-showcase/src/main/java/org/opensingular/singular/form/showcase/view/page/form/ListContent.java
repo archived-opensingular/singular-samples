@@ -16,7 +16,6 @@
 
 package org.opensingular.singular.form.showcase.view.page.form;
 
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 import java.util.Iterator;
@@ -33,18 +32,17 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
-
 import org.opensingular.form.wicket.feedback.SFeedbackPanel;
-import org.opensingular.singular.form.showcase.component.ShowCaseType;
-import org.opensingular.singular.form.showcase.dao.form.ShowcaseTypeLoader;
-import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
-import org.opensingular.singular.form.showcase.view.page.form.crud.CrudPage;
-import org.opensingular.singular.form.showcase.view.template.Content;
 import org.opensingular.lib.wicket.util.datatable.BSDataTable;
 import org.opensingular.lib.wicket.util.datatable.BSDataTableBuilder;
 import org.opensingular.lib.wicket.util.datatable.BaseDataProvider;
 import org.opensingular.lib.wicket.util.datatable.column.BSActionColumn;
 import org.opensingular.lib.wicket.util.resource.Icone;
+import org.opensingular.singular.form.showcase.component.ShowCaseType;
+import org.opensingular.singular.form.showcase.dao.form.ShowcaseTypeLoader;
+import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
+import org.opensingular.singular.form.showcase.view.page.form.crud.CrudPage;
+import org.opensingular.singular.form.showcase.view.template.Content;
 
 @SuppressWarnings("serial")
 public class ListContent extends Content implements SingularWicketContainer<ListContent, Void> {

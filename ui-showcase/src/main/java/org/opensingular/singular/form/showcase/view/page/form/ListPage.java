@@ -18,10 +18,9 @@ package org.opensingular.singular.form.showcase.view.page.form;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
-import org.wicketstuff.annotation.mount.MountPath;
-
 import org.opensingular.singular.form.showcase.view.template.Content;
 import org.opensingular.singular.form.showcase.view.template.Template;
+import org.wicketstuff.annotation.mount.MountPath;
 
 @MountPath("form/list")
 @SuppressWarnings("serial")

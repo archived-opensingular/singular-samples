@@ -18,7 +18,6 @@ package org.opensingular.singular.form.showcase.view.page.form.examples;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.SInstance;
 import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;

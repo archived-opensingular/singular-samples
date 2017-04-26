@@ -20,19 +20,17 @@ import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 import javax.inject.Inject;
 
-import org.opensingular.singular.form.showcase.component.CaseBaseForm;
-import org.opensingular.singular.form.showcase.component.ShowCaseTable;
-import org.opensingular.singular.form.showcase.component.CaseBaseStudio;
-import org.opensingular.singular.form.showcase.component.ShowCaseType;
 //import org.opensingular.singular.form.showcase.view.page.studio.StudioItemCasePanel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
-
+import org.opensingular.lib.wicket.util.tab.BSTabPanel;
+import org.opensingular.singular.form.showcase.component.CaseBaseForm;
+import org.opensingular.singular.form.showcase.component.ShowCaseTable;
+import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
 import org.opensingular.singular.form.showcase.view.template.Content;
-import org.opensingular.lib.wicket.util.tab.BSTabPanel;
 
 public class ComponentContent extends Content implements SingularWicketContainer<ComponentContent, Void> {
 

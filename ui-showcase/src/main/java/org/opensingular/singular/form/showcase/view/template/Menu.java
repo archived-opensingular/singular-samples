@@ -22,17 +22,16 @@ import javax.inject.Inject;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.string.StringValue;
-
+import org.opensingular.lib.wicket.util.menu.MetronicMenu;
+import org.opensingular.lib.wicket.util.menu.MetronicMenuGroup;
+import org.opensingular.lib.wicket.util.menu.MetronicMenuItem;
+import org.opensingular.lib.wicket.util.resource.Icone;
 import org.opensingular.singular.form.showcase.component.ShowCaseTable;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.ComponentPage;
 import org.opensingular.singular.form.showcase.view.page.form.crud.CrudPage;
 import org.opensingular.singular.form.showcase.view.page.prototype.PrototypeListPage;
 import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
-import org.opensingular.lib.wicket.util.menu.MetronicMenu;
-import org.opensingular.lib.wicket.util.menu.MetronicMenuGroup;
-import org.opensingular.lib.wicket.util.menu.MetronicMenuItem;
-import org.opensingular.lib.wicket.util.resource.Icone;
 
 public class Menu extends Panel {
 

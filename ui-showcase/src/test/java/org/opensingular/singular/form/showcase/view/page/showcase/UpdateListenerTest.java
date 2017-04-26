@@ -1,16 +1,16 @@
 package org.opensingular.singular.form.showcase.view.page.showcase;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.Optional;
+
+import org.apache.wicket.markup.html.form.FormComponent;
+import org.junit.Test;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.form.wicket.helpers.SingularFormBaseTest;
-import org.apache.wicket.markup.html.form.FormComponent;
-import org.junit.Test;
-
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
 
 public class UpdateListenerTest extends SingularFormBaseTest {
 

@@ -16,9 +16,9 @@
 
 package org.opensingular.singular.form.showcase.view.page.studio;
 
-import org.opensingular.singular.form.showcase.view.template.Template;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.template.Content;
+import org.opensingular.singular.form.showcase.view.template.Template;
 import org.wicketstuff.annotation.mount.MountPath;
 
 @MountPath("studio")

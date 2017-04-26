@@ -29,10 +29,9 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.springframework.web.util.JavaScriptUtils;
-
 import org.opensingular.lib.wicket.util.model.FallbackReadOnlyModel;
 import org.opensingular.lib.wicket.util.util.WicketUtils;
+import org.springframework.web.util.JavaScriptUtils;
 
 public interface SingularWicketContainer<CONTAINER extends MarkupContainer, T> {
 

@@ -16,25 +16,24 @@
 
 package org.opensingular.singular.form.showcase.component.form.custom;
 
-import static org.opensingular.lib.wicket.util.util.WicketUtils.*;
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.media.video.Video;
 import org.apache.wicket.validation.validator.UrlValidator;
-
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.form.wicket.WicketBuildContext;
-import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.lib.wicket.util.bootstrap.layout.BSControls;
 import org.opensingular.lib.wicket.util.bootstrap.layout.BSFormGroup;
 import org.opensingular.lib.wicket.util.bootstrap.layout.IBSGridCol.BSGridSize;
 import org.opensingular.lib.wicket.util.model.IMappingModel;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
 
 /**
  * Custom String Mapper

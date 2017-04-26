@@ -16,7 +16,15 @@
 
 package org.opensingular.singular.form.showcase.dao.form;
 
-import com.google.common.base.Preconditions;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Supplier;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 import org.apache.commons.lang3.StringUtils;
 import org.opensingular.form.SDictionary;
 import org.opensingular.form.SInfoType;
@@ -39,13 +47,7 @@ import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.form.examples.STypeCurriculo;
 import org.opensingular.singular.form.showcase.view.page.form.examples.STypeExample;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Supplier;
+import com.google.common.base.Preconditions;
 
 
 public class ShowcaseTypeLoader extends SpringTypeLoader<String> {

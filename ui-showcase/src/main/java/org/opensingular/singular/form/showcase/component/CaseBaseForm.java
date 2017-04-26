@@ -16,13 +16,13 @@
 
 package org.opensingular.singular.form.showcase.component;
 
+import java.util.Optional;
+
 import org.opensingular.form.SDictionary;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.SType;
 import org.opensingular.form.SingularFormException;
 import org.opensingular.form.wicket.enums.AnnotationMode;
-
-import java.util.Optional;
 
 
 public class CaseBaseForm extends CaseBase {

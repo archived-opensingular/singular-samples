@@ -16,6 +16,12 @@
 
 package org.opensingular.singular.form.showcase.view.page.prototype;
 
+import java.util.List;
+import java.util.function.Consumer;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
@@ -35,11 +41,6 @@ import org.opensingular.form.wicket.model.SInstanceRootModel;
 import org.opensingular.form.wicket.panel.SingularFormPanel;
 import org.opensingular.lib.commons.base.SingularUtil;
 import org.opensingular.singular.form.showcase.view.template.Content;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.List;
-import java.util.function.Consumer;
 
 public class PreviewContent extends Content {
 

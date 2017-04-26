@@ -44,7 +44,7 @@ public class Footer extends Panel {
         WebMarkupContainer ownerLink = new WebMarkupContainer("ownerLink");
         ownerLink.add(new AttributeModifier("href", new ResourceModel("footer.product.owner.addr")));
         ownerLink.add(new AttributeModifier("title", new ResourceModel("footer.product.owner.title")));
-        add(new Label("version", Model.of(getVersion())));
+        ownerLink.add(new Label("version", Model.of(getVersion())));
         add(ownerLink);
     }
 
