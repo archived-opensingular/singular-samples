@@ -30,7 +30,7 @@ import org.opensingular.singular.form.showcase.component.Group;
  * Campos básicos para uso nos formulários do singular
  */
 
-@CaseItem(componentName = "Basic", group = Group.INPUT)
+@CaseItem(componentName = "Basic", subCaseName = "Default",  group = Group.INPUT)
 public class CaseInputCoreBasicPackage extends SPackage {
 
     @Override
