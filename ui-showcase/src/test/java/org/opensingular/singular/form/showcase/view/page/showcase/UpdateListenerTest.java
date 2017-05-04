@@ -1,16 +1,16 @@
 package org.opensingular.singular.form.showcase.view.page.showcase;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.Optional;
-
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.junit.Test;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.form.wicket.helpers.SingularFormBaseTest;
+
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.opensingular.form.wicket.AjaxUpdateListenersFactory.SINGULAR_PROCESS_EVENT;
 
 public class UpdateListenerTest extends SingularFormBaseTest {
 
@@ -47,15 +47,15 @@ public class UpdateListenerTest extends SingularFormBaseTest {
     @Test
     public void testarUpdateListenerCEPValido() {
         final FormComponent logradouro = findFirstFormComponentsByType(page.getForm(), this.logradouro);
-        final FormComponent cep = findFirstFormComponentsByType(page.getForm(), this.cep);
+        final FormComponent cep        = findFirstFormComponentsByType(page.getForm(), this.cep);
 
         form.setValue(cep, "70863520");
-        tester.executeAjaxEvent(cep, IWicketComponentMapper.SINGULAR_PROCESS_EVENT);
+        tester.executeAjaxEvent(cep, SINGULAR_PROCESS_EVENT);
         assertEquals("Logradouro incorreto",
                 logradouro.getDefaultModelObjectAsString(), "CLN 211 Bloco 'B' Subsolo");
 
         form.setValue(cep, "70070120");
-        tester.executeAjaxEvent(cep, IWicketComponentMapper.SINGULAR_PROCESS_EVENT);
+        tester.executeAjaxEvent(cep, SINGULAR_PROCESS_EVENT);
         assertEquals("Logradouro incorreto",
                 logradouro.getDefaultModelObjectAsString(), "SBS - Qd. 02 - Bl. Q - Centro Empresarial João Carlos Saad 12° andar");
     }
@@ -64,10 +64,10 @@ public class UpdateListenerTest extends SingularFormBaseTest {
     @Test
     public void testarUpdateListenerCEPInvalido() {
         final FormComponent logradouro = findFirstFormComponentsByType(page.getForm(), this.logradouro);
-        final FormComponent cep = findFirstFormComponentsByType(page.getForm(), this.cep);
+        final FormComponent cep        = findFirstFormComponentsByType(page.getForm(), this.cep);
 
         form.setValue(cep, "12345678");
-        tester.executeAjaxEvent(cep, IWicketComponentMapper.SINGULAR_PROCESS_EVENT);
+        tester.executeAjaxEvent(cep, SINGULAR_PROCESS_EVENT);
         assertEquals("Logradouro incorreto",
                 logradouro.getDefaultModelObjectAsString(), "Não encontrado");
     }
