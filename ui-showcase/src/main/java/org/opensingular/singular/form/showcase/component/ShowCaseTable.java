@@ -32,7 +32,6 @@ import org.apache.wicket.util.string.StringValue;
 import org.opensingular.form.SPackage;
 import org.opensingular.lib.commons.base.SingularUtil;
 import org.opensingular.lib.wicket.util.resource.Icone;
-import org.opensingular.lib.wicket.util.resource.SingularIcon;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
 import org.reflections.Reflections;
@@ -139,7 +138,7 @@ public class ShowCaseTable {
         }
     }
 
-    private ShowCaseGroup addGroup(String groupName, SingularIcon icon, ShowCaseType tipo) {
+    private ShowCaseGroup addGroup(String groupName, Icone icon, ShowCaseType tipo) {
         Map<String, ShowCaseGroup> groups;
         if (ShowCaseType.FORM == tipo) {
             groups = formGroups;
@@ -176,12 +175,12 @@ public class ShowCaseTable {
     public static class ShowCaseGroup implements Serializable {
 
         private final String groupName;
-        private final SingularIcon icon;
+        private final Icone icon;
         private final ShowCaseType tipo;
 
         private final Map<String, ShowCaseItem> itens = new TreeMap<>();
 
-        public ShowCaseGroup(String groupName, SingularIcon icon, ShowCaseType tipo) {
+        public ShowCaseGroup(String groupName, Icone icon, ShowCaseType tipo) {
             this.groupName = groupName;
             this.icon = icon;
             this.tipo = tipo;
@@ -213,7 +212,7 @@ public class ShowCaseTable {
             return itens.values();
         }
 
-        public SingularIcon getIcon() {
+        public Icone getIcon() {
             return icon;
         }
 
