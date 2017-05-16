@@ -32,10 +32,6 @@ public class SPackageNotificacaoSimplificadaBaixoRisco extends SPackage {
         return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
-    public SPackageNotificacaoSimplificadaBaixoRisco() {
-        super(PACOTE);
-    }
-
     @Override
     protected void onLoadPackage(PackageBuilder pb) {
         super.onLoadPackage(pb);
