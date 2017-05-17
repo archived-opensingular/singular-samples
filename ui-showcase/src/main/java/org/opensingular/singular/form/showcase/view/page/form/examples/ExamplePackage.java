@@ -17,16 +17,11 @@
 package org.opensingular.singular.form.showcase.view.page.form.examples;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SPackage;
 
+@SInfoPackage(name = "mform.exemplo.uiShowcase")
 public class ExamplePackage extends SPackage {
-
-    private static final String PACKAGE = "mform.exemplo.uiShowcase";
-
-
-    public ExamplePackage() {
-        super(PACKAGE);
-    }
 
     @Override
     public void onLoadPackage(PackageBuilder pb) {

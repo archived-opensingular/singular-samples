@@ -17,15 +17,11 @@
 package org.opensingular.singular.form.showcase.view.page.form.examples;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SPackage;
 
+@SInfoPackage(name = "mform.exemplo.curriculo")
 public class SPackageCurriculo extends SPackage {
-
-    public static final String PACOTE         = "mform.exemplo.curriculo";
-
-    public SPackageCurriculo() {
-        super("mform.exemplo.curriculo");
-    }
 
     @Override
     protected void onLoadPackage(PackageBuilder pb) {

@@ -28,10 +28,6 @@ public class SPackageGestaoObrasServicosAquisicoes extends SPackage {
         return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
-    public SPackageGestaoObrasServicosAquisicoes() {
-        super(PACOTE);
-    }
-
     @Override
     protected void onLoadPackage(PackageBuilder pb) {
         super.onLoadPackage(pb);

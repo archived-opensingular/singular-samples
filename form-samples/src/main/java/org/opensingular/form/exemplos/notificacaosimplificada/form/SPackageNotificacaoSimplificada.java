@@ -36,11 +36,6 @@ public class SPackageNotificacaoSimplificada extends SPackage {
         return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
-    public SPackageNotificacaoSimplificada() {
-        super(PACOTE);
-    }
-
-
     @Override
     protected void onLoadPackage(PackageBuilder pb) {
         pb.loadPackage(SPackageVocabularioControlado.class);

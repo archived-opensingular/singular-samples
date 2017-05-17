@@ -33,11 +33,6 @@ public class SPackageVocabularioControlado extends SPackage {
         return ins.getDocument().lookupServiceOrException(DominioService.class);
     }
 
-    public SPackageVocabularioControlado() {
-        super(PACOTE);
-    }
-
-
     @Override
     protected void onLoadPackage(PackageBuilder pb) {
         pb.createType(STypeEmbalagemPrimaria.class);

@@ -16,20 +16,15 @@
 
 package org.opensingular.form.exemplos.notificacaosimplificada.form.habilitacao;
 
-import org.opensingular.form.exemplos.notificacaosimplificada.form.SPackageNotificacaoSimplificada;
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SPackage;
+import org.opensingular.form.exemplos.notificacaosimplificada.form.SPackageNotificacaoSimplificada;
 
 @SInfoPackage(name = SPackageHabilitacaoEmpresa.PACOTE)
 public class SPackageHabilitacaoEmpresa extends SPackage {
 
     public static final String PACOTE        = "mform.peticao.notificacaosimplificada.habilitacao";
-
-    public SPackageHabilitacaoEmpresa() {
-        super(PACOTE);
-    }
-
 
     @Override
     protected void onLoadPackage(PackageBuilder pb) {

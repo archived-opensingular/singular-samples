@@ -16,19 +16,15 @@
 
 package org.opensingular.form.exemplos.notificacaosimplificada.form.vegetal;
 
-import org.opensingular.form.exemplos.notificacaosimplificada.form.SPackageNotificacaoSimplificada;
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SPackage;
+import org.opensingular.form.exemplos.notificacaosimplificada.form.SPackageNotificacaoSimplificada;
 
 @SInfoPackage(name = SPackageNotificacaoSimplificadaFitoterapico.PACOTE)
 public class SPackageNotificacaoSimplificadaFitoterapico extends SPackage {
 
     public static final String PACOTE        = "mform.peticao.notificacaosimplificada.fitoterapico";
-
-    public SPackageNotificacaoSimplificadaFitoterapico() {
-        super(PACOTE);
-    }
 
     @Override
     protected void onLoadPackage(PackageBuilder pb) {
