@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.1.xsd
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+  <context:component-scan base-package="org.opensingular.formsamples.crud"/>
+
+  <bean id="singularFormConfig" class="org.opensingular.form.wicket.SingularFormConfigWicketImpl">
+    <property name="serviceRegistry" ref="serviceRegistry"/>
+  </bean>
+
+  <bean id="singularFormContext" class="org.opensingular.form.wicket.SingularFormContextWicketImpl" factory-bean="singularFormConfig"
+    factory-method="createContext"/>
+
+  <bean id="serviceRegistry" class="org.opensingular.form.spring.SpringServiceRegistry"/>
+
+  <bean id="documentFactory" class="org.opensingular.form.spring.DefaultSpringSDocumentFactory">
+    <property name="serviceRegistry" ref="serviceRegistry"/>
+  </bean>
+
+  <bean id="formPersistence" class="org.opensingular.form.spring.SpringFormPersistenceInMemory">
+    <property name="documentFactory" ref="documentFactory"/>
+    <property name="typeFullName" value="myPackage.MyTypeForm"/>
+    <property name="packageClasses">
+      <list>
+        <value>org.opensingular.formsamples.crud.types.MyPackage</value>
+      </list>
+    </property>
+  </bean>
+
+</beans>
