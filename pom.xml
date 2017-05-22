@@ -39,7 +39,6 @@
     </developers>
 
     <modules>
-        <module>alocpro-mock-client</module>
         <module>form-samples</module>
 		<module>ui-showcase</module>
     </modules>
