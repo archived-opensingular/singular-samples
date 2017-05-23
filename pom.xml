@@ -6,7 +6,7 @@
     <groupId>org.opensingular</groupId>
     <artifactId>singular-samples</artifactId>
 
-    <version>1.6.5-SNAPSHOT</version>
+    <version>1.6.6-SNAPSHOT</version>
     <name>[singular-samples]</name>
     <description>Singular Samples and Showcase</description>
     <url>http://opensingular.org</url>
@@ -41,6 +41,7 @@
     <modules>
         <module>form-samples</module>
 		<module>ui-showcase</module>
+        <module>crudsample</module>
     </modules>
 
     <build>
