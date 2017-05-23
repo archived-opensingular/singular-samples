@@ -28,96 +28,97 @@ public class DecoratorsSamplePage extends SingularTemplate {
 
     public DecoratorsSamplePage() {
 
-        ISInstanceActionsProvider actionsProvider = (ISInstanceActionCapable target, SInstance instance) -> Arrays.asList(
-            new SInstanceAction(SInstanceAction.ActionType.NORMAL, SIcon.resolve("html5"))
-                .setActionHandler((i, d) -> d.showMessage("HTML", ""
-                    + "<h1>HTML</h1>"
-                    + "<p>This is a paragraph, with <b>bold</b>, <i>italic</i>, and <u>underlined</u> text.</p>"
-                    + "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
-                    + "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
-                    + "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>"
-                    + "<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
-                    + "<table class='table table-hover'>"
-                    + "  <tr>"
-                    + "    <th>A</th>"
-                    + "    <th>B</th>"
-                    + "    <th>C</th>"
-                    + "  </tr>"
-                    + "  <tr>"
-                    + "    <td>a</td>"
-                    + "    <td>b</td>"
-                    + "    <td>c</td>"
-                    + "  </tr>"
-                    + "  <tr>"
-                    + "    <td>d</td>"
-                    + "    <td>e</td>"
-                    + "    <td>f</td>"
-                    + "  </tr>"
-                    + "</table>"
-                    + "")),
-            new SInstanceAction(SInstanceAction.ActionType.NORMAL, "Text")
-                .setActionHandler((i, d) -> d.showMessage("Text", ""
-                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n"
-                    + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n"
-                    + "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \n"
-                    + "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")),
-            new SInstanceAction(SInstanceAction.ActionType.NORMAL, SIcon.resolve("asterisk"), "Markdown")
-                .setActionHandler((i, d) -> d.showMessage("Markdown", ""
-                    + "\n# Título"
-                    + "\n"
-                    + "\nIsto é um parágrafo."
-                    + "\n* item 1"
-                    + "\n* **item 2** (negrito)"
-                    + "\n* *item 3* (itálico)"
-                    + "\n"
-                    + "\n--"
-                    + "\n"
-                    + "\n[Google](https://google.com)"
-                    + "\n"
-                    + "\n")),
-            new SInstanceAction(SInstanceAction.ActionType.PRIMARY, SIcon.resolve("cog"))
-                .setActionHandler((actionInstance, d) -> {
-                    ISupplier<SInstance> formInstanceSupplier = () -> {
-                        SInstance ins = SDocumentFactory.empty().createInstance(new RefType() {
-                            @Override
-                            protected SType<?> retrieve() {
-                                SDictionary dict = SDictionary.create();
-                                return dict.getType(STypeString.class);
-                            }
-                        });
-                        ins.setValue("Test");
-                        return ins;
-                    };
-                    List<SInstanceAction> actions = Arrays.asList(
-
-                        new SInstanceAction(SInstanceAction.ActionType.PRIMARY, "Modal as JSON")
-                            .setActionHandler((formInstance, modalDelegate) -> modalDelegate
-                                .showMessage("Modal as JSON",
-                                    new PersistenceBuilderXML()
-                                        .withPersistId(false)
-                                        .toXML(formInstance.get())
-                                        .toJSONString())),
-
-                        new SInstanceAction(SInstanceAction.ActionType.PRIMARY, "Base as JSON")
-                            .setActionHandler((formInstance, modalDelegate) -> {
-                                PersistenceBuilderXML builder = new PersistenceBuilderXML().withPersistId(false);
-                                SInstance root = modalDelegate.getInstanceRef().get().getRoot();
-                                MElement xml = builder.toXML(root);
-                                String json = xml.toJSONString();
-                                modalDelegate.showMessage("Base as JSON", json);
-                            }),
-
-                        SInstanceAction.defaultCancelAction("Fechar"));
-
-                    d.openForm("Form", formInstanceSupplier, actions);
-                }));
-
         add(new SingularFormPanel("panel", MyTypeForm.class)
             .addBuildListener(new IWicketBuildListener() {
                 @Override
                 public void onBeforeBuild(WicketBuildContext ctx, IWicketComponentMapper mapper, ViewMode viewMode) {
                     if (mapper instanceof ISInstanceActionCapable) {
                         ISInstanceActionCapable iac = (ISInstanceActionCapable) mapper;
+
+                        ISInstanceActionsProvider actionsProvider = (ISInstanceActionCapable target, SInstance instance) -> Arrays.asList(
+                            new SInstanceAction(SInstanceAction.ActionType.NORMAL, SIcon.resolve("html5"))
+                                .setActionHandler((i, d) -> d.showMessage("HTML", ""
+                                    + "<h1>HTML</h1>"
+                                    + "<p>This is a paragraph, with <b>bold</b>, <i>italic</i>, and <u>underlined</u> text.</p>"
+                                    + "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+                                    + "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
+                                    + "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>"
+                                    + "<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+                                    + "<table class='table table-hover'>"
+                                    + "  <tr>"
+                                    + "    <th>A</th>"
+                                    + "    <th>B</th>"
+                                    + "    <th>C</th>"
+                                    + "  </tr>"
+                                    + "  <tr>"
+                                    + "    <td>a</td>"
+                                    + "    <td>b</td>"
+                                    + "    <td>c</td>"
+                                    + "  </tr>"
+                                    + "  <tr>"
+                                    + "    <td>d</td>"
+                                    + "    <td>e</td>"
+                                    + "    <td>f</td>"
+                                    + "  </tr>"
+                                    + "</table>"
+                                    + "")),
+                            new SInstanceAction(SInstanceAction.ActionType.NORMAL, "Text")
+                                .setActionHandler((i, d) -> d.showMessage("Text", ""
+                                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n"
+                                    + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n"
+                                    + "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \n"
+                                    + "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")),
+                            new SInstanceAction(SInstanceAction.ActionType.NORMAL, SIcon.resolve("asterisk"), "Markdown")
+                                .setActionHandler((i, d) -> d.showMessage("Markdown", ""
+                                    + "\n# Título"
+                                    + "\n"
+                                    + "\nIsto é um parágrafo."
+                                    + "\n* item 1"
+                                    + "\n* **item 2** (negrito)"
+                                    + "\n* *item 3* (itálico)"
+                                    + "\n"
+                                    + "\n--"
+                                    + "\n"
+                                    + "\n[Google](https://google.com)"
+                                    + "\n"
+                                    + "\n")),
+                            new SInstanceAction(SInstanceAction.ActionType.PRIMARY, SIcon.resolve("cog"))
+                                .setActionHandler((actionInstance, d) -> {
+                                    ISupplier<SInstance> formInstanceSupplier = () -> {
+                                        SInstance ins = SDocumentFactory.empty().createInstance(new RefType() {
+                                            @Override
+                                            protected SType<?> retrieve() {
+                                                SDictionary dict = SDictionary.create();
+                                                return dict.getType(STypeString.class);
+                                            }
+                                        });
+                                        ins.setValue("Test");
+                                        return ins;
+                                    };
+                                    List<SInstanceAction> actions = Arrays.asList(
+
+                                        new SInstanceAction(SInstanceAction.ActionType.PRIMARY, "Modal as JSON")
+                                            .setActionHandler((formInstance, modalDelegate) -> modalDelegate
+                                                .showMessage("Modal as JSON",
+                                                    new PersistenceBuilderXML()
+                                                        .withPersistId(false)
+                                                        .toXML(formInstance.get())
+                                                        .toJSONString())),
+
+                                        new SInstanceAction(SInstanceAction.ActionType.PRIMARY, "Base as JSON")
+                                            .setActionHandler((formInstance, modalDelegate) -> {
+                                                PersistenceBuilderXML builder = new PersistenceBuilderXML().withPersistId(false);
+                                                SInstance root = modalDelegate.getInstanceRef().get().getRoot();
+                                                MElement xml = builder.toXML(root);
+                                                String json = xml.toJSONString();
+                                                modalDelegate.showMessage("Base as JSON", json);
+                                            }),
+
+                                        SInstanceAction.defaultCancelAction("Fechar"));
+
+                                    d.openForm("Form", formInstanceSupplier, actions);
+                                }));
+
                         iac.setSInstanceActionsProvider(actionsProvider);
                     }
                 }
