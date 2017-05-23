@@ -17,15 +17,11 @@
 package org.opensingular.singular.form.showcase.view.page.form.examples;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SPackage;
 
+@SInfoPackage(name = "mform.peticao")
 public class SPackagePeticaoGGTOX extends SPackage {
-
-    public static final String PACOTE = "mform.peticao";
-
-    public SPackagePeticaoGGTOX() {
-        super(PACOTE);
-    }
 
     @Override
     protected void onLoadPackage(PackageBuilder pb) {

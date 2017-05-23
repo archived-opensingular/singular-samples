@@ -16,20 +16,16 @@
 package org.opensingular.form.exemplos.emec.credenciamentoescolagoverno.form;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 
+@SInfoPackage(name = "mform.peticao.emec.credenciamento.escolagoverno")
 public class SPackageCredenciamentoEscolaGoverno extends SPackage {
-
-    public static final String PACOTE = "mform.peticao.emec.credenciamento.escolagoverno";
 
     public static DominioService dominioService(SInstance ins) {
         return ins.getDocument().lookupServiceOrException(DominioService.class);
-    }
-
-    public SPackageCredenciamentoEscolaGoverno() {
-        super(PACOTE);
     }
 
     @Override

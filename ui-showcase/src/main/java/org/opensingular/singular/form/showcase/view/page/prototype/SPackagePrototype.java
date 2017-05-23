@@ -19,6 +19,7 @@ package org.opensingular.singular.form.showcase.view.page.prototype;
 import org.apache.commons.lang3.tuple.Pair;
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.SType;
@@ -52,6 +53,7 @@ import java.util.function.Predicate;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+@SInfoPackage(name = "mform.prototype")
 public class SPackagePrototype extends SPackage {
 
     public static final String PACOTE = "mform.prototype",
@@ -71,10 +73,6 @@ public class SPackagePrototype extends SPackage {
 
     private STypeInteger tamanhoCampo;
     private STypeBoolean obrigatorio;
-
-    public SPackagePrototype() {
-        super(PACOTE);
-    }
 
     @Override
     protected void onLoadPackage(PackageBuilder pb) {
