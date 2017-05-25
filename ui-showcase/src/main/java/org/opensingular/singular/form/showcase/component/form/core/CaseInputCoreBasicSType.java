@@ -16,33 +16,45 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.country.brazil.STypeCEP;
 import org.opensingular.form.type.country.brazil.STypeCNPJ;
 import org.opensingular.form.type.country.brazil.STypeCPF;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
+import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+
+import javax.annotation.Nonnull;
 
 /**
  * Campos básicos para uso nos formulários do singular
  */
 
 @CaseItem(componentName = "Basic", subCaseName = "Default",  group = Group.INPUT)
-public class CaseInputCoreBasicPackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Basic")
+public class CaseInputCoreBasicSType extends STypeComposite<SIComposite> {
+
+    public STypeCNPJ cnpj;
+    public STypeCPF cpf;
+    public STypeCEP cep;
+    public STypeEMail email;
+    public STypeString descricao;
+    public STypeTelefoneNacional telefone;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        tipoMyForm.addField("cnpj", STypeCNPJ.class);
-        tipoMyForm.addField("cpf", STypeCPF.class);
-        tipoMyForm.addField("cep", STypeCEP.class);
-        tipoMyForm.addFieldEmail("email");
-        tipoMyForm.addFieldString("descricao")
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        cnpj = this.addField("cnpj", STypeCNPJ.class);
+        cpf = this.addField("cpf", STypeCPF.class);
+        cep = this.addField("cep", STypeCEP.class);
+        email = this.addFieldEmail("email");
+        descricao = this.addFieldString("descricao");
+        descricao
                 .asAtr().label("Descrição");
-        tipoMyForm.addField("telefone", STypeTelefoneNacional.class);
-        super.onLoadPackage(pb);
+        telefone = this.addField("telefone", STypeTelefoneNacional.class);
     }
 }

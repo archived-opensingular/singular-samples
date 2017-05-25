@@ -17,24 +17,33 @@
 package org.opensingular.singular.form.showcase.component.form.core;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.type.core.STypeInteger;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeHTML;
+import org.opensingular.form.view.SViewByPortletRichText;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
- * Campo para edição de dados inteiro
+ * Permite a formatação de texto utilizando HTML.
  */
-@CaseItem(componentName = "Numeric", subCaseName = "Integer", group = Group.INPUT)
-public class CaseInputCoreIntegerPackage extends SPackage {
+@CaseItem(componentName = "HTML", subCaseName = "Editor Rico em Nova Aba", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "RichText")
+public class CaseInputCoreRichTextSType extends STypeComposite<SIComposite> {
+
+    public STypeHTML parecer;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        STypeInteger mTipoInteger = tipoMyForm.addFieldInteger("qtd");
-        mTipoInteger.asAtr().label("Quantidade");
-
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        parecer = this.addField("parecer", STypeHTML.class);
+        parecer.setView(SViewByPortletRichText::new);
+        parecer
+                .asAtr()
+                .label("Parecer Técnico");
     }
 }

@@ -16,28 +16,33 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.basic.AtrBasic;
+import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
- * Campo de texto simples
+ * Componente para inserção de mês e ano.
  */
-@CaseItem(componentName = "String", subCaseName = "Simples", group = Group.INPUT)
-public class CaseInputCoreStringPackage extends SPackage {
+@CaseItem(componentName = "Date", subCaseName = "Mês/Ano", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "YearMonth")
+public class CaseInputCoreYearMonthSType extends STypeComposite<SIComposite> {
+
+    public STypeYearMonth inicio;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-
-        tipoMyForm.addFieldString("nomeCompleto")
-                .asAtr().label("Nome Completo").maxLength(100);
-
-        tipoMyForm.addFieldString("endereco")
-                .asAtr().label("Endereço").maxLength(250);
-
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        inicio = this.addField("inicio", STypeYearMonth.class);
+        inicio
+                .as(AtrBasic.class)
+                .label("Data Início")
+                .asAtrBootstrap()
+                .colPreference(2);
     }
 }

@@ -18,8 +18,10 @@ package org.opensingular.singular.form.showcase.component.form.core;
 
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDecimal;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeEMail;
@@ -27,16 +29,20 @@ import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
  * Subtitle - Exemplo de como utilizar nos agrupadores (StypeComposite) e fields. 
  */
 @CaseItem(componentName = "Subtitle", group = Group.INPUT)
-public class CaseSubtitlePackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Subtitle")
+public class CaseSubtitleSType extends STypeComposite<SIComposite> {
+
+    public STypeComposite<SIComposite> dadosPessoais;
+    public STypeComposite<SIComposite> dadosProfissionais;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> testForm = pb.createCompositeType("testForm");
-
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
         STypeString nome;
         STypeEMail email;
 
@@ -47,7 +53,7 @@ public class CaseSubtitlePackage extends SPackage {
         STypeDecimal redimentoFamilia;
 
         
-        STypeComposite<SIComposite> dadosPessoais = testForm.addFieldComposite("dadosPessoais");
+        dadosPessoais = this.addFieldComposite("dadosPessoais");
         dadosPessoais.asAtr().label("Dados Pessoais");
         // @destacar
         dadosPessoais.asAtr().subtitle("Favor preencher todos os dados pessoais.");
@@ -58,7 +64,7 @@ public class CaseSubtitlePackage extends SPackage {
         email = dadosPessoais.addFieldEmail("email");
         email.asAtr().label("E-mail");
 
-        STypeComposite<SIComposite> dadosProfissionais = testForm.addFieldComposite("dadosProfissionais");
+        dadosProfissionais = this.addFieldComposite("dadosProfissionais");
         dadosProfissionais.asAtr().label("Dados Profissionais");
         
         profissao = dadosProfissionais.addFieldString("profissao");
@@ -77,11 +83,10 @@ public class CaseSubtitlePackage extends SPackage {
         redimentoFamilia.asAtr().subtitle("O somatório de todo redimento da mesma família.");
         redimentoFamilia.asAtrBootstrap().colPreference(6);
 
-        testForm.withView(new SViewByBlock(), v -> v.newBlock("Ficha de Cadastro")
+        this.withView(new SViewByBlock(), v -> v.newBlock("Ficha de Cadastro")
                 .add(dadosPessoais)
                 .newBlock("Ficha de Cadastro")
                 .add(dadosProfissionais)
                 );
-
     }
 }

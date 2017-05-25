@@ -17,34 +17,45 @@
 package org.opensingular.singular.form.showcase.component.form.core;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+
+import javax.annotation.Nonnull;
 
 /**
  * Campo Text Area
  */
 @CaseItem(componentName = "String", subCaseName = "Text Area", group = Group.INPUT)
-public class CaseInputCoreTextAreaPackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "TextArea")
+public class CaseInputCoreTextAreaSType extends STypeComposite<SIComposite> {
+
+    public STypeString observacao1;
+    public STypeString observacao2;
+    public STypeString observacao3;
 
     @Override
     //@formatter:off
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-
-        tipoMyForm.addFieldString("observacao1")
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        observacao1 = this.addFieldString("observacao1");
+        observacao1
                 .withTextAreaView()
                 .asAtr().label("Observação (default)");
 
-        tipoMyForm.addFieldString("observacao2")
+        observacao2 = this.addFieldString("observacao2");
+        observacao2
             .withTextAreaView(view->view.setLines(2))
             .asAtr()
             .label("Observação (2 linhas e 500 de limite)")
             .maxLength(500);
 
-        tipoMyForm.addFieldString("observacao3")
+        observacao3 = this.addFieldString("observacao3");
+        observacao3
                 .withTextAreaView(view->view.setLines(10))
                 .asAtr()
                 .label("Observação (10 linhas e 5000 de limite)")

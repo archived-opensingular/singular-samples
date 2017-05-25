@@ -17,33 +17,31 @@
 package org.opensingular.singular.form.showcase.component.form.core;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
- * Campo para inserção de dados booleanos.
+ * Componente para inserção de data e hora.
  */
-//@formatter:off
-@CaseItem(componentName = "Boolean", group = Group.INPUT)
-public class CaseInputCoreBooleanPackage extends SPackage {
+@CaseItem(componentName = "Date", subCaseName = "Data e Hora", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "DateTime")
+public class CaseInputCoreDateTimeSType extends STypeComposite<SIComposite> {
+
+    public STypeDateTime inicio;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        inicio = this.addFieldDateTime("inicio");
 
-        tipoMyForm.addFieldBoolean("aceitaTermos")
-            .asAtr().label("Aceito os termos e condições").required(true);
-
-        tipoMyForm.addFieldBoolean("receberNotificacoes")
-            //@destacar
-            .withRadioView()
-            .asAtr().label("Receber notificações");
-
-        tipoMyForm.addFieldBoolean("aceitaTermos2")
-            //@destacar
-            .withRadioView("Aceito", "Rejeito")
-            .asAtr().label("Aceito os termos e condições");
+        inicio.asAtr().label("Início");
+        inicio.asAtrBootstrap().colPreference(3);
     }
 }

@@ -16,28 +16,34 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.type.basic.AtrBasic;
-import org.opensingular.form.type.util.STypeYearMonth;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeDate;
+import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
- * Componente para inserção de mês e ano.
+ * Componente para inserção de data
  */
-@CaseItem(componentName = "Date", subCaseName = "Mês/Ano", group = Group.INPUT)
-public class CaseInputCoreYearMonthPackage extends SPackage {
+@CaseItem(componentName = "Date", subCaseName = "Simples", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Date")
+public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
+
+    public STypeDate inicioDia;
+    public STypeTime inicioHora;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        tipoMyForm.addField("inicio", STypeYearMonth.class)
-                .as(AtrBasic.class)
-                .label("Data Início")
-                .asAtrBootstrap()
-                .colPreference(2);
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        inicioDia = this.addFieldDate("inicioDia");
+        inicioDia
+                  .asAtr().label("Data Início");
+        inicioHora = this.addField("inicioHora", STypeTime.class);
+        inicioHora
+                .asAtr().label("Hora Início");
     }
-
 }

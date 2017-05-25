@@ -17,28 +17,37 @@
 package org.opensingular.singular.form.showcase.component.form.core;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.type.core.STypeHTML;
-import org.opensingular.form.view.SViewByPortletRichText;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeMonetary;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
- * Permite a formatação de texto utilizando HTML.
+ * Campo para inserção de dados monetários.
  */
-@CaseItem(componentName = "HTML", subCaseName = "Editor Rico em Nova Aba", group = Group.INPUT)
-public class CaseInputCoreRichTextPackage extends SPackage {
+@CaseItem(componentName = "Numeric", subCaseName = "Monetário", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Money")
+public class CaseInputCoreMoneyStype extends STypeComposite<SIComposite> {
+
+    public STypeMonetary monetario;
+    public STypeMonetary monetarioLongo;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        final STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        final STypeHTML         parecer    = tipoMyForm.addField("parecer", STypeHTML.class);
-        parecer.setView(SViewByPortletRichText::new);
-        parecer
-                .asAtr()
-                .label("Parecer Técnico");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        monetario = this.addFieldMonetary("monetario");
+        monetario
+                .asAtr().label("Monetário default");
 
+        monetarioLongo = this.addFieldMonetary("monetarioLongo");
+        monetarioLongo
+                .asAtr().label("Monetário com 15 inteiros e 3 decimais")
+                .integerMaxLength(15)
+                .fractionalMaxLength(3);
     }
-
 }

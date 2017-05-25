@@ -17,30 +17,37 @@
 package org.opensingular.singular.form.showcase.component.form.core;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeDecimal;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+
+import javax.annotation.Nonnull;
 
 /**
  * Campo para inserção de dados decimais.
  */
 @CaseItem(componentName = "Numeric", subCaseName = "Decimal", group = Group.INPUT)
-public class CaseInputCoreDecimalPackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Decimal")
+public class CaseInputCoreDecimalSType extends STypeComposite<SIComposite> {
+
+    public STypeDecimal decimalPadrao;
+    public STypeDecimal decimalLongo;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-
-        tipoMyForm.addFieldDecimal("decimalPadrao")
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        decimalPadrao = this.addFieldDecimal("decimalPadrao");
+        decimalPadrao
                 .asAtr().label("Número decimal default");
 
-        tipoMyForm.addFieldDecimal("decimalLongo")
+        decimalLongo = this.addFieldDecimal("decimalLongo");
+        decimalLongo
                 .asAtr().label("Decimal com 15 inteiros e 10 dígitos")
                 .integerMaxLength(15)
                 .fractionalMaxLength(10);
-
-        super.onLoadPackage(pb);
     }
-
 }

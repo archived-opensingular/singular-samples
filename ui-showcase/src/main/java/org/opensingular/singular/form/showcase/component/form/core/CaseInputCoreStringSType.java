@@ -17,26 +17,36 @@
 package org.opensingular.singular.form.showcase.component.form.core;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.type.core.STypeDateTime;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
- * Componente para inserção de data e hora.
+ * Campo de texto simples
  */
-@CaseItem(componentName = "Date", subCaseName = "Data e Hora", group = Group.INPUT)
-public class CaseInputCoreDateTimePackage extends SPackage {
+@CaseItem(componentName = "String", subCaseName = "Simples", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "String")
+public class CaseInputCoreStringSType extends STypeComposite<SIComposite> {
+
+    public STypeString nomeCompleto;
+    public STypeString endereco;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        STypeDateTime inicio = tipoMyForm.addFieldDateTime("inicio");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        nomeCompleto = this.addFieldString("nomeCompleto");
+        nomeCompleto
+                .asAtr().label("Nome Completo").maxLength(100);
 
-        inicio.asAtr().label("Início");
-        inicio.asAtrBootstrap().colPreference(3);
+        endereco = this.addFieldString("endereco");
+        endereco
+                .asAtr().label("Endereço").maxLength(250);
 
     }
-
 }

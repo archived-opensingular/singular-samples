@@ -17,25 +17,30 @@
 package org.opensingular.singular.form.showcase.component.form.core;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.type.core.STypeTime;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
- * Componente para inserção de data
+ * Campo para edição de dados inteiro
  */
-@CaseItem(componentName = "Date", subCaseName = "Simples", group = Group.INPUT)
-public class CaseInputCoreDatePackage extends SPackage {
+@CaseItem(componentName = "Numeric", subCaseName = "Integer", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Integer")
+public class CaseInputCoreIntegerStype extends STypeComposite<SIComposite> {
+
+    public STypeInteger qtd;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        tipoMyForm.addFieldDate("inicioDia")
-                  .asAtr().label("Data Início");
-        tipoMyForm.addField("inicioHora", STypeTime.class)
-                .asAtr().label("Hora Início");
-    }
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        qtd = this.addFieldInteger("qtd");
+        qtd.asAtr().label("Quantidade");
 
+    }
 }
