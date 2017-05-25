@@ -18,30 +18,37 @@ package org.opensingular.singular.form.showcase.component.form.core.select;
 
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 import org.opensingular.singular.form.showcase.view.page.form.crud.services.MFileIdsOptionsProvider;
+
+import javax.annotation.Nonnull;
 
 /**
  * É permitido alterar o provedor de dados de forma que estes sejam carregados de forma dinâmica ou de outras fontes de informação.
  */
 @CaseItem(componentName = "Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT,
             resources = @Resource(MFileIdsOptionsProvider.class))
-public class CaseInputCoreSelectProviderPackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "SelectProvider")
+public class CaseInputCoreSelectProviderSType extends STypeComposite<SIComposite> {
+
+    public STypeComposite<SIComposite> arquivo;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        final STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
         /*
          * Neste caso será utilizado o serviço de nome filesChoiceProvider
          * cadastrado através do Document.bindLocalService
          */
-        final STypeComposite<SIComposite> arquivo  = tipoMyForm.addFieldComposite("arquivo");
+        arquivo  = this.addFieldComposite("arquivo");
+
         final STypeString                 id       = arquivo.addFieldString("id");
         final STypeString                 hashSha1 = arquivo.addFieldString("hashSha1");
 

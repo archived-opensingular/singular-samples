@@ -18,23 +18,29 @@ package org.opensingular.singular.form.showcase.component.form.core.select;
 
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
  * Pemite a seleção de valores compostos de varios tipos diferentes.
  */
 @CaseItem(componentName = "Select", subCaseName = "Tipo Composto", group = Group.INPUT)
-public class CaseInputCoreSelectCompositePackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "SelectComposite")
+public class CaseInputCoreSelectCompositeSType extends STypeComposite<SIComposite> {
+
+    public STypeComposite<SIComposite> ingredienteQuimico;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        final STypeComposite<SIComposite> tipoMyForm         = pb.createCompositeType("testForm");
-        final STypeComposite<SIComposite> ingredienteQuimico = tipoMyForm.addFieldComposite("ingredienteQuimico");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        ingredienteQuimico = this.addFieldComposite("ingredienteQuimico");
 
         ingredienteQuimico.asAtr().label("Ingrediente Quimico");
 
@@ -50,7 +56,5 @@ public class CaseInputCoreSelectCompositePackage extends SPackage {
                     listaBuilder.add().set(formulaQuimica, "O2").set(nome, "Gás Oxigênio");
                     listaBuilder.add().set(formulaQuimica, "C12H22O11").set(nome, "Açúcar");
                 });
-
     }
-
 }

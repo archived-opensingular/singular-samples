@@ -17,31 +17,39 @@
 package org.opensingular.singular.form.showcase.component.form.core.select;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
  * Se a view não for definida, então define o componente dependendo da quantidade de dados e da obrigatoriedade.
  */
 @CaseItem(componentName = "Select", subCaseName = "Default", group = Group.INPUT)
-public class CaseInputCoreSelectDefaultPackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "SelectDefault")
+public class CaseInputCoreSelectDefaultSType extends STypeComposite<SIComposite> {
+
+    public STypeComposite<?> testForm;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> root = pb.createCompositeType("testForm");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        testForm = this.addFieldComposite("testForm");
 
-        addSelection(root, 3, true);
-        addSelection(root, 3, false);
-        addSelection(root, 10, false);
+        addSelection(testForm, 3, true);
+        addSelection(testForm, 3, false);
+        addSelection(testForm, 10, false);
 
-        final STypeString favoriteFruit = root.addFieldString("favoriteFruit");
+        final STypeString favoriteFruit = testForm.addFieldString("favoriteFruit");
         favoriteFruit.withSelectView();
         favoriteFruit.asAtr().label("Fruta Favorita");
         favoriteFruit.selectionOf("Maçã", "Laranja", "Banana", "Goiaba");
-
     }
 
     private static void addSelection(STypeComposite<?> tipoMyForm, int sizeOptions, boolean required) {

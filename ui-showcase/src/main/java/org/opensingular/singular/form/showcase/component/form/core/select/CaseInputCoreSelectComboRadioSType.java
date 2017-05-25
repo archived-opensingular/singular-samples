@@ -16,27 +16,34 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.select;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewSelectionByRadio;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
  * Radio
  */
 @CaseItem(componentName = "Select", subCaseName = "Combo e Radio", group = Group.INPUT)
-public class CaseInputCoreSelectComboRadioPackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "ComboRadio")
+public class CaseInputCoreSelectComboRadioSType extends STypeComposite<SIComposite> {
+
+    public STypeString tipoContato1;
+    public STypeString tipoContato2;
+    public STypeString tipoContato3;
 
     //@formatter:off
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
         //View por Select
-        STypeString tipoContato1 = tipoMyForm.addFieldString("tipoContato1");
+        tipoContato1 = this.addFieldString("tipoContato1");
         tipoContato1.selectionOf("Endereço", "Email", "Telefone", "Celular", "Fax");
         //@destacar:bloco
         //@destacar:fim
@@ -47,7 +54,7 @@ public class CaseInputCoreSelectComboRadioPackage extends SPackage {
 
         //@destacar:bloco
         //View por Radio
-        STypeString tipoContato2 = tipoMyForm.addFieldString("tipoContato2");
+        tipoContato2 = this.addFieldString("tipoContato2");
         tipoContato2.selectionOf("Endereço", "Email", "Telefone", "Celular", "Fax");
         //@destacar:fim
 
@@ -57,9 +64,8 @@ public class CaseInputCoreSelectComboRadioPackage extends SPackage {
 
 
 
-        STypeString tipoContato3 = tipoMyForm.addFieldString("tipoContato3");
+        tipoContato3 = this.addFieldString("tipoContato3");
         tipoContato3.selectionOf("Endereço", "Email", "Telefone", "Celular", "Fax");
-
 
         tipoContato3
                 .asAtr()

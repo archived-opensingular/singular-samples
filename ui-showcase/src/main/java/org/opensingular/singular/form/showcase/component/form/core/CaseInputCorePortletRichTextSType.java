@@ -16,23 +16,27 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeHTML;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 @CaseItem(componentName = "HTML", subCaseName = "Editor Rico", group = Group.INPUT)
-public class CaseInputCorePortletRichTextPackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "PortletRichText")
+public class CaseInputCorePortletRichTextSType extends STypeComposite<SIComposite> {
+
+    public STypeHTML parecer;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        final STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        final STypeHTML         parecer    = tipoMyForm.addField("parecer", STypeHTML.class);
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        parecer = this.addField("parecer", STypeHTML.class);
         parecer
                 .asAtr()
                 .label("Parecer Técnico");
     }
-
 }
