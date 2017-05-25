@@ -29,7 +29,9 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.apache.wicket.util.string.StringValue;
+import org.hibernate.persister.walking.spi.CollectionDefinition;
 import org.opensingular.form.SPackage;
+import org.opensingular.form.STypeComposite;
 import org.opensingular.lib.commons.base.SingularUtil;
 import org.opensingular.lib.wicket.util.resource.Icone;
 import org.opensingular.lib.wicket.util.resource.SingularIcon;
@@ -103,16 +105,18 @@ public class ShowCaseTable {
         for (Class<?> caseClass : classes) {
             final CaseItem caseItem = caseClass.getAnnotation(CaseItem.class);
             CaseBase caseBase = null;
-            if (SPackage.class.isAssignableFrom(caseClass)) {
-                caseBase = new CaseBaseForm(caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
-//                } else if (CollectionDefinition.class.isAssignableFrom(caseClass)) {
-//                    caseBase = new CaseBaseStudio(caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.getAnnotation());
-//                } else {
+            if (STypeComposite.class.isAssignableFrom(caseClass)) {
+                caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
+//            } else if (CollectionDefinition.class.isAssignableFrom(caseClass)) {
+//                System.out.println();
+////                    caseBase = new CaseBaseStudio((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
+//            } else {
+//                throw new RuntimeException("Exception");
 //                    throw new RuntimeException("Apenas classes do tipo " + SPackage.class.getName() + " e " + CollectionDefinition.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
             }
 
             if (!caseItem.customizer().isInterface()) {
-                createInstance(caseItem).customize(caseBase);
+//                createInstance(caseItem).customize(caseBase);
             }
             for (Resource resource : caseItem.resources()) {
                 Optional<ResourceRef> resourceRef;
