@@ -16,11 +16,17 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeInteger;
+import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+
+import javax.annotation.Nonnull;
 
 
 /**
@@ -30,21 +36,28 @@ import org.opensingular.singular.form.showcase.component.Group;
  * Por exemplo, ao configurar o tamanho para 3, o tamanho md será 6, sm 12 e xs 12.
  */
 @CaseItem(componentName = "Grid", subCaseName = "Simple", group = Group.LAYOUT)
-public class CaseSimpleGridPackage extends SPackage {
+@SInfoType(spackage = CaseLayoutPackage.class, name = "Simple")
+public class CaseSimpleGridSType extends STypeComposite<SIComposite> {
+
+    public STypeString nome;
+    public STypeInteger idade;
+    public STypeEMail email;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> testForm = pb.createCompositeType("testForm");
-
-        testForm.addFieldString("nome")
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        nome = this.addFieldString("nome");
+        nome
                 .asAtr().label("Nome")
                 .asAtrBootstrap().colPreference(6);
-        testForm.addFieldInteger("idade")
+
+        idade = this.addFieldInteger("idade");
+        idade
                 .asAtr().label("Idade")
                 .asAtrBootstrap().colPreference(2);
-        testForm.addFieldEmail("email")
+
+        email = this.addFieldEmail("email");
+        email
                 .asAtr().label("E-mail")
                 .asAtrBootstrap().colPreference(8);
-
     }
 }

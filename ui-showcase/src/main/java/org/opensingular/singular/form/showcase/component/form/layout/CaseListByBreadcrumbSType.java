@@ -16,43 +16,55 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeYearMonth;
-import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.SViewBreadcrumb;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
- * List by Master Detail
+ * Breadcrumb
  */
-@CaseItem(componentName = "List by Master Detail", subCaseName = "Tamanho mínimo e máximo", group = Group.LAYOUT)
-public class CaseListByMasterDetailMiniumAndMaximumPackage extends SPackage {
+@CaseItem(componentName = "Breadcrumb", subCaseName = "Simples", group = Group.LAYOUT)
+@SInfoType(spackage = CaseLayoutPackage.class, name = "Simples")
+public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
+
+    public STypeString nome;
+    public STypeInteger idade;
+    public STypeList<STypeComposite<SIComposite>, SIComposite> experienciasProfissionais;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        nome = this.addFieldString("nome", true);
+        nome
+                .asAtr().label("Nome");
 
-        STypeComposite<?> testForm = pb.createCompositeType("testForm");
+        idade = this.addFieldInteger("idade", true);
+        idade
+                .asAtr().label("Idade");
 
-        STypeList<STypeComposite<SIComposite>, SIComposite> experiencias        = testForm.addFieldListOfComposite("experienciasProfissionais", "experiencia");
-        STypeComposite<?>                                   experiencia         = experiencias.getElementsType();
+        experienciasProfissionais = this.addFieldListOfComposite("experienciasProfissionais", "experiencia");
+
+        STypeComposite<?>                                   experiencia         = experienciasProfissionais.getElementsType();
         STypeYearMonth                                      dtInicioExperiencia = experiencia.addField("inicio", STypeYearMonth.class, true);
         STypeYearMonth                                      dtFimExperiencia    = experiencia.addField("fim", STypeYearMonth.class);
         STypeString                                         empresa             = experiencia.addFieldString("empresa", true);
         STypeString                                         cargo               = experiencia.addFieldString("cargo", true);
-        STypeString atividades = experiencia.addFieldString("atividades");
+        STypeString                                         atividades          = experiencia.addFieldString("atividades");
 
         {
-            experiencias
             //@destacar:bloco
-                    .withMiniumSizeOf(1)
-                    .withMaximumSizeOf(3)
-                            //@destacar:fim
-                    .withView(SViewListByMasterDetail::new)
+            experienciasProfissionais
+                    .withView(SViewBreadcrumb::new)
+            //@destacar:fim
                     .asAtr().label("Experiências profissionais");
             dtInicioExperiencia
                     .asAtr().label("Data inicial")
@@ -69,6 +81,5 @@ public class CaseListByMasterDetailMiniumAndMaximumPackage extends SPackage {
                     .withTextAreaView()
                     .asAtr().label("Atividades Desenvolvidas");
         }
-
     }
 }

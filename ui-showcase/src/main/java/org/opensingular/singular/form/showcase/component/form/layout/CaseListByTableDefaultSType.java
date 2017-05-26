@@ -16,11 +16,11 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeYearMonth;
@@ -28,19 +28,22 @@ import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
  * List by Table
  */
 @CaseItem(componentName = "List by Table", subCaseName = "Default", group = Group.LAYOUT)
-public class CaseListByTableDefaultPackage extends SPackage {
+@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTable")
+public class CaseListByTableDefaultSType extends STypeComposite<SIComposite> {
+
+    public STypeList<STypeComposite<SIComposite>, SIComposite> certificacoes;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        STypeComposite<?> testForm = pb.createCompositeType("testForm");
-
-        STypeList<STypeComposite<SIComposite>, SIComposite> certificacoes = testForm.addFieldListOfComposite("certificacoes", "certificacao");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        certificacoes = this.addFieldListOfComposite("certificacoes", "certificacao");
         certificacoes.asAtr().label("Certificações");
+
         STypeComposite<?> certificacao = certificacoes.getElementsType();
         STypeYearMonth dataCertificacao = certificacao.addField("data", STypeYearMonth.class, true);
         STypeString entidadeCertificacao = certificacao.addFieldString("entidade", true);

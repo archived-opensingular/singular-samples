@@ -16,30 +16,33 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
  * List by Master Detail
  */
-@CaseItem(componentName = "List by Master Detail", subCaseName = "Configurar Colunas", group = Group.LAYOUT)
-public class CaseListByMasterDetailColumnsPackage extends SPackage {
+@CaseItem(componentName = "List by Master Detail", subCaseName = "Tamanho mínimo e máximo", group = Group.LAYOUT)
+@SInfoType(spackage = CaseLayoutPackage.class, name = "MinMaxSizeMasterDetail")
+public class CaseListByMasterDetailMiniumAndMaximumSType extends STypeComposite<SIComposite> {
+
+    public STypeList<STypeComposite<SIComposite>, SIComposite> experienciasProfissionais;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        experienciasProfissionais = this.addFieldListOfComposite("experienciasProfissionais", "experiencia");
 
-        STypeComposite<?> testForm = pb.createCompositeType("testForm");
-
-        STypeList<STypeComposite<SIComposite>, SIComposite> experiencias        = testForm.addFieldListOfComposite("experienciasProfissionais", "experiencia");
-        STypeComposite<?>                                   experiencia         = experiencias.getElementsType();
+        STypeComposite<?>                                   experiencia         = experienciasProfissionais.getElementsType();
         STypeYearMonth                                      dtInicioExperiencia = experiencia.addField("inicio", STypeYearMonth.class, true);
         STypeYearMonth                                      dtFimExperiencia    = experiencia.addField("fim", STypeYearMonth.class);
         STypeString                                         empresa             = experiencia.addFieldString("empresa", true);
@@ -47,13 +50,12 @@ public class CaseListByMasterDetailColumnsPackage extends SPackage {
         STypeString atividades = experiencia.addFieldString("atividades");
 
         {
+            experienciasProfissionais
             //@destacar:bloco
-            experiencias.withView(new SViewListByMasterDetail()
-                    .col(empresa, "Empresa em que trabalhou") // Desta forma, será utilizado rótulo personalizado para esta coluna.
-                    .col(dtInicioExperiencia) //Nos demais, a coluna terá o mesmo rótulo do tipo que a define.
-                    .col(dtFimExperiencia)
-                    .label("Informar Experiência Anterior"))
-            //@destacar:fim
+                    .withMiniumSizeOf(1)
+                    .withMaximumSizeOf(3)
+                            //@destacar:fim
+                    .withView(SViewListByMasterDetail::new)
                     .asAtr().label("Experiências profissionais");
             dtInicioExperiencia
                     .asAtr().label("Data inicial")

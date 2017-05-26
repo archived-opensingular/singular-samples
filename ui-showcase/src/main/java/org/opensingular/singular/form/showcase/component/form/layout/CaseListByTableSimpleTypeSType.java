@@ -16,27 +16,31 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
  * List by Table
  */
 @CaseItem(componentName = "List by Table", subCaseName = "Simple Type", group = Group.LAYOUT)
-public class CaseListByTableSimpleTypePackage extends SPackage {
+@SInfoType(spackage = CaseLayoutPackage.class, name = "SimpleTypeTable")
+public class CaseListByTableSimpleTypeSType extends STypeComposite<SIComposite> {
+
+    public STypeList<STypeString, SIString> nomes;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        STypeComposite<?>                testForm = pb.createCompositeType("testForm");
-        STypeList<STypeString, SIString> nomes    = testForm.addFieldListOf("nomes", STypeString.class);
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        nomes = this.addFieldListOf("nomes", STypeString.class);
 
         nomes.withView(SViewListByTable::new);
         nomes.withMiniumSizeOf(2);
@@ -45,5 +49,4 @@ public class CaseListByTableSimpleTypePackage extends SPackage {
 
         nomes.getElementsType().asAtr().required();
     }
-
 }

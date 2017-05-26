@@ -18,26 +18,31 @@ package org.opensingular.singular.form.showcase.component.form.layout;
 
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewBreadcrumb;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.interaction.CaseInteractionPackage;
+
+import javax.annotation.Nonnull;
 
 /**
  * Breadcrumb
  */
 @CaseItem(componentName = "Breadcrumb", subCaseName = "Complexo", group = Group.LAYOUT)
-public class CaseComplexListByBreadcrumbPackage extends SPackage {
+@SInfoType(spackage = CaseLayoutPackage.class, name = "Complexo")
+public class CaseComplexListByBreadcrumbSType extends STypeComposite<SIComposite> {
+
+    public STypeList<STypeComposite<SIComposite>, SIComposite> componentes;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        STypeComposite<?> testForm = pb.createCompositeType("testForm");
-
-        STypeList<STypeComposite<SIComposite>, SIComposite> componentes = testForm.addFieldListOfComposite("componentes", "componente");
-        STypeComposite<SIComposite>                         componente  = componentes.getElementsType();
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        componentes = this.addFieldListOfComposite("componentes", "componente");
+        STypeComposite<SIComposite> componente  = componentes.getElementsType();
         componente.asAtr().label("Componente");
 
         componente.addFieldString("nome")
@@ -53,7 +58,6 @@ public class CaseComplexListByBreadcrumbPackage extends SPackage {
 
         teste.addFieldString("nome")
                 .asAtr().label("Nome");
-
 
         componentes
                 .withView(SViewBreadcrumb::new)
