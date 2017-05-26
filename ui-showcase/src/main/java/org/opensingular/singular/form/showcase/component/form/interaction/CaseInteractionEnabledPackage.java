@@ -16,38 +16,35 @@
 
 package org.opensingular.singular.form.showcase.component.form.interaction;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
  * Habilita os componentes dinamicamente.
  */
 @CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Enabled", group = Group.INTERACTION)
-public class CaseInteractionEnabledPackage extends SPackage {
+@SInfoType(spackage = CaseInteractionPackage.class, name = "Enabled")
+public class CaseInteractionEnabledPackage extends STypeComposite<SIComposite> {
 
-    public STypeComposite<?> testForm;
     public STypeBoolean enabled;
     public STypeComposite<SIComposite> record;
     public STypeString recordText;
     public STypeDate recordDate;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        enabled = this.addFieldBoolean("enabled");
 
-        super.onLoadPackage(pb);
-
-        testForm = pb.createCompositeType("testForm");
-
-        enabled = testForm.addFieldBoolean("enabled");
-
-        record = testForm.addFieldComposite("record");
+        record = this.addFieldComposite("record");
         recordText = record.addFieldString("text");
         recordDate = record.addFieldDate("date");
 

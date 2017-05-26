@@ -16,37 +16,35 @@
 
 package org.opensingular.singular.form.showcase.component.form.interaction;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
 /**
  * Torna os campos obrigatórios dinamicamente.
  */
 @CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Required", group = Group.INTERACTION)
-public class CaseInteractionRequiredPackage extends SPackage {
+@SInfoType(spackage = CaseInteractionPackage.class, name = "Required")
+public class CaseInteractionRequiredPackage extends STypeComposite<SIComposite> {
 
-    public STypeComposite<?> testForm;
     public STypeBoolean required;
     public STypeComposite<SIComposite> record;
     public STypeString recordText;
     public STypeDate recordDate;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        super.onLoadPackage(pb);
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        required = this.addFieldBoolean("required");
 
-        testForm = pb.createCompositeType("testForm");
-
-        required = testForm.addFieldBoolean("required");
-
-        record = testForm.addFieldComposite("record");
+        record = this.addFieldComposite("record");
         recordText = record.addFieldString("text");
         recordDate = record.addFieldDate("date");
 

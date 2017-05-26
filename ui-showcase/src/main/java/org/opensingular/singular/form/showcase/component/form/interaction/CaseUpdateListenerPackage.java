@@ -16,34 +16,36 @@
 
 package org.opensingular.singular.form.showcase.component.form.interaction;
 
-import java.util.Optional;
-
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+import java.util.Optional;
+
 /**
  * Listener que é executado quando um dependsOn é executado
  */
 @CaseItem(componentName = "Listeners", subCaseName = "Update listener", group = Group.INTERACTION)
-public class CaseUpdateListenerPackage extends SPackage {
+@SInfoType(spackage = CaseInteractionPackage.class, name = "UpdateListener")
+public class CaseUpdateListenerPackage extends STypeComposite<SIComposite> {
 
-    private STypeString cep;
+    public STypeString cep;
+    public STypeString logradouro;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        super.onLoadPackage(pb);
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        this.asAtr().label("Endereço");
 
-        final STypeComposite<SIComposite> testForm = pb.createCompositeType("testForm");
-        testForm.asAtr().label("Endereço");
-        cep = testForm.addFieldString("cep");
+        cep = this.addFieldString("cep");
         cep.asAtr().maxLength(8).label("CEP (Use os valores 70863520 ou 70070120)");
-        final STypeString logradouro = testForm.addFieldString("logradouro");
+
+        logradouro = this.addFieldString("logradouro");
         logradouro
                 .asAtr().enabled(false)
                 .label("Logradouro")
@@ -65,5 +67,4 @@ public class CaseUpdateListenerPackage extends SPackage {
             }
         });
     }
-
 }

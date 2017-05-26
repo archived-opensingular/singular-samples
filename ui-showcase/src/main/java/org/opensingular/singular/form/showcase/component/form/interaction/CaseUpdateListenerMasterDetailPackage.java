@@ -16,34 +16,35 @@
 
 package org.opensingular.singular.form.showcase.component.form.interaction;
 
-import java.math.BigDecimal;
-
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeMonetary;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+import java.math.BigDecimal;
+
 /**
  * Listener que atualiza valores de itens de um mestre-detalhe.
  */
 @CaseItem(componentName = "Listeners", subCaseName = "Master/detail", group = Group.INTERACTION)
-public class CaseUpdateListenerMasterDetailPackage extends SPackage {
+@SInfoType(spackage = CaseInteractionPackage.class, name = "MasterDetail")
+public class CaseUpdateListenerMasterDetailPackage extends STypeComposite<SIComposite> {
+
+    public STypeMonetary salarioMaximo;
+    public STypeList<STypeComposite<SIComposite>, SIComposite> funcionarios;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        super.onLoadPackage(pb);
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        salarioMaximo = this.addFieldMonetary("salarioMaximo");
 
-        STypeComposite<?> testForm = pb.createCompositeType("testForm");
-
-        STypeMonetary salarioMaximo = testForm.addFieldMonetary("salarioMaximo");
-
-        STypeList<STypeComposite<SIComposite>, SIComposite> funcionarios = testForm.addFieldListOfComposite("funcionarios", "funcionario");
+        funcionarios = this.addFieldListOfComposite("funcionarios", "funcionario");
         STypeComposite<?> funcionario = funcionarios.getElementsType();
         STypeString nome = funcionario.addFieldString("nome", true);
         STypeMonetary salario = funcionario.addFieldMonetary("salario");

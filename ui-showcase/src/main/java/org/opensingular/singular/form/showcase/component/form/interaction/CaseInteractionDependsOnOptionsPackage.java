@@ -16,24 +16,27 @@
 
 package org.opensingular.singular.form.showcase.component.form.interaction;
 
-import static com.google.common.collect.Lists.newArrayList;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeString;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
-import org.opensingular.form.STypeComposite;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
+import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * Combos interdependentes
  */
 @CaseItem(componentName = "Combos interdependentes", group = Group.INTERACTION)
-public class CaseInteractionDependsOnOptionsPackage extends SPackage {
+@SInfoType(spackage = CaseInteractionPackage.class, name = "DependsOnOptions")
+public class CaseInteractionDependsOnOptionsPackage extends STypeComposite<SIComposite> {
 
     private static final String[] WORDS = (""
         + "consider,minute,accord,evident,practice,intend,concern,commit,issue,approach,establish,utter,conduct,engage,"
@@ -64,17 +67,13 @@ public class CaseInteractionDependsOnOptionsPackage extends SPackage {
         + "gird,betrothed,prospective,advert,peremptory,rudiment,deduce,halting,ignominy,ideology,pallid,chagrin,obtrude")
             .split(",");
 
-    public STypeComposite<?> testForm;
     public STypeString       letter;
     public STypeString       word;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        super.onLoadPackage(pb);
-
-        testForm = pb.createCompositeType("testForm");
-        letter = testForm.addFieldString("letter");
-        word = testForm.addFieldString("word");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        letter = this.addFieldString("letter");
+        word = this.addFieldString("word");
 
         letter.asAtr()
             .label("Letter");
@@ -94,7 +93,5 @@ public class CaseInteractionDependsOnOptionsPackage extends SPackage {
                     }).orElse(newArrayList());
 
                 });
-
-        ;
     }
 }

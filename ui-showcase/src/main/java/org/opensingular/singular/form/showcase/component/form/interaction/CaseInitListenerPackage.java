@@ -16,45 +16,44 @@
 
 package org.opensingular.singular.form.showcase.component.form.interaction;
 
-import java.util.Arrays;
-import java.util.Optional;
-
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SIList;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
-import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.Optional;
+
 /**
  * Listener que é executado ao criar uma nova instância de um tipo
  */
 @CaseItem(componentName = "Listeners", subCaseName = "Init Listener", group = Group.INTERACTION)
-public class CaseInitListenerPackage extends SPackage {
+@SInfoType(spackage = CaseInteractionPackage.class, name = "InitListener")
+public class CaseInitListenerPackage extends STypeComposite<SIComposite> {
 
-    private STypeList<STypeComposite<SIComposite>, SIComposite> itens;
-    private STypeString                                         nome;
+    public STypeList<STypeComposite<SIComposite>, SIComposite> itens;
+    public STypeString                                         nome;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        super.onLoadPackage(pb);
-
-        final STypeComposite<SIComposite> testForm = pb.createCompositeType("testForm");
-        itens = testForm.addFieldListOfComposite("itens", "itenm");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        itens = this.addFieldListOfComposite("itens", "itenm");
         itens.asAtr().label("Itens");
         itens.withView(new SViewListByForm().disableDelete().disableNew());
 
         final STypeComposite<SIComposite> item = itens.getElementsType();
         nome = item.addFieldString("nome");
         nome
-                .asAtr().label("Nome").enabled(false)
-                .asAtrBootstrap().colPreference(3);
+            .asAtr().label("Nome").enabled(false)
+            .asAtrBootstrap().colPreference(3);
 
         final STypeInteger quantidade = item.addFieldInteger("quantidade");
         quantidade
@@ -62,7 +61,7 @@ public class CaseInitListenerPackage extends SPackage {
                 .asAtrBootstrap().colPreference(2);
 
         //@destacar
-        testForm.withInitListener(this::initForm);
+        this.withInitListener(this::initForm);
 
     }
 
