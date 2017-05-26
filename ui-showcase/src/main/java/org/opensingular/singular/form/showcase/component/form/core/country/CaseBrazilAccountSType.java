@@ -17,27 +17,30 @@
 package org.opensingular.singular.form.showcase.component.form.core.country;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.type.country.brazil.STypeAddress;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.country.brazil.STypeAccount;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
- * Campos de endereço - Brasil
+ * Campos de conta bancária- Brasil
  */
 
-@CaseItem(componentName = "Brasil", subCaseName = "Endereço", group = Group.COUNTRY)
-public class CaseBrazilAddressPackage extends SPackage {
+@CaseItem(componentName = "Brasil", subCaseName = "Conta", group = Group.COUNTRY)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Conta")
+public class CaseBrazilAccountSType extends STypeComposite<SIComposite> {
+
+    public STypeAccount contaBancaria;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        
-    	STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        
-        tipoMyForm.asAtr().label("Dados Cadastrais:").asAtrBootstrap();
-        tipoMyForm.addField("Endereco", STypeAddress.class);
-
-        super.onLoadPackage(pb);
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        contaBancaria = this.addField("contaBancaria", STypeAccount.class);
     }
 }

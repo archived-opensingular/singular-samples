@@ -17,31 +17,31 @@
 package org.opensingular.singular.form.showcase.component.form.core.country;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.type.country.brazil.STypeCEP;
-import org.opensingular.form.type.country.brazil.STypeCNPJ;
-import org.opensingular.form.type.country.brazil.STypeCPF;
-import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
- * Campos básicos regionais - Brasil
+ * Campos de endereço - Brasil
  */
 
-@CaseItem(componentName = "Brasil", subCaseName = "Default", group = Group.COUNTRY)
-public class CaseBrazilBasicPackage extends SPackage {
+@CaseItem(componentName = "Brasil", subCaseName = "Endereço", group = Group.COUNTRY)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Endereco")
+public class CaseBrazilAddressSType extends STypeComposite<SIComposite> {
+
+    public STypeAddress endereco;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        
-    	STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        tipoMyForm.addField("cnpj", STypeCNPJ.class);
-        tipoMyForm.addField("cpf", STypeCPF.class);
-        tipoMyForm.addField("cep", STypeCEP.class);
-        tipoMyForm.addField("telefone", STypeTelefoneNacional.class);
-        
-        super.onLoadPackage(pb);
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        this.asAtr().label("Dados Cadastrais:").asAtrBootstrap();
+        endereco = this.addField("endereco", STypeAddress.class);
     }
 }
