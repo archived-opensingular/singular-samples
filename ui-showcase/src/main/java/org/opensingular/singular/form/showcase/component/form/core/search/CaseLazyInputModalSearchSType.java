@@ -17,28 +17,34 @@
 package org.opensingular.singular.form.showcase.component.form.core.search;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.ValueToSICompositeConverter;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewSearchModal;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
  * Permite a seleção a partir de uma busca filtrada, sendo necessario fazer o controle de paginação manualmente
  */
 @CaseItem(componentName = "Search Select", subCaseName = "Lazy Pagination", group = Group.INPUT,
 resources = {@Resource(Funcionario.class), @Resource(LazyFuncionarioProvider.class), @Resource(FuncionarioRepository.class)})
-public class CaseLazyInputModalSearchPackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "LazyPagination")
+public class CaseLazyInputModalSearchSType extends STypeComposite<SIComposite> {
+
+    public STypeComposite funcionario;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        final STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-
-        final STypeComposite funcionario = tipoMyForm.addFieldComposite("funcionario");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        funcionario = this.addFieldComposite("funcionario");
         funcionario.asAtr().label("Funcionario").displayString("${nome} - ${funcao}");
 
         final STypeString nome   = funcionario.addFieldString("nome");
@@ -52,7 +58,5 @@ public class CaseLazyInputModalSearchPackage extends SPackage {
                     newFunc.setValue(nome, func.getNome());
                     newFunc.setValue(funcao, func.getFuncao());
                 });
-
     }
-
 }
