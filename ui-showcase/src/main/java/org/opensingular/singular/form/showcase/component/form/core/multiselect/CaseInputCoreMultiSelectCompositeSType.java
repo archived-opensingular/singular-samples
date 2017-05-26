@@ -20,27 +20,33 @@ import java.io.Serializable;
 
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.SInstanceConverter;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
  * Para usar um tipo composto na seleção, este deve ser do tipo MTipoSelectItem. <br/>
  * É permitido se mudar quais campos serão utilizados como chave e valor.
  */
 @CaseItem(componentName = "Multi Select", subCaseName = "Tipo Composto", group = Group.INPUT)
-public class CaseInputCoreMultiSelectCompositePackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "TipoComposto")
+public class CaseInputCoreMultiSelectCompositeSType extends STypeComposite<SIComposite> {
+
+    public STypeList<STypeComposite<SIComposite>, SIComposite> componentesQuimicos;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> root = pb.createCompositeType("testForm");
-
-        final STypeList<STypeComposite<SIComposite>, SIComposite> componentesQuimicos = root.addFieldListOfComposite("componentesQuimicos", "componenteQuimico");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        componentesQuimicos = this.addFieldListOfComposite("componentesQuimicos", "componenteQuimico");
         final STypeComposite<SIComposite>                         componenteQuimico   = componentesQuimicos.getElementsType();
 
         final STypeString nome           = componenteQuimico.addFieldString("nome");

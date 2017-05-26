@@ -16,27 +16,31 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.multiselect;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SMultiSelectionByPicklistView;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
  * É permitido alterar o provedor de dados de forma que estes sejam carregados de forma dinâmica ou de outras fontes de informação.
  */
 @CaseItem(componentName = "Multi Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT)
-public class CaseInputCoreMultiSelectProviderPackage extends SPackage {
+@SInfoType(spackage = CaseInputCorePackage.class, name = "ProvedorDinamico")
+public class CaseInputCoreMultiSelectProviderSType extends STypeComposite<SIComposite> {
+
+    public STypeList<STypeComposite<SIComposite>, SIComposite> arquivos;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        final STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-
-        final STypeList<STypeComposite<SIComposite>, SIComposite> arquivos = tipoMyForm.addFieldListOfComposite("arquivos", "arquivo");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        arquivos = this.addFieldListOfComposite("arquivos", "arquivo");
 
         /*
          * Neste caso será utilizado o serviço de nome filesChoiceProvider
@@ -53,7 +57,5 @@ public class CaseInputCoreMultiSelectProviderPackage extends SPackage {
                 .display(hashSha1)
                 .simpleProvider("filesChoiceProvider");
         arquivos.withView(SMultiSelectionByPicklistView::new);
-
     }
-
 }

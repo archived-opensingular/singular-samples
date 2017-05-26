@@ -16,26 +16,35 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.multiselect;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
- * Se a view não for definida, então define o componente dependendo da quantidade de dados.
+ * Permite a seleção múltipla no formato de um combo. É funcional para listas curtas.
  */
-@CaseItem(componentName = "Multi Select", subCaseName = "Default", group = Group.INPUT)
-public class CaseInputCoreMultiSelectDefaultPackage extends SPackage {
+@CaseItem(componentName = "Multi Select", subCaseName = "Combo", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Combo")
+public class CaseInputCoreMultiSelectComboSType extends STypeComposite<SIComposite> {
+
+    public STypeList<STypeString, SIString> frutas;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        tipoMyForm.asAtr().label("Salada de Frutas");
-        tipoMyForm.addFieldListOf("frutas", STypeString.class).selectionOf(String.class)
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        this.asAtr().label("Salada de Frutas");
+
+        frutas = this.addFieldListOf("frutas", STypeString.class);
+        frutas.selectionOf(String.class)
                 .selfIdAndDisplay()
                 .simpleProviderOf("Amora", "Banana", "Maçã", "Laranja", "Manga", "Melão", "Morango");
     }
-
 }

@@ -17,25 +17,37 @@
 package org.opensingular.singular.form.showcase.component.form.core.multiselect;
 
 import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.enums.PhraseBreak;
+import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.view.SMultiSelectionByPicklistView;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
- * Permite a seleção múltipla no formato de um combo. É funcional para listas curtas.
+ * Permite a seleção múltipla no formato de uma pick list.
  */
-@CaseItem(componentName = "Multi Select", subCaseName = "Combo", group = Group.INPUT)
-public class CaseInputCoreMultiSelectComboPackage extends SPackage {
+@CaseItem(componentName = "Multi Select", subCaseName = "Pick List", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "PickList")
+public class CaseInputCoreMultiSelectPickListSType extends STypeComposite<SIComposite> {
+
+    public STypeList<STypeString, SIString> frutas;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-        tipoMyForm.asAtr().label("Salada de Frutas");
-        tipoMyForm.addFieldListOf("frutas", STypeString.class).selectionOf(String.class)
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        frutas = this.addFieldListOf("frutas", STypeString.class);
+        frutas.asAtr().phraseBreak(PhraseBreak.BREAK_LINE);
+        frutas.selectionOf(String.class, new SMultiSelectionByPicklistView())
                 .selfIdAndDisplay()
                 .simpleProviderOf("Amora", "Banana", "Maçã", "Laranja", "Manga", "Melão", "Morango");
     }
-
 }
