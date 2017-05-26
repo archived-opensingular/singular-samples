@@ -17,36 +17,43 @@
 package org.opensingular.singular.form.showcase.component.form.file;
 
 import org.apache.commons.lang3.StringUtils;
-import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
-import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+
+import javax.annotation.Nonnull;
 
 /**
  * Campo para anexar vários arquivos
  */
 @CaseItem(componentName = "Multiple Attachments", group = Group.FILE, resources = @Resource(PageWithAttachment.class))
-public class CaseFileMultipleAttachmentsPackage extends SPackage {
+@SInfoType(spackage = CaseFilePackage.class, name = "MultipleAttachments")
+public class CaseFileMultipleAttachmentsPackage extends STypeComposite<SIComposite> {
+
+    public STypeAttachmentList layoutsRotulagem;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-
-        final STypeAttachmentList layoutsRotulagem = tipoMyForm
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        layoutsRotulagem = this
             .addFieldListOfAttachment("layoutsRotulagem", "layout");
+
         layoutsRotulagem
             .withMiniumSizeOf(1)
             .withMaximumSizeOf(4);
+
         layoutsRotulagem.asAtr()
             .label("Layouts Rotulagem");
+
         layoutsRotulagem.getElementsType().asAtr()
             .allowedFileTypes("image/png", "image/jpeg", "pdf", "zip");
 
-        tipoMyForm.asAtr().displayString(cc -> cc.instance()
+        this.asAtr().displayString(cc -> cc.instance()
             .findNearest(layoutsRotulagem)
             .map(SInstance::toStringDisplay)
             .orElse(StringUtils.EMPTY));

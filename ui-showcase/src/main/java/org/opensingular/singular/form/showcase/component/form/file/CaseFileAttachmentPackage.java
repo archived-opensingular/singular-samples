@@ -16,38 +16,37 @@
 
 package org.opensingular.singular.form.showcase.component.form.file;
 
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.basic.AtrBootstrap;
 import org.opensingular.form.type.core.attachment.STypeAttachment;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 
+import javax.annotation.Nonnull;
+
 /**
  * Campo para anexar arquivos
  */
-@CaseItem(componentName = "Attachment", group = Group.FILE,
-resources = @Resource(PageWithAttachment.class))
-public class CaseFileAttachmentPackage extends SPackage {
+@CaseItem(componentName = "Attachment", group = Group.FILE, resources = @Resource(PageWithAttachment.class))
+@SInfoType(spackage = CaseFilePackage.class, name = "Attachment")
+public class CaseFileAttachmentPackage extends STypeComposite<SIComposite> {
+
+    public STypeAttachment anexo;
+    public STypeAttachment foto;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        STypeComposite<?> tipoMyForm = pb.createCompositeType("testForm");
-
-        STypeAttachment anexo = tipoMyForm.addField("anexo", STypeAttachment.class);
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        anexo = this.addField("anexo", STypeAttachment.class);
         anexo.asAtr().label("Anexo");
         anexo.asAtr().required(true);
         anexo.as(AtrBootstrap.class).colPreference(6);
 
-        STypeAttachment foto = tipoMyForm.addField("foto", STypeAttachment.class);
+        foto = this.addField("foto", STypeAttachment.class);
         foto.asAtr().label("Foto").required(false).allowedFileTypes("jpg", "image/png");
         foto.as(AtrBootstrap.class).colPreference(6);
-        
-//        tipoMyForm.addField("a1", STypeAttachment.class).asAtr().label("a1");
-//        tipoMyForm.addField("a2", STypeAttachment.class).asAtr().label("a2");
-//        tipoMyForm.addField("a3", STypeAttachment.class).asAtr().label("a3");
-
     }
 }
