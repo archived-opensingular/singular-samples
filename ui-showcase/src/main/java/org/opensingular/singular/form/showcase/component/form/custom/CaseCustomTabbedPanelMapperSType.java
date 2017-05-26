@@ -16,19 +16,16 @@
 
 package org.opensingular.singular.form.showcase.component.form.custom;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.wicket.extensions.ajax.markup.html.tabs.AjaxTabbedPanel;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
-import org.opensingular.form.SPackage;
 import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.form.wicket.WicketBuildContext;
 import org.opensingular.form.wicket.model.SInstanceFieldModel;
@@ -38,36 +35,41 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Custom String Mapper
  */
 @CaseItem(componentName = "Custom Mapper", subCaseName = "Tabbed Panel", group = Group.CUSTOM, resources = {
-    @Resource(value = CaseCustomTabbedPanelMapperPackage.CustomAjaxTabbedPanel.class, extension = "html")
-})
-public class CaseCustomTabbedPanelMapperPackage extends SPackage {
+    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html")})
+@SInfoType(spackage = CaseCustomPackage.class, name = "TabbedPanel")
+public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite> {
+
+    public STypeComposite<SIComposite> mainComposite;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        mainComposite = this.addFieldComposite("mainComposite");
 
-        STypeComposite<SIComposite> form = pb.createCompositeType("testForm");
-
-        STypeComposite<SIComposite> tab1 = form.addFieldComposite("tab1");
+        STypeComposite<SIComposite> tab1 = mainComposite.addFieldComposite("tab1");
         tab1.asAtr().label("Aba 1");
         tab1.addFieldString("texto1").asAtr().label("Texto 1");
         tab1.addFieldString("texto2").asAtr().label("Texto 2");
 
-        STypeComposite<SIComposite> tab2 = form.addFieldComposite("tab2");
+        STypeComposite<SIComposite> tab2 = mainComposite.addFieldComposite("tab2");
         tab2.asAtr().label("Aba 2");
         tab2.addFieldBoolean("bool1").asAtr().label("Boolean 1");
         tab2.addFieldBoolean("bool2").asAtr().label("Boolean 2");
 
-        STypeComposite<SIComposite> tab3 = form.addFieldComposite("tab3");
+        STypeComposite<SIComposite> tab3 = mainComposite.addFieldComposite("tab3");
         tab3.asAtr().label("Aba 3");
         tab3.addFieldInteger("int1").asAtr().label("Inteiro 1");
         tab3.addFieldInteger("int2").asAtr().label("Inteiro 2");
 
         //@destacar
-        form.withCustomMapper(new CustomTabMapper());
+        mainComposite.withCustomMapper(new CustomTabMapper());
     }
 
     // Mapper recursivo

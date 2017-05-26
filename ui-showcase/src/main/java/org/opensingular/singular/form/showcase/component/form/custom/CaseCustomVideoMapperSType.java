@@ -16,16 +16,15 @@
 
 package org.opensingular.singular.form.showcase.component.form.custom;
 
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.media.video.Video;
 import org.apache.wicket.validation.validator.UrlValidator;
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.form.wicket.WicketBuildContext;
 import org.opensingular.lib.wicket.util.bootstrap.layout.BSControls;
@@ -35,18 +34,23 @@ import org.opensingular.lib.wicket.util.model.IMappingModel;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
+import javax.annotation.Nonnull;
+
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
+
 /**
  * Custom String Mapper
  */
 @CaseItem(componentName = "Custom Mapper", subCaseName = "Vídeo", group = Group.CUSTOM)
-public class CaseCustomVideoMapperPackage extends SPackage {
+@SInfoType(spackage = CaseCustomPackage.class, name = "Video")
+public class CaseCustomVideoMapperSType extends STypeComposite<SIComposite> {
+
+    public STypeString video;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        STypeComposite<SIComposite> tipoMyForm = pb.createCompositeType("testForm");
-
-        tipoMyForm.addFieldString("video")
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        video = this.addFieldString("video");
+        video
             .addInstanceValidator(v -> {
                 if (!new UrlValidator().isValid(v.getInstance().getValue())) {
                     v.error("URL inválida");

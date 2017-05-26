@@ -16,12 +16,13 @@
 
 package org.opensingular.singular.form.showcase.component.form.file;
 
+import org.apache.commons.lang3.StringUtils;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
+import org.opensingular.form.SInstance;
+import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.basic.AtrBootstrap;
-import org.opensingular.form.type.core.attachment.STypeAttachment;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -29,24 +30,32 @@ import org.opensingular.singular.form.showcase.component.Resource;
 import javax.annotation.Nonnull;
 
 /**
- * Campo para anexar arquivos
+ * Campo para anexar vários arquivos
  */
-@CaseItem(componentName = "Attachment", group = Group.FILE, resources = @Resource(PageWithAttachment.class))
-@SInfoType(spackage = CaseFilePackage.class, name = "Attachment")
-public class CaseFileAttachmentPackage extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Multiple Attachments", group = Group.FILE, resources = @Resource(PageWithAttachment.class))
+@SInfoType(spackage = CaseFilePackage.class, name = "MultipleAttachments")
+public class CaseFileMultipleAttachmentsSType extends STypeComposite<SIComposite> {
 
-    public STypeAttachment anexo;
-    public STypeAttachment foto;
+    public STypeAttachmentList layoutsRotulagem;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        anexo = this.addField("anexo", STypeAttachment.class);
-        anexo.asAtr().label("Anexo");
-        anexo.asAtr().required(true);
-        anexo.as(AtrBootstrap.class).colPreference(6);
+        layoutsRotulagem = this
+            .addFieldListOfAttachment("layoutsRotulagem", "layout");
 
-        foto = this.addField("foto", STypeAttachment.class);
-        foto.asAtr().label("Foto").required(false).allowedFileTypes("jpg", "image/png");
-        foto.as(AtrBootstrap.class).colPreference(6);
+        layoutsRotulagem
+            .withMiniumSizeOf(1)
+            .withMaximumSizeOf(4);
+
+        layoutsRotulagem.asAtr()
+            .label("Layouts Rotulagem");
+
+        layoutsRotulagem.getElementsType().asAtr()
+            .allowedFileTypes("image/png", "image/jpeg", "pdf", "zip");
+
+        this.asAtr().displayString(cc -> cc.instance()
+            .findNearest(layoutsRotulagem)
+            .map(SInstance::toStringDisplay)
+            .orElse(StringUtils.EMPTY));
     }
 }

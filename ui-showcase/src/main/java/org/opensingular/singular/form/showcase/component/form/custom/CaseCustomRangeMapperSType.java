@@ -16,30 +16,35 @@
 
 package org.opensingular.singular.form.showcase.component.form.custom;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 
+import javax.annotation.Nonnull;
+
 /**
- * Custom String Mapper
+ * Custom Range Mapper
  */
-@CaseItem(componentName = "Custom Mapper", subCaseName = "Material Desing Input", group = Group.CUSTOM,
-resources = @Resource(MaterialDesignInputMapper.class))
-public class CaseCustomStringMapperPackage extends SPackage {
+@CaseItem(componentName = "Custom Mapper", subCaseName = "Range Slider", group = Group.CUSTOM,
+resources = {@Resource(RangeSliderMapper.class), @Resource(value = RangeSliderMapper.class, extension = "js")})
+@SInfoType(spackage = CaseCustomPackage.class, name = "RangeSlider")
+public class CaseCustomRangeMapperSType extends STypeComposite<SIComposite> {
+
+    public STypeComposite<SIComposite> faixaIdade;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        faixaIdade = this.addFieldComposite("faixaIdade");
+        STypeInteger valorInicial = faixaIdade.addFieldInteger("de");
+        STypeInteger valorFinal = faixaIdade.addFieldInteger("a");
 
-        STypeComposite<SIComposite> tipoMyForm = pb.createCompositeType("testForm");
-
-        tipoMyForm.addFieldString("nomeCompleto")
-                //@destacar
-                .withCustomMapper(new MaterialDesignInputMapper())
-                .asAtr().label("Nome Completo");
-
+        faixaIdade.asAtr().label("Faixa de Idade");
+        //@destacar
+        faixaIdade.withCustomMapper(new RangeSliderMapper(valorInicial, valorFinal));
     }
 }

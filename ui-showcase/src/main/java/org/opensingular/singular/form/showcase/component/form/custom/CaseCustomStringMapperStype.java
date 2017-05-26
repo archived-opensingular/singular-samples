@@ -16,35 +16,33 @@
 
 package org.opensingular.singular.form.showcase.component.form.custom;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.type.core.STypeInteger;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 
+import javax.annotation.Nonnull;
+
 /**
- * Custom Range Mapper
+ * Custom String Mapper
  */
-@CaseItem(componentName = "Custom Mapper", subCaseName = "Range Slider", group = Group.CUSTOM,
-resources = {@Resource(RangeSliderMapper.class), @Resource(value = RangeSliderMapper.class, extension = "js")})
-public class CaseCustomRangeMapperPackage extends SPackage {
+@CaseItem(componentName = "Custom Mapper", subCaseName = "Material Design Input", group = Group.CUSTOM,
+resources = @Resource(MaterialDesignInputMapper.class))
+@SInfoType(spackage = CaseCustomPackage.class, name = "MaterialDesignInput")
+public class CaseCustomStringMapperStype extends STypeComposite<SIComposite> {
+
+    public STypeString nomeCompleto;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-        super.onLoadPackage(pb);
-
-        STypeComposite<SIComposite> testForm = pb.createCompositeType("testForm");
-
-        STypeComposite<SIComposite> faixaIdade = testForm.addFieldComposite("faixaIdade");
-        STypeInteger valorInicial = faixaIdade.addFieldInteger("de");
-        STypeInteger valorFinal = faixaIdade.addFieldInteger("a");
-
-        faixaIdade.asAtr().label("Faixa de Idade");
-        //@destacar
-        faixaIdade.withCustomMapper(new RangeSliderMapper(valorInicial, valorFinal));
-
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        nomeCompleto = this.addFieldString("nomeCompleto");
+        nomeCompleto
+                //@destacar
+                .withCustomMapper(new MaterialDesignInputMapper())
+                .asAtr().label("Nome Completo");
     }
 }
