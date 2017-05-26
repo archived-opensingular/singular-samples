@@ -35,7 +35,7 @@ import java.math.BigDecimal;
  */
 @CaseItem(componentName = "Listeners", subCaseName = "Master/detail", group = Group.INTERACTION)
 @SInfoType(spackage = CaseInteractionPackage.class, name = "MasterDetail")
-public class CaseUpdateListenerMasterDetailPackage extends STypeComposite<SIComposite> {
+public class CaseUpdateListenerMasterDetailSType extends STypeComposite<SIComposite> {
 
     public STypeMonetary salarioMaximo;
     public STypeList<STypeComposite<SIComposite>, SIComposite> funcionarios;

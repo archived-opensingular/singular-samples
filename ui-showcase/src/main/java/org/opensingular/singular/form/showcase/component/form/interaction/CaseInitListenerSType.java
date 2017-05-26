@@ -38,7 +38,7 @@ import java.util.Optional;
  */
 @CaseItem(componentName = "Listeners", subCaseName = "Init Listener", group = Group.INTERACTION)
 @SInfoType(spackage = CaseInteractionPackage.class, name = "InitListener")
-public class CaseInitListenerPackage extends STypeComposite<SIComposite> {
+public class CaseInitListenerSType extends STypeComposite<SIComposite> {
 
     public STypeList<STypeComposite<SIComposite>, SIComposite> itens;
     public STypeString                                         nome;

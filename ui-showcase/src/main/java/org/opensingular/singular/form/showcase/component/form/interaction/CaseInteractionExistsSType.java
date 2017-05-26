@@ -29,36 +29,35 @@ import org.opensingular.singular.form.showcase.component.Group;
 import javax.annotation.Nonnull;
 
 /**
- * Torna os campos obrigatórios dinamicamente.
+ * Interação usando exists
  */
-@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Required", group = Group.INTERACTION)
-@SInfoType(spackage = CaseInteractionPackage.class, name = "Required")
-public class CaseInteractionRequiredPackage extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Exists", group = Group.INTERACTION)
+@SInfoType(spackage = CaseInteractionPackage.class, name = "Exists")
+public class CaseInteractionExistsSType extends STypeComposite<SIComposite> {
 
-    public STypeBoolean required;
+    public STypeBoolean exists;
     public STypeComposite<SIComposite> record;
     public STypeString recordText;
     public STypeDate recordDate;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        required = this.addFieldBoolean("required");
+        exists = this.addFieldBoolean("exists");
 
         record = this.addFieldComposite("record");
         recordText = record.addFieldString("text");
         recordDate = record.addFieldDate("date");
 
-        required.asAtr().label("Required");
+        exists.asAtr().label("Exists");
 
-        recordText.asAtr()
-                .label("Text")
-                .dependsOn(required)
-                .asAtr().required(ins -> ins.findNearestValue(required, Boolean.class).orElse(Boolean.FALSE))
+        record
+                .withExists(ins -> ins.findNearestValue(exists, Boolean.class).orElse(Boolean.FALSE))
+                .asAtr().dependsOn(exists);
+
+        recordText.asAtr().label("Text")
                 .asAtrBootstrap().colPreference(3);
 
-        recordDate.asAtr()
-                .label("Date").dependsOn(required)
-                .asAtr().required(ins -> ins.findNearestValue(required, Boolean.class).orElse(Boolean.FALSE))
+        recordDate.asAtr().label("Date")
                 .asAtrBootstrap().colPreference(2);
     }
 }

@@ -29,30 +29,31 @@ import org.opensingular.singular.form.showcase.component.Group;
 import javax.annotation.Nonnull;
 
 /**
- * Exibe campos visíveis dinamicamente.
+ * Habilita os componentes dinamicamente.
  */
-@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Visible", group = Group.INTERACTION)
-@SInfoType(spackage = CaseInteractionPackage.class, name = "Visible")
-public class CaseInteractionVisiblePackage extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Enabled", group = Group.INTERACTION)
+@SInfoType(spackage = CaseInteractionPackage.class, name = "Enabled")
+public class CaseInteractionEnabledSType extends STypeComposite<SIComposite> {
 
-    public STypeBoolean visible;
+    public STypeBoolean enabled;
     public STypeComposite<SIComposite> record;
     public STypeString recordText;
     public STypeDate recordDate;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        visible = this.addFieldBoolean("visible");
+        enabled = this.addFieldBoolean("enabled");
 
         record = this.addFieldComposite("record");
         recordText = record.addFieldString("text");
         recordDate = record.addFieldDate("date");
 
-        visible.asAtr().label("Visible");
+        enabled
+                .asAtr().label("Enable");
 
         record.asAtr()
-                .visible(ins -> ins.findNearestValue(visible, Boolean.class).orElse(Boolean.FALSE))
-                .dependsOn(visible);
+                .enabled(ins -> ins.findNearestValue(enabled, Boolean.class).orElse(Boolean.FALSE))
+                .dependsOn(enabled);
 
         recordText.asAtr()
                 .label("Text")

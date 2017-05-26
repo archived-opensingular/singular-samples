@@ -33,7 +33,7 @@ import java.util.Optional;
  */
 @CaseItem(componentName = "Listeners", subCaseName = "Update listener", group = Group.INTERACTION)
 @SInfoType(spackage = CaseInteractionPackage.class, name = "UpdateListener")
-public class CaseUpdateListenerPackage extends STypeComposite<SIComposite> {
+public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
 
     public STypeString cep;
     public STypeString logradouro;
@@ -52,7 +52,6 @@ public class CaseUpdateListenerPackage extends STypeComposite<SIComposite> {
                 .dependsOn(cep);
         //@destacar
         logradouro.withUpdateListener(this::pesquisarLogradouro);
-
     }
 
     private void pesquisarLogradouro(SIString instance) {

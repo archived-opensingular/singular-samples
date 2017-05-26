@@ -36,7 +36,7 @@ import static com.google.common.collect.Lists.newArrayList;
  */
 @CaseItem(componentName = "Combos interdependentes", group = Group.INTERACTION)
 @SInfoType(spackage = CaseInteractionPackage.class, name = "DependsOnOptions")
-public class CaseInteractionDependsOnOptionsPackage extends STypeComposite<SIComposite> {
+public class CaseInteractionDependsOnOptionsSType extends STypeComposite<SIComposite> {
 
     private static final String[] WORDS = (""
         + "consider,minute,accord,evident,practice,intend,concern,commit,issue,approach,establish,utter,conduct,engage,"

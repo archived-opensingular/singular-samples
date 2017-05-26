@@ -29,35 +29,37 @@ import org.opensingular.singular.form.showcase.component.Group;
 import javax.annotation.Nonnull;
 
 /**
- * Interação usando exists
+ * Exibe campos visíveis dinamicamente.
  */
-@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Exists", group = Group.INTERACTION)
-@SInfoType(spackage = CaseInteractionPackage.class, name = "Exists")
-public class CaseInteractionExistsPackage extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Visible", group = Group.INTERACTION)
+@SInfoType(spackage = CaseInteractionPackage.class, name = "Visible")
+public class CaseInteractionVisibleSType extends STypeComposite<SIComposite> {
 
-    public STypeBoolean exists;
+    public STypeBoolean visible;
     public STypeComposite<SIComposite> record;
     public STypeString recordText;
     public STypeDate recordDate;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        exists = this.addFieldBoolean("exists");
+        visible = this.addFieldBoolean("visible");
 
         record = this.addFieldComposite("record");
         recordText = record.addFieldString("text");
         recordDate = record.addFieldDate("date");
 
-        exists.asAtr().label("Exists");
+        visible.asAtr().label("Visible");
 
-        record
-                .withExists(ins -> ins.findNearestValue(exists, Boolean.class).orElse(Boolean.FALSE))
-                .asAtr().dependsOn(exists);
+        record.asAtr()
+                .visible(ins -> ins.findNearestValue(visible, Boolean.class).orElse(Boolean.FALSE))
+                .dependsOn(visible);
 
-        recordText.asAtr().label("Text")
+        recordText.asAtr()
+                .label("Text")
                 .asAtrBootstrap().colPreference(3);
 
-        recordDate.asAtr().label("Date")
+        recordDate.asAtr()
+                .label("Date")
                 .asAtrBootstrap().colPreference(2);
     }
 }
