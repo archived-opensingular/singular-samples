@@ -83,7 +83,7 @@ public class PrototypeContent extends Content {
             @Override
             protected void onAction(AjaxRequestTarget target, Form<?> form) {
                 SIComposite instance = (SIComposite) singularFormPanel.getInstance();
-                prototype.setName(instance.getValueString(SPackagePrototype.NAME));
+                prototype.setName(instance.getValueString(STypePrototype.NAME));
                 prototype.setXml(getXmlFromInstance(instance));
                 prototypeDAO.save(prototype);
                 addToastrSuccessMessage("message.save.success");
@@ -123,7 +123,7 @@ public class PrototypeContent extends Content {
     private SInstance createInstance() {
         loadOrBuildModel();
 
-        RefType refType = RefType.of(() -> dictionary.getType(SPackagePrototype.META_FORM_COMPLETE));
+        RefType refType = RefType.of(() -> dictionary.getType(STypePrototype.class));
         SIComposite currentInstance = loadOrCreateInstance(refType);
         model = new SInstanceRootModel<>(currentInstance);
 
