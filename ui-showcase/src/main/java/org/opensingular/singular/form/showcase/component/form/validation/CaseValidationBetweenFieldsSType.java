@@ -18,32 +18,37 @@ package org.opensingular.singular.form.showcase.component.form.validation;
 
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+
+import javax.annotation.Nonnull;
 
 /**
  * Between Fields
  */
 @CaseItem(componentName = "Between Fields", group = Group.VALIDATION)
-public class CaseValidationBetweenFieldsPackage extends SPackage {
+@SInfoType(spackage = CaseValidationPackage.class, name = "BetweenFields")
+public class CaseValidationBetweenFieldsSType extends STypeComposite<SIComposite> {
+
+    public STypeInteger valorInicial;
+    public STypeInteger valorFinal;
 
     @Override
-    protected void onLoadPackage(PackageBuilder pb) {
-
-        STypeComposite<SIComposite> tipoMyForm = pb.createCompositeType("testForm");
-
-        STypeInteger valorInicial = tipoMyForm.addFieldInteger("valorInicial");
+    protected void onLoadType(@Nonnull TypeBuilder tb) {
+        valorInicial = this.addFieldInteger("valorInicial");
         valorInicial.asAtr().label("Valor Inicial");
         valorInicial.asAtr().required();
 
-        STypeInteger valorFinal = tipoMyForm.addFieldInteger("valorFinal");
+        valorFinal = this.addFieldInteger("valorFinal");
         valorFinal.asAtr().label("Valor Final");
         valorFinal.asAtr().required();
 
-        tipoMyForm.addInstanceValidator(validatable -> {
+        this.addInstanceValidator(validatable -> {
             SIComposite myForm = validatable.getInstance();
 
             int mivFinal = myForm.findNearest(valorFinal).get().getInteger();
@@ -53,6 +58,5 @@ public class CaseValidationBetweenFieldsPackage extends SPackage {
                 validatable.error("O valor do campo final deve ser maior que o valor do campo inicial");
             }
         });
-
     }
 }
