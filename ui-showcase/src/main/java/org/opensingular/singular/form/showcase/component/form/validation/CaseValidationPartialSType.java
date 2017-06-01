@@ -34,8 +34,7 @@ import javax.annotation.Nonnull;
  * É possível validar somente uma parte do formulário, no exemplo a seguir somente o campo "Obrigatório 1" será validado ao acionar a validação parcial.
  */
 @CaseItem(componentName = "Partial", group = Group.VALIDATION,
-    resources = @Resource(PartialValidationButton.class),
-    customizer = CaseValidationPartialCustomizer.class)
+    resources = @Resource(PartialValidationButton.class), customizer = CaseValidationPartialCustomizer.class)
 @SInfoType(spackage = CaseValidationPackage.class, name = "Partial")
 public class CaseValidationPartialSType extends STypeComposite<SIComposite> {
 

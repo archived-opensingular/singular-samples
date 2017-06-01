@@ -107,16 +107,12 @@ public class ShowCaseTable {
             CaseBase caseBase = null;
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
                 caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
-//            } else if (CollectionDefinition.class.isAssignableFrom(caseClass)) {
-//                System.out.println();
-////                    caseBase = new CaseBaseStudio((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
-//            } else {
-//                throw new RuntimeException("Exception");
-//                    throw new RuntimeException("Apenas classes do tipo " + SPackage.class.getName() + " e " + CollectionDefinition.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
+            } else {
+                throw new RuntimeException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
             }
 
             if (!caseItem.customizer().isInterface()) {
-//                createInstance(caseItem).customize(caseBase);
+                createInstance(caseItem).customize(caseBase);
             }
             for (Resource resource : caseItem.resources()) {
                 Optional<ResourceRef> resourceRef;
