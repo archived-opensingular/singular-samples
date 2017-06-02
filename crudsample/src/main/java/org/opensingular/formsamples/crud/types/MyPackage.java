@@ -35,10 +35,10 @@ public class MyPackage extends SPackage {
 
         @Override
         protected void onLoadType(TypeBuilder tb) {
-            (name        = addFieldString ("name"                     , true )).asAtr().label("Name"        );
+            (name        = addFieldString ("name"                     , true )).asAtr().label("Name"        ).help("Full name");
             (age         = addFieldInteger("age"                             )).asAtr().label("Age"         );
-            (homeAddress = addField       ("homeAddress", MyTypeAddress.class)).asAtr().label("Home address");
-            (workAddress = addField       ("workAddress", MyTypeAddress.class)).asAtr().label("Work adress" );
+            (homeAddress = addField       ("homeAddress", MyTypeAddress.class)).asAtr().label("Home address").help("Residential address");
+            (workAddress = addField       ("workAddress", MyTypeAddress.class)).asAtr().label("Work adress" ).help("Commercial address");
         }
     }
 
