@@ -73,7 +73,7 @@ public class CaseCustomVideoMapperSType extends STypeComposite<SIComposite> {
                                 .appendLabel(new Label("label", labelModel))
                                 .appendInputText(ctx.configure(this, new TextField<>("url", ctx.getValueModel())))
                                 .appendFeedback(ctx.createFeedbackCompactPanel("feedback"))
-                                .appendHelpBlock($m.ofValue("Exemplos: "
+                                .appendHelpBlock($m.ofValue("<br> Exemplos: "
                                     + "<ul>"
                                     + " <li>http://techslides.com/demos/sample-videos/small.mp4</li>"
                                     + " <li>http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4</li>"
