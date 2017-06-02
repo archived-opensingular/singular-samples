@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<attrs>
+	<attr name="singular.form.basic.label">Formulário</attr>
+	<attr name="singular.form.basic.subtitle">Este form é um exemplo com objetos complexos com os valores configurados nos atributos do form através do XML.</attr>
+	<attr field="nome" name="singular.form.basic.label">Nome</attr>
+	<attr field="idade" name="singular.form.basic.label">Idade</attr>
+	<attr field="email" name="singular.form.basic.label">E-mail</attr>
+	<attr field="descricao" name="singular.form.basic.label">Descrição</attr>
+	<attr field="endereco.rua" name="singular.form.basic.label">Rua/Avenida</attr>
+	<attr field="endereco.rua" name="singular.form.plaf.bootstrap.larguraColuna">10</attr>
+	<attr field="endereco.numero" name="singular.form.basic.label">Número</attr>
+	<attr field="endereco.numero" name="singular.form.plaf.bootstrap.larguraColuna">2</attr>
+	<attr field="endereco.bairro" name="singular.form.basic.label">Bairro</attr>
+	<attr field="endereco.bairro" name="singular.form.plaf.bootstrap.larguraColuna">6</attr>
+	<attr field="endereco.cidade" name="singular.form.basic.label">Cidade</attr>
+	<attr field="endereco.cidade" name="singular.form.plaf.bootstrap.larguraColuna">6</attr>
+</attrs>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core.country;
+package org.opensingular.singular.form.showcase.component.form.importer;
 
 import javax.annotation.Nonnull;
 
@@ -22,32 +22,33 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.country.brazil.STypeCEP;
-import org.opensingular.form.type.country.brazil.STypeCNPJ;
-import org.opensingular.form.type.country.brazil.STypeCPF;
-import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
+import org.opensingular.form.type.core.STypeInteger;
+import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 /**
- * Campos básicos regionais - Brasil
+ * Importador de atributos através de arquivos XML.
  */
 
-@CaseItem(componentName = "Brazil", subCaseName = "Default", group = Group.COUNTRY)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "Default")
-public class CaseBrazilBasicSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "ImporterXML", subCaseName = "Default", group = Group.IMPORTER, resources = @Resource(value = CaseImporterSType.class, extension = "xml"))
+@SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLDefault")
+public class CaseImporterSType extends STypeComposite<SIComposite> {
 
-    public STypeCNPJ cnpj;
-    public STypeCPF cpf;
-    public STypeCEP cep;
-    public STypeTelefoneNacional telefone;
+    public STypeString nome;
+    public STypeInteger idade;
+    public STypeEMail email;
+    public STypeString descricao;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        cnpj = this.addField("cnpj", STypeCNPJ.class);
-        cpf = this.addField("cpf", STypeCPF.class);
-        cep = this.addField("cep", STypeCEP.class);
-        telefone = this.addField("telefone", STypeTelefoneNacional.class);
+        nome = this.addFieldString("nome");
+        idade = this.addFieldInteger("idade");
+        email = this.addFieldEmail("email");
+        descricao = this.addFieldString("descricao");
+
     }
+
 }

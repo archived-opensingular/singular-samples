@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.country;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -25,13 +27,11 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
-import javax.annotation.Nonnull;
-
 /**
  * Campos de endereço - Brasil
  */
 
-@CaseItem(componentName = "Brasil", subCaseName = "Endereço", group = Group.COUNTRY)
+@CaseItem(componentName = "Brazil", subCaseName = "Endereço", group = Group.COUNTRY)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Endereco")
 public class CaseBrazilAddressSType extends STypeComposite<SIComposite> {
 

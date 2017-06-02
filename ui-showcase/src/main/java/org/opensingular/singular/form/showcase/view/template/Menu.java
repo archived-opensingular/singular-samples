@@ -58,7 +58,7 @@ public class Menu extends Panel {
         if (tipoValue.isNull() || ShowCaseType.FORM.toString().equals(tipoValue.toString())) {
 
             menu.addItem(new MetronicMenuItem(Icone.ROCKET, "Demo", CrudPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
-            menu.addItem(new MetronicMenuItem(Icone.PENCIL, "Protótipo", PrototypeListPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
+            menu.addItem(new MetronicMenuItem(Icone.PENCIL, "FormBuilder", PrototypeListPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
 
         } else if (tipoValue.isNull() || ShowCaseType.STUDIO.toString().equals(tipoValue.toString())) {
 
