@@ -29,8 +29,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.apache.wicket.util.string.StringValue;
-import org.hibernate.persister.walking.spi.CollectionDefinition;
-import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.lib.commons.base.SingularUtil;
 import org.opensingular.lib.wicket.util.resource.Icone;
@@ -78,6 +76,7 @@ public class ShowCaseTable {
         addGroup(Group.INTERACTION);
         addGroup(Group.CUSTOM);
         addGroup(Group.MAPS);
+        addGroup(Group.IMPORTER);
 
         addGroup("XSD", Icone.CODE, ShowCaseType.FORM)
             .addCase(new XsdCaseSimple())
@@ -180,7 +179,8 @@ public class ShowCaseTable {
         private final ShowCaseType tipo;
 
         private final Map<String, ShowCaseItem> itens = new TreeMap<>();
-
+        
+        
         public ShowCaseGroup(String groupName, SingularIcon icon, ShowCaseType tipo) {
             this.groupName = groupName;
             this.icon = icon;
@@ -227,6 +227,7 @@ public class ShowCaseTable {
         private final String componentName;
 
         private final List<CaseBase> cases = new ArrayList<>();
+        
         private ShowCaseType showCaseType;
 
         public ShowCaseItem(String componentName, ShowCaseType showCaseType) {
@@ -250,4 +251,23 @@ public class ShowCaseTable {
             return showCaseType;
         }
     }
+    
+    public static void main(String[] args) {
+        Map<String, Integer> itens = new TreeMap<>((name1, name2) -> { 
+            if(name1.equalsIgnoreCase("Default")){
+                return Integer.MIN_VALUE;
+            }else{
+                return name1.compareTo(name2);
+            }
+            });       
+        itens.put("Bcoisa", 1);
+        itens.put("Acoisa", 2);
+        itens.put("Zcoisa", 3);
+        itens.put("Default", 4);
+        
+        System.out.println(itens);
+        
+        
+    } 
+    
 }
