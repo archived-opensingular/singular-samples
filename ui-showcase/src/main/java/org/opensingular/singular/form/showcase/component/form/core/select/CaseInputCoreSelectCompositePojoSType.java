@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.select;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -25,14 +27,12 @@ import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
-import javax.annotation.Nonnull;
-
 /**
  * É possivel utilizar objetos serializaveis para realizar a seleção, porem neste caso, é necessario informar o conversor.
  */
 @CaseItem(componentName = "Select", subCaseName = "Tipo composto com objetos serializaveis.", group = Group.INPUT,
         resources = {@Resource(IngredienteQuimico.class), @Resource(IngredienteQuimicoFilteredProvider.class)})
-@SInfoType(spackage = CaseInputCorePackage.class, name = "SelectComposite")
+@SInfoType(spackage = CaseInputCorePackage.class, name = "SelectCompositePojo")
 public class CaseInputCoreSelectCompositePojoSType extends STypeComposite<SIComposite> {
 
     public STypeComposite<SIComposite> ingredienteQuimico;

@@ -244,6 +244,13 @@ public class ShowCaseTable {
         }
 
         public List<CaseBase> getCases() {
+            Collections.sort(cases, (case1, case2) -> { 
+                if(case1.getSubCaseName().equalsIgnoreCase("Default")){
+                    return Integer.MIN_VALUE;
+                }else{
+                    return case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName());
+                }
+            });      
             return cases;
         }
 
