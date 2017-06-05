@@ -16,9 +16,6 @@
 
 package org.opensingular.singular.form.showcase.view.template;
 
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +38,9 @@ import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.resource.JQueryPluginResourceReference;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
 
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
+
 @AuthorizeAction(action = Action.RENDER, roles = Roles.ADMIN)
 public abstract class Template extends SingularTemplate {
 
@@ -62,6 +62,11 @@ public abstract class Template extends SingularTemplate {
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
+        
+        //java,xml,js,css,bash,sql
+        response.render(CssHeaderItem.forUrl(commonResource("/plugins/syntaxHighlighter/theme.css")));
+        response.render(JavaScriptHeaderItem.forUrl(commonResource("/plugins/syntaxHighlighter/syntaxhighlighter.js")));
+        
         response.render(CssHeaderItem.forReference(new PackageResourceReference(Template.class, "Template.css")));
         response.render(JavaScriptHeaderItem.forReference(new JQueryPluginResourceReference(Template.class, "Template.js")));
         if (withSideBar()) {
