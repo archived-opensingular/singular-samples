@@ -22,6 +22,7 @@ import org.opensingular.form.SInstance;
 import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.converter.SInstanceConverter;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.corporativo.PessoaJuridicaNS;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.gas.STypeNotificacaoSimplificadaGasMedicinal;
@@ -47,7 +48,7 @@ public class STypeLocalFabricacao extends STypeComposite<SIComposite> {
     public STypeComposite<SIComposite> envasadora;
 
     static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupServiceOrException(DominioService.class);
+        return ServiceRegistryLocator.locate().lookupServiceOrException(DominioService.class);
     }
 
     @Override

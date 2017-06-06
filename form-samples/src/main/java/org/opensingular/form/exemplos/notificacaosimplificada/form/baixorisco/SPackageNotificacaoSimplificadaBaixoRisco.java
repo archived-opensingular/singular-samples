@@ -20,6 +20,7 @@ import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.SPackageNotificacaoSimplificada;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 
@@ -29,7 +30,7 @@ public class SPackageNotificacaoSimplificadaBaixoRisco extends SPackage {
     public static final String PACOTE = "mform.peticao.notificacaosimplificada.baixorisco";
 
     public static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupServiceOrException(DominioService.class);
+        return ServiceRegistryLocator.locate().lookupServiceOrException(DominioService.class);
     }
 
     @Override

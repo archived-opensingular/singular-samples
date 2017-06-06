@@ -27,6 +27,7 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.STypeSimple;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.converter.ValueToSICompositeConverter;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.FormaFarmaceuticaBasica;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.STypeAcondicionamento;
@@ -62,7 +63,7 @@ public class STypeNotificacaoSimplificadaDinamizado extends STypeComposite<SICom
 
 
     static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupServiceOrException(DominioService.class);
+        return ServiceRegistryLocator.locate().lookupServiceOrException(DominioService.class);
     }
 
     @Override
@@ -371,7 +372,7 @@ class FormaFarmaceuticaProvider implements FilteredPagedProvider<FormaFarmaceuti
     }
 
     private DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupServiceOrException(DominioService.class);
+        return ServiceRegistryLocator.locate().lookupServiceOrException(DominioService.class);
     }
 
 

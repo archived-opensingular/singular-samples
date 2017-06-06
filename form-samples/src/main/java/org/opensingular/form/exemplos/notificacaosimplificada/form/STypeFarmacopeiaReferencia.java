@@ -21,6 +21,7 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeFarmacopeia;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 
@@ -29,7 +30,7 @@ public class STypeFarmacopeiaReferencia extends STypeComposite<SIComposite> {
 
 
     static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupServiceOrException(DominioService.class);
+        return ServiceRegistryLocator.locate().lookupServiceOrException(DominioService.class);
     }
 
     @Override

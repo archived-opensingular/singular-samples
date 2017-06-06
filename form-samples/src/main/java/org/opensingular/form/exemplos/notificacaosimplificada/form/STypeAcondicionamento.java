@@ -24,6 +24,7 @@ import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeEmbalagemPrimaria;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeEmbalagemSecundaria;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeUnidadeMedida;
@@ -50,7 +51,7 @@ public class STypeAcondicionamento extends STypeComposite<SIComposite> {
     public STypeAttachmentList laudosControle;
 
     static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupServiceOrException(DominioService.class);
+        return ServiceRegistryLocator.locate().lookupServiceOrException(DominioService.class);
     }
 
     @Override
