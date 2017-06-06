@@ -28,16 +28,6 @@ import org.opensingular.lib.wicket.util.util.WicketUtils;
 
 public class ItemCodePanel extends Panel {
 
-    @Override
-    public void renderHead(IHeaderResponse response) {
-        super.renderHead(response);
-        final StringBuilder initScript = new StringBuilder();
-        initScript.append("SyntaxHighlighter.defaults['toolbar'] = false;");
-        initScript.append("SyntaxHighlighter.defaults['quick-code'] = false;");
-        initScript.append("SyntaxHighlighter.all();");
-        response.render(OnDomReadyHeaderItem.forScript(initScript.toString()));
-    }
-
     public ItemCodePanel(String id, IModel<String> code, String extension) {
         super(id);
         final ProcessadorCodigoFonte pcf = new ProcessadorCodigoFonte(code.getObject());
