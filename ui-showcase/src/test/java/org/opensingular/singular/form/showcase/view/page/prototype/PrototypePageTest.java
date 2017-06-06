@@ -52,19 +52,19 @@ public class PrototypePageTest {
         }
 
         private void createInstance() {
-            RefType refType = RefType.of(() -> dictionary.getType(SPackagePrototype.META_FORM_COMPLETE));
+            RefType refType = RefType.of(() -> dictionary.getType(STypePrototype.class));
             currentInstance = (SIComposite) singularFormConfig.getDocumentFactory().createInstance(refType);
         }
 
         @Test
         public void rendersPrototypeOnScreen() {
 
-            SIList campo = (SIList) currentInstance.getField(SPackagePrototype.CHILDREN);
+            SIList campo = (SIList) currentInstance.getField(STypePrototype.CHILDREN);
             assertThat(campo).isNotNull();
 
             SIComposite field = (SIComposite) campo.addNew();
 
-            field.getField(SPackagePrototype.NAME).setValue("Abacate");
+            field.getField(STypePrototype.NAME).setValue("Abacate");
 
             startPage();
 

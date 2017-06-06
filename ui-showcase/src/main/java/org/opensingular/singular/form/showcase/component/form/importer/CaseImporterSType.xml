@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<attrs>
+	<attr name="singular.form.basic.label">Formulário</attr>
+	<attr name="singular.form.basic.subtitle">Este form é um exemplo básico com os valores configurados nos atributos do form através do XML.</attr>
+	<attr field="nome" name="singular.form.basic.label">Nome</attr>
+	<attr field="idade" name="singular.form.basic.label">Idade</attr>
+	<attr field="email" name="singular.form.basic.label">E-mail</attr>
+	<attr field="descricao" name="singular.form.basic.label">Descrição</attr>
+</attrs>
