@@ -11,17 +11,13 @@
   <context:component-scan base-package="org.opensingular.formsamples.crud"/>
 
   <bean id="singularFormConfig" class="org.opensingular.form.wicket.SingularFormConfigWicketImpl">
-    <property name="serviceRegistry" ref="serviceRegistry"/>
+<!--     <property name="serviceRegistry" ref="serviceRegistry"/> -->
   </bean>
 
   <bean id="singularFormContext" class="org.opensingular.form.wicket.SingularFormContextWicketImpl" factory-bean="singularFormConfig"
     factory-method="createContext"/>
 
-  <bean id="serviceRegistry" class="org.opensingular.form.spring.SpringServiceRegistry"/>
-
-  <bean id="documentFactory" class="org.opensingular.form.spring.DefaultSpringSDocumentFactory">
-    <property name="serviceRegistry" ref="serviceRegistry"/>
-  </bean>
+  <bean id="documentFactory" class="org.opensingular.form.spring.SpringSDocumentFactoryEmpty"/>
 
   <bean id="formPersistence" class="org.opensingular.form.spring.SpringFormPersistenceInMemory">
     <property name="documentFactory" ref="documentFactory"/>
