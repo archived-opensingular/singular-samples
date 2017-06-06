@@ -16,9 +16,14 @@
 
 package org.opensingular.form.exemplos.notificacaosimplificada.spring;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.hibernate.SessionFactory;
 import org.opensingular.lib.commons.base.SingularProperties;
 import org.opensingular.lib.support.spring.util.AutoScanDisabled;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -32,9 +37,7 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
-import java.nio.charset.StandardCharsets;
-import java.util.Properties;
+import com.google.common.io.Files;
 
 @AutoScanDisabled
 @Configuration
@@ -63,7 +66,7 @@ public class NotificaoSimplificadaSpringConfiguration {
     @Bean
     public DriverManagerDataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:h2:./notificacaodb;AUTO_SERVER=TRUE;mode=ORACLE;CACHE_SIZE=4096;EARLY_FILTER=1;MULTI_THREADED=1;LOCK_TIMEOUT=15000;");
+        dataSource.setUrl("jdbc:h2:" + Files.createTempDir().getAbsolutePath() + "/notificacaodb;AUTO_SERVER=TRUE;mode=ORACLE;CACHE_SIZE=4096;EARLY_FILTER=1;MULTI_THREADED=1;LOCK_TIMEOUT=15000;");
         dataSource.setUsername("sa");
         dataSource.setPassword("sa");
         dataSource.setDriverClassName("org.h2.Driver");
