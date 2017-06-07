@@ -41,7 +41,7 @@ public class ShowcaseDocumentFactory extends SpringSDocumentFactory {
     private final static SpringServiceRegistry NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG;
 
     static {
-        ApplicationContextProvider.setup(new AnnotationConfigApplicationContext(NotificaoSimplificadaSpringConfiguration.class));
+        new ApplicationContextProvider().setApplicationContext(new AnnotationConfigApplicationContext(NotificaoSimplificadaSpringConfiguration.class));
         NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG = new SpringServiceRegistry();
     }
 
