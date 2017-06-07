@@ -44,7 +44,7 @@ import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.form.wicket.enums.ViewMode;
 import org.opensingular.form.wicket.panel.SingularFormPanel;
 import org.opensingular.singular.form.showcase.dao.form.ExampleDataDAO;
-import org.opensingular.singular.form.showcase.dao.form.ExampleDataDTO;
+import org.opensingular.singular.form.showcase.dao.form.ExampleData;
 import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
 import org.opensingular.singular.form.showcase.view.template.Content;
 
@@ -58,7 +58,7 @@ public class FormContent extends Content implements SingularWicketContainer<Crud
     private Long   idExampleData;
     private String typeName;
 
-    private ExampleDataDTO currentModel;
+    private ExampleData currentModel;
 
     private final SingularFormPanel singularFormPanel;
 
@@ -149,7 +149,7 @@ public class FormContent extends Content implements SingularWicketContainer<Crud
 
     private void loadOrbuildModel() {
         if (idExampleData == null) {
-            currentModel = new ExampleDataDTO();
+            currentModel = new ExampleData();
             currentModel.setType(typeName);
         } else {
             currentModel = dao.find(idExampleData, typeName);

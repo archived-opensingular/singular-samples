@@ -33,7 +33,7 @@ import org.apache.wicket.model.IModel;
 @Entity
 @Table(name = "EXAMPLE_DATA")
 @SuppressWarnings({"rawtypes", "serial"})
-public class ExampleDataDTO implements IModel {
+public class ExampleData implements IModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +57,7 @@ public class ExampleDataDTO implements IModel {
     @Column
     private String annotations;
 
-    public ExampleDataDTO() {
+    public ExampleData() {
 
     }
 

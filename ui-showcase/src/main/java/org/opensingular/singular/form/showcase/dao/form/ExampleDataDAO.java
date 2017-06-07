@@ -42,20 +42,20 @@ public class ExampleDataDAO {
     }
 
     @Transactional
-    public void save(ExampleDataDTO o) {
+    public void save(ExampleData o) {
         o.setEditionDate(new Date());
         session().saveOrUpdate(o);
     }
 
     @Transactional
-    public void remove(ExampleDataDTO o) {
+    public void remove(ExampleData o) {
         session().delete(o);
     }
 
     @Transactional @SuppressWarnings("unchecked")
-    public List<ExampleDataDTO> list(String typeName, int first, int count, Optional<String> sortProperty, boolean asc) {
+    public List<ExampleData> list(String typeName, int first, int count, Optional<String> sortProperty, boolean asc) {
 
-        final Criteria crit = session().createCriteria(ExampleDataDTO.class);
+        final Criteria crit = session().createCriteria(ExampleData.class);
 
         crit.add(Restrictions.eq("type", typeName));
         crit.setFirstResult(first);
@@ -68,7 +68,7 @@ public class ExampleDataDAO {
 
     @Transactional @SuppressWarnings("unchecked")
     public Long count(String type) {
-        final Criteria crit = session().createCriteria(ExampleDataDTO.class);
+        final Criteria crit = session().createCriteria(ExampleData.class);
 
         crit.add(Restrictions.eq("type", type));
         crit.setProjection(Projections.count("id"));
@@ -78,10 +78,10 @@ public class ExampleDataDAO {
 
 
     @Transactional
-    public ExampleDataDTO find(Long id, String  type) {
-        Criteria crit = session().createCriteria(ExampleDataDTO.class);
+    public ExampleData find(Long id, String  type) {
+        Criteria crit = session().createCriteria(ExampleData.class);
         crit.add(Restrictions.eq("type", type));
         crit.add(Restrictions.eq("id", id));
-        return (ExampleDataDTO) crit.uniqueResult();
+        return (ExampleData) crit.uniqueResult();
     }
 }

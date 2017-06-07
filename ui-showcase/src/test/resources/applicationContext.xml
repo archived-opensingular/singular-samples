@@ -18,15 +18,7 @@
         <property name="serviceRegistry" ref="springServiceRegistry"/>
     </bean>
 
-    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetClass" value="org.opensingular.form.context.ServiceRegistryLocator"/>
-        <property name="targetMethod" value="setup"/>
-        <property name="arguments">
-            <list>
-                <ref bean="singularServiceRegistryLocator"/>
-            </list>
-        </property>
-    </bean>
+    <bean class="org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration"/>
 
     <bean id="singularServiceRegistryLocator" class="org.opensingular.form.context.ServiceRegistryLocator">
         <constructor-arg ref="springServiceRegistry"/>
