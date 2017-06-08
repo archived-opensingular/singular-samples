@@ -34,8 +34,6 @@ import org.opensingular.lib.wicket.util.application.SkinnableApplication;
 import org.opensingular.lib.wicket.util.page.error.Error403Page;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
 import org.opensingular.singular.form.showcase.view.page.form.ListPage;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
 import java.nio.charset.StandardCharsets;
@@ -44,6 +42,7 @@ import java.util.Locale;
 public class ShowcaseApplication extends AuthenticatedWebApplication implements SkinnableApplication {
 
     public static final String BASE_FOLDER = "/tmp/fileUploader";
+
 
     public static ShowcaseApplication get() {
         return (ShowcaseApplication) WebApplication.get();
@@ -75,8 +74,11 @@ public class ShowcaseApplication extends AuthenticatedWebApplication implements 
             component.setOutputMarkupId(outputId).setOutputMarkupPlaceholderTag(outputId);
         });
 
-
-        getComponentInstantiationListeners().add(new SpringComponentInjector(this, getApplicationContext(), true));
+        if (ApplicationContextProvider.isConfigured()) {
+            getComponentInstantiationListeners().add(new SpringComponentInjector(this, ApplicationContextProvider.get(), true));
+        } else {
+            getComponentInstantiationListeners().add(new SpringComponentInjector(this));
+        }
         new AnnotatedMountScanner().scanPackage("org.opensingular.singular.showcase.view.page.**").mount(this);
 
         setHeaderResponseDecorator(r -> new JavaScriptFilteredIntoFooterHeaderResponse(r, SingularTemplate.JAVASCRIPT_CONTAINER));
@@ -106,10 +108,4 @@ public class ShowcaseApplication extends AuthenticatedWebApplication implements 
             return RuntimeConfigurationType.DEVELOPMENT;
         }
     }
-
-    public ApplicationContext getApplicationContext() {
-        return ApplicationContextProvider.get();
-    }
-
-
 }

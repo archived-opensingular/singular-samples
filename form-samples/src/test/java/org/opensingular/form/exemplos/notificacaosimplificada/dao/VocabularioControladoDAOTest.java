@@ -20,7 +20,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = NotificaoSimplificadaSpringConfiguration.class)
+@ContextConfiguration(classes = NotificaoSimplificadaSpringConfigurationTest.class)
 public class VocabularioControladoDAOTest {
 
     @Inject

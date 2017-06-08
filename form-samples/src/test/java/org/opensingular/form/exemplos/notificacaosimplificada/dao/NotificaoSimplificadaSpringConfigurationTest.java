@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package org.opensingular.form.exemplos.notificacaosimplificada.spring;
+package org.opensingular.form.exemplos.notificacaosimplificada.dao;
 
+import org.hibernate.SessionFactory;
+import org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration;
 import org.opensingular.lib.commons.base.SingularProperties;
 import org.opensingular.lib.support.spring.util.AutoScanDisabled;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -39,26 +40,41 @@ import java.util.Properties;
 @AutoScanDisabled
 @Configuration
 @EnableTransactionManagement(proxyTargetClass = true)
-@ComponentScan({"org.opensingular.form.exemplos.notificacaosimplificada", "org.opensingular.lib.support.spring.util"})
-public class NotificaoSimplificadaSpringConfiguration {
+@ComponentScan("org.opensingular.form.exemplos.notificacaosimplificada")
+public class NotificaoSimplificadaSpringConfigurationTest extends NotificaoSimplificadaSpringConfiguration {
 
-    @Value("classpath:data/exemplos/notificacaosimplificada/create_tables.sql")
-    protected Resource createTables;
-
-    @Value("classpath:data/exemplos/notificacaosimplificada/inserts.sql")
-    protected Resource inserts;
-
-    @Value("classpath:data/exemplos/notificacaosimplificada/insert_geral.sql")
-    protected Resource insertGeral;
-
-    @Value("classpath:data/exemplos/notificacaosimplificada/create-tables-anvisa.sql")
-    protected Resource createTablesAnvisa;
-
-    @Value("classpath:data/exemplos/notificacaosimplificada/insert-usuario.sql")
-    protected Resource insertUsuario;
+    @Value("classpath:data/exemplos/notificacaosimplificada/drops.sql")
+    protected Resource drops;
 
 
     @Bean
+    public DriverManagerDataSource dataSource() {
+        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setUrl("jdbc:h2:./notificacaodb;AUTO_SERVER=TRUE;mode=ORACLE;CACHE_SIZE=4096;EARLY_FILTER=1;MULTI_THREADED=1;LOCK_TIMEOUT=15000;");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("sa");
+        dataSource.setDriverClassName("org.h2.Driver");
+        return dataSource;
+    }
+
+    @Bean
+    public LocalSessionFactoryBean sessionFactoryBean(final DataSource dataSource) {
+        final LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
+        sessionFactoryBean.setDataSource(dataSource);
+        sessionFactoryBean.setHibernateProperties(hibernateProperties());
+        sessionFactoryBean.setPackagesToScan("org.opensingular.form.exemplos.notificacaosimplificada.domain");
+        return sessionFactoryBean;
+    }
+
+    @Bean
+    public HibernateTransactionManager transactionManager(final SessionFactory sessionFactory, final DataSource dataSource) {
+        final HibernateTransactionManager tx = new HibernateTransactionManager(sessionFactory);
+        tx.setDataSource(dataSource);
+        return tx;
+    }
+
+    @Bean
+    @Override
     public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
         final DataSourceInitializer initializer = new DataSourceInitializer();
         initializer.setDataSource(dataSource);
@@ -70,15 +86,26 @@ public class NotificaoSimplificadaSpringConfiguration {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.setSqlScriptEncoding(StandardCharsets.UTF_8.name());
         if (!SingularProperties.get().isFalse("anvisa.enabled.h2.inserts")) {
+            populator.addScript(drops);
             populator.addScript(createTables);
             populator.addScript(inserts);
             populator.addScript(insertGeral);
             populator.addScript(createTablesAnvisa);
             populator.addScript(insertUsuario);
         }
-        populator.setContinueOnError(true);
         return populator;
     }
 
+    private Properties hibernateProperties() {
+        final Properties hibernateProperties = new Properties();
+        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+        hibernateProperties.put("hibernate.connection.isolation", "2");
+        hibernateProperties.put("hibernate.jdbc.batch_size", "30");
+        hibernateProperties.put("hibernate.show_sql", "false");
+        hibernateProperties.put("hibernate.format_sql", "true");
+        hibernateProperties.put("hibernate.cache.use_second_level_cache", "false");
+        hibernateProperties.put("hibernate.jdbc.use_get_generated_keys", "true");
+        return hibernateProperties;
+    }
 
 }
