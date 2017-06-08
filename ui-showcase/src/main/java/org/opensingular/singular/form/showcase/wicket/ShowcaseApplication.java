@@ -16,9 +16,6 @@
 
 package org.opensingular.singular.form.showcase.wicket;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
-
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
@@ -32,22 +29,21 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.util.lang.Bytes;
 import org.apache.wicket.util.time.Duration;
 import org.opensingular.lib.commons.base.SingularProperties;
+import org.opensingular.lib.support.spring.util.ApplicationContextProvider;
 import org.opensingular.lib.wicket.util.application.SkinnableApplication;
 import org.opensingular.lib.wicket.util.page.error.Error403Page;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
 import org.opensingular.singular.form.showcase.view.page.form.ListPage;
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
-public class ShowcaseApplication extends AuthenticatedWebApplication
-        implements ApplicationContextAware, SkinnableApplication {
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+
+public class ShowcaseApplication extends AuthenticatedWebApplication implements SkinnableApplication {
 
     public static final String BASE_FOLDER = "/tmp/fileUploader";
-
-    private ApplicationContext ctx;
 
     public static ShowcaseApplication get() {
         return (ShowcaseApplication) WebApplication.get();
@@ -79,12 +75,8 @@ public class ShowcaseApplication extends AuthenticatedWebApplication
             component.setOutputMarkupId(outputId).setOutputMarkupPlaceholderTag(outputId);
         });
 
-        if (ctx != null) {
-            getComponentInstantiationListeners().add(new SpringComponentInjector(this, ctx, true));
-        } else {
-            getComponentInstantiationListeners().add(new SpringComponentInjector(this));
-            ctx = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-        }
+
+        getComponentInstantiationListeners().add(new SpringComponentInjector(this, getApplicationContext(), true));
         new AnnotatedMountScanner().scanPackage("org.opensingular.singular.showcase.view.page.**").mount(this);
 
         setHeaderResponseDecorator(r -> new JavaScriptFilteredIntoFooterHeaderResponse(r, SingularTemplate.JAVASCRIPT_CONTAINER));
@@ -116,12 +108,8 @@ public class ShowcaseApplication extends AuthenticatedWebApplication
     }
 
     public ApplicationContext getApplicationContext() {
-        return ctx;
+        return ApplicationContextProvider.get();
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext ctx) throws BeansException {
-        this.ctx = ctx;
-    }
 
 }
