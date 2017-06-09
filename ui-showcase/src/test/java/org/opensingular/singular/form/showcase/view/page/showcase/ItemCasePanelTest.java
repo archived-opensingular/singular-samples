@@ -17,6 +17,7 @@ import org.opensingular.singular.form.showcase.SpringWicketTester;
 import org.opensingular.singular.form.showcase.component.CaseBaseForm;
 import org.opensingular.singular.form.showcase.view.page.FormItemCasePanel;
 import org.opensingular.singular.form.showcase.view.page.ItemCasePanel;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,6 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/applicationContext.xml"})
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class ItemCasePanelTest {
 
     CaseBaseForm cb;

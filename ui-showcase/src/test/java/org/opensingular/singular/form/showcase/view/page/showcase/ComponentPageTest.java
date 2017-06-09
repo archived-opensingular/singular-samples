@@ -8,11 +8,13 @@ import org.junit.runner.RunWith;
 import org.opensingular.singular.form.showcase.SpringWicketTester;
 import org.opensingular.singular.form.showcase.component.ShowCaseTable;
 import org.opensingular.singular.form.showcase.view.page.ComponentPage;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/applicationContext.xml"})
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class ComponentPageTest {
 
     @Inject
