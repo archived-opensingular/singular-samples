@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <version>1.6.7-RC3</version>
+  <version>1.6.7-SNAPSHOT</version>
   <groupId>org.opensingular.form.crud</groupId>
   <artifactId>crud-sample</artifactId>
   <packaging>war</packaging>
@@ -50,12 +50,12 @@
     <dependency>
       <groupId>org.opensingular</groupId>
       <artifactId>singular-form-wicket</artifactId>
-      <version>1.6.7-RC3</version>
+      <version>1.6.7-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.opensingular</groupId>
       <artifactId>singular-support</artifactId>
-      <version>1.6.7-RC3</version>
+      <version>1.6.7-SNAPSHOT</version>
     </dependency>
 
 <!--     <dependency> -->
