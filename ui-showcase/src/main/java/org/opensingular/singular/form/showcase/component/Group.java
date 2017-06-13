@@ -20,14 +20,15 @@ import org.opensingular.lib.wicket.util.resource.Icone;
 
 public enum Group {
     INPUT("Input", Icone.PUZZLE, ShowCaseType.FORM),
-    COUNTRY("Região", Icone.COUNTRY, ShowCaseType.FORM),
+    COUNTRY("Location", Icone.COUNTRY, ShowCaseType.FORM),
     FILE("File", Icone.FOLDER, ShowCaseType.FORM),
     LAYOUT("Layout", Icone.GRID, ShowCaseType.FORM),
     VALIDATION("Validation", Icone.BAN, ShowCaseType.FORM),
     INTERACTION("Interaction", Icone.ROCKET, ShowCaseType.FORM),
     CUSTOM("Custom", Icone.WRENCH, ShowCaseType.FORM),
     MAPS("Maps", Icone.MAP, ShowCaseType.FORM),
-    STUDIO_SAMPLES("Samples", Icone.DOCS, ShowCaseType.STUDIO);
+    STUDIO_SAMPLES("Samples", Icone.DOCS, ShowCaseType.STUDIO),
+    IMPORTER("Importer", Icone.CODE, ShowCaseType.FORM);
 
     private final String name;
     private final Icone icone;

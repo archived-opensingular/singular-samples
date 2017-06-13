@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.opensingular.form.STypeComposite;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.singular.form.showcase.view.page.ItemCasePanel;
 
@@ -35,7 +36,7 @@ public abstract class CaseBase implements Serializable {
     private String descriptionHtml;
     private final List<ItemCasePanel.ItemCaseButton> botoes = new ArrayList<>();
     private final List<ResourceRef> aditionalSources = new ArrayList<>();
-    protected Class<?> caseClass;
+    protected Class<? extends STypeComposite<?>> caseClass;
     private AnnotationMode annotationMode = AnnotationMode.NONE;
 
     private ShowCaseType showCaseType;
@@ -49,7 +50,7 @@ public abstract class CaseBase implements Serializable {
         this.subCaseName = subCaseName;
     }
 
-    public CaseBase(Class<?> caseClass, ShowCaseType type, String componentName, String subCaseName, AnnotationMode annotation) {
+    public CaseBase(Class<? extends STypeComposite<?>> caseClass, ShowCaseType type, String componentName, String subCaseName, AnnotationMode annotation) {
         this.caseClass = caseClass;
         this.componentName = componentName;
         this.subCaseName = subCaseName;

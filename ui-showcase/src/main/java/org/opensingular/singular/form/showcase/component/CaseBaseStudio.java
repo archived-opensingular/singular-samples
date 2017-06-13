@@ -18,11 +18,12 @@ package org.opensingular.singular.form.showcase.component;
 
 import java.util.Optional;
 
+import org.opensingular.form.STypeComposite;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 
 public class CaseBaseStudio extends CaseBase {
 
-    public CaseBaseStudio(Class<?> caseClass, String componentName, String subCaseName, AnnotationMode annotation) {
+    public CaseBaseStudio(Class<? extends STypeComposite<?>> caseClass, String componentName, String subCaseName, AnnotationMode annotation) {
         super(caseClass, ShowCaseType.STUDIO, componentName, subCaseName, annotation);
     }
 

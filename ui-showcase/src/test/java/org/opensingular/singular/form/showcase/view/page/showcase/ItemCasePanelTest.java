@@ -13,10 +13,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.opensingular.form.context.SFormConfig;
-import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.singular.form.showcase.SpringWicketTester;
 import org.opensingular.singular.form.showcase.component.CaseBaseForm;
-import org.opensingular.singular.form.showcase.component.form.core.CaseInputCoreIntegerPackage;
 import org.opensingular.singular.form.showcase.view.page.FormItemCasePanel;
 import org.opensingular.singular.form.showcase.view.page.ItemCasePanel;
 import org.springframework.test.context.ContextConfiguration;
@@ -40,7 +38,7 @@ public class ItemCasePanelTest {
 
     @Before
     public void setUp() {
-        cb = new CaseBaseForm(CaseInputCoreIntegerPackage.class, "Numeric", "Integer", AnnotationMode.NONE);
+//        cb = new CaseBaseForm(CaseInputCoreIntegerPackage.class, "Numeric", "Integer", AnnotationMode.NONE);
     }
 
     @Test

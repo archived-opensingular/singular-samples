@@ -108,8 +108,8 @@ class TypeBuilder {
 
     public STypeComposite<? extends SIComposite> createRootType() {
         STypeComposite<?> root     = pkg.createCompositeType("root");
-        SIList            children = (SIList) metaInformation.getField(SPackagePrototype.CHILDREN);
-        root.asAtr().label(metaInformation.getValueString(SPackagePrototype.NAME));
+        SIList            children = (SIList) metaInformation.getField(STypePrototype.CHILDREN);
+        root.asAtr().label(metaInformation.getValueString(STypePrototype.NAME));
         addChildFieldsIfAny(root, children);
         return root;
     }
@@ -123,7 +123,7 @@ class TypeBuilder {
     }
 
     private void addField(STypeComposite<? extends SIComposite> root, SIComposite descriptor) {
-        String   type        = descriptor.getValueString(SPackagePrototype.TYPE);
+        String   type        = descriptor.getValueString(STypePrototype.TYPE);
         SType<?> typeOfField = root.getDictionary().getType(type);
 
         SType<?> fieldType = addFieldType(root, descriptor, typeOfField);
@@ -132,7 +132,7 @@ class TypeBuilder {
     }
 
     private SType<?> addFieldType(STypeComposite<? extends SIComposite> root, SIComposite descriptor, SType<?> typeOfField) {
-        String name    = descriptor.getValueString(SPackagePrototype.NAME);
+        String name    = descriptor.getValueString(STypePrototype.NAME);
         String genName = generateJavaIdentifier(name);
         if (isList(descriptor)) {
             return addListFieldType(root, typeOfField, name, genName);
@@ -171,11 +171,11 @@ class TypeBuilder {
     }
 
     private void addAttributesIfAny(SIComposite descriptor, SType<?> fieldType) {
-        addAttributeIfExists(descriptor.getValueInteger(SPackagePrototype.TAMANHO_CAMPO), fieldType.asAtrBootstrap()::colPreference);
-        addAttributeIfExists(descriptor.getValueInteger(SPackagePrototype.TAMANHO_MAXIMO), fieldType.asAtr()::maxLength);
-        addAttributeIfExists(descriptor.getValueInteger(SPackagePrototype.TAMANHO_INTEIRO_MAXIMO), fieldType.asAtr()::integerMaxLength);
-        addAttributeIfExists(descriptor.getValueInteger(SPackagePrototype.TAMANHO_DECIMAL_MAXIMO), fieldType.asAtr()::fractionalMaxLength);
-        addAttributeIfExists(descriptor.getValueBoolean(SPackagePrototype.CAMPO_OBRIGATORIO), fieldType.asAtr()::required);
+        addAttributeIfExists(descriptor.getValueInteger(STypePrototype.TAMANHO_CAMPO), fieldType.asAtrBootstrap()::colPreference);
+        addAttributeIfExists(descriptor.getValueInteger(STypePrototype.TAMANHO_MAXIMO), fieldType.asAtr()::maxLength);
+        addAttributeIfExists(descriptor.getValueInteger(STypePrototype.TAMANHO_INTEIRO_MAXIMO), fieldType.asAtr()::integerMaxLength);
+        addAttributeIfExists(descriptor.getValueInteger(STypePrototype.TAMANHO_DECIMAL_MAXIMO), fieldType.asAtr()::fractionalMaxLength);
+        addAttributeIfExists(descriptor.getValueBoolean(STypePrototype.CAMPO_OBRIGATORIO), fieldType.asAtr()::required);
 
     }
 
@@ -186,7 +186,7 @@ class TypeBuilder {
     }
 
     private boolean isList(SIComposite descriptor) {
-        return notNull(descriptor.getValueBoolean(SPackagePrototype.IS_LIST), false);
+        return notNull(descriptor.getValueBoolean(STypePrototype.IS_LIST), false);
     }
 
     private boolean notNull(Boolean v, boolean defaultValue) {
@@ -197,7 +197,7 @@ class TypeBuilder {
                                             SType<?> typeOfField,
                                             SType<?> fieldType) {
         if (typeOfField.isComposite()) {
-            SIList children = (SIList) descriptor.getField(SPackagePrototype.FIELDS);
+            SIList children = (SIList) descriptor.getField(STypePrototype.FIELDS);
             addChildFieldsIfAny((STypeComposite<? extends SIComposite>) fieldType, children);
         }
     }

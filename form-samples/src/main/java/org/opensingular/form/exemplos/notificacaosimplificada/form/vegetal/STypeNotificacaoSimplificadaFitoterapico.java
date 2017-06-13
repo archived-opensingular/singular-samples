@@ -27,6 +27,7 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.STypeSimple;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.STypeAcondicionamento;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 import org.opensingular.form.exemplos.util.PairConverter;
@@ -45,7 +46,7 @@ public class STypeNotificacaoSimplificadaFitoterapico extends STypeComposite<SIC
 
 
     static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupServiceOrException(DominioService.class);
+        return ServiceRegistryLocator.locate().lookupServiceOrException(DominioService.class);
     }
 
     @Override

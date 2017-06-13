@@ -19,8 +19,9 @@ package org.opensingular.singular.form.showcase.component;
 import java.util.Optional;
 
 import org.opensingular.form.SDictionary;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.SFormUtil;
 import org.opensingular.form.SType;
+import org.opensingular.form.STypeComposite;
 import org.opensingular.form.SingularFormException;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 
@@ -29,7 +30,7 @@ public class CaseBaseForm extends CaseBase {
 
     private transient SType<?> caseType;
 
-    public CaseBaseForm(Class<?> caseClass, String componentName, String subCaseName, AnnotationMode annotation) {
+    public CaseBaseForm(Class<? extends STypeComposite<?>> caseClass, String componentName, String subCaseName, AnnotationMode annotation) {
         super(caseClass, ShowCaseType.FORM, componentName, subCaseName, annotation);
     }
 
@@ -42,22 +43,23 @@ public class CaseBaseForm extends CaseBase {
     }
 
     @SuppressWarnings("unchecked")
-    private Class<? extends SPackage> getPackage() {
-        return (Class<? extends SPackage>) caseClass;
+    private Class<? extends STypeComposite<?>> getSTypeClass() {
+        return caseClass;
     }
 
 
     public String getTypeName() {
-        return getPackage().getName() + ".testForm";
+        return SFormUtil.getTypeName(getSTypeClass());
     }
 
     public SType<?> getCaseType() {
         if (caseType == null) {
             SDictionary dicionario = SDictionary.create();
-            SPackage p = dicionario.loadPackage(getPackage());
 
-            caseType = p.getLocalTypeOptional("testForm")
-                    .orElseThrow(() -> new SingularFormException("O pacote " + p.getName() + " não define o tipo para exibição 'testForm'"));
+            caseType = dicionario.getType(getSTypeClass());
+            if (caseType == null){
+                throw new SingularFormException("O SType " + getSTypeClass().getName() + " não foi encontrado.");
+            }
         }
         return caseType;
     }
@@ -65,7 +67,7 @@ public class CaseBaseForm extends CaseBase {
 
     @Override
     public Optional<ResourceRef> getMainSourceResourceName() {
-        return ResourceRef.forSource(getPackage());
+        return ResourceRef.forSource(getSTypeClass());
     }
 
 

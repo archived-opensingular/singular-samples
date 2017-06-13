@@ -21,6 +21,7 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.EtapaFabricacao;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.corporativo.PessoaJuridicaNS;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
@@ -67,9 +68,7 @@ public class STypeEmpresaTerceirizada extends STypeComposite<SIComposite> {
                 .id(idEtapaFabricacao)
                 .display(descricaoEtapaFabricacao)
                 .filteredProvider((STextQueryProvider) (builder, query) -> {
-                    builder
-                            .getCurrentInstance()
-                            .getDocument()
+                            ServiceRegistryLocator.locate()
                             .lookupServiceOrException(DominioService.class)
                             .buscarVocabulario(EtapaFabricacao.class, query)
                             .forEach(vc -> builder.add().set(idEtapaFabricacao, vc.getId()).set(descricaoEtapaFabricacao, vc.getDescricao()));

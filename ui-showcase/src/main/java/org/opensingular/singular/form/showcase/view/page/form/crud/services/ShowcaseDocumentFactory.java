@@ -17,6 +17,7 @@
 package org.opensingular.singular.form.showcase.view.page.form.crud.services;
 
 import org.opensingular.form.RefService;
+import org.opensingular.form.context.ServiceRegistry;
 import org.opensingular.form.document.SDocument;
 import org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration;
 import org.opensingular.form.spring.SpringSDocumentFactory;
@@ -52,9 +53,8 @@ public class ShowcaseDocumentFactory extends SpringSDocumentFactory {
             Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "Could not create temporary file folder, using memory instead", e);
             document.setAttachmentPersistenceTemporaryHandler(RefService.of(new InMemoryAttachmentPersistenceHandler()));
         }
-        IAttachmentPersistenceHandler<?> persist = getExternalServiceRegistry().lookupServiceOrException(IAttachmentPersistenceHandler.class);
+        IAttachmentPersistenceHandler<?> persist = NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG.lookupServiceOrException(IAttachmentPersistenceHandler.class);
         document.setAttachmentPersistencePermanentHandler(RefService.ofToBeDescartedIfSerialized(persist));
-        document.setExternalServiceRegistry(NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG);
     }
 
 
