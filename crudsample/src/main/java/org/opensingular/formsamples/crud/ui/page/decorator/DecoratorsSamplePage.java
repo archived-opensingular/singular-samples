@@ -11,6 +11,7 @@ import org.opensingular.form.SType;
 import org.opensingular.form.decorator.action.ISInstanceActionCapable;
 import org.opensingular.form.decorator.action.SIcon;
 import org.opensingular.form.decorator.action.SInstanceAction;
+import org.opensingular.form.decorator.action.SInstanceAction.ActionType;
 import org.opensingular.form.document.RefType;
 import org.opensingular.form.document.SDocumentFactory;
 import org.opensingular.form.io.PersistenceBuilderXML;
@@ -132,7 +133,9 @@ public class DecoratorsSamplePage extends SingularTemplate {
                                             modalDelegate.showMessage("Base as JSON", json);
                                         }),
 
-                                    SInstanceAction.defaultCancelAction("Fechar"));
+                                    new SInstanceAction(ActionType.NORMAL)
+                                        .setText("Fechar")
+                                        .setActionHandler((i, d1) -> d1.closeForm(i.get())));
 
                                 d.openForm("Form", formInstanceSupplier, actions);
                             }));
