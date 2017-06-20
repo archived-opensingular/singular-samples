@@ -17,6 +17,7 @@
 package org.opensingular.singular.form.showcase.component;
 
 import org.opensingular.lib.wicket.util.resource.Icone;
+import org.opensingular.lib.wicket.util.resource.SingularIcon;
 
 public enum Group {
     INPUT("Input", Icone.PUZZLE, ShowCaseType.FORM),
@@ -30,14 +31,14 @@ public enum Group {
     STUDIO_SAMPLES("Samples", Icone.DOCS, ShowCaseType.STUDIO),
     IMPORTER("Importer", Icone.CODE, ShowCaseType.FORM);
 
-    private final String name;
-    private final Icone icone;
+    private final String       name;
+    private final SingularIcon singularIcon;
     private final ShowCaseType tipo;
 
-    Group(String name, Icone icone, ShowCaseType tipo) {
+    Group(String name, SingularIcon singularIcon, ShowCaseType tipo) {
 
         this.name = name;
-        this.icone = icone;
+        this.singularIcon = singularIcon;
         this.tipo = tipo;
     }
 
@@ -45,8 +46,8 @@ public enum Group {
         return name;
     }
 
-    public Icone getIcone() {
-        return icone;
+    public SingularIcon getIcone() {
+        return singularIcon;
     }
 
     public ShowCaseType getTipo() {
