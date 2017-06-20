@@ -62,7 +62,7 @@ import org.opensingular.lib.wicket.util.datatable.column.BSActionColumn;
 import org.opensingular.lib.wicket.util.modal.BSModalBorder.ButtonStyle;
 import org.opensingular.lib.wicket.util.modal.BSModalBorder.Size;
 import org.opensingular.lib.wicket.util.output.BOutputPanel;
-import org.opensingular.lib.wicket.util.resource.Icone;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.lib.wicket.util.tab.BSTabPanel;
 import org.opensingular.singular.form.showcase.dao.form.ExampleDataDAO;
 import org.opensingular.singular.form.showcase.dao.form.ExampleData;
@@ -178,14 +178,14 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
                 .appendPropertyColumn(getMessage("label.table.column.id"), "id", ExampleData::getId)
                 .appendPropertyColumn(getMessage("label.table.column.descricao"), "description", ExampleData::getDescription)
                 .appendPropertyColumn(getMessage("label.table.column.dt.edicao"), "editionDate", ExampleData::getEditionDate)
-                .appendColumn($action.get().appendAction(getMessage("label.table.column.edit"), Icone.PENCIL_SQUARE,
+                .appendColumn($action.get().appendAction(getMessage("label.table.column.edit"), DefaultIcons.PENCIL_SQUARE,
                         (target, model) -> {
                             setResponsePage(FormPage.class, new PageParameters()
                                     .add(FormPage.TYPE_NAME, selectedTemplate.getObject().getTypeName())
                                     .add(FormPage.MODEL_ID, model.getObject().getId())
                                     .add(FormPage.VIEW_MODE, ViewMode.EDIT));
                         }))
-                .appendColumn($action.get().appendAction(getMessage("label.table.column.visualizar"), Icone.EYE,
+                .appendColumn($action.get().appendAction(getMessage("label.table.column.visualizar"), DefaultIcons.EYE,
                         (target, model) -> {
                             setResponsePage(FormPage.class, new PageParameters()
                                     .add(FormPage.TYPE_NAME, selectedTemplate.getObject().getTypeName())
@@ -194,8 +194,8 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
                         }));
         addAnnotationColumnIfNeeded(builder);
         addAnnotationEditColumnIfNeeded(builder);
-        builder.appendColumn($action.get().appendAction(getMessage("label.table.column.delete"), Icone.MINUS, this::deleteSelected))
-                .appendColumn($action.get().appendAction(getMessage("label.table.column.visualizar.xml"), Icone.CODE, this::viewXml))
+        builder.appendColumn($action.get().appendAction(getMessage("label.table.column.delete"), DefaultIcons.MINUS, this::deleteSelected))
+                .appendColumn($action.get().appendAction(getMessage("label.table.column.visualizar.xml"), DefaultIcons.CODE, this::viewXml))
                 .setRowsPerPage(10);
         return builder.build("data-list");
     }
@@ -206,7 +206,7 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
             public String getCssClass() {
                 return (hasAnnotations() ? " " : " hidden ") + super.getCssClass();
             }
-        }.appendAction(getMessage("label.table.column.analisar"), Icone.COMMENT, (target, model) -> {
+        }.appendAction(getMessage("label.table.column.analisar"), DefaultIcons.COMMENT, (target, model) -> {
             setResponsePage(FormPage.class, new PageParameters()
                     .add(FormPage.TYPE_NAME, selectedTemplate.getObject().getTypeName())
                     .add(FormPage.MODEL_ID, model.getObject().getId())
@@ -222,7 +222,7 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
             public String getCssClass() {
                 return (hasAnnotations() ? " " : " hidden ") + super.getCssClass();
             }
-        }.appendAction(getMessage("label.table.column.exigencia"), Icone.PENCIL, (target, model) -> {
+        }.appendAction(getMessage("label.table.column.exigencia"), DefaultIcons.PENCIL, (target, model) -> {
             setResponsePage(FormPage.class, new PageParameters()
                     .add(FormPage.TYPE_NAME, selectedTemplate.getObject().getTypeName())
                     .add(FormPage.MODEL_ID, model.getObject().getId())
