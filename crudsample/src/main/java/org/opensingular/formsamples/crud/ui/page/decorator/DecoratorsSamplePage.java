@@ -48,6 +48,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                         new SInstanceAction(SInstanceAction.ActionType.NORMAL)
                             .setIcon(SIcon.resolve("html5"))
                             .setText("HTML")
+                            .setSecondary(true)
                             .setActionHandler((i, d) -> d.showMessage("HTML", ""
                                 + "<h1>HTML</h1>"
                                 + "<p>This is a paragraph, with <b>bold</b>, <i>italic</i>, and <u>underlined</u> text.</p>"
@@ -76,6 +77,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                         new SInstanceAction(SInstanceAction.ActionType.NORMAL)
                             .setIcon(SIcon.resolve("doc"))
                             .setText("Text")
+                            .setSecondary(true)
                             .setActionHandler((i, d) -> d.showMessage("Text", ""
                                 + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n"
                                 + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n"
@@ -84,6 +86,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                         new SInstanceAction(SInstanceAction.ActionType.NORMAL)
                             .setIcon(SIcon.resolve("asterisk"))
                             .setText("Markdown")
+                            .setSecondary(true)
                             .setActionHandler((i, d) -> d.showMessage("Markdown", ""
                                 + "\n# Título"
                                 + "\n"
