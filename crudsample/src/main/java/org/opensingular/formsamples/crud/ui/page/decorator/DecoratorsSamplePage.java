@@ -19,7 +19,6 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.wicket.IWicketBuildListener;
 import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.form.wicket.WicketBuildContext;
-import org.opensingular.form.wicket.enums.ViewMode;
 import org.opensingular.form.wicket.panel.SingularFormPanel;
 import org.opensingular.formsamples.crud.types.MyPackage.MyTypeForm;
 import org.opensingular.internal.lib.commons.xml.MElement;
@@ -33,7 +32,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
         add(new SingularFormPanel("panel", MyTypeForm.class)
             .addBuildListener(new IWicketBuildListener() {
                 @Override
-                public void onBeforeBuild(WicketBuildContext ctx, IWicketComponentMapper mapper, ViewMode viewMode) {
+                public void onBeforeBuild(WicketBuildContext ctx, IWicketComponentMapper mapper) {
                     if (mapper instanceof ISInstanceActionCapable) {
                         ISInstanceActionCapable iac = (ISInstanceActionCapable) mapper;
                         iac.addSInstanceActionsProvider(0,
@@ -49,7 +48,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                             .setIcon(SIcon.resolve("html5"))
                             .setText("HTML")
                             .setSecondary(true)
-                            .setActionHandler((i, d) -> d.showMessage("HTML", ""
+                            .setActionHandler((a, i, d) -> d.showMessage("HTML", ""
                                 + "<h1>HTML</h1>"
                                 + "<p>This is a paragraph, with <b>bold</b>, <i>italic</i>, and <u>underlined</u> text.</p>"
                                 + "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
@@ -78,7 +77,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                             .setIcon(SIcon.resolve("doc"))
                             .setText("Text")
                             .setSecondary(true)
-                            .setActionHandler((i, d) -> d.showMessage("Text", ""
+                            .setActionHandler((a, i, d) -> d.showMessage("Text", ""
                                 + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n"
                                 + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n"
                                 + "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \n"
@@ -87,7 +86,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                             .setIcon(SIcon.resolve("asterisk"))
                             .setText("Markdown")
                             .setSecondary(true)
-                            .setActionHandler((i, d) -> d.showMessage("Markdown", ""
+                            .setActionHandler((a, i, d) -> d.showMessage("Markdown", ""
                                 + "\n# Título"
                                 + "\n"
                                 + "\nIsto é um parágrafo."
@@ -103,7 +102,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                         new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
                             .setIcon(SIcon.resolve("cog"))
                             .setText("SInstance")
-                            .setActionHandler((actionInstance, d) -> {
+                            .setActionHandler((a, actionInstance, d) -> {
                                 ISupplier<SInstance> formInstanceSupplier = () -> {
                                     SInstance ins = SDocumentFactory.empty().createInstance(new RefType() {
                                         @Override
@@ -119,7 +118,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
 
                                     new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
                                         .setText("Modal as JSON")
-                                        .setActionHandler((formInstance, modalDelegate) -> modalDelegate
+                                        .setActionHandler((action, formInstance, modalDelegate) -> modalDelegate
                                             .showMessage("Modal as JSON",
                                                 new PersistenceBuilderXML()
                                                     .withPersistId(false)
@@ -128,7 +127,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
 
                                     new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
                                         .setText("Base as JSON")
-                                        .setActionHandler((formInstance, modalDelegate) -> {
+                                        .setActionHandler((action, formInstance, modalDelegate) -> {
                                             PersistenceBuilderXML builder = new PersistenceBuilderXML().withPersistId(false);
                                             SInstance baseInstance = modalDelegate.getInstanceRef().get();
                                             MElement xml = builder.toXML(baseInstance);
@@ -138,7 +137,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
 
                                     new SInstanceAction(ActionType.NORMAL)
                                         .setText("Fechar")
-                                        .setActionHandler((i, d1) -> d1.closeForm(i.get())));
+                                        .setActionHandler((action, i, d1) -> d1.closeForm(i.get())));
 
                                 d.openForm("Form", formInstanceSupplier, actions);
                             }));
