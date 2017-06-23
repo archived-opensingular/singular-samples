@@ -18,6 +18,7 @@ package org.opensingular.singular.form.showcase.view.page.form.crud.services;
 
 import org.opensingular.form.RefService;
 import org.opensingular.form.context.ServiceRegistry;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.document.SDocument;
 import org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration;
 import org.opensingular.form.spring.SpringSDocumentFactory;
@@ -37,14 +38,6 @@ import static org.opensingular.form.type.core.attachment.handlers.FileSystemAtta
 
 @Component("showcaseDocumentFactory")
 public class ShowcaseDocumentFactory extends SpringSDocumentFactory {
-
-    private final static SpringServiceRegistry NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG;
-
-    static {
-        ApplicationContextProvider.setup(new AnnotationConfigApplicationContext(NotificaoSimplificadaSpringConfiguration.class));
-        NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG = new SpringServiceRegistry();
-    }
-
     @Override
     protected void setupDocument(SDocument document) {
         try {
@@ -53,7 +46,7 @@ public class ShowcaseDocumentFactory extends SpringSDocumentFactory {
             Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "Could not create temporary file folder, using memory instead", e);
             document.setAttachmentPersistenceTemporaryHandler(RefService.of(new InMemoryAttachmentPersistenceHandler()));
         }
-        IAttachmentPersistenceHandler<?> persist = NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG.lookupServiceOrException(IAttachmentPersistenceHandler.class);
+        IAttachmentPersistenceHandler<?> persist = ServiceRegistryLocator.locate().lookupServiceOrException(IAttachmentPersistenceHandler.class);
         document.setAttachmentPersistencePermanentHandler(RefService.ofToBeDescartedIfSerialized(persist));
     }
 

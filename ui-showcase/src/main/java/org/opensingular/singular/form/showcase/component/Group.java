@@ -16,28 +16,29 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import org.opensingular.lib.wicket.util.resource.Icone;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.lib.wicket.util.resource.Icon;
 
 public enum Group {
-    INPUT("Input", Icone.PUZZLE, ShowCaseType.FORM),
-    COUNTRY("Location", Icone.COUNTRY, ShowCaseType.FORM),
-    FILE("File", Icone.FOLDER, ShowCaseType.FORM),
-    LAYOUT("Layout", Icone.GRID, ShowCaseType.FORM),
-    VALIDATION("Validation", Icone.BAN, ShowCaseType.FORM),
-    INTERACTION("Interaction", Icone.ROCKET, ShowCaseType.FORM),
-    CUSTOM("Custom", Icone.WRENCH, ShowCaseType.FORM),
-    MAPS("Maps", Icone.MAP, ShowCaseType.FORM),
-    STUDIO_SAMPLES("Samples", Icone.DOCS, ShowCaseType.STUDIO),
-    IMPORTER("Importer", Icone.CODE, ShowCaseType.FORM);
+    INPUT("Input", DefaultIcons.PUZZLE, ShowCaseType.FORM),
+    COUNTRY("Location", DefaultIcons.COUNTRY, ShowCaseType.FORM),
+    FILE("File", DefaultIcons.FOLDER, ShowCaseType.FORM),
+    LAYOUT("Layout", DefaultIcons.GRID, ShowCaseType.FORM),
+    VALIDATION("Validation", DefaultIcons.BAN, ShowCaseType.FORM),
+    INTERACTION("Interaction", DefaultIcons.ROCKET, ShowCaseType.FORM),
+    CUSTOM("Custom", DefaultIcons.WRENCH, ShowCaseType.FORM),
+    MAPS("Maps", DefaultIcons.MAP, ShowCaseType.FORM),
+    STUDIO_SAMPLES("Samples", DefaultIcons.DOCS, ShowCaseType.STUDIO),
+    IMPORTER("Importer", DefaultIcons.CODE, ShowCaseType.FORM);
 
-    private final String name;
-    private final Icone icone;
+    private final String       name;
+    private final Icon         icon;
     private final ShowCaseType tipo;
 
-    Group(String name, Icone icone, ShowCaseType tipo) {
+    Group(String name, Icon icon, ShowCaseType tipo) {
 
         this.name = name;
-        this.icone = icone;
+        this.icon = icon;
         this.tipo = tipo;
     }
 
@@ -45,8 +46,8 @@ public enum Group {
         return name;
     }
 
-    public Icone getIcone() {
-        return icone;
+    public Icon getIcone() {
+        return icon;
     }
 
     public ShowCaseType getTipo() {

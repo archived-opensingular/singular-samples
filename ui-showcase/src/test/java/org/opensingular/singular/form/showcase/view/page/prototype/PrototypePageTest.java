@@ -24,6 +24,7 @@ import org.opensingular.form.io.SFormXMLUtil;
 import org.opensingular.singular.form.showcase.SpringWicketTester;
 import org.opensingular.singular.form.showcase.dao.form.Prototype;
 import org.opensingular.singular.form.showcase.view.template.Content;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -33,6 +34,7 @@ public class PrototypePageTest {
 
     @RunWith(SpringJUnit4ClassRunner.class)
     @ContextConfiguration(locations = {"/applicationContext.xml"})
+    @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
     public static class Base {
         @Inject
         private SpringWicketTester springWicketTester;

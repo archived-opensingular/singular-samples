@@ -25,7 +25,7 @@ import org.apache.wicket.util.string.StringValue;
 import org.opensingular.lib.wicket.util.menu.MetronicMenu;
 import org.opensingular.lib.wicket.util.menu.MetronicMenuGroup;
 import org.opensingular.lib.wicket.util.menu.MetronicMenuItem;
-import org.opensingular.lib.wicket.util.resource.Icone;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.singular.form.showcase.component.ShowCaseTable;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.ComponentPage;
@@ -57,12 +57,12 @@ public class Menu extends Panel {
 
         if (tipoValue.isNull() || ShowCaseType.FORM.toString().equals(tipoValue.toString())) {
 
-            menu.addItem(new MetronicMenuItem(Icone.ROCKET, "Demo", CrudPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
-            menu.addItem(new MetronicMenuItem(Icone.PENCIL, "FormBuilder", PrototypeListPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
+            menu.addItem(new MetronicMenuItem(DefaultIcons.ROCKET, "Demo", CrudPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
+            menu.addItem(new MetronicMenuItem(DefaultIcons.PENCIL, "FormBuilder", PrototypeListPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
 
         } else if (tipoValue.isNull() || ShowCaseType.STUDIO.toString().equals(tipoValue.toString())) {
 
-            menu.addItem(new MetronicMenuItem(Icone.MAP, "Studio", StudioHomePage.class, ShowCaseType.buildPageParameters(ShowCaseType.STUDIO)));
+            menu.addItem(new MetronicMenuItem(DefaultIcons.MAP, "Studio", StudioHomePage.class, ShowCaseType.buildPageParameters(ShowCaseType.STUDIO)));
 
         }
 

@@ -23,22 +23,10 @@
         <property name="serviceRegistry" ref="springServiceRegistry"/>
     </bean>
 
+    <bean class="org.opensingular.lib.context.singleton.SpringBoundedSingletonStrategy"/>
+
     <bean id="singularFormContext" class="org.opensingular.form.wicket.SingularFormContextWicketImpl"
           factory-bean="singularFormConfig" factory-method="createContext"/>
-
-    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-        <property name="targetClass" value="org.opensingular.form.context.ServiceRegistryLocator"/>
-        <property name="targetMethod" value="setup"/>
-        <property name="arguments">
-            <list>
-                <ref bean="singularServiceRegistryLocator"/>
-            </list>
-        </property>
-    </bean>
-
-    <bean id="singularServiceRegistryLocator" class="org.opensingular.form.context.ServiceRegistryLocator">
-        <constructor-arg ref="springServiceRegistry"/>
-    </bean>
 
     <bean id="springServiceRegistry" class="org.opensingular.form.spring.SpringServiceRegistry"/>
 

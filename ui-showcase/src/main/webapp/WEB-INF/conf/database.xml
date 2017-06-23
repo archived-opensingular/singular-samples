@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:aop = "http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-                           http://www.springframework.org/schema/context
-                           http://www.springframework.org/schema/context/spring-context-4.0.xsd
                            http://www.springframework.org/schema/tx
                            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
                            http://www.springframework.org/schema/jdbc
@@ -16,12 +13,13 @@
                            http://www.springframework.org/schema/aop 
    						   http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
-    <context:property-placeholder />
+
+    <bean class="org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration"/>
 
     <!-- DATA SOURCE CONFIGURATION -->
     <bean name="dataSource" class="org.opensingular.singular.form.showcase.db.SessionDataSource">
 	        <property name="driverClassName" value="org.h2.Driver"/>
- 	        <property name="url" value="jdbc:h2:file:${java.io.tmpdir}/singulardb;AUTO_SERVER=TRUE;mode=ORACLE;CACHE_SIZE=2048;INIT=CREATE SCHEMA IF NOT EXISTS DBSINGULAR;MVCC=TRUE;LOCK_TIMEOUT=15000;"/> 
+ 	        <property name="url" value="jdbc:h2:file:./singulardb;AUTO_SERVER=TRUE;mode=ORACLE;CACHE_SIZE=2048;INIT=CREATE SCHEMA IF NOT EXISTS DBSINGULAR;MVCC=TRUE;LOCK_TIMEOUT=15000;"/> 
 	        <property name="username" value="sa"/>
 	        <property name="password" value="sa"/>
 	        <property name="removeAbandoned" value="true"/>
@@ -34,7 +32,7 @@
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
         <property name="dataSource" ref="dataSource"/>
         <!-- Incluir o pacote quando tiver um -->
-        <property name="packagesToScan" value="org.opensingular.singular.form.showcase.dao.form,org.opensingular.form.persistence" />
+        <property name="packagesToScan" value="org.opensingular.singular.form.showcase.dao,org.opensingular.form.exemplos,org.opensingular.form.persistence"/>
 
         <property name="hibernateProperties">
             <props>
