@@ -57,7 +57,7 @@ import org.opensingular.lib.wicket.util.datatable.BaseDataProvider;
 import org.opensingular.lib.wicket.util.datatable.column.BSActionColumn;
 import org.opensingular.lib.wicket.util.modal.BSModalBorder;
 import org.opensingular.lib.wicket.util.output.BOutputPanel;
-import org.opensingular.lib.wicket.util.resource.Icone;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.lib.wicket.util.tab.BSTabPanel;
 import org.opensingular.singular.form.showcase.dao.form.Prototype;
 import org.opensingular.singular.form.showcase.dao.form.PrototypeDAO;
@@ -160,26 +160,26 @@ public class PrototypeListContent extends Content
     public BSActionColumn<Prototype, String> buildActionColumn() {
         return new BSActionColumn<Prototype, String>($m.ofValue(""))
                 .appendAction(getMessage("label.table.column.edit"),
-                    Icone.PENCIL_SQUARE,
+                    DefaultIcons.PENCIL_SQUARE,
                     (target, model) -> {
                         setResponsePage(PrototypePage.class,
                                 new PageParameters()
                                         .add(PrototypePage.ID, model.getObject().getId()));
                 })
                 .appendAction(getMessage("label.table.column.visualizar"),
-                    Icone.EYE,
+                    DefaultIcons.EYE,
                     (target, model) -> {
                         setResponsePage(new PreviewPage(getMInstance(model.getObject()), PrototypeListContent.this.getPage()));
                     })
                 .appendAction(getMessage("label.table.column.delete"),
-                    Icone.MINUS, this::deleteSelected)
+                    DefaultIcons.MINUS, this::deleteSelected)
                 .appendAction(getMessage("label.table.column.visualizar.xml"),
-                    Icone.EYE, this::viewXml);
+                    DefaultIcons.EYE, this::viewXml);
     }
 
     private SInstanceRootModel<SIComposite> getMInstance(Prototype prototype) {
         String xml = prototype.getXml();
-        RefType refType = RefType.of(() -> dictionary.getType(SPackagePrototype.META_FORM_COMPLETE));
+        RefType refType = RefType.of(() -> dictionary.getType(STypePrototype.class));
         SIComposite instance = SFormXMLUtil.fromXML(refType, xml, singularFormConfig.getDocumentFactory());
         return new SInstanceRootModel<>(instance);
     }

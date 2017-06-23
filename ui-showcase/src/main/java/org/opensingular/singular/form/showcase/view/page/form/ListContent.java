@@ -37,7 +37,7 @@ import org.opensingular.lib.wicket.util.datatable.BSDataTable;
 import org.opensingular.lib.wicket.util.datatable.BSDataTableBuilder;
 import org.opensingular.lib.wicket.util.datatable.BaseDataProvider;
 import org.opensingular.lib.wicket.util.datatable.column.BSActionColumn;
-import org.opensingular.lib.wicket.util.resource.Icone;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.dao.form.ShowcaseTypeLoader;
 import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
@@ -104,7 +104,7 @@ public class ListContent extends Content implements SingularWicketContainer<List
                         "key", FormVO::getKey)
                 .appendColumn(new BSActionColumn<FormVO, String>($m.ofValue(""))
                         .appendAction(getMessage("label.table.column.preview"),
-                                Icone.ROCKET, this::goToDemo
+                                DefaultIcons.ROCKET, this::goToDemo
                         )
                 )
                 .setRowsPerPage(Long.MAX_VALUE) //TODO: proper pagination

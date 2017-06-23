@@ -24,6 +24,7 @@ import org.opensingular.form.io.SFormXMLUtil;
 import org.opensingular.singular.form.showcase.SpringWicketTester;
 import org.opensingular.singular.form.showcase.dao.form.Prototype;
 import org.opensingular.singular.form.showcase.view.template.Content;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -33,6 +34,7 @@ public class PrototypePageTest {
 
     @RunWith(SpringJUnit4ClassRunner.class)
     @ContextConfiguration(locations = {"/applicationContext.xml"})
+    @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
     public static class Base {
         @Inject
         private SpringWicketTester springWicketTester;
@@ -52,19 +54,19 @@ public class PrototypePageTest {
         }
 
         private void createInstance() {
-            RefType refType = RefType.of(() -> dictionary.getType(SPackagePrototype.META_FORM_COMPLETE));
+            RefType refType = RefType.of(() -> dictionary.getType(STypePrototype.class));
             currentInstance = (SIComposite) singularFormConfig.getDocumentFactory().createInstance(refType);
         }
 
         @Test
         public void rendersPrototypeOnScreen() {
 
-            SIList campo = (SIList) currentInstance.getField(SPackagePrototype.CHILDREN);
+            SIList campo = (SIList) currentInstance.getField(STypePrototype.CHILDREN);
             assertThat(campo).isNotNull();
 
             SIComposite field = (SIComposite) campo.addNew();
 
-            field.getField(SPackagePrototype.NAME).setValue("Abacate");
+            field.getField(STypePrototype.NAME).setValue("Abacate");
 
             startPage();
 

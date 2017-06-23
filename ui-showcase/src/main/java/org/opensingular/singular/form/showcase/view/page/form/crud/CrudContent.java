@@ -62,10 +62,10 @@ import org.opensingular.lib.wicket.util.datatable.column.BSActionColumn;
 import org.opensingular.lib.wicket.util.modal.BSModalBorder.ButtonStyle;
 import org.opensingular.lib.wicket.util.modal.BSModalBorder.Size;
 import org.opensingular.lib.wicket.util.output.BOutputPanel;
-import org.opensingular.lib.wicket.util.resource.Icone;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.lib.wicket.util.tab.BSTabPanel;
 import org.opensingular.singular.form.showcase.dao.form.ExampleDataDAO;
-import org.opensingular.singular.form.showcase.dao.form.ExampleDataDTO;
+import org.opensingular.singular.form.showcase.dao.form.ExampleData;
 import org.opensingular.singular.form.showcase.dao.form.ShowcaseTypeLoader;
 import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
 import org.opensingular.singular.form.showcase.view.page.form.FormVO;
@@ -78,8 +78,8 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
 
     private final static Logger LOGGER = LoggerFactory.getLogger(CrudContent.class);
 
-    private BSDataTable<ExampleDataDTO, String> listTable;
-    private IModel<FormVO>                      selectedTemplate;
+    private BSDataTable<ExampleData, String> listTable;
+    private IModel<FormVO>                   selectedTemplate;
 
     private final BFModalBorder deleteModal  = new BFModalBorder("deleteModal");
     private final BFModalBorder viewXmlModal = new BFModalBorder("viewXmlModal");
@@ -91,7 +91,7 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
     @Named("showcaseTypeLoader")
     private ShowcaseTypeLoader dictionaryLoader;
 
-    private ExampleDataDTO currentModel;
+    private ExampleData currentModel;
 
     public CrudContent(String id, StringValue type) {
         super(id, false, true);
@@ -168,24 +168,24 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
         });
     }
 
-    private BSDataTable<ExampleDataDTO, String> setupDataTable() {
+    private BSDataTable<ExampleData, String> setupDataTable() {
 
-        final BSDataTableBuilder<ExampleDataDTO, String, IColumn<ExampleDataDTO, String>> builder = new BSDataTableBuilder<>(createDataProvider());
+        final BSDataTableBuilder<ExampleData, String, IColumn<ExampleData, String>> builder = new BSDataTableBuilder<>(createDataProvider());
 
-        final Supplier<BSActionColumn<ExampleDataDTO, String>> $action = () -> new BSActionColumn<>($m.ofValue(""));
+        final Supplier<BSActionColumn<ExampleData, String>> $action = () -> new BSActionColumn<>($m.ofValue(""));
 
         builder
-                .appendPropertyColumn(getMessage("label.table.column.id"), "id", ExampleDataDTO::getId)
-                .appendPropertyColumn(getMessage("label.table.column.descricao"), "description", ExampleDataDTO::getDescription)
-                .appendPropertyColumn(getMessage("label.table.column.dt.edicao"), "editionDate", ExampleDataDTO::getEditionDate)
-                .appendColumn($action.get().appendAction(getMessage("label.table.column.edit"), Icone.PENCIL_SQUARE,
+                .appendPropertyColumn(getMessage("label.table.column.id"), "id", ExampleData::getId)
+                .appendPropertyColumn(getMessage("label.table.column.descricao"), "description", ExampleData::getDescription)
+                .appendPropertyColumn(getMessage("label.table.column.dt.edicao"), "editionDate", ExampleData::getEditionDate)
+                .appendColumn($action.get().appendAction(getMessage("label.table.column.edit"), DefaultIcons.PENCIL_SQUARE,
                         (target, model) -> {
                             setResponsePage(FormPage.class, new PageParameters()
                                     .add(FormPage.TYPE_NAME, selectedTemplate.getObject().getTypeName())
                                     .add(FormPage.MODEL_ID, model.getObject().getId())
                                     .add(FormPage.VIEW_MODE, ViewMode.EDIT));
                         }))
-                .appendColumn($action.get().appendAction(getMessage("label.table.column.visualizar"), Icone.EYE,
+                .appendColumn($action.get().appendAction(getMessage("label.table.column.visualizar"), DefaultIcons.EYE,
                         (target, model) -> {
                             setResponsePage(FormPage.class, new PageParameters()
                                     .add(FormPage.TYPE_NAME, selectedTemplate.getObject().getTypeName())
@@ -194,19 +194,19 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
                         }));
         addAnnotationColumnIfNeeded(builder);
         addAnnotationEditColumnIfNeeded(builder);
-        builder.appendColumn($action.get().appendAction(getMessage("label.table.column.delete"), Icone.MINUS, this::deleteSelected))
-                .appendColumn($action.get().appendAction(getMessage("label.table.column.visualizar.xml"), Icone.CODE, this::viewXml))
+        builder.appendColumn($action.get().appendAction(getMessage("label.table.column.delete"), DefaultIcons.MINUS, this::deleteSelected))
+                .appendColumn($action.get().appendAction(getMessage("label.table.column.visualizar.xml"), DefaultIcons.CODE, this::viewXml))
                 .setRowsPerPage(10);
         return builder.build("data-list");
     }
 
-    private void addAnnotationColumnIfNeeded(BSDataTableBuilder<ExampleDataDTO, String, IColumn<ExampleDataDTO, String>> builder) {
-        builder.appendColumn(new BSActionColumn<ExampleDataDTO, String>($m.ofValue("")) {
+    private void addAnnotationColumnIfNeeded(BSDataTableBuilder<ExampleData, String, IColumn<ExampleData, String>> builder) {
+        builder.appendColumn(new BSActionColumn<ExampleData, String>($m.ofValue("")) {
             @Override
             public String getCssClass() {
                 return (hasAnnotations() ? " " : " hidden ") + super.getCssClass();
             }
-        }.appendAction(getMessage("label.table.column.analisar"), Icone.COMMENT, (target, model) -> {
+        }.appendAction(getMessage("label.table.column.analisar"), DefaultIcons.COMMENT, (target, model) -> {
             setResponsePage(FormPage.class, new PageParameters()
                     .add(FormPage.TYPE_NAME, selectedTemplate.getObject().getTypeName())
                     .add(FormPage.MODEL_ID, model.getObject().getId())
@@ -215,14 +215,14 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
         }));
     }
 
-    private void addAnnotationEditColumnIfNeeded(BSDataTableBuilder<ExampleDataDTO, String,
-            IColumn<ExampleDataDTO, String>> builder) {
-        builder.appendColumn(new BSActionColumn<ExampleDataDTO, String>($m.ofValue("")) {
+    private void addAnnotationEditColumnIfNeeded(BSDataTableBuilder<ExampleData, String,
+            IColumn<ExampleData, String>> builder) {
+        builder.appendColumn(new BSActionColumn<ExampleData, String>($m.ofValue("")) {
             @Override
             public String getCssClass() {
                 return (hasAnnotations() ? " " : " hidden ") + super.getCssClass();
             }
-        }.appendAction(getMessage("label.table.column.exigencia"), Icone.PENCIL, (target, model) -> {
+        }.appendAction(getMessage("label.table.column.exigencia"), DefaultIcons.PENCIL, (target, model) -> {
             setResponsePage(FormPage.class, new PageParameters()
                     .add(FormPage.TYPE_NAME, selectedTemplate.getObject().getTypeName())
                     .add(FormPage.MODEL_ID, model.getObject().getId())
@@ -242,8 +242,8 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
         return hasAnntations;
     }
 
-    private BaseDataProvider<ExampleDataDTO, String> createDataProvider() {
-        return new BaseDataProvider<ExampleDataDTO, String>() {
+    private BaseDataProvider<ExampleData, String> createDataProvider() {
+        return new BaseDataProvider<ExampleData, String>() {
 
             @Override
             public long size() {
@@ -251,19 +251,19 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
             }
 
             @Override
-            public Iterator<? extends ExampleDataDTO> iterator(int first, int count, String property,
+            public Iterator<? extends ExampleData> iterator(int first, int count, String property,
                                                                boolean asc) {
                 return dao.list(selectedTemplate.getObject().getTypeName(), first, count, Optional.ofNullable(property), asc).iterator();
             }
         };
     }
 
-    private void deleteSelected(AjaxRequestTarget target, IModel<ExampleDataDTO> model) {
+    private void deleteSelected(AjaxRequestTarget target, IModel<ExampleData> model) {
         currentModel = model.getObject();
         deleteModal.show(target);
     }
 
-    private void viewXml(AjaxRequestTarget target, IModel<ExampleDataDTO> model) {
+    private void viewXml(AjaxRequestTarget target, IModel<ExampleData> model) {
 
         final String     xmlPersistencia = model.getObject().getXml();
         final String     xmlTabulado     = getXmlTabulado(xmlPersistencia);

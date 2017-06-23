@@ -19,13 +19,14 @@ import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 
 @SInfoPackage(name = "mform.peticao.emec.credenciamento.escolagoverno")
 public class SPackageCredenciamentoEscolaGoverno extends SPackage {
 
     public static DominioService dominioService(SInstance ins) {
-        return ins.getDocument().lookupServiceOrException(DominioService.class);
+        return ServiceRegistryLocator.locate().lookupServiceOrException(DominioService.class);
     }
 
     @Override

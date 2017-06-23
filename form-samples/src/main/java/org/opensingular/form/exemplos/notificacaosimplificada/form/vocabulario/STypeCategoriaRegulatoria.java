@@ -20,6 +20,7 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.CategoriaRegulatoriaMedicamento;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 import org.opensingular.form.provider.STextQueryProvider;
@@ -50,9 +51,7 @@ public class STypeCategoriaRegulatoria extends STypeComposite<SIComposite> {
                     .id(id)
                     .display(descricao)
                     .filteredProvider((STextQueryProvider) (builder, query) -> {
-                        builder
-                                .getCurrentInstance()
-                                .getDocument()
+                        ServiceRegistryLocator.locate()
                                 .lookupServiceOrException(DominioService.class)
                                 .buscarVocabulario(CategoriaRegulatoriaMedicamento.class, query)
                                 .forEach(vc -> builder.add().set(id, vc.getId()).set(descricao, vc.getDescricao()));

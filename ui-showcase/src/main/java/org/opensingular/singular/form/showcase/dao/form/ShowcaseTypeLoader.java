@@ -16,15 +16,7 @@
 
 package org.opensingular.singular.form.showcase.dao.form;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Supplier;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
 import org.opensingular.form.SDictionary;
 import org.opensingular.form.SInfoType;
@@ -47,20 +39,25 @@ import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.form.examples.STypeCurriculo;
 import org.opensingular.singular.form.showcase.view.page.form.examples.STypeExample;
 
-import com.google.common.base.Preconditions;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 
 public class ShowcaseTypeLoader extends SpringTypeLoader<String> {
 
+    private final Map<String, TemplateEntry> entries = new LinkedHashMap<>();
     @Inject
     private ShowCaseTable showCaseTable;
 
-    private final Map<String, TemplateEntry> entries = new LinkedHashMap<>();
-
-    public ShowcaseTypeLoader() {
+    @PostConstruct
+    private void init() {
         add(STypeCurriculo.class, ShowCaseType.FORM);
         add(STypeExample.class, ShowCaseType.FORM);
-//        add(STypePeticaoGGTOX.class, ShowCaseType.FORM);
         add(STypeNotificacaoSimplificadaDinamizado.class, ShowCaseType.FORM);
         add(STypeNotificacaoSimplificadaGasMedicinal.class, ShowCaseType.FORM);
         add(STypeNotificacaoSimplificadaFitoterapico.class, ShowCaseType.FORM);
@@ -68,11 +65,6 @@ public class ShowcaseTypeLoader extends SpringTypeLoader<String> {
         add(STypeHabilitacaoEmpresa.class, ShowCaseType.FORM);
         add(STypeCredenciamentoEscolaGoverno.class, ShowCaseType.FORM);
         add(STypeGestaoObras.class, ShowCaseType.FORM);
-
-    }
-
-    @PostConstruct
-    private void init() {
         for (ShowCaseGroup group : showCaseTable.getGroups()) {
             for (ShowCaseItem item : group.getItens()) {
                 addGroupItem(group, item);

@@ -23,6 +23,8 @@
         <property name="serviceRegistry" ref="springServiceRegistry"/>
     </bean>
 
+    <bean class="org.opensingular.lib.context.singleton.SpringBoundedSingletonStrategy"/>
+
     <bean id="singularFormContext" class="org.opensingular.form.wicket.SingularFormContextWicketImpl"
           factory-bean="singularFormConfig" factory-method="createContext"/>
 

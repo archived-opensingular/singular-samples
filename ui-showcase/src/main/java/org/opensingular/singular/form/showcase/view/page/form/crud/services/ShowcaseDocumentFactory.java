@@ -16,32 +16,28 @@
 
 package org.opensingular.singular.form.showcase.view.page.form.crud.services;
 
-import static org.opensingular.form.type.core.attachment.handlers.FileSystemAttachmentPersistenceHandler
-        .newTemporaryHandler;
-
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.opensingular.form.RefService;
+import org.opensingular.form.context.ServiceRegistry;
+import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.document.SDocument;
 import org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration;
 import org.opensingular.form.spring.SpringSDocumentFactory;
 import org.opensingular.form.spring.SpringServiceRegistry;
 import org.opensingular.form.type.core.attachment.IAttachmentPersistenceHandler;
 import org.opensingular.form.type.core.attachment.handlers.InMemoryAttachmentPersistenceHandler;
+import org.opensingular.lib.support.spring.util.ApplicationContextProvider;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static org.opensingular.form.type.core.attachment.handlers.FileSystemAttachmentPersistenceHandler
+        .newTemporaryHandler;
+
 @Component("showcaseDocumentFactory")
 public class ShowcaseDocumentFactory extends SpringSDocumentFactory {
-
-    private final static SpringServiceRegistry NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG;
-
-    static {
-        NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG = new SpringServiceRegistry(new AnnotationConfigApplicationContext(NotificaoSimplificadaSpringConfiguration.class));
-    }
-
     @Override
     protected void setupDocument(SDocument document) {
         try {
@@ -50,9 +46,8 @@ public class ShowcaseDocumentFactory extends SpringSDocumentFactory {
             Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "Could not create temporary file folder, using memory instead", e);
             document.setAttachmentPersistenceTemporaryHandler(RefService.of(new InMemoryAttachmentPersistenceHandler()));
         }
-        IAttachmentPersistenceHandler<?> persist = getServiceRegistry().lookupServiceOrException(IAttachmentPersistenceHandler.class);
+        IAttachmentPersistenceHandler<?> persist = ServiceRegistryLocator.locate().lookupServiceOrException(IAttachmentPersistenceHandler.class);
         document.setAttachmentPersistencePermanentHandler(RefService.ofToBeDescartedIfSerialized(persist));
-        document.addServiceRegistry(NOTIFICACAO_SIMPLIFICADA_SPRING_CONFIG);
     }
 
 

@@ -29,10 +29,10 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.apache.wicket.util.string.StringValue;
-import org.opensingular.form.SPackage;
+import org.opensingular.form.STypeComposite;
 import org.opensingular.lib.commons.base.SingularUtil;
-import org.opensingular.lib.wicket.util.resource.Icone;
-import org.opensingular.lib.wicket.util.resource.SingularIcon;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.lib.wicket.util.resource.Icon;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
 import org.reflections.Reflections;
@@ -76,8 +76,9 @@ public class ShowCaseTable {
         addGroup(Group.INTERACTION);
         addGroup(Group.CUSTOM);
         addGroup(Group.MAPS);
+        addGroup(Group.IMPORTER);
 
-        addGroup("XSD", Icone.CODE, ShowCaseType.FORM)
+        addGroup("XSD", DefaultIcons.CODE, ShowCaseType.FORM)
             .addCase(new XsdCaseSimple())
             .addCase(new XsdCaseSimple2());
 
@@ -103,12 +104,10 @@ public class ShowCaseTable {
         for (Class<?> caseClass : classes) {
             final CaseItem caseItem = caseClass.getAnnotation(CaseItem.class);
             CaseBase caseBase = null;
-            if (SPackage.class.isAssignableFrom(caseClass)) {
-                caseBase = new CaseBaseForm(caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
-//                } else if (CollectionDefinition.class.isAssignableFrom(caseClass)) {
-//                    caseBase = new CaseBaseStudio(caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.getAnnotation());
-//                } else {
-//                    throw new RuntimeException("Apenas classes do tipo " + SPackage.class.getName() + " e " + CollectionDefinition.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
+            if (STypeComposite.class.isAssignableFrom(caseClass)) {
+                caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
+            } else {
+                throw new RuntimeException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
             }
 
             if (!caseItem.customizer().isInterface()) {
@@ -139,7 +138,7 @@ public class ShowCaseTable {
         }
     }
 
-    private ShowCaseGroup addGroup(String groupName, SingularIcon icon, ShowCaseType tipo) {
+    private ShowCaseGroup addGroup(String groupName, Icon icon, ShowCaseType tipo) {
         Map<String, ShowCaseGroup> groups;
         if (ShowCaseType.FORM == tipo) {
             groups = formGroups;
@@ -175,13 +174,14 @@ public class ShowCaseTable {
 
     public static class ShowCaseGroup implements Serializable {
 
-        private final String groupName;
-        private final SingularIcon icon;
+        private final String       groupName;
+        private final Icon         icon;
         private final ShowCaseType tipo;
 
         private final Map<String, ShowCaseItem> itens = new TreeMap<>();
-
-        public ShowCaseGroup(String groupName, SingularIcon icon, ShowCaseType tipo) {
+        
+        
+        public ShowCaseGroup(String groupName, Icon icon, ShowCaseType tipo) {
             this.groupName = groupName;
             this.icon = icon;
             this.tipo = tipo;
@@ -213,7 +213,7 @@ public class ShowCaseTable {
             return itens.values();
         }
 
-        public SingularIcon getIcon() {
+        public Icon getIcon() {
             return icon;
         }
 
@@ -227,6 +227,7 @@ public class ShowCaseTable {
         private final String componentName;
 
         private final List<CaseBase> cases = new ArrayList<>();
+        
         private ShowCaseType showCaseType;
 
         public ShowCaseItem(String componentName, ShowCaseType showCaseType) {
@@ -243,6 +244,13 @@ public class ShowCaseTable {
         }
 
         public List<CaseBase> getCases() {
+            Collections.sort(cases, (case1, case2) -> { 
+                if(case1.getSubCaseName().equalsIgnoreCase("Default")){
+                    return Integer.MIN_VALUE;
+                }else{
+                    return case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName());
+                }
+            });      
             return cases;
         }
 
@@ -250,4 +258,23 @@ public class ShowCaseTable {
             return showCaseType;
         }
     }
+    
+    public static void main(String[] args) {
+        Map<String, Integer> itens = new TreeMap<>((name1, name2) -> { 
+            if(name1.equalsIgnoreCase("Default")){
+                return Integer.MIN_VALUE;
+            }else{
+                return name1.compareTo(name2);
+            }
+            });       
+        itens.put("Bcoisa", 1);
+        itens.put("Acoisa", 2);
+        itens.put("Zcoisa", 3);
+        itens.put("Default", 4);
+        
+        System.out.println(itens);
+        
+        
+    } 
+    
 }
