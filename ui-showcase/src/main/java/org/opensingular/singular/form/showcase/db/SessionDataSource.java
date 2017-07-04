@@ -125,7 +125,7 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
         sessionIdHolder.set(sessionId);
     }
     private static String getSessionId() {
-        return sessionIdHolder.get();
+        return (sessionIdHolder.get() != null) ? sessionIdHolder.get() : "0";
     }
 
     private static void generateDB(String sessionId) {

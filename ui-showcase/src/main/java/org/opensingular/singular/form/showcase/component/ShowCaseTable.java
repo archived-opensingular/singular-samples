@@ -74,6 +74,7 @@ public class ShowCaseTable {
         addGroup(Group.LAYOUT);
         addGroup(Group.VALIDATION);
         addGroup(Group.INTERACTION);
+        addGroup(Group.HELP);
         addGroup(Group.CUSTOM);
         addGroup(Group.MAPS);
         addGroup(Group.IMPORTER);
