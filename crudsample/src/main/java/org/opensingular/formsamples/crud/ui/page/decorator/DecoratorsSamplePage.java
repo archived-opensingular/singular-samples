@@ -3,6 +3,7 @@ package org.opensingular.formsamples.crud.ui.page.decorator;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import org.opensingular.form.SDictionary;
 import org.opensingular.form.SIComposite;
@@ -43,11 +44,13 @@ public class DecoratorsSamplePage extends SingularTemplate {
                 }
 
                 private List<SInstanceAction> actionList() {
+                    boolean secondary = false;
                     return Arrays.asList(
                         new SInstanceAction(SInstanceAction.ActionType.NORMAL)
-                            .setIcon(SIcon.resolve("html5"))
+                            .setIcon(SIcon.resolve("html5")
+                                .setColors("white", "red"))
                             .setText("HTML")
-                            .setSecondary(true)
+                            .setSecondary(secondary)
                             .setActionHandler((a, i, d) -> d.showMessage("HTML", ""
                                 + "<h1>HTML</h1>"
                                 + "<p>This is a paragraph, with <b>bold</b>, <i>italic</i>, and <u>underlined</u> text.</p>"
@@ -76,7 +79,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                         new SInstanceAction(SInstanceAction.ActionType.NORMAL)
                             .setIcon(SIcon.resolve("doc"))
                             .setText("Text")
-                            .setSecondary(true)
+                            .setSecondary(secondary)
                             .setActionHandler((a, i, d) -> d.showMessage("Text", ""
                                 + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n"
                                 + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n"
@@ -85,7 +88,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                         new SInstanceAction(SInstanceAction.ActionType.NORMAL)
                             .setIcon(SIcon.resolve("asterisk"))
                             .setText("Markdown")
-                            .setSecondary(true)
+                            .setSecondary(secondary)
                             .setActionHandler((a, i, d) -> d.showMessage("Markdown", ""
                                 + "\n# Título"
                                 + "\n"
@@ -100,7 +103,10 @@ public class DecoratorsSamplePage extends SingularTemplate {
                                 + "\n"
                                 + "\n")),
                         new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
-                            .setIcon(SIcon.resolve("cog"))
+                            .setIcon(SIcon.resolve("cog")
+                                .setBgColor(
+                                    Arrays.asList("red", "green", "blue")
+                                        .get(new Random().nextInt(3))))
                             .setText("SInstance")
                             .setActionHandler((a, actionInstance, d) -> {
                                 ISupplier<SInstance> formInstanceSupplier = () -> {
@@ -137,7 +143,10 @@ public class DecoratorsSamplePage extends SingularTemplate {
 
                                     new SInstanceAction(ActionType.NORMAL)
                                         .setText("Fechar")
-                                        .setActionHandler((action, i, d1) -> d1.closeForm(i.get())));
+                                        .setActionHandler((action, i, d1) -> {
+                                            d1.closeForm(i.get());
+                                            d1.refreshFieldForInstance(d.getInstanceRef().get());
+                                        }));
 
                                 d.openForm("Form", formInstanceSupplier, actions);
                             }));
