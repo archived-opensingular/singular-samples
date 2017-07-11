@@ -36,7 +36,7 @@ public class STypeValorEmpenhadoObra extends STypeComposite<SIComposite>{
             .selfIdAndDisplay()
             .simpleProviderOf(2016, 2017, 2018, 2019);
         addFieldMonetary(FIELD_VALOR_EMPENHADO)
-            .withRequired(true).asAtr().label("Valor Empenhado");
+            .asAtr().required(true).label("Valor Empenhado");
     }
 
     public STypeInteger getFieldExercicio(){

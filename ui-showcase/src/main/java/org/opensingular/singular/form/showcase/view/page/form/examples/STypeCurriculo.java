@@ -75,9 +75,10 @@ public class STypeCurriculo extends STypeComposite<SIComposite> {
                     .asAtr().label("Estado Civil")
                     .asAtrBootstrap().colPreference(2);
             infoPub
-                    .withRequired(true)
                     .withView(SMultiSelectionBySelectView::new)
-                    .asAtr().label("Informação Pública")
+                    .asAtr()
+                    .required(true)
+                    .label("Informação Pública")
                     .asAtrBootstrap().colPreference(2);
         }
 

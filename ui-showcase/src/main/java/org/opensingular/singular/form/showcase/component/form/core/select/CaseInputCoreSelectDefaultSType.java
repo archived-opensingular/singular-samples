@@ -53,7 +53,7 @@ public class CaseInputCoreSelectDefaultSType extends STypeComposite<SIComposite>
     private static void addSelection(STypeComposite<?> tipoMyForm, int sizeOptions, boolean required) {
         STypeString tipoSelection = tipoMyForm.addFieldString("opcoes" + sizeOptions + required);
         tipoSelection.selectionOf(createOptions(sizeOptions));
-        tipoSelection.withRequired(required);
+        tipoSelection.asAtr().required(required);
         tipoSelection.asAtr().label("Seleção de " + sizeOptions);
     }
 
