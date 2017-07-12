@@ -22,7 +22,7 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.country.brazil.STypeAccount;
+import org.opensingular.form.type.country.brazil.STypeBankAccount;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
@@ -35,10 +35,10 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Conta")
 public class CaseBrazilAccountSType extends STypeComposite<SIComposite> {
 
-    public STypeAccount contaBancaria;
+    public STypeBankAccount contaBancaria;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        contaBancaria = this.addField("contaBancaria", STypeAccount.class);
+        contaBancaria = this.addField("contaBancaria", STypeBankAccount.class);
     }
 }

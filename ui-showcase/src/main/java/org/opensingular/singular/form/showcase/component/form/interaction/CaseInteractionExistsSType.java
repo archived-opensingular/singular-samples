@@ -51,7 +51,7 @@ public class CaseInteractionExistsSType extends STypeComposite<SIComposite> {
         exists.asAtr().label("Exists");
 
         record
-                .withExists(ins -> ins.findNearestValue(exists, Boolean.class).orElse(Boolean.FALSE))
+                .asAtr().exists(ins -> ins.findNearestValue(exists, Boolean.class).orElse(Boolean.FALSE))
                 .asAtr().dependsOn(exists);
 
         recordText.asAtr().label("Text")

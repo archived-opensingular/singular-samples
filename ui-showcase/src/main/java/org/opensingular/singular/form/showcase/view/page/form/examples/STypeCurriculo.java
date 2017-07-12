@@ -75,9 +75,10 @@ public class STypeCurriculo extends STypeComposite<SIComposite> {
                     .asAtr().label("Estado Civil")
                     .asAtrBootstrap().colPreference(2);
             infoPub
-                    .withRequired(true)
                     .withView(SMultiSelectionBySelectView::new)
-                    .asAtr().label("Informação Pública")
+                    .asAtr()
+                    .required(true)
+                    .label("Informação Pública")
                     .asAtrBootstrap().colPreference(2);
         }
 
@@ -249,7 +250,7 @@ public class STypeCurriculo extends STypeComposite<SIComposite> {
 
         //        informacoesPessoais.addValidacao((IValidatable<MIComposto> validatable) -> {
         //            if (validatable.getValue().isCampoNull("telefoneFixo") && validatable.getValue().isCampoNull("telefoneCelular")) {
-        //                validatable.error(new ValidationError("Ao menos um telefone deve ser preenchido."));
+        //                validatable.error(new ValidationErrorImpl("Ao menos um telefone deve ser preenchido."));
         //            }
         //        });
 
@@ -258,13 +259,13 @@ public class STypeCurriculo extends STypeComposite<SIComposite> {
         //            YearMonth conclusao = mesConclusao.getJavaYearMonth();
         //            YearMonth maximo = YearMonth.now().plus(4, ChronoUnit.YEARS);
         //            if (conclusao.isAfter(maximo)) {
-        //                validatable.error(new ValidationError("O mês de conclusão pode ser no máximpo até " + maximo));
+        //                validatable.error(new ValidationErrorImpl("O mês de conclusão pode ser no máximpo até " + maximo));
         //            } else {
         //                MIData dt = mesConclusao.getParent(curriculo).getFilho(dtNasc);
         //                if (isNotNull(dt)) {
         //                    YearMonth minimo = dt.getJavaYearMonth().plus(14, ChronoUnit.YEARS);
         //                    if (conclusao.isBefore(minimo)) {
-        //                        validatable.error(new ValidationError("O mês de conclusão deve ser posterior a " + minimo));
+        //                        validatable.error(new ValidationErrorImpl("O mês de conclusão deve ser posterior a " + minimo));
         //                    }
         //                }
         //            }
@@ -274,7 +275,7 @@ public class STypeCurriculo extends STypeComposite<SIComposite> {
         //            MIAnoMes fim = validatable.getValue();
         //            MIAnoMes inicio = fim.getIrmao(dtInicioExperiencia);
         //            if (isNotNull(inicio) && isNotNull(fim) && inicio.isAfter(fim)) {
-        //                validatable.error(new ValidationError("O mês de conclusão não pode ser anterior ao início"));
+        //                validatable.error(new ValidationErrorImpl("O mês de conclusão não pode ser anterior ao início"));
         //            }
         //        });
 
