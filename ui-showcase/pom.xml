@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.opensingular</groupId>
         <artifactId>singular-samples</artifactId>
-        <version>1.6.8-RC2</version>
+        <version>1.6.8-SNAPSHOT</version>
     </parent>
 
     <artifactId>singular-ui-showcase</artifactId>
@@ -60,17 +60,17 @@
         <dependency>
             <groupId>org.opensingular</groupId>
             <artifactId>singular-form-wicket</artifactId>
-            <version>1.6.8-RC2</version>
+            <version>1.6.8-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.opensingular</groupId>
             <artifactId>singular-form-samples</artifactId>
-            <version>1.6.8-RC2</version>
+            <version>1.6.8-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.opensingular</groupId>
             <artifactId>singular-form-service</artifactId>
-            <version>1.6.8-RC2</version>
+            <version>1.6.8-SNAPSHOT</version>
         </dependency>
 
         <!-- PERSISTENCE -->
