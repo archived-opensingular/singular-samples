@@ -199,7 +199,7 @@ public class STypePrototype extends STypeComposite<SIComposite> {
                 fieldType.addFieldListOf(FIELDS, fieldType);
         fields.asAtr().label("Campos")
                 .getTipo().withView(SViewListByMasterDetail::new)
-                .withExists(
+                .asAtr().exists(
                         (instance) -> {
                             SInstance t = instance.getParent().getField("type");
                             return Objects.equals(t.getValue(), typeName(STypeComposite.class));
