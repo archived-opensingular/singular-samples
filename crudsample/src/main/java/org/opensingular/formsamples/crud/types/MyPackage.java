@@ -39,6 +39,7 @@ public class MyPackage extends SPackage {
             (age         = addFieldInteger("age"                             )).asAtr().label("Age"         );
             (homeAddress = addField       ("homeAddress", MyTypeAddress.class)).asAtr().label("Home address").help("Residential address");
             (workAddress = addField       ("workAddress", MyTypeAddress.class)).asAtr().label("Work adress" ).help("Commercial address");
+            age.asAtrAnnotation().setAnnotated();
         }
     }
 
@@ -53,6 +54,7 @@ public class MyPackage extends SPackage {
             (streetAddress = addFieldString ("streetAddress"          )).asAtr().label("Street address");
             (zipCode       = addFieldInteger("zipCode"                )).asAtr().label("Zip code"      );
             (city          = addField       ("city" , MyTypeCity.class)).asAtr().label("City"          );
+            asAtrAnnotation().setAnnotated();
         }
     }
 
@@ -65,6 +67,7 @@ public class MyPackage extends SPackage {
         protected void onLoadType(TypeBuilder tb) {
             (name    = addFieldString("name"   )).asAtr().label("Name"   );
             (country = addFieldString("country")).asAtr().label("Country");
+            asAtrAnnotation().setAnnotated();
         }
     }
 }
