@@ -16,11 +16,7 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.multiselect;
 
-import org.opensingular.form.SIComposite;
-import org.opensingular.form.SInfoType;
-import org.opensingular.form.STypeComposite;
-import org.opensingular.form.STypeList;
-import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.*;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SMultiSelectionByPicklistView;
 import org.opensingular.singular.form.showcase.component.CaseItem;
@@ -47,15 +43,14 @@ public class CaseInputCoreMultiSelectProviderSType extends STypeComposite<SIComp
          * Neste caso será utilizado o serviço de nome filesChoiceProvider
          * cadastrado através do Document.bindLocalService
          */
-        final STypeComposite<SIComposite> arquivo  = arquivos.getElementsType();
-        final STypeString                 id       = arquivo.addFieldString("id");
-        final STypeString                 hashSha1 = arquivo.addFieldString("hashSha1");
+        final STypeComposite<SIComposite> arquivo = arquivos.getElementsType();
+        final STypeString                fileName = arquivo.addFieldString("fileName");
 
         arquivos.asAtr().label("Seleção de Arquivos Persistidos");
 
         arquivos.selection()
-                .id(id)
-                .display(hashSha1)
+                .id(fileName)
+                .display(fileName)
                 .simpleProvider("filesChoiceProvider");
         arquivos.withView(SMultiSelectionByPicklistView::new);
     }
