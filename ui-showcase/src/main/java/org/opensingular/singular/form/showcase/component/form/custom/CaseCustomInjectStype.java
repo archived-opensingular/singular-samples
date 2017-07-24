@@ -1,5 +1,8 @@
 package org.opensingular.singular.form.showcase.component.form.custom;
 
+import javax.annotation.Nonnull;
+import javax.inject.Inject;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -7,15 +10,13 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-
-import javax.annotation.Nonnull;
-import javax.inject.Inject;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 /**
  * É possivel passar dados para o formulario a partir de Injeção de Beans.
  */
 @SInfoType(spackage = CaseCustomPackage.class, name = "CaseInject")
-@CaseItem(componentName = "Inject",subCaseName = "Default", group = Group.CUSTOM)
+@CaseItem(componentName = "Inject",subCaseName = "Default", group = Group.CUSTOM, resources = @Resource(value = CaseCustomInjectService.class))
 public class CaseCustomInjectStype extends STypeComposite<SIComposite> {
 
     //@destacar:bloco

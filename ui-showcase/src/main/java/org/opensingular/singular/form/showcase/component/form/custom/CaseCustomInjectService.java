@@ -2,6 +2,7 @@ package org.opensingular.singular.form.showcase.component.form.custom;
 
 import org.springframework.stereotype.Service;
 
+//@destacar
 @Service
 public class CaseCustomInjectService {
 
