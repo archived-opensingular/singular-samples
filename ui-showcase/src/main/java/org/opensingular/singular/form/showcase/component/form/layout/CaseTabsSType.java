@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -30,8 +32,6 @@ import org.opensingular.form.view.SViewTab;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
-import javax.annotation.Nonnull;
-
 /**
  * Tabs
  */
@@ -39,6 +39,8 @@ import javax.annotation.Nonnull;
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTabs")
 public class CaseTabsSType extends STypeComposite<SIComposite> {
 
+    public STypeComposite<SIComposite> tab1;
+    public STypeComposite<SIComposite> tab2;
     public STypeString nome;
     public STypeInteger idade;
     public STypeEMail email;
@@ -46,19 +48,22 @@ public class CaseTabsSType extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        nome = this.addFieldString("nome");
+        
+        tab1 = addFieldComposite("tab1");
+        nome = tab1.addFieldString("nome");
         nome
                 .asAtr().label("Nome");
 
-        idade = this.addFieldInteger("idade");
+        idade = tab1.addFieldInteger("idade");
         idade
                 .asAtr().label("Idade");
 
-        email = this.addFieldEmail("email");
+        email = tab1.addFieldEmail("email");
         email
                 .asAtr().label("E-mail");
 
-        experienciasProfissionais = this.addFieldListOfComposite("experienciasProfissionais", "experiencia");
+        tab2 = addFieldComposite("tab2");
+        experienciasProfissionais = tab2.addFieldListOfComposite("experienciasProfissionais", "experiencia");
 
         STypeComposite<?>                                   experiencia         = experienciasProfissionais.getElementsType();
         STypeYearMonth                                      dtInicioExperiencia = experiencia.addField("inicio", STypeYearMonth.class, true);
@@ -88,11 +93,8 @@ public class CaseTabsSType extends STypeComposite<SIComposite> {
 
         //@destacar:bloco
         SViewTab tabbed = new SViewTab();
-        tabbed.addTab("informacoes", "Informações pessoais")
-                .add(nome)
-                .add(email)
-                .add(idade);
-        tabbed.addTab(experienciasProfissionais);
+        tabbed.addTab("informacoes", "Informações pessoais").add(tab1);
+        tabbed.addTab("exp","Experiências profissionais").add(tab2);
         this.withView(tabbed);
         //@destacar:fim
     }
