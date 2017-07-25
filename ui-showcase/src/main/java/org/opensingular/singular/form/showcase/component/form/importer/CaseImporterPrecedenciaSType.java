@@ -30,7 +30,8 @@ import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 
 /**
- * Importador de atributos através de arquivos XML.
+ * Importador de atributos através de arquivos XML. <br/>
+ * Utilizando a precedencia, onde o xml tem maior prioridade entre os demais.
  */
 
 @CaseItem(componentName = "ImporterXML", subCaseName = "Precedência", group = Group.IMPORTER, resources = @Resource(value = CaseImporterPrecedenciaSType.class, extension = "xml") )

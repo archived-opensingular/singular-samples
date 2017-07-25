@@ -30,7 +30,8 @@ import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 
 /**
- * Importador de atributos através de arquivos XML.
+ * Importador de atributos através de arquivos XML. <br/>
+ * Este é um exemplo mais complexo que os demais, pois existe uma hierarquia de fields no form.
  */
 
 @CaseItem(componentName = "ImporterXML", subCaseName = "Complex", group = Group.IMPORTER, resources = @Resource(value = CaseImporterComplexSType.class, extension = "xml"))

@@ -16,19 +16,17 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout;
 
-import org.opensingular.form.PackageBuilder;
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewBreadcrumb;
+import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.form.interaction.CaseInteractionPackage;
-
-import javax.annotation.Nonnull;
 
 /**
  * Breadcrumb
@@ -46,19 +44,21 @@ public class CaseComplexListByBreadcrumbSType extends STypeComposite<SIComposite
         componente.asAtr().label("Componente");
 
         componente.addFieldString("nome")
-                .asAtr().label("Nome");
-
+                  .asAtr().label("Nome");
+        componente.withView(SViewByBlock::new);
+        
+        
         STypeList<STypeComposite<SIComposite>, SIComposite> testes = componente.addFieldListOfComposite("testes", "teste");
-        testes
-                .withView(SViewBreadcrumb::new)
-                .asAtr().label("Testes de componente");
+        testes.withView(SViewBreadcrumb::new)
+              .asAtr().label("Testes de componente");
 
         STypeComposite<SIComposite> teste = testes.getElementsType();
         teste.asAtr().label("Teste de Componentes");
 
-        teste.addFieldString("nome")
+        teste.addFieldString("nome") 
                 .asAtr().label("Nome");
-
+        teste.withView(SViewByBlock::new);
+        
         componentes
                 .withView(SViewBreadcrumb::new)
                 .asAtr().label("Componentes");

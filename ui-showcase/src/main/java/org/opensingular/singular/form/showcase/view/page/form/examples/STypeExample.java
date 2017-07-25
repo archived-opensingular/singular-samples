@@ -62,7 +62,7 @@ public class STypeExample extends STypeComposite<SIComposite> {
         this.asAtr().label("Pedido");
 
         this.orderNumber = addField(this, "orderNumber", "Número do Pedido", STypeInteger.class);
-        this.orderNumber.withRequired(true);
+        this.orderNumber.asAtr().required(true);
 
         buildBuyerField();
         buildAddressField();

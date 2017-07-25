@@ -48,5 +48,6 @@
 *.so.6.10.0 binary
 *.so.0.12.4 binary
 *.dylib binary
+*.db binary
 wkhtmltopdf binary
 wkhtmltoimage binary

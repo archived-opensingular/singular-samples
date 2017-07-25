@@ -16,20 +16,19 @@
 
 package org.opensingular.singular.form.showcase.view.template;
 
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
-
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.opensingular.lib.commons.base.SingularProperties;
 import org.opensingular.lib.wicket.util.metronic.menu.DropdownMenu;
 import org.opensingular.lib.wicket.util.template.SkinOptions;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.form.ListPage;
 import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
+
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 public class Header extends Panel {
 
@@ -58,7 +57,7 @@ public class Header extends Panel {
                 .add($b.attrAppender("class", "hide", " ", $m.ofValue(!withTogglerButton))));
         add(new WebMarkupContainer("_TopAction"));
         
-        Behavior devMode = $b.visibleIf(()->SingularProperties.get().isTrue(SingularProperties.SINGULAR_DEV_MODE));
+        Behavior devMode = $b.visibleIf(()->false);
         
     	DropdownMenu d = buildShowcaseOptions();	
     	add(d.add(devMode));

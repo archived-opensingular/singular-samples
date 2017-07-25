@@ -48,14 +48,13 @@ public class CaseInputCoreSelectProviderSType extends STypeComposite<SIComposite
          */
         arquivo  = this.addFieldComposite("arquivo");
 
-        final STypeString                 id       = arquivo.addFieldString("id");
-        final STypeString                 hashSha1 = arquivo.addFieldString("hashSha1");
+        final STypeString fileName = arquivo.addFieldString("fileName");
 
         arquivo.asAtr().label("Seleção de Arquivos Persistidos");
 
         arquivo.selection()
-                .id(id)
-                .display(hashSha1)
+                .id(fileName)
+                .display(fileName)
                 .simpleProvider("filesChoiceProvider");
 
     }
