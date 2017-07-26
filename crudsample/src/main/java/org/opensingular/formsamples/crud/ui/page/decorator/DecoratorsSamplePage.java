@@ -3,30 +3,18 @@ package org.opensingular.formsamples.crud.ui.page.decorator;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import org.apache.wicket.markup.html.form.Form;
-import org.opensingular.form.SDictionary;
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.SInstance;
-import org.opensingular.form.SType;
 import org.opensingular.form.decorator.action.ISInstanceActionCapable;
 import org.opensingular.form.decorator.action.SIcon;
 import org.opensingular.form.decorator.action.SInstanceAction;
-import org.opensingular.form.decorator.action.SInstanceAction.ActionType;
-import org.opensingular.form.document.RefType;
-import org.opensingular.form.document.SDocumentFactory;
-import org.opensingular.form.io.PersistenceBuilderXML;
-import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.wicket.IWicketBuildListener;
 import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.form.wicket.WicketBuildContext;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.form.wicket.panel.SingularFormPanel;
 import org.opensingular.formsamples.crud.types.MyPackage.MyTypeForm;
-import org.opensingular.internal.lib.commons.xml.MElement;
-import org.opensingular.lib.commons.lambda.ISupplier;
-import org.opensingular.lib.commons.ref.Out;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
 
 public class DecoratorsSamplePage extends SingularTemplate {
@@ -106,60 +94,61 @@ public class DecoratorsSamplePage extends SingularTemplate {
                                     + "\n"
                                     + "\n[Google](https://google.com)"
                                     + "\n"
-                                    + "\n")),
-                            new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
-                                .setIcon(SIcon.resolve("cog")
-                                    .setBgColor(
-                                        Arrays.asList("red", "green", "blue")
-                                            .get(new Random().nextInt(3))))
-                                .setText("SInstance")
-                                .setActionHandler((a, actionInstance, d) -> {
-                                    ISupplier<SInstance> formInstanceSupplier = () -> {
-                                        SInstance ins = SDocumentFactory.empty().createInstance(new RefType() {
-                                            @Override
-                                            protected SType<?> retrieve() {
-                                                SDictionary dict = SDictionary.create();
-                                                return dict.getType(STypeString.class);
-                                            }
-                                        });
-                                        ins.setValue("Test");
-                                        return ins;
-                                    };
-
-                                    Out<SInstanceAction.FormDelegate> formDelegate = new Out<>();
-                                    List<SInstanceAction> actions = Arrays.asList(
-
-                                        new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
-                                            .setText("Modal as JSON")
-                                            .setActionHandler((action, formInstance, modalDelegate) -> modalDelegate
-                                                .showMessage("Modal as JSON",
-                                                    new PersistenceBuilderXML()
-                                                        .withPersistId(false)
-                                                        .toXML(formInstance.get())
-                                                        .toJSONString())),
-
-                                        new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
-                                            .setText("Base as JSON")
-                                            .setActionHandler((action, formInstance, modalDelegate) -> {
-                                                PersistenceBuilderXML builder = new PersistenceBuilderXML().withPersistId(false);
-                                                SInstance baseInstance = modalDelegate.getInstanceRef().get();
-                                                MElement xml = builder.toXML(baseInstance);
-                                                String json = (xml != null) ? xml.toJSONString() : "{}";
-                                                modalDelegate.showMessage("Base as JSON", json);
-                                            }),
-
-                                        new SInstanceAction(ActionType.NORMAL)
-                                            .setText("Fechar")
-                                            .setActionHandler((action, i, d1) -> {
-                                                formDelegate.get().close();
-                                                d1.refreshFieldForInstance(d.getInstanceRef().get());
-                                            }));
-
-                                    d.openForm(formDelegate, "Form", formInstanceSupplier, actions);
-                                }));
+                                    + "\n"))
+                        //                            new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
+                        //                                .setIcon(SIcon.resolve("cog")
+                        //                                    .setBgColor(
+                        //                                        Arrays.asList("red", "green", "blue")
+                        //                                            .get(new Random().nextInt(3))))
+                        //                                .setText("SInstance")
+                        //                                .setActionHandler((a, actionInstance, d) -> {
+                        //                                    ISupplier<SInstance> formInstanceSupplier = () -> {
+                        //                                        SInstance ins = SDocumentFactory.empty().createInstance(new RefType() {
+                        //                                            @Override
+                        //                                            protected SType<?> retrieve() {
+                        //                                                SDictionary dict = SDictionary.create();
+                        //                                                return dict.getType(STypeString.class);
+                        //                                            }
+                        //                                        });
+                        //                                        ins.setValue("Test");
+                        //                                        return ins;
+                        //                                    };
+                        //
+                        //                                    Out<SInstanceAction.FormDelegate> formDelegate = new Out<>();
+                        //                                    List<SInstanceAction> actions = Arrays.asList(
+                        //
+                        //                                        new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
+                        //                                            .setText("Modal as JSON")
+                        //                                            .setActionHandler((action, formInstance, modalDelegate) -> modalDelegate
+                        //                                                .showMessage("Modal as JSON",
+                        //                                                    new PersistenceBuilderXML()
+                        //                                                        .withPersistId(false)
+                        //                                                        .toXML(formInstance.get())
+                        //                                                        .toJSONString())),
+                        //
+                        //                                        new SInstanceAction(SInstanceAction.ActionType.PRIMARY)
+                        //                                            .setText("Base as JSON")
+                        //                                            .setActionHandler((action, formInstance, modalDelegate) -> {
+                        //                                                PersistenceBuilderXML builder = new PersistenceBuilderXML().withPersistId(false);
+                        //                                                SInstance baseInstance = modalDelegate.getInstanceRef().get();
+                        //                                                MElement xml = builder.toXML(baseInstance);
+                        //                                                String json = (xml != null) ? xml.toJSONString() : "{}";
+                        //                                                modalDelegate.showMessage("Base as JSON", json);
+                        //                                            }),
+                        //
+                        //                                        new SInstanceAction(ActionType.NORMAL)
+                        //                                            .setText("Fechar")
+                        //                                            .setActionHandler((action, i, d1) -> {
+                        //                                                formDelegate.get().close();
+                        //                                                d1.refreshFieldForInstance(d.getInstanceRef().get());
+                        //                                            }));
+                        //
+                        //                                    d.openForm(formDelegate, "Form", formInstanceSupplier, actions);
+                        //                                })//
+                        );
                     }
                 })
-                
-                ));
+
+        ));
     }
 }
