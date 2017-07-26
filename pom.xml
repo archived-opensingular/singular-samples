@@ -6,7 +6,7 @@
     <groupId>org.opensingular</groupId>
     <artifactId>singular-samples</artifactId>
 
-    <version>1.6.8</version>
+    <version>1.6.9-SNAPSHOT</version>
     <name>[singular-samples]</name>
     <description>Singular Samples and Showcase</description>
     <url>http://opensingular.org</url>
@@ -305,7 +305,7 @@
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.8</version>
+                        <version>1.6.9-SNAPSHOT</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>ossrh</serverId>
