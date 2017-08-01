@@ -30,17 +30,17 @@ import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
-public class Header extends Panel {
+public class ShowcaseHeader extends Panel {
 
     private boolean withTogglerButton;
     private SkinOptions option;
 
-    public Header(String id) {
+    public ShowcaseHeader(String id) {
         super(id);
         this.withTogglerButton = true;
     }
 
-    public Header(String id, boolean withTogglerButton,SkinOptions option) {
+    public ShowcaseHeader(String id, boolean withTogglerButton, SkinOptions option) {
         super(id);
         this.withTogglerButton = withTogglerButton;
         this.option = option;
@@ -57,8 +57,8 @@ public class Header extends Panel {
         
     	DropdownMenu d = buildShowcaseOptions();	
     	add(d.add(devMode));
-    	TopMenu topMenu = new TopMenu("_TopMenu",option);
-    	add(topMenu.add(devMode));
+    	ShowcaseTopMenu showcaseTopMenu = new ShowcaseTopMenu("_TopMenu",option);
+    	add(showcaseTopMenu.add(devMode));
         add(new WebMarkupContainer("brandLogo"));
     }
 

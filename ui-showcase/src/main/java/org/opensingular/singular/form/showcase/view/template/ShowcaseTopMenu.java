@@ -33,11 +33,11 @@ import org.opensingular.lib.wicket.util.template.SkinOptions;
 import org.opensingular.lib.wicket.util.template.SkinOptions.Skin;
 import org.opensingular.singular.form.showcase.wicket.UIAdminSession;
 
-public class TopMenu extends Panel {
+public class ShowcaseTopMenu extends Panel {
 
     private SkinOptions option;
 
-    public TopMenu(String id, SkinOptions option) {
+    public ShowcaseTopMenu(String id, SkinOptions option) {
         super(id);
         this.option = option;
     }

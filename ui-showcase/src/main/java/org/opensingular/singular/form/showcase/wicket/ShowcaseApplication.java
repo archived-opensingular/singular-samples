@@ -37,8 +37,8 @@ import org.opensingular.lib.wicket.util.template.SingularTemplate;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminApp;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminTemplate;
 import org.opensingular.singular.form.showcase.view.page.form.ListPage;
-import org.opensingular.singular.form.showcase.view.template.Footer;
-import org.opensingular.singular.form.showcase.view.template.Header;
+import org.opensingular.singular.form.showcase.view.template.ShowcaseFooter;
+import org.opensingular.singular.form.showcase.view.template.ShowcaseHeader;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
 import java.nio.charset.StandardCharsets;
@@ -116,11 +116,11 @@ public class ShowcaseApplication extends AuthenticatedWebApplication implements 
 
     @Override
     public MarkupContainer buildPageHeader(String id, boolean withMenu, SingularAdminTemplate adminTemplate) {
-        return new Header(id, withMenu, adminTemplate.getSkinOptions());
+        return new ShowcaseHeader(id, withMenu, adminTemplate.getSkinOptions());
     }
 
     @Override
     public MarkupContainer buildPageFooter(String id) {
-        return new Footer(id);
+        return new ShowcaseFooter(id);
     }
 }
