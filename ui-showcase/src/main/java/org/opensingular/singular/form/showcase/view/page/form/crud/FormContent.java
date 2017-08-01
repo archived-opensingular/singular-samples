@@ -70,7 +70,7 @@ public class FormContent extends Content implements SingularWicketContainer<Crud
     private SFormConfig<String> singularFormConfig;
 
     public FormContent(String id, StringValue type, StringValue idExampleData, StringValue viewMode, StringValue annotation) {
-        super(id, false, false);
+        super(id);
         singularFormPanel = new SingularFormPanel("singular-panel");
 
         if (!viewMode.isNull()) {
@@ -109,12 +109,12 @@ public class FormContent extends Content implements SingularWicketContainer<Crud
     }
 
     @Override
-    protected IModel<?> getContentTitleModel() {
+    protected IModel<String> getContentTitleModel() {
         return Model.of();
     }
 
     @Override
-    protected IModel<?> getContentSubtitleModel() {
+    protected IModel<String> getContentSubtitleModel() {
         return Model.of();
     }
 

@@ -78,13 +78,13 @@ public class PreviewContent extends Content {
     }
 
     @Override
-    protected IModel<?> getContentTitleModel() {
-        return new ResourceModel("label.content.title");
+    protected IModel<String> getContentTitleModel() {
+        return new ResourceModel("label.content.title", "");
     }
 
     @Override
-    protected IModel<?> getContentSubtitleModel() {
-        return new ResourceModel("label.content.title");
+    protected IModel<String> getContentSubtitleModel() {
+        return new ResourceModel("label.content.title", "");
     }
 
 }

@@ -26,7 +26,7 @@ import org.opensingular.singular.form.showcase.view.template.Content;
 public class StudioHomeContent extends Content implements SingularWicketContainer<StudioHomeContent, Void> {
 
     public StudioHomeContent(String id) {
-        super(id, false, false);
+        super(id);
     }
 
 
@@ -36,12 +36,12 @@ public class StudioHomeContent extends Content implements SingularWicketContaine
     }
 
     @Override
-    protected IModel<?> getContentTitleModel() {
-        return new ResourceModel("label.content.title");
+    protected IModel<String> getContentTitleModel() {
+        return new ResourceModel("label.content.title", "");
     }
 
     @Override
-    protected IModel<?> getContentSubtitleModel() {
-        return new ResourceModel("label.content.subtitle");
+    protected IModel<String> getContentSubtitleModel() {
+        return new ResourceModel("label.content.subtitle", "");
     }
 }

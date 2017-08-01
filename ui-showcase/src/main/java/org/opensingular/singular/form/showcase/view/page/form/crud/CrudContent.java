@@ -94,7 +94,7 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
     private ExampleData currentModel;
 
     public CrudContent(String id, StringValue type) {
-        super(id, false, true);
+        super(id);
         setActiveTemplate(type);
     }
 
@@ -323,12 +323,12 @@ public class CrudContent extends Content implements SingularWicketContainer<Crud
     }
 
     @Override
-    protected IModel<?> getContentTitleModel() {
-        return new ResourceModel("label.content.title");
+    protected IModel<String> getContentTitleModel() {
+        return new ResourceModel("label.content.title", "");
     }
 
     @Override
-    protected IModel<?> getContentSubtitleModel() {
-        return new ResourceModel("label.content.subtitle");
+    protected IModel<String> getContentSubtitleModel() {
+        return new ResourceModel("label.content.subtitle", "");
     }
 }

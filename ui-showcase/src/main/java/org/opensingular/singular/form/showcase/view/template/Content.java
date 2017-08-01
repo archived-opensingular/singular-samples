@@ -16,19 +16,14 @@
 
 package org.opensingular.singular.form.showcase.view.template;
 
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
-
-import javax.inject.Inject;
-
-import org.apache.wicket.behavior.AttributeAppender;
+import de.alpharogroup.wicket.js.addon.toastr.ToastrType;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.opensingular.lib.wicket.util.toastr.ToastrHelper;
 import org.opensingular.singular.form.showcase.wicket.UIAdminWicketFilterContext;
 
-import de.alpharogroup.wicket.js.addon.toastr.ToastrType;
+import javax.inject.Inject;
 
 
 public abstract class Content extends Panel {
@@ -36,41 +31,8 @@ public abstract class Content extends Panel {
     @Inject
     private UIAdminWicketFilterContext uiAdminWicketFilterContext;
 
-    private boolean withBreadcrumb;
-    private boolean withInfoLink;
-
     public Content(String id) {
-        this(id, false, false);
-    }
-
-    public Content(String id, boolean withInfoLink, boolean withBreadcrumb) {
         super(id);
-        this.withBreadcrumb = withBreadcrumb;
-        this.withInfoLink = withInfoLink;
-    }
-
-    public Content addSideBar() {
-        return this;
-    }
-
-    @Override
-    protected void onInitialize() {
-        super.onInitialize();
-        add(new Label("contentTitle", getContentTitleModel()));
-        add(new Label("contentSubtitle", getContentSubtitleModel()));
-        WebMarkupContainer breadcrumb = new WebMarkupContainer("breadcrumb");
-        add(breadcrumb);
-        breadcrumb.add(new WebMarkupContainer("breadcrumbDashboard").add(
-                $b.attr("href", uiAdminWicketFilterContext.getRelativeContext())));
-        breadcrumb.add(getBreadcrumbLinks("_BreadcrumbLinks"));
-        if (!withBreadcrumb) {
-            breadcrumb.add(new AttributeAppender("class", "hide", " "));
-        }
-        WebMarkupContainer infoLink = new WebMarkupContainer("_Info");
-        add(infoLink.setVisible(withInfoLink));
-        if (withInfoLink) {
-            infoLink.add(getInfoLink("_InfoLink"));
-        }
     }
 
     public void addToastrSuccessMessage(String messageKey, String... args) {
@@ -101,7 +63,7 @@ public abstract class Content extends Panel {
         return new WebMarkupContainer(id);
     }
 
-    protected abstract IModel<?> getContentTitleModel();
+    protected abstract IModel<String> getContentTitleModel();
 
-    protected abstract IModel<?> getContentSubtitleModel();
+    protected abstract IModel<String> getContentSubtitleModel();
 }

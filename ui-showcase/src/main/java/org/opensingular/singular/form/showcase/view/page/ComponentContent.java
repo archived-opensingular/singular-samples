@@ -40,7 +40,7 @@ public class ComponentContent extends Content implements SingularWicketContainer
     private ShowCaseTable.ShowCaseItem showCaseItem;
 
     public ComponentContent(String id, IModel<String> componentName) {
-        super(id, false, false);
+        super(id);
         showCaseItem = showCaseTable.findCaseItemByComponentName(componentName.getObject());
         add(buildItemCases());
     }
@@ -83,16 +83,16 @@ public class ComponentContent extends Content implements SingularWicketContainer
     }
 
     @Override
-    protected IModel<?> getContentTitleModel() {
+    protected IModel<String> getContentTitleModel() {
         if (showCaseItem != null) {
             return $m.ofValue(showCaseItem.getComponentName());
         } else {
-            return new ResourceModel("label.content.title");
+            return new ResourceModel("label.content.title", "");
         }
     }
 
     @Override
-    protected IModel<?> getContentSubtitleModel() {
+    protected IModel<String> getContentSubtitleModel() {
         return $m.ofValue("");
     }
 

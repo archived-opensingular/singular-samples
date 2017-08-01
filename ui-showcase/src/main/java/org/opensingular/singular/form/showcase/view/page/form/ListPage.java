@@ -26,8 +26,6 @@ import org.wicketstuff.annotation.mount.MountPath;
 @SuppressWarnings("serial")
 public class ListPage extends Template {
 
-
-
     protected Content getContent(String id) {
         return new ListContent(id);
     }

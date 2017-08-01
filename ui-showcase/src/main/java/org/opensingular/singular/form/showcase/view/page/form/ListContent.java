@@ -54,7 +54,7 @@ public class ListContent extends Content implements SingularWicketContainer<List
     ShowcaseTypeLoader showcaseTypeLoader;
 
     public ListContent(String id) {
-        super(id, false, true);
+        super(id);
     }
 
     private List<FormVO> getFormTypes() {
@@ -126,12 +126,12 @@ public class ListContent extends Content implements SingularWicketContainer<List
     }
 
     @Override
-    protected IModel<?> getContentTitleModel() {
-        return new ResourceModel("label.content.title");
+    protected IModel<String> getContentTitleModel() {
+        return new ResourceModel("label.content.title", "");
     }
 
     @Override
-    protected IModel<?> getContentSubtitleModel() {
-        return new ResourceModel("label.content.subtitle");
+    protected IModel<String> getContentSubtitleModel() {
+        return new ResourceModel("label.content.subtitle", "");
     }
 }

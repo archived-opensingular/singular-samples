@@ -92,7 +92,7 @@ public class PrototypeListContent extends Content
     }
 
     public PrototypeListContent(String id) {
-        super(id, false, true);
+        super(id);
     }
 
     @Override
@@ -246,12 +246,12 @@ public class PrototypeListContent extends Content
 
 
     @Override
-    protected IModel<?> getContentTitleModel() {
-        return new ResourceModel("label.content.title");
+    protected IModel<String> getContentTitleModel() {
+        return new ResourceModel("label.content.title", "");
     }
 
     @Override
-    protected IModel<?> getContentSubtitleModel() {
+    protected IModel<String> getContentSubtitleModel() {
         return $m.ofValue();
     }
 
