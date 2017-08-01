@@ -51,7 +51,7 @@ public class DataSourceSessionListener implements HttpSessionListener, Loggable 
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {
-	    getLogger().info("****** Destruiu a sessao !!!! " + se.getSession().getId());
+	    getLogger().info("****** Destruiu a sessao !!!! {}", se.getSession().getId());
 
 	    //remove do map
 	    SessionDataSource sds =  ApplicationContextProvider.get().getBean("dataSource", SessionDataSource.class);
@@ -72,7 +72,7 @@ public class DataSourceSessionListener implements HttpSessionListener, Loggable 
             //cria pasta caso nao existir
             new File(SessionDataSource.DATABASE_FOLDER).mkdirs();
             
-            File file = new File(String.format(SessionDataSource.DATABASE_FOLDER+"/singulardb_%s.mv.db", se.getSession().getId()));
+            File file = new File(String.format(SessionDataSource.DATABASE_FOLDER+"/singulardb_%s.mv.db", se.getSession().getId()));//NOSONAR
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(result);
             fos.close();
@@ -90,7 +90,7 @@ public class DataSourceSessionListener implements HttpSessionListener, Loggable 
 
         for ( final File file : files ) {
             if ( !file.delete() ) {
-                getLogger().error("O arquivo do banco de dados não pode ser deletado " + file.getAbsolutePath());
+                getLogger().error("O arquivo do banco de dados não pode ser deletado {}", file.getAbsolutePath());
             }
         }
     }

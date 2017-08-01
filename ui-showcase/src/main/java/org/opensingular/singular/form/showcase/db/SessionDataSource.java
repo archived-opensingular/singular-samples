@@ -82,11 +82,11 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
         if (sessionId != null) {
             BasicDataSource ds = internalPoolDS.get(sessionId);
             if (ds == null) {
-                getLogger().info("criou um novo Banco para a sessionId " + sessionId);
+                getLogger().info("criou um novo Banco para a sessionId {} ", sessionId);
                 ds = createNewDb(sessionId);
             }
 
-            getLogger().info("Utilizou o DS da SesionID " + sessionId);
+            getLogger().info("Utilizou o DS da SesionID {}", sessionId);
             return ds.getConnection();
         } else {
             getLogger().info("Não tem sessão HTTP criada ! Utiliza o datasource original");

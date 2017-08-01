@@ -53,7 +53,7 @@ public class ShowcaseHeader extends Panel {
                 .add($b.attrAppender("class", "hide", " ", $m.ofValue(!withTogglerButton))));
         add(new WebMarkupContainer("_TopAction"));
         
-        Behavior devMode = $b.visibleIf(()->false);
+        Behavior devMode = $b.visibleIf(()-> Boolean.FALSE);
         
     	DropdownMenu d = buildShowcaseOptions();	
     	add(d.add(devMode));

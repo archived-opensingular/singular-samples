@@ -38,15 +38,13 @@ import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 @SuppressWarnings("serial")
 public class ComponentPage extends ShowcaseTemplate {
 
-    private String componentName;
-
     @Inject
     private ShowCaseTable showCaseTable;
 
     private ShowCaseTable.ShowCaseItem showCaseItem;
 
     public ComponentPage(PageParameters parameters) {
-        this.componentName = parameters.get("cn").toString();
+        String componentName = parameters.get("cn").toString();
         if (componentName == null) {
             throw new RestartResponseAtInterceptPageException(getApplication().getHomePage());
         }
