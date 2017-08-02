@@ -49,7 +49,7 @@ public class ComponentPage extends ShowcaseTemplate {
             throw new RestartResponseAtInterceptPageException(getApplication().getHomePage());
         }
         showCaseItem = showCaseTable.findCaseItemByComponentName(componentName);
-        queue(buildItemCases());
+        add(buildItemCases());
     }
 
     @Override

@@ -117,7 +117,7 @@ public class FormPage extends ShowcaseTemplate implements SingularWicketContaine
         form.add(buildSaveWithoutValidateButton());
         form.add(buildValidateButton());
         form.add(buildCancelButton());
-        queue(form);
+        add(form);
     }
 
     @Override
