@@ -59,7 +59,7 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
         id.asAtrAnnotation().setAnnotated();
 
         cliente = this.addFieldComposite("cliente");
-        cliente.asAtr().label("Dados do Cliente");
+        cliente.asAtr().label("Dados do cliente");
         cliente.addField("cpf", STypeCPF.class);
         cliente.addFieldEmail("email").asAtr().label("E-Mail");
         //@destacar
@@ -67,15 +67,16 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
         cliente.asAtrBootstrap().colPreference(6);
 
         endereco = this.addFieldComposite("endereco");
-        endereco.asAtr().label("Endereco do Cliente");
-        endereco.addField("cep", STypeCEP.class);
+        endereco.asAtr().label("Endereço do cliente");
+        endereco.addField("cep", STypeCEP.class).asAtrAnnotation().setAnnotated();
         endereco.addFieldString("Logradouro").asAtr().label("Logradouro");
         endereco.asAtrBootstrap().colPreference(6);
 
         request = this.addFieldComposite("request");
-        request.asAtr().label("Pedido");
+        request.asAtr().label("Dados do pedido");
         STypeList<STypeComposite<SIComposite>, SIComposite> itens = request.addFieldListOfComposite("itens", "item");
         itens.asAtr().label("Itens");
+        itens.asAtrAnnotation().setAnnotated();
 
         STypeComposite<SIComposite> item = itens.getElementsType();
         item.addFieldString("descricao").asAtr().label("Descrição");
