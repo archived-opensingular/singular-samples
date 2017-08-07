@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -25,10 +27,9 @@ import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.form.view.SViewBreadcrumb;
+import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-
-import javax.annotation.Nonnull;
 
 /**
  * Breadcrumb
@@ -44,12 +45,10 @@ public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = this.addFieldString("nome", true);
-        nome
-                .asAtr().label("Nome");
+        nome.asAtr().label("Nome");
 
         idade = this.addFieldInteger("idade", true);
-        idade
-                .asAtr().label("Idade");
+        idade.asAtr().label("Idade");
 
         experienciasProfissionais = this.addFieldListOfComposite("experienciasProfissionais", "experiencia");
 
@@ -60,6 +59,7 @@ public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
         STypeString                                         cargo               = experiencia.addFieldString("cargo", true);
         STypeString                                         atividades          = experiencia.addFieldString("atividades");
 
+        experiencia.withView(SViewByBlock::new);
         {
             //@destacar:bloco
             experienciasProfissionais
