@@ -65,7 +65,7 @@ public class CaseInitValueSType extends STypeComposite<SIComposite> {
         genero = addFieldBoolean("genero");
         genero.withRadioView("Masculino", "Feminino");
         //@destacar
-        genero.setInitialValue(true);
+        genero.setInitialValue(Boolean.TRUE);
         
     }
 

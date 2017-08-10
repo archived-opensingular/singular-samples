@@ -30,23 +30,19 @@ import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
-public class Header extends Panel {
+public class ShowcaseHeader extends Panel {
 
     private boolean withTogglerButton;
-    private boolean withSideBar;
     private SkinOptions option;
 
-    public Header(String id) {
+    public ShowcaseHeader(String id) {
         super(id);
         this.withTogglerButton = true;
-        this.withSideBar = false;
     }
 
-    public Header(String id, boolean withTogglerButton, boolean withTopAction, boolean withSideBar,
-                  SkinOptions option) {
+    public ShowcaseHeader(String id, boolean withTogglerButton, SkinOptions option) {
         super(id);
         this.withTogglerButton = withTogglerButton;
-        this.withSideBar = withSideBar;
         this.option = option;
     }
 
@@ -57,12 +53,12 @@ public class Header extends Panel {
                 .add($b.attrAppender("class", "hide", " ", $m.ofValue(!withTogglerButton))));
         add(new WebMarkupContainer("_TopAction"));
         
-        Behavior devMode = $b.visibleIf(()->false);
+        Behavior devMode = $b.visibleIf(()-> Boolean.FALSE);
         
     	DropdownMenu d = buildShowcaseOptions();	
     	add(d.add(devMode));
-    	TopMenu topMenu = new TopMenu("_TopMenu", withSideBar, option);
-    	add(topMenu.add(devMode));
+    	ShowcaseTopMenu showcaseTopMenu = new ShowcaseTopMenu("_TopMenu",option);
+    	add(showcaseTopMenu.add(devMode));
         add(new WebMarkupContainer("brandLogo"));
     }
 

@@ -16,20 +16,26 @@
 
 package org.opensingular.singular.form.showcase.view.page.studio;
 
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
-import org.opensingular.singular.form.showcase.view.template.Content;
-import org.opensingular.singular.form.showcase.view.template.Template;
+import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
+import org.opensingular.singular.form.showcase.view.template.ShowcaseTemplate;
 import org.wicketstuff.annotation.mount.MountPath;
 
 @MountPath("studio")
-public class StudioHomePage extends Template {
-
+public class StudioHomePage extends ShowcaseTemplate implements SingularWicketContainer<StudioHomePage, Void> {
     public StudioHomePage() {
         getPageParameters().add(ShowCaseType.SHOWCASE_TYPE_PARAM, ShowCaseType.STUDIO);
     }
 
     @Override
-    protected Content getContent(String id) {
-        return new StudioHomeContent(id);
+    protected IModel<String> getContentTitle() {
+        return new ResourceModel("label.content.title", "");
+    }
+
+    @Override
+    protected IModel<String> getContentSubtitle() {
+        return new ResourceModel("label.content.subtitle", "");
     }
 }
