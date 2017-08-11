@@ -26,10 +26,10 @@
 
   <bean id="formPersistence" class="org.opensingular.form.spring.SpringFormPersistenceInMemory">
     <property name="documentFactory" ref="documentFactory" />
-    <property name="typeFullName" value="myPackage.MyTypeForm" />
+    <property name="typeFullName" value="br.org.anvisa.toxicologia.EstudoResiduo" />
     <property name="packageClasses">
       <list>
-        <value>org.opensingular.formsamples.crud.types.MyPackage</value>
+        <value>org.opensingular.formsamples.crud.types.toxicologia.ToxicologiaPackage</value>
       </list>
     </property>
   </bean>
