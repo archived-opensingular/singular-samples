@@ -23,7 +23,6 @@ import org.opensingular.form.document.RefType;
 import org.opensingular.form.io.SFormXMLUtil;
 import org.opensingular.singular.form.showcase.SpringWicketTester;
 import org.opensingular.singular.form.showcase.dao.form.Prototype;
-import org.opensingular.singular.form.showcase.view.template.Content;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -82,23 +81,10 @@ public class PrototypePageTest {
         private void startPage() {
             driver.startPage(new PrototypePage() {
                 @Override
-                protected Content getContent(String id) {
-                    return createDummyContent(id);
-                }
-
-                @Override
-                protected void onInitialize() {
-                    super.onInitialize();
-                }
-
-                private PrototypeContent createDummyContent(final String id) {
-                    return new PrototypeContent(id, StringValue.valueOf("")) {
-                        @Override
-                        protected void loadOrBuildModel() {
-                            this.prototype = new Prototype();
-                            SFormXMLUtil.toStringXML(currentInstance).ifPresent(x -> this.prototype.setXml(x));
-                        }
-                    };
+                protected void loadOrBuildModel() {
+                    super.loadOrBuildModel();
+                    this.prototype = new Prototype();
+                    SFormXMLUtil.toStringXML(currentInstance).ifPresent(x -> this.prototype.setXml(x));
                 }
 
             });

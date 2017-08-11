@@ -25,10 +25,9 @@ import java.io.File;
 @SuppressWarnings("serial")
 @Component("filesChoiceProvider")
 public class MFileIdsOptionsProvider implements SSimpleProvider {
-
     @Override
     public void fill(SCompositeListBuilder builder) {
-        File filesDirectory = new File(this.getClass().getResource("/example_files").getFile());
+        File filesDirectory = new File(this.getClass().getResource("/example_files").getFile());//NOSONAR
         for (File file: filesDirectory.listFiles()) {
             builder.add().set("fileName", file.getName());
         }

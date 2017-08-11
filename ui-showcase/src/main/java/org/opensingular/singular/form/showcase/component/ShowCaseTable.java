@@ -30,6 +30,7 @@ import java.util.TreeMap;
 
 import org.apache.wicket.util.string.StringValue;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.lib.commons.base.SingularException;
 import org.opensingular.lib.commons.base.SingularUtil;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.lib.wicket.util.resource.Icon;
@@ -74,6 +75,7 @@ public class ShowCaseTable {
         addGroup(Group.LAYOUT);
         addGroup(Group.VALIDATION);
         addGroup(Group.INTERACTION);
+        addGroup(Group.HELP);
         addGroup(Group.CUSTOM);
         addGroup(Group.MAPS);
         addGroup(Group.IMPORTER);
@@ -107,7 +109,7 @@ public class ShowCaseTable {
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
                 caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
             } else {
-                throw new RuntimeException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
+                throw new SingularException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
             }
 
             if (!caseItem.customizer().isInterface()) {

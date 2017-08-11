@@ -30,11 +30,11 @@ import org.apache.wicket.model.ResourceModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Footer extends Panel {
+public class ShowcaseFooter extends Panel {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Footer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShowcaseFooter.class);
 
-    public Footer(String id) {
+    public ShowcaseFooter(String id) {
         super(id);
     }
 
