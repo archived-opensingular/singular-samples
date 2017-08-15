@@ -15,14 +15,29 @@
  */
 package org.opensingular.singular.form.showcase.db;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.opensingular.lib.commons.util.Loggable;
 import org.opensingular.singular.form.showcase.db.job.DBCollectorJob;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.io.Files;
 
 /**
  * Datasource capaz de criar um pool de datasources para cada sessão http.<br>
@@ -36,9 +51,11 @@ import org.opensingular.singular.form.showcase.db.job.DBCollectorJob;
  */
 public class SessionDataSource extends BasicDataSource implements Loggable {
 
-    public static final String DATABASE_FOLDER = "db";
+    private static final String                 INITIAL_DB_RESOURCE_PATH = "db/singulardb.mv.db";
 
-    private static Map<String, BasicDataSource> internalPoolDS = new HashMap<String, BasicDataSource>();
+    private static final File                   baseDir                  = Files.createTempDir();
+    private static Map<String, BasicDataSource> internalPoolDS           = new ConcurrentHashMap<String, BasicDataSource>();
+    private static ThreadLocal<String>          sessionIdHolder          = new ThreadLocal<String>();
 
     public SessionDataSource() {
         super();
@@ -48,9 +65,35 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
         this();
     }
 
+    @Override
+    public Connection getConnection() throws SQLException {
+
+        String sessionId = getSessionId();
+
+        if (sessionId != null) {
+            if (!internalPoolDS.containsKey(sessionId)) {
+                getLogger().info("criou um novo Banco para a sessionId " + sessionId);
+                internalPoolDS.put(sessionId, createNewDb(sessionId));
+            }
+
+            getLogger().info("Utilizou o DS da SesionID " + sessionId);
+
+            return internalPoolDS.get(sessionId).getConnection();
+        } else {
+            getLogger().info("Não tem sessão HTTP criada ! Utiliza o datasource original");
+            return super.getConnection();
+        }
+    }
+
     public BasicDataSource createNewDb(String sessionId) {
-        BasicDataSource ddss = new BasicDataSource();
-        ddss.setUrl(String.format("jdbc:h2:file:./" + DATABASE_FOLDER + "/singulardb_%s;", sessionId));
+        final String dbOptions = StringUtils.substringAfter(this.getUrl(), ";");
+
+        generateDB(sessionId);
+
+        final BasicDataSource ddss = new BasicDataSource();
+        String newDbUrl = "jdbc:h2:file:" + getDatabasePath(sessionId) + ";" + dbOptions;
+        System.out.println(newDbUrl);
+        ddss.setUrl(newDbUrl);
         ddss.setDriverClassName("org.h2.Driver");
         ddss.setUsername("sa");
         ddss.setPassword("sa");
@@ -58,7 +101,6 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
         ddss.setInitialSize(5);
         ddss.setMaxActive(10);
         ddss.setMinIdle(1);
-        internalPoolDS.put(sessionId, ddss);
         return ddss;
     }
 
@@ -72,30 +114,81 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
             getLogger().error("Erro ao fechar a conexão com o banco");
         }
         internalPoolDS.remove(sessionId);
+        destroyDB(sessionId);
+        getLogger().info("Removeu o DS da SesionID " + sessionId);
     }
 
-    @Override
-    public Connection getConnection() throws SQLException {
+    public static void clearSessionId() {
+        sessionIdHolder.remove();
+    }
+    public static void setSessionId(String sessionId) {
+        sessionIdHolder.set(sessionId);
+    }
+    private static String getSessionId() {
+        return (sessionIdHolder.get() != null) ? sessionIdHolder.get() : "0";
+    }
 
-        String sessionId = getSessionId();
+    private static void generateDB(String sessionId) {
+        final ClassLoader classLoader = SessionDataSource.class.getClassLoader();
+        try (//
+            FileOutputStream fos = new FileOutputStream(getDatabaseMvFile(sessionId)); //
+            InputStream initialDB = classLoader.getResourceAsStream(INITIAL_DB_RESOURCE_PATH); //
+        ) {
 
-        if (sessionId != null) {
-            BasicDataSource ds = internalPoolDS.get(sessionId);
-            if (ds == null) {
-                getLogger().info("criou um novo Banco para a sessionId " + sessionId);
-                ds = createNewDb(sessionId);
-            }
+            IOUtils.copy(initialDB, fos);
+            fos.flush();
 
-            getLogger().info("Utilizou o DS da SesionID " + sessionId);
-            return ds.getConnection();
-        } else {
-            getLogger().info("Não tem sessão HTTP criada ! Utiliza o datasource original");
-            return super.getConnection();
+        } catch (FileNotFoundException e) {
+            LoggerFactory.getLogger(SessionDataSource.class).error("Arquivo embarcado do h2 não encontrado", e);
+        } catch (IOException e) {
+            LoggerFactory.getLogger(SessionDataSource.class).error("Erro ao gerar o arquivo do banco h2 ", e);
         }
     }
 
-    private String getSessionId() {
-        return IdSessionLocator.get().getSessionId();
+    private static void destroyDB(String sessionId) {
+        final String filenamePrefix = String.format("singulardb_%s", sessionId);
+        final File[] files = baseDir.listFiles((File dir, String name) -> name.startsWith(filenamePrefix));
+
+        for (final File file : files) {
+            if (!file.delete()) {
+                LoggerFactory.getLogger(SessionDataSource.class)
+                    .error("O arquivo do banco de dados não pode ser deletado " + file.getAbsolutePath());
+            }
+        }
+    }
+
+    /**
+     * Coleta de lixo: remove os arquivos de banco que não são alterados a mais de 24 horas.
+     */
+    public static void gc() {
+        final Logger logger = LoggerFactory.getLogger(SessionDataSource.class);
+
+        final long hours = 24;
+        final LocalDateTime expirationDateTime = LocalDateTime.now().minusHours(hours);
+        final ZoneId zone = ZonedDateTime.now().getZone();
+
+        final File[] files = baseDir.listFiles((dir, name) -> name.endsWith("db"));
+        for (File file : files) {
+            logger.trace("**** Verificando arquivo {}", file.getPath());
+
+            final Instant instant = Instant.ofEpochMilli(file.lastModified());
+            final LocalDateTime lastModified = LocalDateTime.ofInstant(instant, zone);
+
+            if (lastModified.isBefore(expirationDateTime)) {
+                logger.info("O Arquivo ({}) não é alterado a mais de {} horas será deletado: {}",
+                    file.getName(), hours, lastModified);
+
+                if (!file.delete())
+                    logger.info("Não foi possivel deletar o arquivo: {}", file);
+            }
+        }
+    }
+
+    private static File getDatabaseMvFile(String sessionId) {
+        return new File(baseDir, String.format("/singulardb_%s.mv.db", sessionId));
+    }
+    private static String getDatabasePath(String sessionId) {
+        return String.format(baseDir.getAbsolutePath() + "/singulardb_%s", sessionId);
     }
 
 }
