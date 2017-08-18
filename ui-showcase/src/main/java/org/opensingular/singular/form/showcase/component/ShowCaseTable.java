@@ -246,13 +246,13 @@ public class ShowCaseTable {
         }
 
         public List<CaseBase> getCases() {
-            Collections.sort(cases, (case1, case2) -> { 
-                if(case1.getSubCaseName().equalsIgnoreCase("Default")){
-                    return Integer.MIN_VALUE;
-                }else{
-                    return case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName());
-                }
-            });      
+            Collections.sort(cases, (case1, case2) -> case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
+
+            CaseBase caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
+            if(caseBaseDefault != null){
+                cases.remove(caseBaseDefault);
+                cases.add(0, caseBaseDefault);
+            }
             return cases;
         }
 
@@ -260,23 +260,4 @@ public class ShowCaseTable {
             return showCaseType;
         }
     }
-    
-    public static void main(String[] args) {
-        Map<String, Integer> itens = new TreeMap<>((name1, name2) -> { 
-            if(name1.equalsIgnoreCase("Default")){
-                return Integer.MIN_VALUE;
-            }else{
-                return name1.compareTo(name2);
-            }
-            });       
-        itens.put("Bcoisa", 1);
-        itens.put("Acoisa", 2);
-        itens.put("Zcoisa", 3);
-        itens.put("Default", 4);
-        
-        System.out.println(itens);
-        
-        
-    } 
-    
 }

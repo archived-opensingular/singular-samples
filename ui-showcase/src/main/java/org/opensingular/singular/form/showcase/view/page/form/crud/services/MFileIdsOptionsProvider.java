@@ -16,20 +16,20 @@
 
 package org.opensingular.singular.form.showcase.view.page.form.crud.services;
 
+import org.jboss.vfs.VFS;
+import org.jboss.vfs.VirtualFile;
 import org.opensingular.form.provider.SSimpleProvider;
 import org.opensingular.form.util.transformer.SCompositeListBuilder;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-
 @SuppressWarnings("serial")
 @Component("filesChoiceProvider")
 public class MFileIdsOptionsProvider implements SSimpleProvider {
+
     @Override
     public void fill(SCompositeListBuilder builder) {
-        File filesDirectory = new File(this.getClass().getResource("/example_files").getFile());//NOSONAR
-        for (File file: filesDirectory.listFiles()) {
-            builder.add().set("fileName", file.getName());
-        }
+        /* Utilitario necessário para se ler arquivos .war no Wildfly */
+        VirtualFile folder = VFS.getChild(this.getClass().getResource("/example_files").getFile());
+        folder.getChildren().forEach(child -> builder.add().set("fileName", child.getName()));
     }
 }
