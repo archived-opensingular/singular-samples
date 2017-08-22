@@ -33,7 +33,7 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.lib.commons.base.SingularException;
 import org.opensingular.lib.commons.base.SingularUtil;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.opensingular.lib.wicket.util.resource.Icon;
+import org.opensingular.lib.commons.ui.Icon;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
 import org.reflections.Reflections;
