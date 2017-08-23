@@ -28,7 +28,7 @@ public class PessoaPersistencePage extends RelationalPersistencePage {
 
     @Override
     protected String getERImageStringURI() {
-        return "pessoa_mer.png";
+        return "pessoa_mer.jpg";
     }
 
     @Override
