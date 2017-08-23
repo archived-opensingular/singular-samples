@@ -1,0 +1,91 @@
+<!--
+  ~ Copyright (C) 2016 Singular Studios (a.k.a Atom Tecnologia) - www.opensingular.com
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<html xmlns:wicket="http://wicket.apache.org">
+<wicket:head>
+    <style rel="stylesheet">
+        @media (min-width: 768px) {
+            .row.equal {
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 10px;
+            }
+
+            .row.equal > div > .portlet {
+                height: 100%;
+            }
+        }
+
+        .syntaxhighlighter {
+            overflow-y: hidden !important;
+            overflow-x: auto !important;
+            max-height: 350px;
+        }
+    </style>
+</wicket:head>
+<wicket:extend>
+    <div class="row">
+        <div class="col-md-12" wicket:id="crud"></div>
+    </div>
+    <div class="row equal">
+        <div class="col-md-8">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-database"></i>
+                        <span class="caption-subject bold uppercase">SType</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div wicket:id="type-code"></div>
+                    <div class="clearfix margin-bottom-20"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-database"></i>
+                        <span class="caption-subject bold uppercase">Database</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_1_1" data-toggle="tab"> MER </a>
+                        </li>
+                        <li>
+                            <a href="#tab_1_2" data-toggle="tab"> DDL </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in " id="tab_1_1">
+                            <div style="text-align: center">
+                                <img align="middle" wicket:id="mer"/>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab_1_2">
+                            <div wicket:id="ddl"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix margin-bottom-20"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</wicket:extend>
+</html>

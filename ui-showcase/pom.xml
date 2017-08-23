@@ -29,7 +29,9 @@
                     <include>**/*.xsd</include>
                     <include>**/*.css</include>
                     <include>**/*.html</include>
+                    <include>**/*.png</include>
                     <include>**/*.properties</include>
+                    <include>**/*.sql</include>
                     <include>**/MFileIdsOptionsProvider.java</include>
                     <include>**/showcase/**/*.java</include>
                 </includes>

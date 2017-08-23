@@ -147,15 +147,15 @@ public class ShowCaseTable {
         return groups;
     }
 
-    public Collection<ShowCaseGroup> getGroups(StringValue tipoValue) {
-        if (tipoValue.isNull() || ShowCaseType.FORM.toString().equals(tipoValue.toString())) {
-            return formGroups.values();
-        } else if (ShowCaseType.STUDIO.toString().equals(tipoValue.toString())) {
-            return studioGroups.values();
-        } else {
-            return Collections.emptyList();
+    public Collection<ShowCaseGroup> getGroups(ShowCaseType showCaseType) {
+        switch (showCaseType){
+            case STUDIO:
+                return studioGroups.values();
+            case FORM:
+                return formGroups.values();
+            default:
+                return Collections.emptyList();
         }
-
     }
 
     public static class ShowCaseGroup implements Serializable {
@@ -165,8 +165,8 @@ public class ShowCaseTable {
         private final ShowCaseType tipo;
 
         private final Map<String, ShowCaseItem> itens = new TreeMap<>();
-        
-        
+
+
         public ShowCaseGroup(String groupName, Icon icon, ShowCaseType tipo) {
             this.groupName = groupName;
             this.icon = icon;
@@ -209,7 +209,7 @@ public class ShowCaseTable {
         private final String componentName;
 
         private final List<CaseBase> cases = new ArrayList<>();
-        
+
         private ShowCaseType showCaseType;
 
         public ShowCaseItem(String componentName, ShowCaseType showCaseType) {
@@ -232,7 +232,7 @@ public class ShowCaseTable {
                 } else {
                     return case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName());
                 }
-            });      
+            });
             return cases;
         }
 
@@ -240,21 +240,21 @@ public class ShowCaseTable {
             return showCaseType;
         }
     }
-    
+
     public static void main(String[] args) {
-        Map<String, Integer> itens = new TreeMap<>((name1, name2) -> { 
+        Map<String, Integer> itens = new TreeMap<>((name1, name2) -> {
             if(name1.equalsIgnoreCase("Default")){
                 return Integer.MIN_VALUE;
             }else{
                 return name1.compareTo(name2);
             }
-            });       
+            });
         itens.put("Bcoisa", 1);
         itens.put("Acoisa", 2);
         itens.put("Zcoisa", 3);
         itens.put("Default", 4);
-        
+
         System.out.println(itens);
-    } 
-    
+    }
+
 }

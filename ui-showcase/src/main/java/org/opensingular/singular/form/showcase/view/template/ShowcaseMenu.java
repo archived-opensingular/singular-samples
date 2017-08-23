@@ -17,6 +17,7 @@
 package org.opensingular.singular.form.showcase.view.template;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -26,6 +27,7 @@ import org.opensingular.lib.wicket.util.menu.MetronicMenu;
 import org.opensingular.lib.wicket.util.menu.MetronicMenuGroup;
 import org.opensingular.lib.wicket.util.menu.MetronicMenuItem;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.lib.wicket.util.resource.Icon;
 import org.opensingular.singular.form.showcase.component.ShowCaseTable;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.ComponentPage;
@@ -50,36 +52,41 @@ public class ShowcaseMenu extends Panel {
         add(buildMenu());
     }
 
+    private ShowCaseType retrieveShowcaseTypeFromRequest() {
+        StringValue tipoValue = getPage().getPageParameters().get(ShowCaseType.SHOWCASE_TYPE_PARAM);
+        return ShowCaseType.valueOf(tipoValue.toString(ShowCaseType.FORM.toString()));
+    }
+
     private MetronicMenu buildMenu() {
         MetronicMenu menu = new MetronicMenu("menu");
 
-        final StringValue tipoValue = getPage().getPageParameters().get(ShowCaseType.SHOWCASE_TYPE_PARAM);
-
-        if (tipoValue.isNull() || ShowCaseType.FORM.toString().equals(tipoValue.toString())) {
-
-            menu.addItem(new MetronicMenuItem(DefaultIcons.ROCKET, "Demo", CrudPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
-            menu.addItem(new MetronicMenuItem(DefaultIcons.PENCIL, "FormBuilder", PrototypeListPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
-
-        } else if (tipoValue.isNull() || ShowCaseType.STUDIO.toString().equals(tipoValue.toString())) {
-
-            menu.addItem(new MetronicMenuItem(DefaultIcons.MAP, "Studio", StudioHomePage.class, ShowCaseType.buildPageParameters(ShowCaseType.STUDIO)));
-
+        Collection<ShowCaseTable.ShowCaseGroup> groups;
+        switch (retrieveShowcaseTypeFromRequest()) {
+            case FORM:
+                menu.addItem(new MetronicMenuItem(DefaultIcons.ROCKET, "Demo", CrudPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
+                menu.addItem(new MetronicMenuItem(DefaultIcons.PENCIL, "FormBuilder", PrototypeListPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM)));
+                groups = showCaseTable.getGroups(ShowCaseType.FORM);
+                break;
+            case STUDIO:
+                menu.addItem(new MetronicMenuItem(DefaultIcons.MAP, "Studio", StudioHomePage.class, ShowCaseType.buildPageParameters(ShowCaseType.STUDIO)));
+                groups = showCaseTable.getGroups(ShowCaseType.STUDIO);
+                break;
+            default:
+                groups = Collections.emptyList();
         }
-
-        final Collection<ShowCaseTable.ShowCaseGroup> groups = showCaseTable.getGroups(tipoValue);
 
         groups.forEach(group -> {
             final MetronicMenuGroup showCaseGroup = new MetronicMenuGroup(group.getIcon(), group.getGroupName());
-            final Collection<ShowCaseTable.ShowCaseItem> itens = group.getItens();
-            itens.forEach(item -> {
-
-                final String componentName = item.getComponentName();
-                showCaseGroup.addItem(
-                        new MetronicMenuItem(null, item.getComponentName(), ComponentPage.class,
-                                ShowCaseType.buildPageParameters(componentName.toLowerCase())));
-            });
+            group.getItens().stream()
+                    .map(ShowCaseTable.ShowCaseItem::getComponentName)
+                    .map(name -> new MetronicMenuItem(null, name, ComponentPage.class, ShowCaseType.buildPageParameters(name.toLowerCase())))
+                    .forEach(showCaseGroup::addItem);
             menu.addItem(showCaseGroup);
         });
+
+        MetronicMenuGroup relationalPersistence = new MetronicMenuGroup(Icon.of("fa fa-database"), "Relational Persistence");
+        relationalPersistence.addItem(new MetronicMenuItem(null, "Simple", "/relationalpersistence/simple"));
+        menu.addItem(relationalPersistence);
 
         return menu;
     }
