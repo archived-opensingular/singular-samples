@@ -84,7 +84,7 @@ public class ShowcaseApplication extends AuthenticatedWebApplication implements 
         } else {
             getComponentInstantiationListeners().add(new SpringComponentInjector(this));
         }
-        new AnnotatedMountScanner().scanPackage("org.opensingular.singular.showcase.view.page.**").mount(this);
+        new AnnotatedMountScanner().scanPackage("org.opensingular.singular.form.showcase.view.page").mount(this);
 
         setHeaderResponseDecorator(r -> new JavaScriptFilteredIntoFooterHeaderResponse(r, SingularTemplate.JAVASCRIPT_CONTAINER));
 

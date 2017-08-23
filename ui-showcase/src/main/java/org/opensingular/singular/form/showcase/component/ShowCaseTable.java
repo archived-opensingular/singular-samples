@@ -50,22 +50,16 @@ public class ShowCaseTable {
     private final Map<Group, List<Class<?>>> casePorGrupo = new EnumMap<>(Group.class);
 
     public ShowCaseTable() {
-
         Reflections reflections = new Reflections("org.opensingular.singular.form.showcase.component");
         Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(CaseItem.class);
         for (Class<?> aClass : annotated) {
-
-
             final CaseItem annotation = aClass.getAnnotation(CaseItem.class);
-
             List<Class<?>> classes = casePorGrupo.get(annotation.group());
             if (classes == null) {
                 classes = new ArrayList<>();
             }
             classes.add(aClass);
             casePorGrupo.put(annotation.group(), classes);
-
-
         }
 
         // @formatter:off
@@ -105,7 +99,7 @@ public class ShowCaseTable {
         }
         for (Class<?> caseClass : classes) {
             final CaseItem caseItem = caseClass.getAnnotation(CaseItem.class);
-            CaseBase caseBase = null;
+            CaseBase caseBase;
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
                 caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
             } else {
@@ -122,13 +116,9 @@ public class ShowCaseTable {
                 } else {
                     resourceRef = ResourceRef.forClassWithExtension(resource.value(), resource.extension());
                 }
-                if (caseBase != null && resourceRef.isPresent()) {
-                    caseBase.getAditionalSources().add(resourceRef.get());
-                }
+                resourceRef.ifPresent(resourceRef1 -> caseBase.getAditionalSources().add(resourceRef1));
             }
-            if (caseBase != null) {
-                group.addCase(caseBase);
-            }
+            group.addCase(caseBase);
         }
     }
 
@@ -148,13 +138,7 @@ public class ShowCaseTable {
             groups = studioGroups;
         }
 
-        ShowCaseGroup group = groups.get(groupName);
-        if (group == null) {
-            group = new ShowCaseGroup(groupName, icon, tipo);
-            groups.put(groupName, group);
-        }
-
-        return group;
+        return groups.computeIfAbsent(groupName, n -> new ShowCaseGroup(n, icon, tipo));
     }
 
     public Collection<ShowCaseGroup> getGroups() {
@@ -202,11 +186,7 @@ public class ShowCaseTable {
         }
 
         private ShowCaseGroup addCase(CaseBase c) {
-            ShowCaseItem item = itens.get(c.getComponentName());
-            if (item == null) {
-                item = new ShowCaseItem(c.getComponentName(), c.getShowCaseType());
-                itens.put(c.getComponentName(), item);
-            }
+            ShowCaseItem item = itens.computeIfAbsent(c.getComponentName(), k -> new ShowCaseItem(c.getComponentName(), c.getShowCaseType()));
             item.addCase(c);
             return this;
         }
@@ -246,10 +226,10 @@ public class ShowCaseTable {
         }
 
         public List<CaseBase> getCases() {
-            Collections.sort(cases, (case1, case2) -> { 
-                if(case1.getSubCaseName().equalsIgnoreCase("Default")){
+            cases.sort((case1, case2) -> {
+                if (case1.getSubCaseName().equalsIgnoreCase("Default")) {
                     return Integer.MIN_VALUE;
-                }else{
+                } else {
                     return case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName());
                 }
             });      
@@ -275,8 +255,6 @@ public class ShowCaseTable {
         itens.put("Default", 4);
         
         System.out.println(itens);
-        
-        
     } 
     
 }

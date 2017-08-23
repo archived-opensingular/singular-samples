@@ -16,14 +16,13 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import java.util.Optional;
-
 import org.opensingular.form.SDictionary;
 import org.opensingular.form.SFormUtil;
 import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.SingularFormException;
 import org.opensingular.form.wicket.enums.AnnotationMode;
+
+import java.util.Optional;
 
 
 public class CaseBaseForm extends CaseBase {
@@ -47,33 +46,23 @@ public class CaseBaseForm extends CaseBase {
         return caseClass;
     }
 
-
     public String getTypeName() {
         return SFormUtil.getTypeName(getSTypeClass());
     }
 
     public SType<?> getCaseType() {
         if (caseType == null) {
-            SDictionary dicionario = SDictionary.create();
-
-            caseType = dicionario.getType(getSTypeClass());
-            if (caseType == null){
-                throw new SingularFormException("O SType " + getSTypeClass().getName() + " não foi encontrado.");
-            }
+            caseType = SDictionary.create().getType(getSTypeClass());
         }
         return caseType;
     }
-
 
     @Override
     public Optional<ResourceRef> getMainSourceResourceName() {
         return ResourceRef.forSource(getSTypeClass());
     }
 
-
     public boolean showValidateButton() {
         return getCaseType().hasAnyValidation();
     }
-
-
 }
