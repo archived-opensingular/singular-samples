@@ -14,20 +14,11 @@ import javax.annotation.Nonnull;
 
 @SInfoType(name = "Pessoa", spackage = SPackageStudioPersistenceForm.class)
 public class STypePessoa extends STypeComposite<SIComposite> {
-
     public STypeString nome;
     public STypeInteger idade;
     public STypeCPF cpf;
     public STypeEMail email;
     public STypeTelefoneNacional telefone;
-
-    private void createTypes() {
-        nome = addField("nome", STypeString.class);
-        cpf = addField("cpf", STypeCPF.class);
-        idade = addField("idade", STypeInteger.class);
-        email = addField("email", STypeEMail.class);
-        telefone = addField("telefone", STypeTelefoneNacional.class);
-    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -38,4 +29,13 @@ public class STypePessoa extends STypeComposite<SIComposite> {
         email.asAtr().label("Email").asAtrBootstrap().colPreference(6);
         telefone.asAtr().asAtrBootstrap().colPreference(4);
     }
+
+    private void createTypes() {
+        nome = addField("nome", STypeString.class);
+        cpf = addField("cpf", STypeCPF.class);
+        idade = addField("idade", STypeInteger.class);
+        email = addField("email", STypeEMail.class);
+        telefone = addField("telefone", STypeTelefoneNacional.class);
+    }
+
 }
