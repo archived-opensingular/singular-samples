@@ -9,7 +9,9 @@ import org.opensingular.form.SIList;
 import org.opensingular.form.persistence.FormRespository;
 import org.opensingular.lib.wicket.util.datatable.BSDataTableBuilder;
 import org.opensingular.singular.form.showcase.studio.persistence.form.STypeCarrinhoCompra;
+import org.opensingular.singular.form.showcase.studio.persistence.form.STypePessoa;
 import org.opensingular.singular.form.showcase.studio.persistence.form.STypeProduto;
+import org.opensingular.singular.form.showcase.studio.persistence.form.STypeUF;
 import org.opensingular.singular.form.showcase.studio.persistence.repository.CarrinhoFormRepository;
 import org.opensingular.singular.form.showcase.view.page.relational.RelationalPersistencePage;
 import org.wicketstuff.annotation.mount.MountPath;
@@ -56,8 +58,8 @@ public class CarrinhoPersistencePage extends RelationalPersistencePage {
     }
 
     @Override
-    protected Class<?> getTypeClass() {
-        return STypeCarrinhoCompra.class;
+    protected Class<?>[] getSources() {
+        return new Class[]{STypeCarrinhoCompra.class, STypeProduto.class};
     }
 
     @Override

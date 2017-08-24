@@ -28,7 +28,7 @@ public class PessoaPersistencePage extends RelationalPersistencePage {
     protected void configureTable(BSDataTableBuilder<SIComposite, String, IColumn<SIComposite, String>> builder) {
         builder.appendPropertyColumn("Nome", ins -> ins.getValue("nome"));
         builder.appendPropertyColumn("CPF", ins -> ins.getValue("cpf"));
-        builder.appendPropertyColumn("EMail", ins -> ins.getValue("email"));
+        builder.appendPropertyColumn("Email", ins -> ins.getValue("email"));
     }
 
     @Override
@@ -47,8 +47,8 @@ public class PessoaPersistencePage extends RelationalPersistencePage {
     }
 
     @Override
-    protected Class<?> getTypeClass() {
-        return STypePessoa.class;
+    protected Class<?>[] getSources() {
+        return new Class[]{STypePessoa.class};
     }
 
     @Override

@@ -15,11 +15,13 @@ import org.opensingular.form.studio.SingularStudioSimpleCRUDPanel;
 import org.opensingular.lib.commons.util.Loggable;
 import org.opensingular.lib.wicket.util.datatable.BSDataTableBuilder;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.lib.wicket.util.tab.BSTabPanel;
 import org.opensingular.singular.form.showcase.view.page.ItemCodePanel;
 import org.opensingular.singular.form.showcase.view.template.ShowcaseTemplate;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public abstract class RelationalPersistencePage extends ShowcaseTemplate implements Loggable {
     public RelationalPersistencePage(PageParameters parameters) {
@@ -29,18 +31,23 @@ public abstract class RelationalPersistencePage extends ShowcaseTemplate impleme
 
     private void buildPage() {
         addCrudPanel();
-        addTypeCode();
+        addSources();
         addMERImage();
         addDDLPanel();
     }
 
-    private void addTypeCode() {
-        try {
-            InputStream script = Thread.currentThread().getContextClassLoader().getResourceAsStream(getTypeClass().getName().replace(".", "/") + ".java");
-            add(new ItemCodePanel("type-code", Model.of(IOUtils.toString(script, StandardCharsets.UTF_8)), "java"));
-        } catch (Exception e) {
-            e.printStackTrace();
+    private void addSources() {
+        BSTabPanel tabs = new BSTabPanel("sources");
+        for(Class<?> source : getSources()){
+            try {
+                InputStream script = Thread.currentThread().getContextClassLoader().getResourceAsStream(source.getName().replace(".", "/") + ".java");
+                ItemCodePanel itemCodePanel = new ItemCodePanel(BSTabPanel.TAB_PANEL_ID, Model.of(IOUtils.toString(script, StandardCharsets.UTF_8)), "java");
+                tabs.addTab(source.getSimpleName(), itemCodePanel);
+            } catch (Exception e) {
+                getLogger().error(e.getMessage(), e);
+            }
         }
+        add(tabs);
     }
 
     private void addMERImage() {
@@ -90,5 +97,5 @@ public abstract class RelationalPersistencePage extends ShowcaseTemplate impleme
 
     protected abstract String getDDLStringURI();
 
-    protected abstract Class<?> getTypeClass();
+    protected abstract Class<?>[] getSources();
 }

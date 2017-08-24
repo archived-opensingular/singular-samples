@@ -8,6 +8,7 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.persistence.FormRespository;
 import org.opensingular.lib.wicket.util.datatable.BSDataTableBuilder;
 import org.opensingular.singular.form.showcase.studio.persistence.form.STypeEndereco;
+import org.opensingular.singular.form.showcase.studio.persistence.form.STypeUF;
 import org.opensingular.singular.form.showcase.studio.persistence.repository.EnderecoFormRepository;
 import org.opensingular.singular.form.showcase.view.page.relational.RelationalPersistencePage;
 import org.wicketstuff.annotation.mount.MountPath;
@@ -48,8 +49,8 @@ public class EnderecoPersistencePage extends RelationalPersistencePage {
     }
 
     @Override
-    protected Class<?> getTypeClass() {
-        return STypeEndereco.class;
+    protected Class<?>[] getSources() {
+        return new Class[]{STypeEndereco.class, STypeUF.class};
     }
 
     @Override
