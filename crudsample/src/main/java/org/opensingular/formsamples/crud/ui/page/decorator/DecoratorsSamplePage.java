@@ -15,7 +15,7 @@ import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.form.wicket.WicketBuildContext;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.form.wicket.panel.SingularFormPanel;
-import org.opensingular.formsamples.crud.types.toxicologia.EstudoResiduoForm;
+import org.opensingular.formsamples.crud.types.antaq.Resolucao912Form;
 import org.opensingular.lib.wicket.util.ajax.ActionAjaxLink;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
 
@@ -23,7 +23,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
 
     public DecoratorsSamplePage() {
 
-        SingularFormPanel singularFormPanel = new SingularFormPanel("panel", EstudoResiduoForm.class)
+        SingularFormPanel singularFormPanel = new SingularFormPanel("panel", Resolucao912Form.class)
             .setAnnotationMode(AnnotationMode.EDIT)
             .addBuildListener(new IWicketBuildListener() {
                 @Override
@@ -149,7 +149,7 @@ public class DecoratorsSamplePage extends SingularTemplate {
                     );
                 }
             });
-        Form form = new Form<>("form");
+        Form<?> form = new Form<>("form");
         form.setMultiPart(true);
         add(form
             .add(singularFormPanel)
