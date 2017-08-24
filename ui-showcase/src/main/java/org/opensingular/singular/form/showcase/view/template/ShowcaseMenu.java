@@ -86,7 +86,8 @@ public class ShowcaseMenu extends Panel {
 
         MetronicMenuGroup relationalPersistence = new MetronicMenuGroup(Icon.of("fa fa-database"), "Relational Persistence");
         relationalPersistence.addItem(new MetronicMenuItem(null, "Simple", "/relationalpersistence/simple"));
-        relationalPersistence.addItem(new MetronicMenuItem(null, "One to Many", "/relationalpersistence/onetomany"));
+        relationalPersistence.addItem(new MetronicMenuItem(null, "Many to One", "/relationalpersistence/manytoone"));
+        relationalPersistence.addItem(new MetronicMenuItem(null, "Many to Many", "/relationalpersistence/manytomany"));
         menu.addItem(relationalPersistence);
 
         return menu;

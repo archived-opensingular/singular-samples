@@ -15,5 +15,7 @@ public class SPackageStudioPersistenceForm extends SPackage {
         pb.createType(STypeUF.class);
         pb.createType(STypeEndereco.class);
         pb.createType(STypePessoa.class);
+        pb.createType(STypeProduto.class);
+        pb.createType(STypeCarrinhoCompra.class);
     }
 }

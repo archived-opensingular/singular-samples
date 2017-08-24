@@ -14,7 +14,7 @@ import org.opensingular.form.persistence.FormRespository;
 import org.opensingular.form.studio.SingularStudioSimpleCRUDPanel;
 import org.opensingular.lib.commons.util.Loggable;
 import org.opensingular.lib.wicket.util.datatable.BSDataTableBuilder;
-import org.opensingular.lib.wicket.util.resource.Icon;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.singular.form.showcase.view.page.ItemCodePanel;
 import org.opensingular.singular.form.showcase.view.template.ShowcaseTemplate;
 
@@ -74,7 +74,7 @@ public abstract class RelationalPersistencePage extends ShowcaseTemplate impleme
             protected void buildListTable(BSDataTableBuilder<SIComposite, String, IColumn<SIComposite, String>> builder) {
                 configureTable(builder);
             }
-        }.setCrudTitle("Cadastro de Pessoa").setCrudIcon(Icon.of("fa fa-group")));
+        }.setCrudTitle("Formulario").setCrudIcon(DefaultIcons.DOCS));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package org.opensingular.singular.form.showcase.view.page.relational.manytomany;
+package org.opensingular.singular.form.showcase.view.page.relational.manytoone;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.model.IModel;
@@ -14,7 +14,7 @@ import org.wicketstuff.annotation.mount.MountPath;
 
 import javax.inject.Inject;
 
-@MountPath("relationalpersistence/onetomany")
+@MountPath("relationalpersistence/manytoone")
 public class EnderecoPersistencePage extends RelationalPersistencePage {
 
     @Inject
@@ -39,12 +39,12 @@ public class EnderecoPersistencePage extends RelationalPersistencePage {
 
     @Override
     protected String getERImageStringURI() {
-        return null;
+        return "MerEnderecoUf.png";
     }
 
     @Override
     protected String getDDLStringURI() {
-        return "endereco_uf_ddl.sql";
+        return "DdlEnderecoUf.sql";
     }
 
     @Override
@@ -54,6 +54,6 @@ public class EnderecoPersistencePage extends RelationalPersistencePage {
 
     @Override
     protected IModel<String> getContentSubtitle() {
-        return Model.of("One to many");
+        return Model.of("Many to one");
     }
 }
