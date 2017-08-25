@@ -19,27 +19,7 @@ import java.util.Collections;
 
 @Configuration
 @ComponentScan(value = {"org.opensingular.samples.studio", "org.opensingular.lib.support.spring.util"})
-public class StudioSampleBeanFactory {
-
-    @Bean
-    public SpringBoundedSingletonStrategy springBoundedSingletonStrategy() {
-        return new SpringBoundedSingletonStrategy();
-    }
-
-    @Bean
-    public SingularFormConfigWicketImpl singularFormConfigWicket() {
-        return new SingularFormConfigWicketImpl();
-    }
-
-    @Bean
-    public SpringSDocumentFactoryEmpty springSDocumentFactoryEmpty() {
-        return new SpringSDocumentFactoryEmpty();
-    }
-
-    @Bean
-    public SpringServiceRegistry springServiceRegistry() {
-        return new SpringServiceRegistry();
-    }
+public class StudioSampleSpringConfig {
 
     @Bean(name = "presenteRepository")
     public SpringFormPersistenceInMemory<STPresente, SIComposite> presenteRepository(SDocumentFactory documentFactory) {

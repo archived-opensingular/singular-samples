@@ -20,7 +20,7 @@ public class StudioSampleAppConfig extends AbstractStudioAppConfig {
     }
 
     @Override
-    public Class<?>[] getSpringAnnotatedConfigs() {
-        return new Class<?>[]{StudioSampleBeanFactory.class};
+    public Class<?> getSpringConfig() {
+        return StudioSampleSpringConfig.class;
     }
 }
