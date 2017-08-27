@@ -1,4 +1,4 @@
-package org.opensingular.sample.studiop.form;
+package org.opensingular.sample.studio.form.residuo;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -8,15 +8,14 @@ import org.opensingular.form.type.core.STypeString;
 
 import javax.annotation.Nonnull;
 
-@SInfoType(name = "Ferramenta", spackage = StudioPackage.class)
-public class STFerramenta extends STypeComposite<SIComposite> {
+@SInfoType(name = "Cultura", spackage = ResiduoPackage.class)
+public class Cultura extends STypeComposite<SIComposite> {
 
     public STypeString nome;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = addField("nome", STypeString.class);
-        nome.asAtrBootstrap().colPreference(12);
-        nome.asAtr().label("Nome da ferramenta");
+        nome.asAtr().label("Nome da cultura").asAtrBootstrap().colPreference(12);
     }
 }
