@@ -20,7 +20,7 @@ public class Metabolito extends STypeComposite<SIComposite> {
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         loq = addField("loq", STypeInteger.class);
         quantidadeResiduoEncontrado = addField("quantidadeResiduoEncontrado", STypeInteger.class);
-        loq.asAtr().label("LOQ").asAtrBootstrap().colPreference(6);
-        quantidadeResiduoEncontrado.asAtr().label("Residuo Encontrado").asAtrBootstrap().colPreference(6);
+        loq.asAtr().required().label("LOQ").asAtrBootstrap().colPreference(6);
+        quantidadeResiduoEncontrado.asAtr().required().label("Residuo Encontrado").asAtrBootstrap().colPreference(6);
     }
 }

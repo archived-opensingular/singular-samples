@@ -18,6 +18,6 @@ public class ModalidadeDeEmpregoStudioDefinition implements StudioDefinition {
 
     @Override
     public String getTitle() {
-        return "Cadastro de modalidades de emprego";
+        return "Cadastro de Modalidades de Emprego";
     }
 }

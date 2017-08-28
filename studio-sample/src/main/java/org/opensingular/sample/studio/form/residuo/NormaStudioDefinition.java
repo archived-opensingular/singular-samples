@@ -18,6 +18,6 @@ public class NormaStudioDefinition implements StudioDefinition {
 
     @Override
     public String getTitle() {
-        return "Cadastro de normas";
+        return "Cadastro de Normas";
     }
 }

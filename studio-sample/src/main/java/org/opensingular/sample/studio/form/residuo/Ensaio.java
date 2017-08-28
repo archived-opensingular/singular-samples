@@ -19,8 +19,8 @@ public class Ensaio extends STypeComposite<SIComposite> {
         codigo = addField("codigo", STypeString.class);
         cidade = addField("cidade", STypeString.class);
         amostras = addFieldListOf("amostras", Amostra.class);
-        codigo.asAtr().label("Código").asAtrBootstrap().colPreference(6);
-        cidade.asAtr().label("Cidade").asAtrBootstrap().colPreference(6);
+        codigo.asAtr().required().label("Código").asAtrBootstrap().colPreference(6);
+        cidade.asAtr().required().label("Cidade").asAtrBootstrap().colPreference(6);
         Amostra amostra = amostras.getElementsType();
         amostras.asAtr().label("Amostra").asAtrBootstrap().colPreference(12);
         amostras.withView(new SViewListByMasterDetail(), view ->

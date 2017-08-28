@@ -19,6 +19,6 @@ public class EstudoResiduoStudioDefinition implements StudioDefinition {
 
     @Override
     public String getTitle() {
-        return "Cadastro de estudo de residuos";
+        return "Cadastro de Estudos de Residuos";
     }
 }

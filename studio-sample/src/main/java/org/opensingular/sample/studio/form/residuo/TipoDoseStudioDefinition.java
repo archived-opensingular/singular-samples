@@ -18,6 +18,6 @@ public class TipoDoseStudioDefinition implements StudioDefinition {
 
     @Override
     public String getTitle() {
-        return "Cadastro de tipo de doses";
+        return "Cadastro de Tipos de Doses";
     }
 }

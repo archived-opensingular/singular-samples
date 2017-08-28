@@ -18,6 +18,6 @@ public class CulturaStudioDefinition implements StudioDefinition {
 
     @Override
     public String getTitle() {
-        return "Cadastro de culturas";
+        return "Cadastro de Culturas";
     }
 }

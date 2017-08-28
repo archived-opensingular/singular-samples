@@ -30,11 +30,11 @@ public class Amostra extends STypeComposite<SIComposite> {
         possuiMetabolito = addField("possuiMetabolito", STypeBoolean.class);
         metabolitos = addFieldListOf("metabolitos", Metabolito.class);
 
-        codigo.asAtr().label("Código").asAtrBootstrap().colPreference(4);
-        dose.asAtr().label("Dose").asAtrBootstrap().colPreference(4);
-        dat.asAtr().label("DAT").asAtrBootstrap().newRow().colPreference(4);
-        loq.asAtr().label("LOQ").asAtrBootstrap().colPreference(4);
-        quantidadeResiduoEncontrado.asAtr().label("Residuo Encontrado").asAtrBootstrap().colPreference(4);
+        codigo.asAtr().required().label("Código").asAtrBootstrap().colPreference(4);
+        dose.asAtr().required().label("Dose").asAtrBootstrap().colPreference(4);
+        dat.asAtr().required().label("DAT").asAtrBootstrap().newRow().colPreference(4);
+        loq.asAtr().required().label("LOQ").asAtrBootstrap().colPreference(4);
+        quantidadeResiduoEncontrado.asAtr().required().label("Residuo Encontrado").asAtrBootstrap().colPreference(4);
         possuiMetabolito.asAtr().label("Possui metabolito").asAtrBootstrap().colPreference(12);
         Metabolito metabolito = metabolitos.getElementsType();
         metabolitos.asAtr()

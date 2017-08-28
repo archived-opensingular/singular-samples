@@ -17,5 +17,6 @@ public class Norma extends STypeComposite<SIComposite> {
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = addField("nome", STypeString.class);
         nome.asAtr().label("Nome da norma").asAtrBootstrap().colPreference(12);
+        nome.asAtr().required();
     }
 }

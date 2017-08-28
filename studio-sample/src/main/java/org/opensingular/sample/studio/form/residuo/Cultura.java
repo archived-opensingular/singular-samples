@@ -17,5 +17,6 @@ public class Cultura extends STypeComposite<SIComposite> {
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = addField("nome", STypeString.class);
         nome.asAtr().label("Nome da cultura").asAtrBootstrap().colPreference(12);
+        nome.asAtr().required();
     }
 }

@@ -17,5 +17,6 @@ public class TipoDose  extends STypeComposite<SIComposite> {
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = addField("nome", STypeString.class);
         nome.asAtr().label("Nome do tipo de dose").asAtrBootstrap().colPreference(12);
+        nome.asAtr().required();
     }
 }

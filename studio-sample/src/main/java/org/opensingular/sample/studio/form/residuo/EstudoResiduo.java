@@ -63,7 +63,7 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
                 s.add().set(cultura.nome, c.getValue("nome"));
             }
         });
-        cultura.asAtr().label("Cultura").asAtrBootstrap().colPreference(6);
+        cultura.asAtr().required().label("Cultura").asAtrBootstrap().colPreference(6);
 
         modalidadeDeEmprego.selection().id(modalidadeDeEmprego.nome).display(modalidadeDeEmprego.nome).simpleProvider(s -> {
             List<SIComposite> culturas = modalidadeDeEmpregoRepository.loadAll();
@@ -71,7 +71,7 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
                 s.add().set(modalidadeDeEmprego.nome, c.getValue("nome"));
             }
         });
-        modalidadeDeEmprego.asAtr().label("Modalidade de emprego").asAtrBootstrap().colPreference(6);
+        modalidadeDeEmprego.asAtr().required().label("Modalidade de emprego").asAtrBootstrap().colPreference(6);
 
         tipoDose.selection().id(tipoDose.nome).display(tipoDose.nome).simpleProvider(s -> {
             List<SIComposite> culturas = tipoDoseRepository.loadAll();
@@ -79,7 +79,7 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
                 s.add().set(tipoDose.nome, c.getValue("nome"));
             }
         });
-        tipoDose.asAtr().label("Tipo de dose").asAtrBootstrap().colPreference(6);
+        tipoDose.asAtr().required().label("Tipo de dose").asAtrBootstrap().colPreference(6);
 
         norma.selection().id(norma.nome).display(norma.nome).simpleProvider(s -> {
             List<SIComposite> culturas = normaRepository.loadAll();
@@ -87,13 +87,13 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
                 s.add().set(norma.nome, c.getValue(norma.nome));
             }
         });
-        norma.asAtr().label("Norma").asAtrBootstrap().colPreference(6);
+        norma.asAtr().required().label("Norma").asAtrBootstrap().colPreference(6);
 
         parteComestivel.asAtr().label("Parte comestivel").asAtrBootstrap().colPreference(3);
         adjuvante.asAtr().label("Adjuvante").asAtrBootstrap().colPreference(3);
 
-        intervaloSeguranca.asAtr().label("Intervalo de segurança pretendido (em dias)").asAtrBootstrap().newRow().colPreference(3);
-        numeroAplicacoes.asAtr().label("Nº de aplicações").asAtrBootstrap().colPreference(3);
+        intervaloSeguranca.asAtr().required().label("Intervalo de segurança pretendido (em dias)").asAtrBootstrap().newRow().colPreference(3);
+        numeroAplicacoes.asAtr().required().label("Nº de aplicações").asAtrBootstrap().colPreference(3);
 
         observacao.asAtr().label("Observação").asAtrBootstrap().newRow().colPreference(12);
         observacao.withTextAreaView();
