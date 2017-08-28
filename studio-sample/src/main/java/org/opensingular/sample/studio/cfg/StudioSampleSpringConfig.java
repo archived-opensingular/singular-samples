@@ -1,4 +1,4 @@
-package org.opensingular.samples.studio.cfg;
+package org.opensingular.sample.studio.cfg;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.spring.SpringFormPersistenceInMemory;

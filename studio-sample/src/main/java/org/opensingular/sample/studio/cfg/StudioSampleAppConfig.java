@@ -1,4 +1,4 @@
-package org.opensingular.samples.studio.cfg;
+package org.opensingular.sample.studio.cfg;
 
 import org.opensingular.lib.commons.ui.Icon;
 import org.opensingular.sample.studio.form.residuo.*;
