@@ -3,13 +3,14 @@ package org.opensingular.samples.studio.cfg;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.spring.SpringFormPersistenceInMemory;
 import org.opensingular.sample.studio.form.residuo.*;
+import org.opensingular.studio.app.spring.StudioSpringConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(value = {"org.opensingular.samples.studio"})
-public class StudioSampleSpringConfig {
+public class StudioSampleSpringConfig extends StudioSpringConfiguration {
 
     @Bean(name = "culturaRepository")
     public SpringFormPersistenceInMemory<Cultura, SIComposite> culturaRepository() {
