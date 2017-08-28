@@ -17,16 +17,7 @@
           class="org.opensingular.singular.form.showcase.wicket.UIAdminWicketFilterContext"/>
     <bean id="myWebApp" class="org.opensingular.singular.form.showcase.wicket.ShowcaseApplication"/>
 
-    <bean id="singularFormConfig" class="org.opensingular.form.wicket.SingularFormConfigWicketImpl">
-        <property name="serviceRegistry" ref="springServiceRegistry"/>
-    </bean>
-
     <bean class="org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration"/>
-
-    <bean id="singularFormContext" class="org.opensingular.form.wicket.SingularFormContextWicketImpl"
-          factory-bean="singularFormConfig" factory-method="createContext"/>
-
-
 
     <bean id="springServiceRegistry" class="org.opensingular.form.spring.SpringServiceRegistry"/>
 

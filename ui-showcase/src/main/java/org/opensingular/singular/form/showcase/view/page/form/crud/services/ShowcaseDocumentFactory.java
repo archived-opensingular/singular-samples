@@ -17,16 +17,11 @@
 package org.opensingular.singular.form.showcase.view.page.form.crud.services;
 
 import org.opensingular.form.RefService;
-import org.opensingular.form.context.ServiceRegistry;
 import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.document.SDocument;
-import org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration;
 import org.opensingular.form.spring.SpringSDocumentFactory;
-import org.opensingular.form.spring.SpringServiceRegistry;
 import org.opensingular.form.type.core.attachment.IAttachmentPersistenceHandler;
 import org.opensingular.form.type.core.attachment.handlers.InMemoryAttachmentPersistenceHandler;
-import org.opensingular.lib.support.spring.util.ApplicationContextProvider;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

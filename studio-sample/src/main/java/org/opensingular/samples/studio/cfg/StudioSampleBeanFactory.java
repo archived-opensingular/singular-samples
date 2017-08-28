@@ -6,7 +6,6 @@ import org.opensingular.form.document.SDocumentFactory;
 import org.opensingular.form.spring.SpringFormPersistenceInMemory;
 import org.opensingular.form.spring.SpringSDocumentFactoryEmpty;
 import org.opensingular.form.spring.SpringServiceRegistry;
-import org.opensingular.form.wicket.SingularFormConfigWicketImpl;
 import org.opensingular.lib.context.singleton.SpringBoundedSingletonStrategy;
 import org.opensingular.sample.studiop.form.STFerramenta;
 import org.opensingular.sample.studiop.form.STPresente;
@@ -24,11 +23,6 @@ public class StudioSampleBeanFactory {
     @Bean
     public SpringBoundedSingletonStrategy springBoundedSingletonStrategy() {
         return new SpringBoundedSingletonStrategy();
-    }
-
-    @Bean
-    public SingularFormConfigWicketImpl singularFormConfigWicket() {
-        return new SingularFormConfigWicketImpl();
     }
 
     @Bean
