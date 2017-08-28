@@ -21,6 +21,7 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -42,7 +43,7 @@ public class CaseCustomStringMapperStype extends STypeComposite<SIComposite> {
         nomeCompleto = this.addFieldString("nomeCompleto");
         nomeCompleto
                 //@destacar
-                .withCustomMapper(new MaterialDesignInputMapper())
+                .setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, MaterialDesignInputMapper::new)
                 .asAtr().label("Nome Completo");
     }
 }

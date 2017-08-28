@@ -13,13 +13,6 @@
 
   <context:component-scan base-package="org.opensingular.formsamples.crud" />
 
-  <bean id="singularFormConfig" class="org.opensingular.form.wicket.SingularFormConfigWicketImpl">
-<!--     <property name="serviceRegistry" ref="serviceRegistry"/> -->
-  </bean>
-
-  <bean id="singularFormContext" class="org.opensingular.form.wicket.SingularFormContextWicketImpl" factory-bean="singularFormConfig"
-    factory-method="createContext" />
-
   <bean id="springServiceRegistry" class="org.opensingular.form.spring.SpringServiceRegistry" />
 
   <bean id="documentFactory" class="org.opensingular.form.spring.SpringSDocumentFactoryEmpty" />
