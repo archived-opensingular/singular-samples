@@ -1,9 +1,10 @@
 package org.opensingular.sample.studio.cfg;
 
 import org.opensingular.lib.commons.ui.Icon;
-import org.opensingular.sample.studio.form.residuo.*;
+import org.opensingular.sample.studio.definition.*;
 import org.opensingular.studio.app.AbstractStudioAppConfig;
 import org.opensingular.studio.app.menu.StudioMenuItem;
+import org.opensingular.studio.app.spring.StudioPersistenceConfiguration;
 import org.opensingular.studio.app.spring.StudioSpringConfiguration;
 import org.opensingular.studio.core.menu.StudioMenu;
 
@@ -23,5 +24,10 @@ public class StudioSampleAppConfig extends AbstractStudioAppConfig {
     @Override
     public Class<? extends StudioSpringConfiguration> getSpringConfig() {
         return StudioSampleSpringConfig.class;
+    }
+
+    @Override
+    public Class<? extends StudioPersistenceConfiguration> getSpringPersistenceConfig() {
+        return StudioSampleSpringPersistenceConfig.class;
     }
 }

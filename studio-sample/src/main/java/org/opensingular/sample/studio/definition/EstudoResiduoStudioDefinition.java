@@ -1,8 +1,9 @@
-package org.opensingular.sample.studio.form.residuo;
+package org.opensingular.sample.studio.definition;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.opensingular.form.SIComposite;
 import org.opensingular.lib.wicket.util.datatable.BSDataTableBuilder;
+import org.opensingular.sample.studio.form.EstudoResiduo;
 import org.opensingular.studio.app.definition.StudioDefinition;
 
 public class EstudoResiduoStudioDefinition implements StudioDefinition {

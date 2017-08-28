@@ -1,4 +1,4 @@
-package org.opensingular.sample.studio.form.residuo;
+package org.opensingular.sample.studio.form;
 
 import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SPackage;

@@ -2,10 +2,7 @@ package org.opensingular.sample.studio.entity;
 
 import org.opensingular.lib.support.persistence.entity.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TD_MODALIDADE_EMPREGO")
@@ -13,13 +10,14 @@ public class ModalidadeEmpregoEntity extends BaseEntity<Integer> {
 
     @Id
     @Column(name = "CO_SEQ_MODALIDADE_EMPREGO")
-    public Integer cod;
+    private Integer cod;
 
     @Column(name = "NO_MODALIDADE_EMPREGO")
-    public String nome;
+    private String nome;
 
+    @Convert(converter = SimNaoConverter.class)
     @Column(name = "ST_REGISTRO_ATIVO")
-    public Boolean ativo;
+    private Boolean ativo;
 
     @Override
     public Integer getCod() {

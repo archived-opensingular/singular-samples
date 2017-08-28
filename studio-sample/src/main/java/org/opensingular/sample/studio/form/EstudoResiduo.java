@@ -1,36 +1,34 @@
-package org.opensingular.sample.studio.form.residuo;
+package org.opensingular.sample.studio.form;
 
 
 import org.opensingular.form.*;
-import org.opensingular.form.spring.SpringFormPersistenceInMemory;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.sample.studio.repository.CulturaRepository;
+import org.opensingular.sample.studio.repository.ModalidadeEmpregoRepository;
+import org.opensingular.sample.studio.repository.NormaRepository;
+import org.opensingular.sample.studio.repository.TipoDoseRepository;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
 @SInfoType(name = "EstudoResiduo", spackage = ResiduoPackage.class)
 public class EstudoResiduo extends STypeComposite<SIComposite> {
 
     @Inject
-    @Named("modalidadeDeEmpregoRepository")
-    private SpringFormPersistenceInMemory<ModalidadeDeEmprego, SIComposite> modalidadeDeEmpregoRepository;
+    private ModalidadeEmpregoRepository modalidadeEmpregoRepository;
 
     @Inject
-    @Named(" culturaRepository")
-    private SpringFormPersistenceInMemory<Cultura, SIComposite> culturaRepository;
+    private CulturaRepository culturaRepository;
 
     @Inject
-    @Named(" normaRepository")
-    private SpringFormPersistenceInMemory<Norma, SIComposite> normaRepository;
+    private NormaRepository normaRepository;
 
     @Inject
-    @Named(" tipoDoseRepository")
-    private SpringFormPersistenceInMemory<TipoDose, SIComposite> tipoDoseRepository;
+    private TipoDoseRepository tipoDoseRepository;
 
     public Cultura cultura;
     public ModalidadeDeEmprego modalidadeDeEmprego;
@@ -66,7 +64,7 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
         cultura.asAtr().required().label("Cultura").asAtrBootstrap().colPreference(6);
 
         modalidadeDeEmprego.selection().id(modalidadeDeEmprego.nome).display(modalidadeDeEmprego.nome).simpleProvider(s -> {
-            List<SIComposite> culturas = modalidadeDeEmpregoRepository.loadAll();
+            List<SIComposite> culturas = modalidadeEmpregoRepository.loadAll();
             for (SIComposite c : culturas) {
                 s.add().set(modalidadeDeEmprego.nome, c.getValue("nome"));
             }
