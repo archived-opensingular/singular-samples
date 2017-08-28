@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(value = {"org.opensingular.samples.studio", "org.opensingular.lib.support.spring.util"})
+@ComponentScan(value = {"org.opensingular.samples.studio"})
 public class StudioSampleSpringConfig {
 
     @Bean(name = "culturaRepository")
