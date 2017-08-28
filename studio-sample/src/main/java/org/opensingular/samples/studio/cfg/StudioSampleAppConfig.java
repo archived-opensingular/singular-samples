@@ -4,7 +4,6 @@ import org.opensingular.lib.commons.ui.Icon;
 import org.opensingular.sample.studio.form.residuo.*;
 import org.opensingular.studio.app.AbstractStudioAppConfig;
 import org.opensingular.studio.app.menu.StudioMenuItem;
-import org.opensingular.studio.core.menu.GroupMenuEntry;
 import org.opensingular.studio.core.menu.StudioMenu;
 
 public class StudioSampleAppConfig extends AbstractStudioAppConfig {
@@ -12,12 +11,11 @@ public class StudioSampleAppConfig extends AbstractStudioAppConfig {
     @Override
     public StudioMenu getAppMenu() {
         StudioMenu menu = new StudioMenu();
-        GroupMenuEntry toxicologia = menu.add(new GroupMenuEntry(Icon.of("fa fa-bug"), "Toxicologia"));
-        toxicologia.add(new StudioMenuItem(Icon.of("fa fa-folder"), "Cultura", new CulturaStudioDefinition()));
-        toxicologia.add(new StudioMenuItem(Icon.of("fa fa-folder"), "Modalidade de Emprego", new ModalidadeDeEmpregoStudioDefinition()));
-        toxicologia.add(new StudioMenuItem(Icon.of("fa fa-folder"), "Norma", new NormaStudioDefinition()));
-        toxicologia.add(new StudioMenuItem(Icon.of("fa fa-folder"), "Tipo de Dose", new TipoDoseStudioDefinition()));
-        toxicologia.add(new StudioMenuItem(Icon.of("fa fa-folder"), "Estudo de Residuo ", new EstudoResiduoStudioDefinition()));
+        menu.add(new StudioMenuItem(Icon.of("fa fa-leaf"), "Cultura", new CulturaStudioDefinition()));
+        menu.add(new StudioMenuItem(Icon.of("fa fa-book"), "Modalidade de Emprego", new ModalidadeDeEmpregoStudioDefinition()));
+        menu.add(new StudioMenuItem(Icon.of("fa fa-legal"), "Norma", new NormaStudioDefinition()));
+        menu.add(new StudioMenuItem(Icon.of("fa fa-eyedropper"), "Tipo de Dose", new TipoDoseStudioDefinition()));
+        menu.add(new StudioMenuItem(Icon.of("fa fa-flask"), "Estudo de Residuo ", new EstudoResiduoStudioDefinition()));
         return menu;
     }
 

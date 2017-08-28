@@ -92,8 +92,8 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
         parteComestivel.asAtr().label("Parte comestivel").asAtrBootstrap().colPreference(3);
         adjuvante.asAtr().label("Adjuvante").asAtrBootstrap().colPreference(3);
 
-        intervaloSeguranca.asAtr().label("Intervalo de segurança").asAtrBootstrap().newRow().colPreference(3);
-        numeroAplicacoes.asAtr().label("Intervalo de segurança").asAtrBootstrap().colPreference(3);
+        intervaloSeguranca.asAtr().label("Intervalo de segurança pretendido (em dias)").asAtrBootstrap().newRow().colPreference(3);
+        numeroAplicacoes.asAtr().label("Nº de aplicações").asAtrBootstrap().colPreference(3);
 
         observacao.asAtr().label("Observação").asAtrBootstrap().newRow().colPreference(12);
         observacao.withTextAreaView();
