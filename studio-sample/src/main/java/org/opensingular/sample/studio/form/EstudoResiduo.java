@@ -6,7 +6,6 @@ import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.sample.studio.repository.CulturaRepository;
 import org.opensingular.sample.studio.repository.ModalidadeEmpregoRepository;
 import org.opensingular.sample.studio.repository.NormaRepository;
 import org.opensingular.sample.studio.repository.TipoDoseRepository;
@@ -18,22 +17,10 @@ import java.util.List;
 @SInfoType(name = "EstudoResiduo", spackage = ResiduoPackage.class)
 public class EstudoResiduo extends STypeComposite<SIComposite> {
 
-    @Inject
-    private ModalidadeEmpregoRepository modalidadeEmpregoRepository;
-
-    @Inject
-    private CulturaRepository culturaRepository;
-
-    @Inject
-    private NormaRepository normaRepository;
-
-    @Inject
-    private TipoDoseRepository tipoDoseRepository;
-
-    public Cultura cultura;
-    public ModalidadeDeEmprego modalidadeDeEmprego;
-    public TipoDose tipoDose;
-    public Norma norma;
+    public CulturaRef cultura;
+    public ModalidadeEmpregoRef modalidadeDeEmprego;
+    public TipoDoseRef tipoDose;
+    public NormaRef norma;
     public STypeBoolean parteComestivel;
     public STypeBoolean adjuvante;
     public STypeInteger intervaloSeguranca;
@@ -44,10 +31,10 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
 
-        cultura = addField("cultura", Cultura.class);
-        modalidadeDeEmprego = addField("modalidadeDeEmprego", ModalidadeDeEmprego.class);
-        tipoDose = addField("tipoDose", TipoDose.class);
-        norma = addField("norma", Norma.class);
+        cultura = addField("cultura", CulturaRef.class);
+        modalidadeDeEmprego = addField("modalidadeDeEmprego", ModalidadeEmpregoRef.class);
+        tipoDose = addField("tipoDose", TipoDoseRef.class);
+        norma = addField("norma", NormaRef.class);
         parteComestivel = addField("parteComestivel", STypeBoolean.class);
         adjuvante = addField("adjuvante", STypeBoolean.class);
         intervaloSeguranca = addField("intervaloSeguranca", STypeInteger.class);
@@ -55,36 +42,9 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
         observacao = addField("observacao", STypeString.class);
         ensaios = addFieldListOf("ensaios", Ensaio.class);
 
-        cultura.selection().id(cultura.nome).display(cultura.nome).simpleProvider(s -> {
-            List<SIComposite> culturas = culturaRepository.loadAll();
-            for (SIComposite c : culturas) {
-                s.add().set(cultura.nome, c.getValue("nome"));
-            }
-        });
         cultura.asAtr().required().label("Cultura").asAtrBootstrap().colPreference(6);
-
-        modalidadeDeEmprego.selection().id(modalidadeDeEmprego.nome).display(modalidadeDeEmprego.nome).simpleProvider(s -> {
-            List<SIComposite> culturas = modalidadeEmpregoRepository.loadAll();
-            for (SIComposite c : culturas) {
-                s.add().set(modalidadeDeEmprego.nome, c.getValue("nome"));
-            }
-        });
         modalidadeDeEmprego.asAtr().required().label("Modalidade de emprego").asAtrBootstrap().colPreference(6);
-
-        tipoDose.selection().id(tipoDose.nome).display(tipoDose.nome).simpleProvider(s -> {
-            List<SIComposite> culturas = tipoDoseRepository.loadAll();
-            for (SIComposite c : culturas) {
-                s.add().set(tipoDose.nome, c.getValue("nome"));
-            }
-        });
         tipoDose.asAtr().required().label("Tipo de dose").asAtrBootstrap().colPreference(6);
-
-        norma.selection().id(norma.nome).display(norma.nome).simpleProvider(s -> {
-            List<SIComposite> culturas = normaRepository.loadAll();
-            for (SIComposite c : culturas) {
-                s.add().set(norma.nome, c.getValue(norma.nome));
-            }
-        });
         norma.asAtr().required().label("Norma").asAtrBootstrap().colPreference(6);
 
         parteComestivel.asAtr().label("Parte comestivel").asAtrBootstrap().colPreference(3);
