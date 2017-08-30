@@ -1,6 +1,9 @@
 package org.opensingular.sample.studio.repository;
 
+import org.hibernate.SessionFactory;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.document.SDocumentFactory;
+import org.opensingular.form.persistence.relational.FormRepositoryHibernate;
 import org.opensingular.form.spring.SpringFormPersistenceInMemory;
 import org.opensingular.sample.studio.dao.CulturaDAO;
 import org.opensingular.sample.studio.entity.CulturaEntity;
@@ -13,22 +16,11 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 
 @Named("culturaRepository")
-public class CulturaRepository extends SpringFormPersistenceInMemory<Cultura, SIComposite>
-        implements ApplicationListener<ContextRefreshedEvent> {
+public class CulturaRepository extends FormRepositoryHibernate<Cultura, SIComposite> {
+
     @Inject
-    private CulturaDAO culturaDAO;
-
-    public CulturaRepository() {
-        super(Cultura.class);
+    public CulturaRepository(SessionFactory sessionFactory, SDocumentFactory documentFactory) {
+        super(sessionFactory, documentFactory, Cultura.class);
     }
 
-    @Transactional
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        for (CulturaEntity c : culturaDAO.listAll()) {
-            SIComposite instance = createInstance();
-            instance.setValue("nome", c.getNome());
-            insert(instance, null);
-        }
-    }
 }
