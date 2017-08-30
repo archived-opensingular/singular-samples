@@ -13,12 +13,13 @@ public class EstudoResiduoStudioDefinition implements StudioDefinition {
     }
 
     @Override
-    public void configureDatatableColumns(BSDataTableBuilder<SIComposite, String, IColumn<SIComposite, String>> dataTableBuilder) {
-        dataTableBuilder.appendPropertyColumn("Cultura", ins -> ins.getValue(EstudoResiduo.class, i -> i.cultura.display));
-        dataTableBuilder.appendPropertyColumn("Modalidade de Emprego", ins -> ins.getValue(EstudoResiduo.class, i -> i.modalidadeDeEmprego.display));
-        dataTableBuilder.appendPropertyColumn("Norma", ins -> ins.getValue(EstudoResiduo.class, i -> i.norma.display));
-        dataTableBuilder.appendPropertyColumn("Tipo de Dose", ins -> ins.getValue(EstudoResiduo.class, i -> i.tipoDose.display));
-        dataTableBuilder.appendPropertyColumn("Intervalo de Segurança", ins -> ins.getValue(EstudoResiduo.class, i -> i.intervaloSeguranca));
+    public void configureDatatableColumns(BSDataTableBuilder<SIComposite, String, IColumn<SIComposite, String>> dtBuilder) {
+        dtBuilder
+                .appendPropertyColumn("Cultura", ins -> ins.getValue(EstudoResiduo.class, i -> i.cultura.display))
+                .appendPropertyColumn("Modalidade de Emprego", ins -> ins.getValue(EstudoResiduo.class, i -> i.modalidadeDeEmprego.display))
+                .appendPropertyColumn("Norma", ins -> ins.getValue(EstudoResiduo.class, i -> i.norma.display))
+                .appendPropertyColumn("Tipo de Dose", ins -> ins.getValue(EstudoResiduo.class, i -> i.tipoDose.display))
+                .appendPropertyColumn("Intervalo de Segurança", ins -> ins.getValue(EstudoResiduo.class, i -> i.intervaloSeguranca));
     }
 
     @Override

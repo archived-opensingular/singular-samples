@@ -2,14 +2,15 @@ package org.opensingular.sample.studio.form;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.persistence.FormRespository;
+import org.opensingular.form.document.SDocument;
 import org.opensingular.form.type.ref.STypeRef;
 import org.opensingular.sample.studio.repository.CulturaRepository;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @SInfoType(name = "CulturaRef", spackage = ResiduoPackage.class)
-public class CulturaRef extends STypeRef<Cultura, SIComposite> {
+public class CulturaRef extends STypeRef<SIComposite> {
     @Inject
     private CulturaRepository culturaRepository;
 
@@ -24,8 +25,7 @@ public class CulturaRef extends STypeRef<Cultura, SIComposite> {
     }
 
     @Override
-    protected FormRespository<Cultura, SIComposite> getRepository() {
-        return culturaRepository;
+    protected List<SIComposite> loadValues(SDocument document) {
+        return culturaRepository.loadAll();
     }
-
 }
