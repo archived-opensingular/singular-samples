@@ -6,6 +6,7 @@ import org.opensingular.studio.app.AbstractStudioAppConfig;
 import org.opensingular.studio.app.menu.StudioMenuItem;
 import org.opensingular.studio.app.spring.StudioPersistenceConfiguration;
 import org.opensingular.studio.app.spring.StudioSpringConfiguration;
+import org.opensingular.studio.core.menu.GroupMenuEntry;
 import org.opensingular.studio.core.menu.StudioMenu;
 
 public class StudioSampleAppConfig extends AbstractStudioAppConfig {
@@ -13,11 +14,12 @@ public class StudioSampleAppConfig extends AbstractStudioAppConfig {
     @Override
     public StudioMenu getAppMenu() {
         StudioMenu menu = new StudioMenu();
-        menu.add(new StudioMenuItem(Icon.of("fa fa-leaf"), "Cultura", new CulturaStudioDefinition()));
-        menu.add(new StudioMenuItem(Icon.of("fa fa-book"), "Modalidade de Emprego", new ModalidadeDeEmpregoStudioDefinition()));
-        menu.add(new StudioMenuItem(Icon.of("fa fa-legal"), "Norma", new NormaStudioDefinition()));
-        menu.add(new StudioMenuItem(Icon.of("fa fa-eyedropper"), "Tipo de Dose", new TipoDoseStudioDefinition()));
-        menu.add(new StudioMenuItem(Icon.of("fa fa-flask"), "Estudo de Residuo ", new EstudoResiduoStudioDefinition()));
+        GroupMenuEntry toxicologia = menu.add(new GroupMenuEntry(Icon.of("fa fa-flask"), "Toxicologia"));
+        toxicologia.add(new StudioMenuItem(null, "Cultura", new CulturaStudioDefinition()));
+        toxicologia.add(new StudioMenuItem(null, "Modalidade de Emprego", new ModalidadeDeEmpregoStudioDefinition()));
+        toxicologia.add(new StudioMenuItem(null, "Norma", new NormaStudioDefinition()));
+        toxicologia.add(new StudioMenuItem(null, "Tipo de Dose", new TipoDoseStudioDefinition()));
+        toxicologia.add(new StudioMenuItem(null, "Estudo de Residuo ", new EstudoResiduoStudioDefinition()));
         return menu;
     }
 
