@@ -17,19 +17,23 @@
 package org.opensingular.singular.form.showcase.component;
 
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.opensingular.lib.wicket.util.resource.Icon;
+import org.opensingular.lib.commons.ui.Icon;
 
 public enum Group {
-    INPUT("Input", DefaultIcons.PUZZLE, ShowCaseType.FORM),
-    COUNTRY("Location", DefaultIcons.COUNTRY, ShowCaseType.FORM),
-    FILE("File", DefaultIcons.FOLDER, ShowCaseType.FORM),
-    LAYOUT("Layout", DefaultIcons.GRID, ShowCaseType.FORM),
-    VALIDATION("Validation", DefaultIcons.BAN, ShowCaseType.FORM),
-    INTERACTION("Interaction", DefaultIcons.ROCKET, ShowCaseType.FORM),
-    CUSTOM("Custom", DefaultIcons.WRENCH, ShowCaseType.FORM),
-    MAPS("Maps", DefaultIcons.MAP, ShowCaseType.FORM),
-    STUDIO_SAMPLES("Samples", DefaultIcons.DOCS, ShowCaseType.STUDIO),
-    IMPORTER("Importer", DefaultIcons.CODE, ShowCaseType.FORM);
+    //@formatter:off
+    INPUT           ("Input"        , DefaultIcons.PUZZLE   , ShowCaseType.FORM),
+    COUNTRY         ("Location"     , DefaultIcons.COUNTRY  , ShowCaseType.FORM),
+    FILE            ("File"         , DefaultIcons.FOLDER   , ShowCaseType.FORM),
+    LAYOUT          ("Layout"       , DefaultIcons.GRID     , ShowCaseType.FORM),
+    VALIDATION      ("Validation"   , DefaultIcons.BAN      , ShowCaseType.FORM),
+    INTERACTION     ("Interaction"  , DefaultIcons.ROCKET   , ShowCaseType.FORM),
+    HELP            ("Help"         , DefaultIcons.HELP     , ShowCaseType.FORM),
+    CUSTOM          ("Custom"       , DefaultIcons.WRENCH   , ShowCaseType.FORM),
+    MAPS            ("Maps"         , DefaultIcons.MAP      , ShowCaseType.FORM),
+    STUDIO_SAMPLES  ("Samples"      , DefaultIcons.DOCS     , ShowCaseType.STUDIO),
+    IMPORTER        ("Importer"     , DefaultIcons.CODE     , ShowCaseType.FORM),
+    //@formatter:on
+    ;
 
     private final String       name;
     private final Icon         icon;

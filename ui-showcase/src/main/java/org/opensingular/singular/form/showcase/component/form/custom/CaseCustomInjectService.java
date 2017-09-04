@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CaseCustomInjectService {
 
+    private final static String[] OPTIONS = new String[]{"Banana", "Maça", "Morango", "Cajá"};
+
     public String[] fruitsOptions(){
-        String[] strings = {"Banana", "Maça", "Morango", "Cajá"};
-        return strings;
+        return OPTIONS;
     }
 }
