@@ -5,21 +5,20 @@ import org.opensingular.server.commons.spring.SingularDefaultPersistenceConfigur
 import org.opensingular.server.module.config.ModuleInitializer;
 
 
-public class RequirementsampleModuleInitializer extends ModuleInitializer {
-
+public class RequirementsampleModuleInitializer implements ModuleInitializer {
 
     @Override
-    protected String moduleCod() {
+    public String moduleCod() {
         return "REQUIREMENTSAMPLE";
     }
 
     @Override
-    protected String[] springPackagesToScan() {
+    public String[] springPackagesToScan() {
         return new String[]{"org.opensingular"};
     }
 
     @Override
-    protected Class<? extends SingularDefaultPersistenceConfiguration> persistenceConfiguration() {
+    public Class<? extends SingularDefaultPersistenceConfiguration> persistenceConfiguration() {
         return PersistenceConfiguration.class;
     }
 }
