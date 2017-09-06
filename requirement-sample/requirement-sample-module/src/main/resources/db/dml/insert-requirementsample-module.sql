@@ -2,7 +2,7 @@ INSERT INTO DBSINGULAR.TB_MODULO VALUES
 (
 'REQUIREMENTSAMPLE',
 'REQUIREMENTSAMPLE',
-'https://localhost:8443/requirementsamplemodule/rest/flow'
+'https://localhost:8443'
 );
 
 

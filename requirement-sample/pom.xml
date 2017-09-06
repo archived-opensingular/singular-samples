@@ -27,7 +27,6 @@
         </plugins>
     </build>
     <modules>
-        <module>requirement-sample-server</module>
         <module>requirement-sample-static-resources</module>
         <module>requirement-sample-sso-analysis</module>
         <module>requirement-sample-sso-requirement</module>
