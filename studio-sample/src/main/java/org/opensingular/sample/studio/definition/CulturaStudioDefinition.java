@@ -24,6 +24,6 @@ public class CulturaStudioDefinition implements StudioDefinition {
 
     @Override
     public StudioCRUDPermissionStrategy getPermissionStrategy() {
-        return StudioCRUDPermissionStrategy.VIEW_ONLY;
+        return StudioCRUDPermissionStrategy.ALL;
     }
 }
