@@ -30,6 +30,6 @@
         <module>requirement-sample-static-resources</module>
         <module>requirement-sample-sso-analysis</module>
         <module>requirement-sample-sso-requirement</module>
-        <module>requirement-sample-module</module>
+        <module>requirement-sample-app</module>
     </modules>
 </project>

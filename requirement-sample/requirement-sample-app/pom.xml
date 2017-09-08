@@ -10,8 +10,8 @@
         <version>1.6.9CM-SNAPSHOT</version>
     </parent>
 
-    <artifactId>requirement-sample-module</artifactId>
-    <name>[requerimento :: requirement-sample-module]</name>
+    <artifactId>requirement-sample-app</artifactId>
+    <name>[requerimento :: requirement-sample-app]</name>
     <packaging>war</packaging>
 
     <dependencies>

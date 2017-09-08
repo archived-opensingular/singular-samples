@@ -3,7 +3,7 @@ package org.opensingular.requirementsamplemodule.config;
 import org.apache.wicket.Page;
 import org.opensingular.lib.commons.lambda.IConsumer;
 import org.opensingular.lib.wicket.util.template.SkinOptions;
-import org.opensingular.requirementsamplemodule.HomePage;
+import org.opensingular.requirementsamplemodule.SingleAppPage;
 import org.opensingular.requirementsamplemodule.spring.PersistenceConfiguration;
 import org.opensingular.server.commons.config.FlowInitializer;
 import org.opensingular.server.commons.config.IServerContext;
@@ -25,17 +25,22 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 
-public class SingleAppInitializer implements PSingularInitializer {
+public interface SingleAppInitializer extends PSingularInitializer {
+    String INITSKIN_CONSUMER_REQ_PARAM = "INITSKIN_CONSUMER_REQ_PARAM";
+    String INITSKIN_CONSUMER_ANL_PARAM = "INITSKIN_CONSUMER_ANL_PARAM";
 
-    private static final String INITSKIN_CONSUMER_PARAM = "INITSKIN_CONSUMER_PARAM";
+    String moduleCod();
+
+    String[] springPackagesToScan();
 
     @Override
-    public PWebInitializer webConfiguration() {
+    default PWebInitializer webConfiguration() {
         return new PWebInitializer() {
 
             @Override
             public void onStartup(ServletContext servletContext) throws ServletException {
-                servletContext.setAttribute(INITSKIN_CONSUMER_PARAM, (IConsumer<SkinOptions>) SingleAppInitializer.this::initSkins);
+                servletContext.setAttribute(INITSKIN_CONSUMER_REQ_PARAM, (IConsumer<SkinOptions>) SingleAppInitializer.this::initRequirementSkin);
+                servletContext.setAttribute(INITSKIN_CONSUMER_ANL_PARAM, (IConsumer<SkinOptions>) SingleAppInitializer.this::initAnalysisSkin);
                 super.onStartup(servletContext);
             }
 
@@ -54,7 +59,7 @@ public class SingleAppInitializer implements PSingularInitializer {
     }
 
     @Override
-    public SpringHibernateInitializer springHibernateConfiguration() {
+    default SpringHibernateInitializer springHibernateConfiguration() {
         return new SpringHibernateInitializer() {
             @Override
             protected AnnotationConfigWebApplicationContext newApplicationContext() {
@@ -76,7 +81,7 @@ public class SingleAppInitializer implements PSingularInitializer {
     }
 
     @Override
-    public FlowInitializer flowConfiguration() {
+    default FlowInitializer flowConfiguration() {
         return new FlowInitializer() {
             @Override
             public String moduleCod() {
@@ -85,30 +90,22 @@ public class SingleAppInitializer implements PSingularInitializer {
         };
     }
 
-
-    protected Class<? extends SingularDefaultBeanFactory> beanFactory() {
+    default Class<? extends SingularDefaultBeanFactory> beanFactory() {
         return SingleAppBeanFactory.class;
     }
 
-
-    public void initSkins(SkinOptions skinOptions) {
-
+    default void initRequirementSkin(SkinOptions skinOptions) {
     }
 
-    protected String moduleCod() {
-        return "REQUIREMENTSAMPLE";
+    default void initAnalysisSkin(SkinOptions skinOptions) {
     }
 
-    protected String[] springPackagesToScan() {
-        return new String[]{"org.opensingular"};
-    }
-
-    protected Class<? extends SingularDefaultPersistenceConfiguration> persistenceConfiguration() {
+    default Class<? extends SingularDefaultPersistenceConfiguration> persistenceConfiguration() {
         return PersistenceConfiguration.class;
     }
 
     @Override
-    public SchedulerInitializer schedulerConfiguration() {
+    default SchedulerInitializer schedulerConfiguration() {
         return new SchedulerInitializer() {
             @Override
             public Class<?> mailConfiguration() {
@@ -122,35 +119,31 @@ public class SingleAppInitializer implements PSingularInitializer {
         };
     }
 
-    public static class AnalysisApplication extends SingularServerApplication {
-
+    class AnalysisApplication extends SingularServerApplication {
         @Override
         public Class<? extends Page> getHomePage() {
-            return HomePage.class;
+            return SingleAppPage.class;
         }
 
         @SuppressWarnings("unchecked")
         @Override
         public void initSkins(SkinOptions skinOptions) {
-            IConsumer<SkinOptions> initSKin = (IConsumer<SkinOptions>) this.getServletContext().getAttribute(INITSKIN_CONSUMER_PARAM);
+            IConsumer<SkinOptions> initSKin = (IConsumer<SkinOptions>) this.getServletContext().getAttribute(INITSKIN_CONSUMER_ANL_PARAM);
             initSKin.accept(skinOptions);
         }
     }
 
-    public static class PetitionApplication extends SingularServerApplication {
-
+    class PetitionApplication extends SingularServerApplication {
         @Override
         public Class<? extends Page> getHomePage() {
-            return HomePage.class;
+            return SingleAppPage.class;
         }
 
         @SuppressWarnings("unchecked")
         @Override
         public void initSkins(SkinOptions skinOptions) {
-            IConsumer<SkinOptions> initSKin = (IConsumer<SkinOptions>) this.getServletContext().getAttribute(INITSKIN_CONSUMER_PARAM);
+            IConsumer<SkinOptions> initSKin = (IConsumer<SkinOptions>) this.getServletContext().getAttribute(INITSKIN_CONSUMER_REQ_PARAM);
             initSKin.accept(skinOptions);
         }
-
     }
-
 }
