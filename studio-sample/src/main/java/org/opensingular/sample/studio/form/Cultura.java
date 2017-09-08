@@ -18,5 +18,10 @@ public class Cultura extends STypeComposite<SIComposite> {
         nome = addField("nome", STypeString.class);
         nome.asAtr().label("Nome da cultura").asAtrBootstrap().colPreference(12);
         nome.asAtr().required();
+        this.asSQL()
+                .table("TD_CULTURA")
+                .tablePK("CO_SEQ_CULTURA");
+        nome.asSQL()
+                .column("NO_CULTURA");
     }
 }
