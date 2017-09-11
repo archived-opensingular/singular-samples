@@ -16,6 +16,7 @@
 
 package org.opensingular.singular.form.showcase.wicket;
 
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
@@ -33,13 +34,17 @@ import org.opensingular.lib.support.spring.util.ApplicationContextProvider;
 import org.opensingular.lib.wicket.util.application.SkinnableApplication;
 import org.opensingular.lib.wicket.util.page.error.Error403Page;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
+import org.opensingular.lib.wicket.util.template.admin.SingularAdminApp;
+import org.opensingular.lib.wicket.util.template.admin.SingularAdminTemplate;
 import org.opensingular.singular.form.showcase.view.page.form.ListPage;
+import org.opensingular.singular.form.showcase.view.template.ShowcaseFooter;
+import org.opensingular.singular.form.showcase.view.template.ShowcaseHeader;
 import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
-public class ShowcaseApplication extends AuthenticatedWebApplication implements SkinnableApplication {
+public class ShowcaseApplication extends AuthenticatedWebApplication implements SkinnableApplication, SingularAdminApp {
 
     public static final String BASE_FOLDER = "/tmp/fileUploader";
 
@@ -107,5 +112,15 @@ public class ShowcaseApplication extends AuthenticatedWebApplication implements 
         } else {
             return RuntimeConfigurationType.DEVELOPMENT;
         }
+    }
+
+    @Override
+    public MarkupContainer buildPageHeader(String id, boolean withMenu, SingularAdminTemplate adminTemplate) {
+        return new ShowcaseHeader(id, withMenu, adminTemplate.getSkinOptions());
+    }
+
+    @Override
+    public MarkupContainer buildPageFooter(String id) {
+        return new ShowcaseFooter(id);
     }
 }

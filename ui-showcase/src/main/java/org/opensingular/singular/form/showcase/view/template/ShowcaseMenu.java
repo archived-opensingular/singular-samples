@@ -33,14 +33,14 @@ import org.opensingular.singular.form.showcase.view.page.form.crud.CrudPage;
 import org.opensingular.singular.form.showcase.view.page.prototype.PrototypeListPage;
 import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
 
-public class Menu extends Panel {
+public class ShowcaseMenu extends Panel {
 
     private static final long serialVersionUID = 7622791136418841943L;
 
     @Inject
     private ShowCaseTable showCaseTable;
 
-    public Menu(String id) {
+    public ShowcaseMenu(String id) {
         super(id);
     }
 

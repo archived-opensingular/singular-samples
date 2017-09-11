@@ -204,8 +204,6 @@ public class STypePrototype extends STypeComposite<SIComposite> {
                             SInstance t = instance.getParent().getField("type");
                             return Objects.equals(t.getValue(), typeName(STypeComposite.class));
                         })
-                .asAtr().dependsOn(() -> {
-                    return newArrayList(type);
-                });
+                .asAtr().dependsOn(type);
     }
 }
