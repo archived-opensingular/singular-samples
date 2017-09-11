@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement(
         proxyTargetClass = true
 )
-public class PersistenceConfiguration extends SingularDefaultPersistenceConfiguration {
+public class RequirementSamplePersistenceConfiguration extends SingularDefaultPersistenceConfiguration {
 
     @Value("classpath:db/dml/insert-requirementsample-module.sql")
     private Resource requirementsampleModule;
