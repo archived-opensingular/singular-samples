@@ -1,26 +1,27 @@
 package org.opensingular.sample.studio.cfg;
 
 import org.opensingular.lib.commons.ui.Icon;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.sample.studio.definition.*;
 import org.opensingular.studio.app.AbstractStudioAppConfig;
-import org.opensingular.studio.app.menu.StudioMenuItem;
+import org.opensingular.studio.app.menu.*;
 import org.opensingular.studio.app.spring.StudioPersistenceConfiguration;
 import org.opensingular.studio.app.spring.StudioSpringConfiguration;
-import org.opensingular.studio.core.menu.GroupBuilder;
-import org.opensingular.studio.core.menu.StudioMenu;
 
 public class StudioSampleAppConfig extends AbstractStudioAppConfig {
 
     @Override
     public StudioMenu getAppMenu() {
-        GroupBuilder sidebarMenu = new GroupBuilder();
-        GroupBuilder toxicologia = sidebarMenu.addGroup(Icon.of("fa fa-flask"), "Toxicologia");
-        toxicologia.addItem(new StudioMenuItem("Cultura", new CulturaStudioDefinition()));
-        toxicologia.addItem(new StudioMenuItem("Modalidade de Emprego", new ModalidadeDeEmpregoStudioDefinition()));
-        toxicologia.addItem(new StudioMenuItem("Norma", new NormaStudioDefinition()));
-        toxicologia.addItem(new StudioMenuItem("Tipo de Dose", new TipoDoseStudioDefinition()));
-        toxicologia.addItem(new StudioMenuItem("Estudo de Residuo ", new EstudoResiduoStudioDefinition()));
-        return sidebarMenu.build();
+        StudioMenu menu = new StudioMenu(new PortalMenuView());
+        GroupMenuEntry toxicologia = menu.add(new GroupMenuEntry(Icon.of("fa fa-flask"), "Toxicologia", new SidebarMenuView()));
+        toxicologia.add(new ItemMenuEntry("Cultura", new StudioMenuView(new CulturaStudioDefinition())));
+        toxicologia.add(new ItemMenuEntry("Modalidade de Emprego", new StudioMenuView(new ModalidadeDeEmpregoStudioDefinition())));
+        toxicologia.add(new ItemMenuEntry("Norma", new StudioMenuView(new NormaStudioDefinition())));
+        toxicologia.add(new ItemMenuEntry("Tipo de Dose", new StudioMenuView(new TipoDoseStudioDefinition())));
+        toxicologia.add(new ItemMenuEntry("Estudo de Residuo ", new StudioMenuView(new EstudoResiduoStudioDefinition())));
+        toxicologia.add(new ItemMenuEntry(DefaultIcons.SEARCH, "Wikipédia", new SimpleUrlMenuView("https://www.wikipedia.org/")));
+        menu.add(new ItemMenuEntry(DefaultIcons.ROCKET, "Google", new SimpleUrlMenuView("https://www.google.com/")));
+        return menu;
     }
 
     @Override
