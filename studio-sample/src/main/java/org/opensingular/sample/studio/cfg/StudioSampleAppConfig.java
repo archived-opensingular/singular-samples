@@ -15,7 +15,7 @@ public class StudioSampleAppConfig extends AbstractStudioAppConfig {
 
     @Override
     public StudioMenu getAppMenu() {
-        return SMBuilder.newPortal()
+        return StudioMenu.Builder.newPortalMenu()
                 .addSidebarGroup(Icon.of("fa fa-flask"), "Toxicologia", toxicologia -> toxicologia
                         .addStudioItem("Cultura", new CulturaStudioDefinition())
                         .addStudioItem("Modalidade de Emprego", new ModalidadeDeEmpregoStudioDefinition())
@@ -45,63 +45,6 @@ public class StudioSampleAppConfig extends AbstractStudioAppConfig {
     @Override
     public Class<? extends StudioPersistenceConfiguration> getSpringPersistenceConfig() {
         return StudioSampleSpringPersistenceConfig.class;
-    }
-
-
-    static class SMBuilder {
-        StudioMenu studioMenu;
-
-        public SMBuilder(StudioMenu studioMenu) {
-            this.studioMenu = studioMenu;
-        }
-
-        SMBuilder addHTTPEndpoint(Icon icon, String name, String endpoint) {
-            ItemMenuEntry i = studioMenu.add(new ItemMenuEntry(icon, name, new HTTPEndpointMenuView(endpoint)));
-            return this;
-        }
-
-        SMBuilder addSidebarGroup(Icon icon, String name, Consumer<GBuilder> groupConsumer) {
-            GroupMenuEntry g = studioMenu.add(new GroupMenuEntry(icon, name, new SidebarMenuView()));
-            if (groupConsumer != null) {
-                groupConsumer.accept(new GBuilder(g));
-            }
-            return this;
-        }
-
-        SMBuilder addPortalGroup(Icon icon, String name, Consumer<GBuilder> groupConsumer) {
-            GroupMenuEntry g = studioMenu.add(new GroupMenuEntry(icon, name, new PortalMenuView()));
-            if (groupConsumer != null) {
-                groupConsumer.accept(new GBuilder(g));
-            }
-            return this;
-        }
-
-        static SMBuilder newPortal() {
-            return new SMBuilder(new StudioMenu(new PortalMenuView()));
-        }
-
-        public StudioMenu getStudioMenu() {
-            return studioMenu;
-        }
-    }
-
-
-    static class GBuilder {
-        GroupMenuEntry groupEntry;
-
-        public GBuilder(GroupMenuEntry groupEntry) {
-            this.groupEntry = groupEntry;
-        }
-
-        GBuilder addStudioItem(String name, StudioDefinition definition) {
-            groupEntry.add(new ItemMenuEntry(name, new StudioMenuView(definition)));
-            return this;
-        }
-
-        GBuilder addHTTPEndpoint(Icon ico, String name, String endpoint) {
-            groupEntry.add(new ItemMenuEntry(ico, name, new HTTPEndpointMenuView(endpoint)));
-            return this;
-        }
     }
 
 }
