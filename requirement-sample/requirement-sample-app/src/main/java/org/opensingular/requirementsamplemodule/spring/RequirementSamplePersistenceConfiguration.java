@@ -26,5 +26,4 @@ public class RequirementSamplePersistenceConfiguration extends SingularDefaultPe
         populator.addScript(requirementsampleModule);
         return populator;
     }
-
 }
