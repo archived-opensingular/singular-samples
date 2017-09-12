@@ -5,7 +5,6 @@ import org.opensingular.sample.studio.repository.CulturaRepository;
 import org.opensingular.studio.app.definition.StudioDefinition;
 
 public class CulturaStudioDefinition implements StudioDefinition {
-
     @Override
     public Class<CulturaRepository> getRepositoryClass() {
         return CulturaRepository.class;
