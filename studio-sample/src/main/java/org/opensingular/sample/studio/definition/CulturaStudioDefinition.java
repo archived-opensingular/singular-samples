@@ -2,7 +2,7 @@ package org.opensingular.sample.studio.definition;
 
 import org.opensingular.form.studio.StudioCRUDPermissionStrategy;
 import org.opensingular.sample.studio.repository.CulturaRepository;
-import org.opensingular.studio.app.definition.StudioDefinition;
+import org.opensingular.studio.core.definition.StudioDefinition;
 
 public class CulturaStudioDefinition implements StudioDefinition {
     @Override
@@ -11,7 +11,7 @@ public class CulturaStudioDefinition implements StudioDefinition {
     }
 
     @Override
-    public void configureStudioDataTable(StudioDataTable studioDataTable) {
+    public void configureStudioDataTable(StudioDefinition.StudioDataTable studioDataTable) {
         studioDataTable.add("Cultura", "nome");
     }
 

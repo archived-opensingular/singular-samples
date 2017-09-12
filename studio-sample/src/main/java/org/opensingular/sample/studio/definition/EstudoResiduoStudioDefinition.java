@@ -1,7 +1,7 @@
 package org.opensingular.sample.studio.definition;
 
 import org.opensingular.sample.studio.repository.EstudoResiduoRepository;
-import org.opensingular.studio.app.definition.StudioDefinition;
+import org.opensingular.studio.core.definition.StudioDefinition;
 
 public class EstudoResiduoStudioDefinition implements StudioDefinition {
 
@@ -11,7 +11,7 @@ public class EstudoResiduoStudioDefinition implements StudioDefinition {
     }
 
     @Override
-    public void configureStudioDataTable(StudioDataTable studioDataTable) {
+    public void configureStudioDataTable(StudioDefinition.StudioDataTable studioDataTable) {
         studioDataTable.add("Cultura", "cultura.display");
         studioDataTable.add("Modalidade de Emprego", "modalidadeDeEmprego.display");
         studioDataTable.add("Norma", "norma.display");
