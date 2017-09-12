@@ -1,9 +1,5 @@
 package org.opensingular.requirementsamplemodule.config;
 
-import org.opensingular.form.SIComposite;
-import org.opensingular.form.persistence.FormRespository;
-import org.opensingular.form.spring.SpringFormPersistenceInMemory;
-import org.opensingular.requirementsamplemodule.form.EngenheiroForm;
 import org.opensingular.server.single.config.SingleAppBeanFactory;
 import org.opensingular.studio.core.config.StudioConfig;
 import org.opensingular.studio.core.config.StudioConfigProvider;
@@ -20,10 +16,5 @@ public class StudioRequirementBeanFactory extends SingleAppBeanFactory {
     @Bean
     public StudioMenu studioMenu() {
         return studioConfig.getAppMenu();
-    }
-
-    @Bean(name = "engenheiroRepository")
-    public FormRespository<EngenheiroForm, SIComposite> engenheiroRepository(){
-        return new SpringFormPersistenceInMemory<>(EngenheiroForm.class);
     }
 }

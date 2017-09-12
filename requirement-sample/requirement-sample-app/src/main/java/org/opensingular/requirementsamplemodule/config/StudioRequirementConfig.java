@@ -1,8 +1,6 @@
 package org.opensingular.requirementsamplemodule.config;
 
-import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.opensingular.form.SIComposite;
-import org.opensingular.lib.wicket.util.datatable.BSDataTableBuilder;
+import org.opensingular.form.persistence.FormRespository;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.studio.core.config.StudioConfig;
 import org.opensingular.studio.core.definition.StudioDefinition;
@@ -24,13 +22,13 @@ public class StudioRequirementConfig implements StudioConfig {
 
     public static class EngenheiroFormDefinition implements StudioDefinition {
         @Override
-        public String getRepositoryBeanName() {
-            return "engenheiroRepository";
+        public Class<? extends FormRespository> getRepositoryClass() {
+            return EngenheiroRepository.class;
         }
 
         @Override
-        public void configureDatatableColumns(BSDataTableBuilder<SIComposite, String, IColumn<SIComposite, String>> dataTableBuilder) {
-            dataTableBuilder.appendPropertyColumn("Nome", i -> i.getValue("nome"));
+        public void configureStudioDataTable(StudioDataTable studioDataTable) {
+            studioDataTable.add("Nome", "nome");
         }
 
         @Override
