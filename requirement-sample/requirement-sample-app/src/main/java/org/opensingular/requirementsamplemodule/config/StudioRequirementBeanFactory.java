@@ -17,4 +17,5 @@ public class StudioRequirementBeanFactory extends SingleAppBeanFactory {
     public StudioMenu studioMenu() {
         return studioConfig.getAppMenu();
     }
+
 }

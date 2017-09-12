@@ -10,6 +10,8 @@ import org.opensingular.server.commons.spring.SingularDefaultBeanFactory;
 import org.opensingular.server.commons.spring.SingularDefaultPersistenceConfiguration;
 import org.opensingular.server.commons.wicket.SingularServerApplication;
 import org.opensingular.server.p.commons.admin.AdministrationApplication;
+import org.opensingular.server.p.commons.config.PServerContext;
+import org.opensingular.server.p.commons.config.PSpringSecurityInitializer;
 import org.opensingular.server.p.commons.config.PWebInitializer;
 import org.opensingular.server.single.config.SingleAppInitializer;
 
@@ -17,7 +19,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import java.util.function.Predicate;
 
+import static org.opensingular.server.p.commons.config.PServerContext.ADMINISTRATION;
+import static org.opensingular.server.p.commons.config.PServerContext.REQUIREMENT;
+import static org.opensingular.server.p.commons.config.PServerContext.WORKLIST;
+
 public class SampleSingleAppInitializer implements SingleAppInitializer {
+
+    public static PServerContext STUDIO = new PServerContext("STUDIO", "/*", "singular.studio");
+
     @Override
     public String moduleCod() {
         return "REQUIREMENTSAMPLE";
@@ -43,8 +52,12 @@ public class SampleSingleAppInitializer implements SingleAppInitializer {
         return new PWebInitializer() {
 
             @Override
-            protected IServerContext[] serverContexts() {
-                return StudioRequirementContext.values();
+            protected void configureCAS(ServletContext servletContext) {
+            }
+
+            @Override
+            public IServerContext[] serverContexts() {
+                return new IServerContext[]{REQUIREMENT, WORKLIST, ADMINISTRATION, STUDIO};
             }
 
             @Override
@@ -57,16 +70,16 @@ public class SampleSingleAppInitializer implements SingleAppInitializer {
             @Override
             protected Class<? extends SingularServerApplication> getWicketApplicationClass(IServerContext currentContext) {
                 Predicate<IServerContext> sameContextCheck = (i) -> i.isSameContext(currentContext);
-                if (sameContextCheck.test(StudioRequirementContext.WORKLIST)) {
+                if (sameContextCheck.test(WORKLIST)) {
                     return AnalysisApplication.class;
                 }
-                if (sameContextCheck.test(StudioRequirementContext.REQUIREMENT)) {
+                if (sameContextCheck.test(REQUIREMENT)) {
                     return PetitionApplication.class;
                 }
-                if (sameContextCheck.test(StudioRequirementContext.ADMINISTRATION)) {
+                if (sameContextCheck.test(ADMINISTRATION)) {
                     return AdministrationApplication.class;
                 }
-                if (sameContextCheck.test(StudioRequirementContext.ROOT)) {
+                if (sameContextCheck.test(STUDIO)) {
                     return StudioRequirementApplication.class;
                 }
                 throw new SingularServerException("Contexto inválido");
@@ -77,5 +90,10 @@ public class SampleSingleAppInitializer implements SingleAppInitializer {
     @Override
     public Class<? extends SingularSpringWebMVCConfig> getSingularSpringWebMVCConfig() {
         return StudioSingularSpringWebMVCConfig.class;
+    }
+
+    @Override
+    public PSpringSecurityInitializer springSecurityConfiguration() {
+        return new RequirementSpringSecurityInitializer();
     }
 }

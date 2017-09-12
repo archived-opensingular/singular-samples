@@ -6,12 +6,16 @@ import org.apache.wicket.Session;
 import org.apache.wicket.markup.head.filter.JavaScriptFilteredIntoFooterHeaderResponse;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.resource.loader.ClassStringResourceLoader;
 import org.apache.wicket.resource.loader.IStringResourceLoader;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.opensingular.lib.commons.lambda.IConsumer;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
+import org.opensingular.lib.wicket.util.template.SkinOptions;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminTemplate;
 import org.opensingular.server.commons.wicket.SingularServerApplication;
+import org.opensingular.server.single.page.SingleAppPage;
 import org.opensingular.studio.core.config.StudioConfig;
 import org.opensingular.studio.core.config.StudioConfigProvider;
 import org.opensingular.studio.core.view.StudioFooter;
@@ -66,4 +70,5 @@ public class StudioRequirementApplication extends SingularServerApplication {
     public MarkupContainer buildPageFooter(String id) {
         return new StudioFooter(id);
     }
+
 }

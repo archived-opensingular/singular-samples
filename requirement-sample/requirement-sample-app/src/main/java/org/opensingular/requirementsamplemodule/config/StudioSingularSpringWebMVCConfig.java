@@ -1,12 +1,32 @@
 package org.opensingular.requirementsamplemodule.config;
 
 import org.opensingular.server.commons.config.SingularSpringWebMVCConfig;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 @EnableWebMvc
 public class StudioSingularSpringWebMVCConfig extends SingularSpringWebMVCConfig {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
     }
+
+    @Bean
+    public FreeMarkerViewResolver freeMarkerViewResolver() {
+        FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+        resolver.setCache(true);
+        resolver.setPrefix("");
+        resolver.setSuffix(".ftl");
+        return resolver;
+    }
+
+    @Bean
+    public FreeMarkerConfigurer freemarkerConfig() {
+        FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
+        freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/freemarker/view");
+        return freeMarkerConfigurer;
+    }
+
 }
