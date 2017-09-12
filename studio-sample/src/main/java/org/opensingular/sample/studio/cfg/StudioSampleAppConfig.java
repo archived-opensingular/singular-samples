@@ -3,13 +3,10 @@ package org.opensingular.sample.studio.cfg;
 import org.opensingular.lib.commons.ui.Icon;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.sample.studio.definition.*;
-import org.opensingular.studio.app.AbstractStudioAppConfig;
-import org.opensingular.studio.app.definition.StudioDefinition;
-import org.opensingular.studio.app.menu.*;
+import org.opensingular.studio.app.config.AbstractStudioAppConfig;
 import org.opensingular.studio.app.spring.StudioPersistenceConfiguration;
 import org.opensingular.studio.app.spring.StudioSpringConfiguration;
-
-import java.util.function.Consumer;
+import org.opensingular.studio.core.menu.StudioMenu;
 
 public class StudioSampleAppConfig extends AbstractStudioAppConfig {
 
