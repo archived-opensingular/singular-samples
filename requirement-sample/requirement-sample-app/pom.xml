@@ -17,12 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>org.opensingular</groupId>
-            <artifactId>singular-server-single-app</artifactId>
-            <version>1.6.9SUPERAPP-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opensingular</groupId>
-            <artifactId>singular-studio-core</artifactId>
+            <artifactId>singular-server-studio-app</artifactId>
             <version>1.6.9SUPERAPP-SNAPSHOT</version>
         </dependency>
     </dependencies>
