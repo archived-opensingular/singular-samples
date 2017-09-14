@@ -20,5 +20,14 @@ public class Metabolito extends STypeComposite<SIComposite> {
         quantidadeResiduoEncontrado = addField("quantidadeResiduoEncontrado", STypeInteger.class);
         loq.asAtr().required().label("LOQ").asAtrBootstrap().colPreference(6);
         quantidadeResiduoEncontrado.asAtr().required().label("Residuo Encontrado").asAtrBootstrap().colPreference(6);
+		// relational mapping
+        this.asSQL()
+                .table("TB_METABOLITO_AMOSTRA")
+                .tablePK("CO_SEQ_METABOLITO_AMOSTRA")
+                .addTableFK("CO_AMOSTRA_ENSAIO", Amostra.class);
+        loq.asSQL()
+                .column("QT_LOQ");
+        quantidadeResiduoEncontrado.asSQL()
+        		.column("QT_RESIDUO_ENCONTRADO");
     }
 }

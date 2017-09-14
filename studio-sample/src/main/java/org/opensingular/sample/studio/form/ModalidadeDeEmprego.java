@@ -18,5 +18,11 @@ public class ModalidadeDeEmprego extends STypeComposite<SIComposite> {
         nome = addField("nome", STypeString.class);
         nome.asAtr().label("Nome da modalidade de emprego").asAtrBootstrap().colPreference(12);
         nome.asAtr().required();
+		// relational mapping
+        this.asSQL()
+                .table("TD_MODALIDADE_EMPREGO")
+                .tablePK("CO_SEQ_MODALIDADE_EMPREGO");
+        nome.asSQL()
+                .column("NO_MODALIDADE_EMPREGO");
     }
 }

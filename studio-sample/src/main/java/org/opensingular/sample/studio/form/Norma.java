@@ -18,5 +18,11 @@ public class Norma extends STypeComposite<SIComposite> {
         nome = addField("nome", STypeString.class);
         nome.asAtr().label("Nome da norma").asAtrBootstrap().colPreference(12);
         nome.asAtr().required();
+		// relational mapping
+        this.asSQL()
+                .table("TD_NORMA")
+                .tablePK("CO_SEQ_NORMA");
+        nome.asSQL()
+                .column("NO_NORMA");
     }
 }

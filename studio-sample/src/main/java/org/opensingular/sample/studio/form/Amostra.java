@@ -1,13 +1,18 @@
 package org.opensingular.sample.studio.form;
 
-import org.opensingular.form.*;
+import javax.annotation.Nonnull;
+
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.util.SingularPredicates;
 import org.opensingular.form.view.SViewListByMasterDetail;
-
-import javax.annotation.Nonnull;
+import org.opensingular.sample.studio.entity.SimNaoConverter;
 
 @SInfoType(name = "Amostra", spackage = ResiduoPackage.class)
 public class Amostra extends STypeComposite<SIComposite> {
@@ -45,5 +50,23 @@ public class Amostra extends STypeComposite<SIComposite> {
                 .col(metabolito.loq, "LOQ")
                 .col(metabolito.quantidadeResiduoEncontrado, "Residuo Encontrado")
         );
+		// relational mapping
+        this.asSQL()
+                .table("TB_AMOSTRA_ENSAIO")
+                .tablePK("CO_SEQ_AMOSTRA_ENSAIO")
+                .addTableFK("CO_ENSAIO_ESTUDO", EstudoResiduo.class);
+        codigo.asSQL()
+				.column("DS_CODIGO_AMOSTRA");
+        dose.asSQL()
+				.column("NU_DOSE");
+        dat.asSQL()
+        			.column("QT_DAT");
+        loq.asSQL()
+                .column("QT_LOQ");
+        quantidadeResiduoEncontrado.asSQL()
+        			.column("QT_RESIDUO_ENCONTRADO");
+        possuiMetabolito.asSQL()
+				.column("ST_POSSUI_METABOLITO")
+				.columnConverter(SimNaoConverter::new);
     }
 }

@@ -18,6 +18,7 @@ public class Cultura extends STypeComposite<SIComposite> {
         nome = addField("nome", STypeString.class);
         nome.asAtr().label("Nome da cultura").asAtrBootstrap().colPreference(12);
         nome.asAtr().required();
+		// relational mapping
         this.asSQL()
                 .table("TD_CULTURA")
                 .tablePK("CO_SEQ_CULTURA");

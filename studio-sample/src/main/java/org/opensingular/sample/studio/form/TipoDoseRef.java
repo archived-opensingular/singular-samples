@@ -1,13 +1,15 @@
 package org.opensingular.sample.studio.form;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.document.SDocument;
+import org.opensingular.form.persistence.FormKey;
 import org.opensingular.form.type.ref.STypeRef;
 import org.opensingular.sample.studio.repository.TipoDoseRepository;
-
-import javax.inject.Inject;
-import java.util.List;
 
 @SInfoType(name = "TipoDoseRef", spackage = ResiduoPackage.class)
 public class TipoDoseRef extends STypeRef<SIComposite> {
@@ -16,7 +18,7 @@ public class TipoDoseRef extends STypeRef<SIComposite> {
 
     @Override
     protected String getKeyValue(SIComposite instance) {
-        return instance.getValue(TipoDose.class, c -> c.nome);
+		return FormKey.fromInstance(instance).toStringPersistence();
     }
 
     @Override

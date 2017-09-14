@@ -18,5 +18,11 @@ public class TipoDose  extends STypeComposite<SIComposite> {
         nome = addField("nome", STypeString.class);
         nome.asAtr().label("Nome do tipo de dose").asAtrBootstrap().colPreference(12);
         nome.asAtr().required();
+		// relational mapping
+        this.asSQL()
+                .table("TD_TIPO_DOSE")
+                .tablePK("CO_SEQ_TIPO_DOSE");
+        nome.asSQL()
+                .column("NO_TIPO_DOSE");
     }
 }
