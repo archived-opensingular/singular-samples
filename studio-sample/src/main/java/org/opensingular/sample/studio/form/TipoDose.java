@@ -21,7 +21,8 @@ public class TipoDose  extends STypeComposite<SIComposite> {
 		// relational mapping
         this.asSQL()
                 .table("TD_TIPO_DOSE")
-                .tablePK("CO_SEQ_TIPO_DOSE");
+                .tablePK("CO_SEQ_TIPO_DOSE")
+                .tableRefColumn("NO_TIPO_DOSE");
         nome.asSQL()
                 .column("NO_TIPO_DOSE");
     }

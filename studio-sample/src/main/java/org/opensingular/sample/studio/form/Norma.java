@@ -21,7 +21,8 @@ public class Norma extends STypeComposite<SIComposite> {
 		// relational mapping
         this.asSQL()
                 .table("TD_NORMA")
-                .tablePK("CO_SEQ_NORMA");
+                .tablePK("CO_SEQ_NORMA")
+                .tableRefColumn("NO_NORMA");
         nome.asSQL()
                 .column("NO_NORMA");
     }

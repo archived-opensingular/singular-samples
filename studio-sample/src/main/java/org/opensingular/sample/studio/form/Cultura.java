@@ -21,7 +21,8 @@ public class Cultura extends STypeComposite<SIComposite> {
 		// relational mapping
         this.asSQL()
                 .table("TD_CULTURA")
-                .tablePK("CO_SEQ_CULTURA");
+                .tablePK("CO_SEQ_CULTURA")
+                .tableRefColumn("NO_CULTURA");
         nome.asSQL()
                 .column("NO_CULTURA");
     }

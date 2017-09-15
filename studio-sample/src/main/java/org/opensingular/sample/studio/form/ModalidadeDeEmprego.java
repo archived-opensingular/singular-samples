@@ -21,7 +21,8 @@ public class ModalidadeDeEmprego extends STypeComposite<SIComposite> {
 		// relational mapping
         this.asSQL()
                 .table("TD_MODALIDADE_EMPREGO")
-                .tablePK("CO_SEQ_MODALIDADE_EMPREGO");
+                .tablePK("CO_SEQ_MODALIDADE_EMPREGO")
+                .tableRefColumn("NO_MODALIDADE_EMPREGO");
         nome.asSQL()
                 .column("NO_MODALIDADE_EMPREGO");
     }
