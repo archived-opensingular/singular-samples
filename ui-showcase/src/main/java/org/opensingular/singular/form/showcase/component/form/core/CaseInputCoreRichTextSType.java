@@ -21,7 +21,7 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeHTML;
-import org.opensingular.form.view.SViewByPortletRichText;
+import org.opensingular.form.view.SViewByRichText;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Permite a formatação de texto utilizando HTML.
  */
-@CaseItem(componentName = "HTML", subCaseName = "Editor Rico em Nova Aba", group = Group.INPUT)
+@CaseItem(componentName = "HTML", subCaseName = "Editor Rico", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "RichText")
 public class CaseInputCoreRichTextSType extends STypeComposite<SIComposite> {
 
@@ -39,7 +39,7 @@ public class CaseInputCoreRichTextSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         parecer = this.addField("parecer", STypeHTML.class);
-        parecer.setView(SViewByPortletRichText::new);
+        parecer.setView(SViewByRichText::new);
         parecer
                 .asAtr()
                 .label("Parecer Técnico");
