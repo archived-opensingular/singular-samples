@@ -65,6 +65,82 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
         this();
     }
 
+    public static void clearSessionId() {
+        sessionIdHolder.remove();
+    }
+
+    private static String getSessionId() {
+        return (sessionIdHolder.get() != null) ? sessionIdHolder.get() : "0";
+    }
+
+    public static void setSessionId(String sessionId) {
+        sessionIdHolder.set(sessionId);
+    }
+
+    private static void generateDB(String sessionId) {
+        final ClassLoader classLoader = SessionDataSource.class.getClassLoader();
+        try (//
+            FileOutputStream fos = new FileOutputStream(getDatabaseMvFile(sessionId)); //
+            InputStream initialDB = classLoader.getResourceAsStream(INITIAL_DB_RESOURCE_PATH); //
+        ) {
+
+            IOUtils.copy(initialDB, fos);
+            fos.flush();
+
+        } catch (FileNotFoundException e) {
+            LoggerFactory.getLogger(SessionDataSource.class).error("Arquivo embarcado do h2 não encontrado", e);
+        } catch (IOException e) {
+            LoggerFactory.getLogger(SessionDataSource.class).error("Erro ao gerar o arquivo do banco h2 ", e);
+        }
+    }
+
+    private static void destroyDB(String sessionId) {
+        final String filenamePrefix = String.format("singulardb_%s", sessionId);
+        final File[] files = baseDir.listFiles((File dir, String name) -> name.startsWith(filenamePrefix));
+
+        for (final File file : files) {
+            if (!file.delete()) {
+                LoggerFactory.getLogger(SessionDataSource.class)
+                        .error("O arquivo do banco de dados não pode ser deletado {}", file.getAbsolutePath());
+            }
+        }
+    }
+
+    /**
+     * Coleta de lixo: remove os arquivos de banco que não são alterados a mais de 24 horas.
+     */
+    public static void gc() {
+        final Logger logger = LoggerFactory.getLogger(SessionDataSource.class);
+
+        final long hours = 24;
+        final LocalDateTime expirationDateTime = LocalDateTime.now().minusHours(hours);
+        final ZoneId zone = ZonedDateTime.now().getZone();
+
+        final File[] files = baseDir.listFiles((dir, name) -> name.endsWith("db"));
+        for (File file : files) {
+            logger.trace("**** Verificando arquivo {}", file.getPath());
+
+            final Instant instant = Instant.ofEpochMilli(file.lastModified());
+            final LocalDateTime lastModified = LocalDateTime.ofInstant(instant, zone);
+
+            if (lastModified.isBefore(expirationDateTime)) {
+                logger.info("O Arquivo ({}) não é alterado a mais de {} horas será deletado: {}",
+                    file.getName(), hours, lastModified);
+
+                if (!file.delete())
+                    logger.info("Não foi possivel deletar o arquivo: {}", file);
+            }
+        }
+    }
+
+    private static File getDatabaseMvFile(String sessionId) {
+        return new File(baseDir, String.format("/singulardb_%s.mv.db", sessionId));//NOSONAR
+    }
+
+    private static String getDatabasePath(String sessionId) {
+        return String.format(baseDir.getAbsolutePath() + "/singulardb_%s", sessionId);
+    }
+
     @Override
     public Connection getConnection() throws SQLException {
 
@@ -72,11 +148,11 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
 
         if (sessionId != null) {
             if (!internalPoolDS.containsKey(sessionId)) {
-                getLogger().info("criou um novo Banco para a sessionId " + sessionId);
+                getLogger().info("criou um novo Banco para a sessionId {}", sessionId);
                 internalPoolDS.put(sessionId, createNewDb(sessionId));
             }
 
-            getLogger().info("Utilizou o DS da SesionID " + sessionId);
+            getLogger().info("Utilizou o DS da SesionID {}", sessionId);
 
             return internalPoolDS.get(sessionId).getConnection();
         } else {
@@ -115,80 +191,7 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
         }
         internalPoolDS.remove(sessionId);
         destroyDB(sessionId);
-        getLogger().info("Removeu o DS da SesionID " + sessionId);
-    }
-
-    public static void clearSessionId() {
-        sessionIdHolder.remove();
-    }
-    public static void setSessionId(String sessionId) {
-        sessionIdHolder.set(sessionId);
-    }
-    private static String getSessionId() {
-        return (sessionIdHolder.get() != null) ? sessionIdHolder.get() : "0";
-    }
-
-    private static void generateDB(String sessionId) {
-        final ClassLoader classLoader = SessionDataSource.class.getClassLoader();
-        try (//
-            FileOutputStream fos = new FileOutputStream(getDatabaseMvFile(sessionId)); //
-            InputStream initialDB = classLoader.getResourceAsStream(INITIAL_DB_RESOURCE_PATH); //
-        ) {
-
-            IOUtils.copy(initialDB, fos);
-            fos.flush();
-
-        } catch (FileNotFoundException e) {
-            LoggerFactory.getLogger(SessionDataSource.class).error("Arquivo embarcado do h2 não encontrado", e);
-        } catch (IOException e) {
-            LoggerFactory.getLogger(SessionDataSource.class).error("Erro ao gerar o arquivo do banco h2 ", e);
-        }
-    }
-
-    private static void destroyDB(String sessionId) {
-        final String filenamePrefix = String.format("singulardb_%s", sessionId);
-        final File[] files = baseDir.listFiles((File dir, String name) -> name.startsWith(filenamePrefix));
-
-        for (final File file : files) {
-            if (!file.delete()) {
-                LoggerFactory.getLogger(SessionDataSource.class)
-                    .error("O arquivo do banco de dados não pode ser deletado " + file.getAbsolutePath());
-            }
-        }
-    }
-
-    /**
-     * Coleta de lixo: remove os arquivos de banco que não são alterados a mais de 24 horas.
-     */
-    public static void gc() {
-        final Logger logger = LoggerFactory.getLogger(SessionDataSource.class);
-
-        final long hours = 24;
-        final LocalDateTime expirationDateTime = LocalDateTime.now().minusHours(hours);
-        final ZoneId zone = ZonedDateTime.now().getZone();
-
-        final File[] files = baseDir.listFiles((dir, name) -> name.endsWith("db"));
-        for (File file : files) {
-            logger.trace("**** Verificando arquivo {}", file.getPath());
-
-            final Instant instant = Instant.ofEpochMilli(file.lastModified());
-            final LocalDateTime lastModified = LocalDateTime.ofInstant(instant, zone);
-
-            if (lastModified.isBefore(expirationDateTime)) {
-                logger.info("O Arquivo ({}) não é alterado a mais de {} horas será deletado: {}",
-                    file.getName(), hours, lastModified);
-
-                if (!file.delete())
-                    logger.info("Não foi possivel deletar o arquivo: {}", file);
-            }
-        }
-    }
-
-    private static File getDatabaseMvFile(String sessionId) {
-        return new File(baseDir, String.format("/singulardb_%s.mv.db", sessionId));
-    }
-    private static String getDatabasePath(String sessionId) {
-        return String.format(baseDir.getAbsolutePath() + "/singulardb_%s", sessionId);
+        getLogger().info("Removeu o DS da SesionID {}", sessionId);
     }
 
 }

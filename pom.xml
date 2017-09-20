@@ -40,8 +40,9 @@
 
     <modules>
         <module>form-samples</module>
-		<module>ui-showcase</module>
+	    <module>ui-showcase</module>
         <module>crudsample</module>
+        <module>studio-sample</module>
     </modules>
 
     <build>

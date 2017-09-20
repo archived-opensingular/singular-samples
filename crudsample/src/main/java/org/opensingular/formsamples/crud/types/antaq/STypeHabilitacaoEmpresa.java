@@ -213,7 +213,7 @@ public class STypeHabilitacaoEmpresa extends STypeComposite<SIComposite> {
         enviarDeclaracaoReg = certidoesComp.addFieldBoolean("enviarDeclaracaoReg");
         enviarDeclaracaoReg
             .withRadioView()
-            .setInitialValue(false)
+                .setInitialValue(Boolean.FALSE)
             .asAtr()
             .label("Deseja enviar a Declaração de Regularidade ?")
             .required(Resolucao912Form.OBRIGATORIO)

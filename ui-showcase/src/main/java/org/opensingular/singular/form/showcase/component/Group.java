@@ -17,7 +17,7 @@
 package org.opensingular.singular.form.showcase.component;
 
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.opensingular.lib.wicket.util.resource.Icon;
+import org.opensingular.lib.commons.ui.Icon;
 
 public enum Group {
     //@formatter:off

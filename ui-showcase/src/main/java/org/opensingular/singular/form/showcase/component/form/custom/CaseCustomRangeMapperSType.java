@@ -21,6 +21,7 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
+import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -45,6 +46,6 @@ public class CaseCustomRangeMapperSType extends STypeComposite<SIComposite> {
 
         faixaIdade.asAtr().label("Faixa de Idade");
         //@destacar
-        faixaIdade.withCustomMapper(new RangeSliderMapper(valorInicial, valorFinal));
+        faixaIdade.setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, () -> new RangeSliderMapper(valorInicial, valorFinal));
     }
 }

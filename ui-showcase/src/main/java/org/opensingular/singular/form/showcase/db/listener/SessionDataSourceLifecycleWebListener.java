@@ -71,7 +71,7 @@ public class SessionDataSourceLifecycleWebListener implements HttpSessionListene
         final String sessionId = se.getSession().getId();
         final SessionDataSource sds = ApplicationContextProvider.get().getBean("dataSource", SessionDataSource.class);
 
-        getLogger().info("****** Destruiu a sessao !!!! " + sessionId);
+        getLogger().info("****** Destruiu a sessao !!!! {}", sessionId);
 
         //remove banco da sessão
         sds.removeDB(sessionId);
