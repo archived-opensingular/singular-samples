@@ -1,20 +1,19 @@
 package org.opensingular.sample.studio.definition;
 
-import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.opensingular.form.SIComposite;
-import org.opensingular.lib.wicket.util.datatable.BSDataTableBuilder;
-import org.opensingular.studio.app.definition.StudioDefinition;
+import org.opensingular.sample.studio.repository.NormaRepository;
+import org.opensingular.studio.core.definition.StudioDefinition;
 
 public class NormaStudioDefinition implements StudioDefinition {
     @Override
-    public String getRepositoryBeanName() {
-        return "normaRepository";
+    public Class<NormaRepository> getRepositoryClass() {
+        return NormaRepository.class;
     }
 
     @Override
-    public void configureDatatableColumns(BSDataTableBuilder<SIComposite, String, IColumn<SIComposite, String>> dataTableBuilder) {
-        dataTableBuilder.appendPropertyColumn("Norma", ins -> ins.getValue("nome"));
+    public void configureStudioDataTable(StudioDefinition.StudioDataTable studioDataTable) {
+        studioDataTable.add("Norma", "nome");
     }
+
 
     @Override
     public String getTitle() {

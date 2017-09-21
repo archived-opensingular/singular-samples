@@ -1,26 +1,37 @@
 package org.opensingular.sample.studio.cfg;
 
 import org.opensingular.lib.commons.ui.Icon;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.sample.studio.definition.*;
-import org.opensingular.studio.app.AbstractStudioAppConfig;
-import org.opensingular.studio.app.menu.StudioMenuItem;
+import org.opensingular.studio.app.config.AbstractStudioAppConfig;
 import org.opensingular.studio.app.spring.StudioPersistenceConfiguration;
 import org.opensingular.studio.app.spring.StudioSpringConfiguration;
-import org.opensingular.studio.core.menu.GroupMenuEntry;
 import org.opensingular.studio.core.menu.StudioMenu;
 
 public class StudioSampleAppConfig extends AbstractStudioAppConfig {
 
     @Override
     public StudioMenu getAppMenu() {
-        StudioMenu menu = new StudioMenu();
-        GroupMenuEntry toxicologia = menu.add(new GroupMenuEntry(Icon.of("fa fa-flask"), "Toxicologia"));
-        toxicologia.add(new StudioMenuItem(null, "Cultura", new CulturaStudioDefinition()));
-        toxicologia.add(new StudioMenuItem(null, "Modalidade de Emprego", new ModalidadeDeEmpregoStudioDefinition()));
-        toxicologia.add(new StudioMenuItem(null, "Norma", new NormaStudioDefinition()));
-        toxicologia.add(new StudioMenuItem(null, "Tipo de Dose", new TipoDoseStudioDefinition()));
-        toxicologia.add(new StudioMenuItem(null, "Estudo de Residuo ", new EstudoResiduoStudioDefinition()));
-        return menu;
+        return StudioMenu.Builder.newPortalMenu()
+                .addSidebarGroup(Icon.of("fa fa-flask"), "Toxicologia", toxicologia -> toxicologia
+                        .addStudioItem("Cultura", new CulturaStudioDefinition())
+                        .addStudioItem("Modalidade de Emprego", new ModalidadeDeEmpregoStudioDefinition())
+                        .addStudioItem("Norma", new NormaStudioDefinition())
+                        .addStudioItem("Tipo de Dose", new TipoDoseStudioDefinition())
+                        .addStudioItem("Estudo de Residuo", new EstudoResiduoStudioDefinition())
+                        .addHTTPEndpoint(DefaultIcons.SEARCH, "Wikipédia", "http://wikipedia.org/"))
+                .addSidebarGroup(DefaultIcons.PENCIL, "Favoritos (Sidebar)", favoritos -> favoritos
+                        .addHTTPEndpoint(DefaultIcons.GLOBE, "Globo", "http://globo.com/")
+                        .addHTTPEndpoint(DefaultIcons.SEARCH, "Google", "http://google.com/")
+                        .addHTTPEndpoint(Icon.of("fa fa-book"), "Wikipédia", "http://wikipedia.org/")
+                        .addHTTPEndpoint(DefaultIcons.DIRECTIONS, "Reddit", "http://reddit.com/"))
+                .addPortalGroup(DefaultIcons.PENCIL, "Favoritos (Portal)", favoritos -> favoritos
+                        .addHTTPEndpoint(DefaultIcons.GLOBE, "Globo", "http://globo.com/")
+                        .addHTTPEndpoint(DefaultIcons.SEARCH, "Google", "http://google.com/")
+                        .addHTTPEndpoint(Icon.of("fa fa-book"), "Wikipédia", "http://wikipedia.org/")
+                        .addHTTPEndpoint(DefaultIcons.DIRECTIONS, "Reddit", "http://reddit.com/"))
+                .addHTTPEndpoint(DefaultIcons.ROCKET, "Google", "https://www.google.com/")
+                .getStudioMenu();
     }
 
     @Override
@@ -32,4 +43,5 @@ public class StudioSampleAppConfig extends AbstractStudioAppConfig {
     public Class<? extends StudioPersistenceConfiguration> getSpringPersistenceConfig() {
         return StudioSampleSpringPersistenceConfig.class;
     }
+
 }
