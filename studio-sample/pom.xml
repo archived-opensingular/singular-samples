@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.opensingular</groupId>
         <artifactId>singular-samples</artifactId>
-        <version>1.6.9SUPERAPP-SNAPSHOT</version>
+        <version>1.6.9A-SNAPSHOT</version>
     </parent>
 
     <artifactId>studio-sample</artifactId>
@@ -56,7 +56,7 @@
         <dependency>
             <groupId>org.opensingular</groupId>
             <artifactId>singular-studio-base-app</artifactId>
-            <version>1.6.9SUPERAPP-SNAPSHOT</version>
+            <version>1.6.9A-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
