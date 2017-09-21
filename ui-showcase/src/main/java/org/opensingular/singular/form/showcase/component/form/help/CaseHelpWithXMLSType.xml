@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attrs>
+    <attr field="experienciasProfissionais.experiencia" name="singular.form.basic.help">Experiência profissional</attr>
+    <attr field="experienciasProfissionais.experiencia.fim" name="singular.form.basic.help">Data final da experiência profissional. Deixe em branco para indicar a permanência atual.</attr>
+    <attr field="experienciasProfissionais.experiencia.empresa" name="singular.form.basic.help">Nome da empresa e/ou área de atuação</attr>
+    <attr field="experienciasProfissionais.experiencia.cargo" name="singular.form.basic.help">Cargo(s) desempenhados durante o período</attr>
+    <attr field="experienciasProfissionais.experiencia.atividades" name="singular.form.basic.help"> </attr>
+</attrs>
