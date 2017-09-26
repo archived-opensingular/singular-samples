@@ -6,24 +6,21 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewByBlock;
+import org.opensingular.form.view.SViewTab;
 
 @SInfoType(spackage = RequirementsamplePackage.class, name = "Requirementsample")
 public class RequirementsampleForm extends STypeComposite<SIComposite> {
 
-    public STypeString nome;
+    public STypeDadosPessoais dadosPessoais;
 
     @Override
     protected void onLoadType(TypeBuilder tb) {
-        this.asAtr().label("Formulário de Requerimento")
-                .displayString("Requerimento de ${nome!}");
-
-        this.asAtrAnnotation().setAnnotated();
-
-        nome = this.addFieldString("nome");
-
-        this.withView(new SViewByBlock(),
-                v -> v.newBlock("Dados Pessoais").add(nome));
-
+        dadosPessoais = addField("dadosPessoais", STypeDadosPessoais.class);
+        SViewTab sViewTab = new SViewTab();
+        sViewTab.addTab(dadosPessoais);
+        this.withView(sViewTab);
+        this.asAtr().label("Formulário de Requerimento").displayString("Requerimento de ${nome!}");
     }
+
 }
 
