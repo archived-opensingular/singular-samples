@@ -9,7 +9,7 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.document.SDocument;
-import org.opensingular.form.persistence.FormKey;
+import org.opensingular.form.persistence.FormKeyRelational;
 import org.opensingular.form.persistence.relational.IntegerConverter;
 import org.opensingular.form.type.ref.STypeRef;
 import org.opensingular.sample.studio.repository.CulturaRepository;
@@ -21,7 +21,7 @@ public class CulturaRef extends STypeRef<SIComposite> {
 
 	@Override
 	protected String getKeyValue(SIComposite instance) {
-		return FormKey.fromInstance(instance).toStringPersistence();
+		return FormKeyRelational.columnValuefromInstance("CO_SEQ_CULTURA", instance).toString();
 	}
 
 	@Override
@@ -34,14 +34,11 @@ public class CulturaRef extends STypeRef<SIComposite> {
 		return culturaRepository.loadAll();
 	}
 
-    @Override
-    protected void onLoadType(@Nonnull TypeBuilder tb) {
-    		super.onLoadType(tb);
-    		// relational mapping
-    		key.asSQL()
-    				.column("CO_CULTURA")
-    				.columnConverter(IntegerConverter::new);
-    		display.asSQL()
-    				.foreignColumn("NO_CULTURA", "CO_CULTURA", Cultura.class);
-    }
+	@Override
+	protected void onLoadType(@Nonnull TypeBuilder tb) {
+		super.onLoadType(tb);
+		// relational mapping
+		key.asSQL().column("CO_CULTURA").columnConverter(IntegerConverter::new);
+		display.asSQL().foreignColumn("NO_CULTURA", "CO_CULTURA", Cultura.class);
+	}
 }
