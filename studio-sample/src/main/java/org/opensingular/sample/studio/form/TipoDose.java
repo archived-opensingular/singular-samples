@@ -1,15 +1,15 @@
 package org.opensingular.sample.studio.form;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 
-import javax.annotation.Nonnull;
-
 @SInfoType(name = "TipoDose", spackage = ResiduoPackage.class)
-public class TipoDose  extends STypeComposite<SIComposite> {
+public class TipoDose extends STypeComposite<SIComposite> {
 
     public STypeString nome;
 
@@ -21,8 +21,7 @@ public class TipoDose  extends STypeComposite<SIComposite> {
 		// relational mapping
         this.asSQL()
                 .table("TD_TIPO_DOSE")
-                .tablePK("CO_SEQ_TIPO_DOSE")
-                .tableRefColumn("NO_TIPO_DOSE");
+                .tablePK("CO_SEQ_TIPO_DOSE");
         nome.asSQL()
                 .column("NO_TIPO_DOSE");
     }

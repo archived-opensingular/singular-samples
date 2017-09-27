@@ -1,12 +1,12 @@
 package org.opensingular.sample.studio.form;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
-
-import javax.annotation.Nonnull;
 
 @SInfoType(name = "Cultura", spackage = ResiduoPackage.class)
 public class Cultura extends STypeComposite<SIComposite> {
@@ -21,8 +21,7 @@ public class Cultura extends STypeComposite<SIComposite> {
 		// relational mapping
         this.asSQL()
                 .table("TD_CULTURA")
-                .tablePK("CO_SEQ_CULTURA")
-                .tableRefColumn("NO_CULTURA");
+                .tablePK("CO_SEQ_CULTURA");
         nome.asSQL()
                 .column("NO_CULTURA");
     }
