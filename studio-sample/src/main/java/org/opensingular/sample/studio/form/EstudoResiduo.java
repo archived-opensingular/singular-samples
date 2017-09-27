@@ -69,12 +69,6 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
 		        .addTableFK("CO_MODALIDADE_EMPREGO", ModalidadeDeEmprego.class)
 		        .addTableFK("CO_TIPO_DOSE", TipoDose.class)
 		        .addTableFK("CO_NORMA", Norma.class);
-        modalidadeDeEmprego.asSQL()
-				.column("CO_MODALIDADE_EMPREGO");
-        tipoDose.asSQL()
-				.column("CO_TIPO_DOSE");
-        norma.asSQL()
-				.column("CO_NORMA");
         parteComestivel.asSQL()
 				.column("ST_PARTE_COMESTIVEL")
 				.columnConverter(SimNaoConverter::new);
