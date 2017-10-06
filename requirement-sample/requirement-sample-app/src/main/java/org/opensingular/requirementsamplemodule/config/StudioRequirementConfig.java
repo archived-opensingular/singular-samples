@@ -4,6 +4,7 @@ import org.opensingular.form.persistence.FormRespository;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.studio.core.config.StudioConfig;
 import org.opensingular.studio.core.definition.StudioDefinition;
+import org.opensingular.studio.core.definition.StudioTableDefinition;
 import org.opensingular.studio.core.menu.StudioMenu;
 
 public class StudioRequirementConfig implements StudioConfig {
@@ -27,7 +28,7 @@ public class StudioRequirementConfig implements StudioConfig {
         }
 
         @Override
-        public void configureStudioDataTable(StudioDataTable studioDataTable) {
+        public void configureStudioDataTable(StudioTableDefinition studioDataTable) {
             studioDataTable.add("Nome", "nome");
         }
 
