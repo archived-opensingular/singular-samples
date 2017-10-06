@@ -2,6 +2,7 @@ package org.opensingular.sample.studio.definition;
 
 import org.opensingular.sample.studio.repository.NormaRepository;
 import org.opensingular.studio.core.definition.StudioDefinition;
+import org.opensingular.studio.core.definition.StudioTableDefinition;
 
 public class NormaStudioDefinition implements StudioDefinition {
     @Override
@@ -10,7 +11,7 @@ public class NormaStudioDefinition implements StudioDefinition {
     }
 
     @Override
-    public void configureStudioDataTable(StudioDefinition.StudioDataTable studioDataTable) {
+    public void configureStudioDataTable(StudioTableDefinition studioDataTable) {
         studioDataTable.add("Norma", "nome");
     }
 
