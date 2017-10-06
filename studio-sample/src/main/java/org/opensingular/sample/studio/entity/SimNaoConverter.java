@@ -2,6 +2,7 @@ package org.opensingular.sample.studio.entity;
 
 import javax.persistence.AttributeConverter;
 
+import org.opensingular.form.SInstance;
 import org.opensingular.form.persistence.relational.RelationalColumnConverter;
 
 public class SimNaoConverter implements AttributeConverter<Boolean, Character>, RelationalColumnConverter {
@@ -25,16 +26,21 @@ public class SimNaoConverter implements AttributeConverter<Boolean, Character>, 
 		return null;
 	}
 
-	public Object toRelationalColumn(Object attribute) {
-		return convertToDatabaseColumn((Boolean) attribute);
+	public Object toRelationalColumn(SInstance fromInstance) {
+		Object value = fromInstance.getValue();
+		if (value == null) {
+			return null;
+		}
+		return convertToDatabaseColumn((Boolean) value);
 	}
 
-	public Object fromRelationalColumn(Object dbData) {
+	public void fromRelationalColumn(Object dbData, SInstance toInstance) {
 		if (dbData == null) {
-			return null;
+			toInstance.clearInstance();
 		} else if (dbData instanceof String) {
-			return convertToEntityAttribute(((String) dbData).charAt(0));
+			toInstance.setValue(convertToEntityAttribute(((String) dbData).charAt(0)));
+		} else {
+			toInstance.setValue(convertToEntityAttribute((Character) dbData));
 		}
-		return convertToEntityAttribute((Character) dbData);
 	}
 }
