@@ -28,6 +28,6 @@ public class Metabolito extends STypeComposite<SIComposite> {
         loq.asSQL()
                 .column("QT_LOQ");
         quantidadeResiduoEncontrado.asSQL()
-        		.column("QT_RESIDUO_ENCONTRADO");
+        			.column("QT_RESIDUO_ENCONTRADO");
     }
 }
