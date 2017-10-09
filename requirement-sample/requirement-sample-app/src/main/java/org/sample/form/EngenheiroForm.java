@@ -1,4 +1,4 @@
-package org.opensingular.requirementsamplemodule.form;
+package org.sample.form;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;

@@ -1,14 +1,12 @@
-package org.opensingular.requirementsamplemodule.form;
+package org.sample.form;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewTab;
 
-@SInfoType(spackage = RequirementsamplePackage.class, name = "Requirementsample")
+@SInfoType(spackage = RequirementsamplePackage.class, name = "Requirementsample", label = "Example Requirement Form")
 public class RequirementsampleForm extends STypeComposite<SIComposite> {
 
     public STypeDadosPessoais dadosPessoais;
