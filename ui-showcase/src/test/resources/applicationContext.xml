@@ -19,21 +19,21 @@
 
     <bean class="org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration"/>
 
-    <bean id="springServiceRegistry" class="org.opensingular.form.spring.SpringServiceRegistry"/>
+    <bean id="springServiceRegistry" class="org.opensingular.lib.commons.context.spring.SpringServiceRegistry"/>
 
     <bean id="showcaseTypeLoader" class="org.opensingular.singular.form.showcase.dao.form.ShowcaseTypeLoader"/>
 
     <bean id="showcaseStudioTypeLoader"
           class="org.opensingular.singular.form.showcase.dao.form.studio.ShowcaseStudioTypeLoader"/>
 
-    <bean id="formConfigWithoutDatabase" class="org.opensingular.form.spring.SpringFormConfig">
+    <bean id="formConfigWithoutDatabase" class="org.opensingular.lib.commons.context.spring.SpringFormConfig">
         <property name="typeLoader" ref="showcaseTypeLoader"/>
     </bean>
 
     <bean id="showcaseDatabaseDocumentFactory"
           class="org.opensingular.singular.form.showcase.view.page.form.crud.services.ShowcaseDocumentFactory"/>
 
-    <bean id="formConfigWithDatabase" class="org.opensingular.form.spring.SpringFormConfig">
+    <bean id="formConfigWithDatabase" class="org.opensingular.lib.commons.context.spring.SpringFormConfig">
         <property name="typeLoader" ref="showcaseTypeLoader"/>
         <property name="documentFactory" ref="showcaseDatabaseDocumentFactory"/>
     </bean>

@@ -20,11 +20,11 @@ import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInfoPackage;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;
-import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.gas.STypeAcondicionamentoGAS;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vegetal.STypeEnsaioControleQualidade;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.SPackageVocabularioControlado;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
+import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 
 @SInfoPackage(name = SPackageNotificacaoSimplificada.PACOTE)
 public class SPackageNotificacaoSimplificada extends SPackage {

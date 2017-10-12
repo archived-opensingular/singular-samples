@@ -21,9 +21,9 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeFarmacopeia;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
+import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 
 @SInfoType(spackage = SPackageNotificacaoSimplificada.class)
 public class STypeFarmacopeiaReferencia extends STypeComposite<SIComposite> {

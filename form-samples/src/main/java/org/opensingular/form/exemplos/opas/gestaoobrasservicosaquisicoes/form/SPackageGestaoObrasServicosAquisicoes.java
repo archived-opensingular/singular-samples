@@ -18,8 +18,8 @@ package org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.form;
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.SPackage;
-import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
+import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 
 public class SPackageGestaoObrasServicosAquisicoes extends SPackage {
 

@@ -98,10 +98,11 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Remover essa dependência de reflections em favor "org.reflections - mirror" -->
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>0.9.10</version>
+            <version>0.9.11</version>
         </dependency>
 
         <dependency>

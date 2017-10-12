@@ -24,7 +24,6 @@ import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeEmbalagemPrimaria;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeEmbalagemSecundaria;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeUnidadeMedida;
@@ -33,6 +32,7 @@ import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.attachment.STypeAttachment;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 
 import java.util.Optional;
 
