@@ -15,9 +15,9 @@
 
   <bean id="springServiceRegistry" class="org.opensingular.lib.commons.context.spring.SpringServiceRegistry" />
 
-  <bean id="documentFactory" class="org.opensingular.lib.commons.context.spring.SpringSDocumentFactoryEmpty" />
+  <bean id="documentFactory" class="org.opensingular.form.spring.SpringSDocumentFactoryEmpty" />
 
-  <bean id="formPersistence" class="org.opensingular.lib.commons.context.spring.SpringFormPersistenceInMemory">
+  <bean id="formPersistence" class="org.opensingular.form.spring.SpringFormPersistenceInMemory">
     <property name="documentFactory" ref="documentFactory" />
     <property name="typeFullName" value="br.org.anvisa.toxicologia.EstudoResiduo" />
     <property name="packageClasses">
