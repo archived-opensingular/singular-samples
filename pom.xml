@@ -512,6 +512,7 @@
         <spring.security.version>4.0.4.RELEASE</spring.security.version>
         <wicket.version>7.3.0</wicket.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
+        <singular.version>1.6.9-SNAPSHOT</singular.version>
     </properties>
 
 
