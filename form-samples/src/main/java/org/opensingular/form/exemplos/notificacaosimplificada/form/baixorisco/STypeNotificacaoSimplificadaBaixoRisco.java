@@ -24,7 +24,6 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.STypeSimple;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.common.STypeSubstanciaPopulator;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.STypeAcondicionamento;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.vocabulario.STypeFormaFarmaceutica;
@@ -34,6 +33,7 @@ import org.opensingular.form.exemplos.util.TripleConverter;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 
 @SInfoType(name = "STypeNotificacaoSimplificadaBaixoRisco", spackage = SPackageNotificacaoSimplificadaBaixoRisco.class)
 public class STypeNotificacaoSimplificadaBaixoRisco extends STypeComposite<SIComposite> {

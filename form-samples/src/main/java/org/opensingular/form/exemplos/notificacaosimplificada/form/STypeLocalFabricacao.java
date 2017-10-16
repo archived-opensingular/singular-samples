@@ -22,7 +22,6 @@ import org.opensingular.form.SInstance;
 import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.converter.SInstanceConverter;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.corporativo.PessoaJuridicaNS;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.gas.STypeNotificacaoSimplificadaGasMedicinal;
@@ -33,6 +32,7 @@ import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewSelectionByRadio;
+import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 
 import java.util.Arrays;
 

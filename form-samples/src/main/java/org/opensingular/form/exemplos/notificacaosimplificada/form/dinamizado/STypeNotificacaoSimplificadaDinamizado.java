@@ -27,7 +27,6 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.STypeSimple;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.converter.ValueToSICompositeConverter;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.FormaFarmaceuticaBasica;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.STypeAcondicionamento;
@@ -48,6 +47,7 @@ import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.SViewSearchModal;
 import org.opensingular.form.view.SViewTextArea;
+import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

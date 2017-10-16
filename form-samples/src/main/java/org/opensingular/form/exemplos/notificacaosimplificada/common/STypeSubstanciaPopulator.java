@@ -23,13 +23,13 @@ import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.STypeSimple;
-import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.Substancia;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
 import org.opensingular.form.exemplos.util.TripleConverter;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.SViewReadOnly;
+import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 
 import java.util.List;
 import java.util.function.Function;

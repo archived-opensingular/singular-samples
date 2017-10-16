@@ -21,7 +21,6 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.context.ServiceRegistryLocator;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.EtapaFabricacao;
 import org.opensingular.form.exemplos.notificacaosimplificada.domain.corporativo.PessoaJuridicaNS;
 import org.opensingular.form.exemplos.notificacaosimplificada.service.DominioService;
@@ -29,6 +28,7 @@ import org.opensingular.form.provider.STextQueryProvider;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewAutoComplete;
 import org.opensingular.form.view.SViewListByTable;
+import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 
 import static org.opensingular.form.exemplos.notificacaosimplificada.form.STypeLocalFabricacao.dominioService;
 

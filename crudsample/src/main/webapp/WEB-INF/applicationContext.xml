@@ -13,7 +13,7 @@
 
   <context:component-scan base-package="org.opensingular.formsamples.crud" />
 
-  <bean id="springServiceRegistry" class="org.opensingular.form.spring.SpringServiceRegistry" />
+  <bean id="springServiceRegistry" class="org.opensingular.lib.commons.context.spring.SpringServiceRegistry" />
 
   <bean id="documentFactory" class="org.opensingular.form.spring.SpringSDocumentFactoryEmpty" />
 
