@@ -21,7 +21,7 @@
 
     <bean class="org.opensingular.lib.context.singleton.SpringBoundedSingletonStrategy"/>
 
-    <bean id="springServiceRegistry" class="org.opensingular.form.spring.SpringServiceRegistry"/>
+    <bean id="springServiceRegistry" class="org.opensingular.lib.commons.context.spring.SpringServiceRegistry"/>
 
     <bean id="showcaseTypeLoader" class="org.opensingular.singular.form.showcase.dao.form.ShowcaseTypeLoader" />
 

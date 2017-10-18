@@ -16,11 +16,11 @@
 
 package org.opensingular.singular.form.showcase.component.form.file;
 
-import org.opensingular.form.RefService;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.document.SDocument;
 import org.opensingular.form.type.core.attachment.IAttachmentPersistenceHandler;
 import org.opensingular.form.type.core.attachment.IAttachmentRef;
+import org.opensingular.lib.commons.context.RefService;
 
 public class PageWithAttachment {
 
