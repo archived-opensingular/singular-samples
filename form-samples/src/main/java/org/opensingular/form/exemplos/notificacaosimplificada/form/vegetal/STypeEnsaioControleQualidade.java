@@ -16,7 +16,12 @@
 
 package org.opensingular.form.exemplos.notificacaosimplificada.form.vegetal;
 
-import org.opensingular.form.*;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
+import org.opensingular.form.SType;
+import org.opensingular.form.STypeAttachmentList;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.SInstanceConverter;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.SPackageNotificacaoSimplificada;
 import org.opensingular.form.exemplos.notificacaosimplificada.form.STypeFarmacopeiaReferencia;
@@ -117,7 +122,7 @@ public class STypeEnsaioControleQualidade extends STypeComposite<SIComposite> {
                 .asAtr().dependsOn(tipoReferencia)
                 .label("Justificativa").visible(i -> TipoReferencia.NAO_SE_APLICA.getId().equals(Value.of(i, idTipoReferencia)))
                 .maxLength(600)
-                .getTipo().withView(SViewTextArea::new);
+                .getType().withView(SViewTextArea::new);
 
         resultadosControleQualidade = this.addFieldListOfAttachment("resultadosControleQualidade", "resultado");
         resultadosControleQualidade

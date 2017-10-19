@@ -145,7 +145,7 @@
         <persistence strategy="none" synchronousWrites="false"/>
     </cache>
 
-    <cache name="retrieveProcessDefinitionName" eternal="false"
+    <cache name="retrieveFlowDefinitionName" eternal="false"
            maxEntriesLocalHeap="10000"
            timeToIdleSeconds="300"
            timeToLiveSeconds="600"
@@ -154,7 +154,7 @@
         <persistence strategy="none" synchronousWrites="false"/>
     </cache>
 
-    <cache name="retrieveProcessDefinitionId" eternal="false"
+    <cache name="retrieveFlowDefinitionId" eternal="false"
            maxEntriesLocalHeap="10000"
            timeToIdleSeconds="300"
            timeToLiveSeconds="600"

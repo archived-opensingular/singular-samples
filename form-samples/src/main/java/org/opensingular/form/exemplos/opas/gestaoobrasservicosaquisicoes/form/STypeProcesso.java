@@ -15,23 +15,23 @@
  */
 package org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.form;
 
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Optional;
-
-import org.opensingular.form.exemplos.emec.credenciamentoescolagoverno.form.STypeMunicipio;
-import org.opensingular.form.exemplos.emec.credenciamentoescolagoverno.form.STypeEstado;
-import org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.enums.AcaoGestaoObras;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.internal.lib.commons.xml.ConversorToolkit;
+import org.opensingular.form.exemplos.emec.credenciamentoescolagoverno.form.STypeEstado;
+import org.opensingular.form.exemplos.emec.credenciamentoescolagoverno.form.STypeMunicipio;
+import org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.enums.AcaoGestaoObras;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.internal.lib.commons.xml.ConversorToolkit;
+
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Optional;
 
 @SInfoType(spackage = SPackageGestaoObrasServicosAquisicoes.class)
 public class STypeProcesso extends STypeComposite<SIComposite> {
@@ -135,9 +135,9 @@ public class STypeProcesso extends STypeComposite<SIComposite> {
         obrasProcesso.withView(new SViewListByMasterDetail(),
             view -> view.col(obrasProcesso.getElementsType().getFieldValorSolicitado()), 
             view -> view.col(obrasProcesso.getElementsType().getFieldValorContratado()), 
-            view -> view.col("Valor Empenhado", instancia -> {
-                final BigDecimal valorEmpenhado = ((SIComposite)instancia).getFieldList(STypeObra.FIELD_VALORES_EMPENHADOS, SIComposite.class)
-                    .stream().map(instanciaComposta -> (BigDecimal) Value.of(instanciaComposta, STypeValorEmpenhadoObra.FIELD_VALOR_EMPENHADO))
+            view -> view.col("Valor Empenhado", instance -> {
+                final BigDecimal valorEmpenhado = ((SIComposite)instance).getFieldList(STypeObra.FIELD_VALORES_EMPENHADOS, SIComposite.class)
+                    .stream().map(compositeInstance -> (BigDecimal) Value.of(compositeInstance, STypeValorEmpenhadoObra.FIELD_VALOR_EMPENHADO))
                     .filter(valor -> valor != null)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
                 
