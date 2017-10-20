@@ -49,14 +49,14 @@ public class PageWithAnnotation {
         /**
          * Anotações são armazenadas junto a cada campo onde a mesma está habilitada.
          */
-        SInstance instanciaCampoCliente = pedido.getDescendant(pacote.cliente);
-        instanciaCampoCliente.asAtrAnnotation().annotation();
+        SInstance instanceFieldClient = pedido.getDescendant(pacote.cliente);
+        instanceFieldClient.asAtrAnnotation().annotation();
 
         /**
          * As anotações podem ser persistidas separadamente ou de forma conjunta.
          */
         //TODO explicar melhor como funciona a persistencia de anotação
-        instanciaCampoCliente.getDocument().getDocumentAnnotations().persistentAnnotationsClassified();
+        instanceFieldClient.getDocument().getDocumentAnnotations().persistentAnnotationsClassified();
     }
 
 }

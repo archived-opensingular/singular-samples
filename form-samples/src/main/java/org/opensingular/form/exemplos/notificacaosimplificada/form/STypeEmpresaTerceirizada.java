@@ -47,7 +47,7 @@ public class STypeEmpresaTerceirizada extends STypeComposite<SIComposite> {
                 .asAtr().label("Empresa")
                 .displayString("${razaoSocial} - ${endereco}")
 
-                .getTipo().withView(SViewAutoComplete::new);
+                .getType().withView(SViewAutoComplete::new);
 
         empresa.autocompleteOf(PessoaJuridicaNS.class)
                 .id(PessoaJuridicaNS::getCod)

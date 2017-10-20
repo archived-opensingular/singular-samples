@@ -17,7 +17,13 @@
 package org.opensingular.singular.form.showcase.view.page.prototype;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.opensingular.form.*;
+import org.opensingular.form.SDictionary;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
+import org.opensingular.form.SInstance;
+import org.opensingular.form.SType;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
 import org.opensingular.form.converter.SInstanceConverter;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeBoolean;
@@ -44,8 +50,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 @SInfoType(spackage = SPackagePrototype.class, name = "metaForm")
 public class STypePrototype extends STypeComposite<SIComposite> {
@@ -117,7 +121,7 @@ public class STypePrototype extends STypeComposite<SIComposite> {
         fieldType.addFieldBoolean(IS_LIST)
                 .withRadioView()
                 .withDefaultValueIfNull(Boolean.FALSE)
-                .asAtr().label("Múltiplo").getTipo().asAtrBootstrap().colPreference(2);
+                .asAtr().label("Múltiplo").getType().asAtrBootstrap().colPreference(2);
 
         addAttributeFields(fieldType, type);
 
@@ -159,14 +163,14 @@ public class STypePrototype extends STypeComposite<SIComposite> {
     private void addAttributeFields(STypeComposite<SIComposite> fieldType, STypeString type) {
         tamanhoCampo = fieldType.addFieldInteger(TAMANHO_CAMPO);
         tamanhoCampo.asAtr().label("Colunas").maxLength(12)
-                .getTipo().asAtrBootstrap().colPreference(2);
+                .getType().asAtrBootstrap().colPreference(2);
 
         obrigatorio = fieldType.addFieldBoolean(CAMPO_OBRIGATORIO);
-        obrigatorio.withRadioView().asAtr().label("Obrigatório").getTipo().asAtrBootstrap().colPreference(2);
+        obrigatorio.withRadioView().asAtr().label("Obrigatório").getType().asAtrBootstrap().colPreference(2);
 
         fieldType.addFieldInteger(TAMANHO_MAXIMO)
                 .asAtrBootstrap().colPreference(2)
-                .getTipo().asAtr().label("Tamanho Máximo")
+                .getType().asAtr().label("Tamanho Máximo")
                 .visible(
                         (instance) -> {
                             Optional<String> optType = instance.findNearestValue(type, String.class);
@@ -183,13 +187,13 @@ public class STypePrototype extends STypeComposite<SIComposite> {
 
         fieldType.addFieldInteger(TAMANHO_INTEIRO_MAXIMO)
                 .asAtrBootstrap().colPreference(2)
-                .getTipo().asAtr()
+                .getType().asAtr()
                 .label("Tamanho Inteiro")
                 .visible(ifDecimalPredicate);
 
         fieldType.addFieldInteger(TAMANHO_DECIMAL_MAXIMO)
                 .asAtrBootstrap().colPreference(2)
-                .getTipo().asAtr()
+                .getType().asAtr()
                 .label("Tamanho Decimal")
                 .visible(ifDecimalPredicate);
     }
@@ -198,7 +202,7 @@ public class STypePrototype extends STypeComposite<SIComposite> {
         STypeList<STypeComposite<SIComposite>, SIComposite> fields =
                 fieldType.addFieldListOf(FIELDS, fieldType);
         fields.asAtr().label("Campos")
-                .getTipo().withView(SViewListByMasterDetail::new)
+                .getType().withView(SViewListByMasterDetail::new)
                 .asAtr().exists(
                         (instance) -> {
                             SInstance t = instance.getParent().getField("type");

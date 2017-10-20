@@ -23,7 +23,13 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.util.lang.Bytes;
-import org.opensingular.form.*;
+import org.opensingular.form.PackageBuilder;
+import org.opensingular.form.SDictionary;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SIList;
+import org.opensingular.form.SType;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
 import org.opensingular.form.context.SFormConfig;
 import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.wicket.component.SingularFormWicket;
@@ -158,7 +164,7 @@ class TypeBuilder {
 
     private SType<?> addSimpleOrCompositeFieldType(STypeComposite<? extends SIComposite> root, SType<?> typeOfField, String name, String genName) {
         return root.addField(genName, typeOfField)
-                .asAtr().label(name).getTipo();
+                .asAtr().label(name).getType();
     }
 
     private String generateJavaIdentifier(String name) {
@@ -179,9 +185,9 @@ class TypeBuilder {
 
     }
 
-    private <T> void addAttributeIfExists(T valor, Consumer<T> attributeConsumer) {
-        if (valor != null) {
-            attributeConsumer.accept(valor);
+    private <T> void addAttributeIfExists(T value, Consumer<T> attributeConsumer) {
+        if (value != null) {
+            attributeConsumer.accept(value);
         }
     }
 

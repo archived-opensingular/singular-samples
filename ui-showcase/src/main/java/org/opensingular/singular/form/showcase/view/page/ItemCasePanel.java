@@ -16,23 +16,23 @@
 
 package org.opensingular.singular.form.showcase.view.page;
 
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.opensingular.form.SInstance;
-import org.opensingular.form.wicket.util.ProcessadorCodigoFonte;
+import org.opensingular.form.wicket.util.SourceCodeProcessor;
 import org.opensingular.lib.wicket.util.tab.BSTabPanel;
 import org.opensingular.singular.form.showcase.component.CaseBase;
 import org.opensingular.singular.form.showcase.component.ResourceRef;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 public abstract class ItemCasePanel<T extends CaseBase> extends Panel {
 
@@ -57,7 +57,7 @@ public abstract class ItemCasePanel<T extends CaseBase> extends Panel {
 
         WebMarkupContainer headerContainer = new WebMarkupContainer("header");
         final Optional<ResourceRef> mainSource = caseBase.getObject().getMainSourceResourceName();
-        final ProcessadorCodigoFonte pcf = new ProcessadorCodigoFonte(mainSource.map(ResourceRef::getContent).orElse(""));
+        final SourceCodeProcessor pcf = new SourceCodeProcessor(mainSource.map(ResourceRef::getContent).orElse(""));
         String description = caseBase.getObject().getDescriptionHtml()
                 .orElse(pcf.getJavadoc());
 
