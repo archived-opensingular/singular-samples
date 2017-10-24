@@ -23,11 +23,6 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.SPackage;
 import org.opensingular.form.SType;
 import org.opensingular.form.exemplos.emec.credenciamentoescolagoverno.form.STypeCredenciamentoEscolaGoverno;
-import org.opensingular.form.exemplos.notificacaosimplificada.form.baixorisco.STypeNotificacaoSimplificadaBaixoRisco;
-import org.opensingular.form.exemplos.notificacaosimplificada.form.dinamizado.STypeNotificacaoSimplificadaDinamizado;
-import org.opensingular.form.exemplos.notificacaosimplificada.form.gas.STypeNotificacaoSimplificadaGasMedicinal;
-import org.opensingular.form.exemplos.notificacaosimplificada.form.habilitacao.STypeHabilitacaoEmpresa;
-import org.opensingular.form.exemplos.notificacaosimplificada.form.vegetal.STypeNotificacaoSimplificadaFitoterapico;
 import org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.form.STypeGestaoObras;
 import org.opensingular.form.spring.SpringTypeLoader;
 import org.opensingular.singular.form.showcase.component.CaseBase;
@@ -58,11 +53,6 @@ public class ShowcaseTypeLoader extends SpringTypeLoader<String> {
     private void init() {
         add(STypeCurriculo.class, ShowCaseType.FORM);
         add(STypeExample.class, ShowCaseType.FORM);
-        add(STypeNotificacaoSimplificadaDinamizado.class, ShowCaseType.FORM);
-        add(STypeNotificacaoSimplificadaGasMedicinal.class, ShowCaseType.FORM);
-        add(STypeNotificacaoSimplificadaFitoterapico.class, ShowCaseType.FORM);
-        add(STypeNotificacaoSimplificadaBaixoRisco.class, ShowCaseType.FORM);
-        add(STypeHabilitacaoEmpresa.class, ShowCaseType.FORM);
         add(STypeCredenciamentoEscolaGoverno.class, ShowCaseType.FORM);
         add(STypeGestaoObras.class, ShowCaseType.FORM);
         for (ShowCaseGroup group : showCaseTable.getGroups()) {
