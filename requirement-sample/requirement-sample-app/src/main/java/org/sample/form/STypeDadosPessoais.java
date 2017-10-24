@@ -38,7 +38,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentos.withMaximumSizeOf(10);
         documentos.withMiniumSizeOf(1);
         documentos.asAtr().dependsOn(nomeCompleto);
-        documentos.asAtr().required(t -> !t.findNearest(nomeCompleto).map(SInstance::isEmptyOfData).orElse(true));
+        documentos.asAtr().required(t -> !t.findNearest(nomeCompleto).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
 
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
