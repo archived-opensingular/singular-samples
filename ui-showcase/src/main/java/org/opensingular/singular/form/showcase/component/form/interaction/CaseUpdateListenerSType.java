@@ -57,9 +57,9 @@ public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
     private void pesquisarLogradouro(SIString instance) {
         final Optional<SIString> cepField = instance.findNearest(cep);
         cepField.ifPresent(c -> {
-            if (c.getValue().equalsIgnoreCase("70863520")) {
+            if ("70863520".equalsIgnoreCase(c.getValue())) {
                 instance.setValue("CLN 211 Bloco 'B' Subsolo");
-            } else if (c.getValue().equalsIgnoreCase("70070120")) {
+            } else if ("70070120".equalsIgnoreCase(c.getValue())) {
                 instance.setValue("SBS - Qd. 02 - Bl. Q - Centro Empresarial João Carlos Saad 12° andar");
             } else {
                 instance.setValue("Não encontrado");
