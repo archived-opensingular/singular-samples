@@ -58,17 +58,16 @@ public class STypePrototype extends STypeComposite<SIComposite> {
     public STypeString name;
     public STypeList<STypeComposite<SIComposite>, SIComposite> childFields;
 
-    public static final String  CHILDREN = "childFields",
-            NAME                      = "name",
-            TYPE                      = "type",
-            IS_LIST                   = "isList",
-            TAMANHO_CAMPO             = "tamanhoCampo",
-            CAMPO_OBRIGATORIO         = "obrigatorio",
-            TAMANHO_MAXIMO            = "tamanhoMaximo",
-            TAMANHO_INTEIRO_MAXIMO    = "tamanhoInteiroMaximo",
-            TAMANHO_DECIMAL_MAXIMO    = "tamanhoDecimalMaximo",
-            FIELDS                    = "fields";
-    public static final String NAME_FIELD = "name";
+    public static final String CHILDREN_FIELD = "childFields",
+            NAME_FIELD = "name",
+            TYPE = "type",
+            IS_LIST = "isList",
+            TAMANHO_CAMPO = "tamanhoCampo",
+            CAMPO_OBRIGATORIO = "obrigatorio",
+            TAMANHO_MAXIMO = "tamanhoMaximo",
+            TAMANHO_INTEIRO_MAXIMO = "tamanhoInteiroMaximo",
+            TAMANHO_DECIMAL_MAXIMO = "tamanhoDecimalMaximo",
+            FIELDS = "fields";
 
     private STypeInteger tamanhoCampo;
     private STypeBoolean obrigatorio;
@@ -80,13 +79,13 @@ public class STypePrototype extends STypeComposite<SIComposite> {
         name.asAtr().label("Nome")
                 .asAtr().required();
 
-        childFields = this.addFieldListOfComposite(CHILDREN, "field");
+        childFields = this.addFieldListOfComposite(CHILDREN_FIELD, "field");
 
         childFields.asAtr().label("Campos");
 
         STypeComposite<SIComposite> fieldType = childFields.getElementsType();
 
-        STypeString nome = fieldType.addFieldString(NAME);
+        STypeString nome = fieldType.addFieldString(NAME_FIELD);
         nome.asAtr().label("Nome")
                 .asAtr().required()
                 .asAtrBootstrap().colPreference(3);
@@ -126,10 +125,10 @@ public class STypePrototype extends STypeComposite<SIComposite> {
         addAttributeFields(fieldType, type);
 
         childFields.withView(new SViewListByMasterDetail()
-                        .col(nome)
-                        .col(type)
-                        .col(tamanhoCampo)
-                        .col(obrigatorio)
+                .col(nome)
+                .col(type)
+                .col(tamanhoCampo)
+                .col(obrigatorio)
         );
 
         addFields(fieldType, type);
@@ -204,10 +203,10 @@ public class STypePrototype extends STypeComposite<SIComposite> {
         fields.asAtr().label("Campos")
                 .getType().withView(SViewListByMasterDetail::new)
                 .asAtr().exists(
-                        (instance) -> {
-                            SInstance t = instance.getParent().getField("type");
-                            return Objects.equals(t.getValue(), typeName(STypeComposite.class));
-                        })
+                (instance) -> {
+                    SInstance t = instance.getParent().getField("type");
+                    return Objects.equals(t.getValue(), typeName(STypeComposite.class));
+                })
                 .asAtr().dependsOn(type);
     }
 }

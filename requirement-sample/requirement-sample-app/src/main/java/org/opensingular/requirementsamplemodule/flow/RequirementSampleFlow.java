@@ -29,15 +29,15 @@ import org.opensingular.server.commons.flow.builder.RequirementFlowDefinition;
 
 import javax.annotation.Nonnull;
 
-import static org.opensingular.requirementsamplemodule.flow.RequirementsampleFlow.RequirementsampleTasks.ANALISAR;
-import static org.opensingular.requirementsamplemodule.flow.RequirementsampleFlow.RequirementsampleTasks.APROVADO;
-import static org.opensingular.requirementsamplemodule.flow.RequirementsampleFlow.RequirementsampleTasks.REPROVADO;
+import static org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow.RequirementSampleTasks.ANALISAR;
+import static org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow.RequirementSampleTasks.APROVADO;
+import static org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow.RequirementSampleTasks.REPROVADO;
 
 
 @DefinitionInfo("requirementsample")
-public class RequirementsampleFlow extends RequirementFlowDefinition<FlowInstance> {
+public class RequirementSampleFlow extends RequirementFlowDefinition<FlowInstance> {
 
-    public enum RequirementsampleTasks implements ITaskDefinition {
+    public enum RequirementSampleTasks implements ITaskDefinition {
 
         ANALISAR("Analisar"),
         APROVADO("Aprovado"),
@@ -45,7 +45,7 @@ public class RequirementsampleFlow extends RequirementFlowDefinition<FlowInstanc
 
         private String taskName;
 
-        RequirementsampleTasks(String taskName) {
+        RequirementSampleTasks(String taskName) {
             this.taskName = taskName;
         }
 
@@ -55,9 +55,9 @@ public class RequirementsampleFlow extends RequirementFlowDefinition<FlowInstanc
         }
     }
 
-    public RequirementsampleFlow() {
+    public RequirementSampleFlow() {
         super(FlowInstance.class);
-        this.setName(RequirementsampleModule.REQUIREMENTSAMPLE, "Requirementsample");
+        this.setName(RequirementsampleModule.REQUIREMENT_SAMPLE, "Requirementsample");
 
     }
 

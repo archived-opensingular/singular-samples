@@ -114,7 +114,7 @@ class TypeBuilder {
 
     public STypeComposite<? extends SIComposite> createRootType() {
         STypeComposite<?> root = pkg.createCompositeType("root");
-        SIList children = (SIList) metaInformation.getField(STypePrototype.CHILDREN);
+        SIList children = (SIList) metaInformation.getField(STypePrototype.CHILDREN_FIELD);
         root.asAtr().label(metaInformation.getValueString(STypePrototype.NAME));
         addChildFieldsIfAny(root, children);
         return root;

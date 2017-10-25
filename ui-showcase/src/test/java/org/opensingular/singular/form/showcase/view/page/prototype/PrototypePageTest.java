@@ -25,7 +25,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.wicket.markup.html.link.AbstractLink;
-import org.apache.wicket.util.string.StringValue;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -78,7 +77,7 @@ public class PrototypePageTest {
         @Test
         public void rendersPrototypeOnScreen() {
 
-            SIList campo = (SIList) currentInstance.getField(STypePrototype.CHILDREN);
+            SIList campo = (SIList) currentInstance.getField(STypePrototype.CHILDREN_FIELD);
             assertThat(campo).isNotNull();
 
             SIComposite field = (SIComposite) campo.addNew();
