@@ -19,7 +19,7 @@ package org.opensingular.singular.form.showcase.wicket;
 import java.io.Serializable;
 
 public class UIAdminWicketFilterContext implements Serializable {
-    private static final long serialVersionUID = 8275388368722905119L;
+    private static final long serialVersionUID = 8275388361722905119L;
 
     private String adminWicketFilterContext;
 
