@@ -33,7 +33,8 @@ public class ItemCodePanel extends Panel {
                 .add(WicketUtils.$b.classAppender(getSyntaxHighlighterConfig(pcf.getLinesToBeHighlighted(), extension))));
     }
 
-    private String getSyntaxHighlighterConfig(List<Integer> linesToBeHighlighted, String extension) {
+    private String getSyntaxHighlighterConfig(List<Integer> linesToBeHighlighted, String extensionParam) {
+        String extension = extensionParam;
         StringBuilder config = new StringBuilder();
         if ("xsd".equalsIgnoreCase(extension)) {
             extension = "xml";
