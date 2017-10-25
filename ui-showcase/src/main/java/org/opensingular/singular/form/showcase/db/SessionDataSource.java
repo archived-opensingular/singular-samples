@@ -187,6 +187,7 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
                 basicDataSource.close();
             }
         } catch (SQLException e) {
+            getLogger().error(e.getMessage(), e);
             getLogger().error("Erro ao fechar a conexão com o banco");
         }
         internalPoolDS.remove(sessionId);
