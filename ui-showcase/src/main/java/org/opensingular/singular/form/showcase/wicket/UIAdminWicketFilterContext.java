@@ -30,7 +30,7 @@ public class UIAdminWicketFilterContext implements Serializable {
     public UIAdminWicketFilterContext(String adminWicketFilterContext) {
         if (adminWicketFilterContext == null
                 || adminWicketFilterContext.isEmpty()
-                || adminWicketFilterContext.equals("/")) {
+                || "/".equals(adminWicketFilterContext)) {
             this.adminWicketFilterContext = "";
         } else if (!adminWicketFilterContext.startsWith("/")) {
             this.adminWicketFilterContext = "/".concat(adminWicketFilterContext);
