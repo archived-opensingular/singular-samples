@@ -82,7 +82,7 @@ public class PrototypePageTest {
 
             SIComposite field = (SIComposite) campo.addNew();
 
-            field.getField(STypePrototype.NAME).setValue("Abacate");
+            field.getField(STypePrototype.NAME_FIELD).setValue("Abacate");
 
             startPage();
 
