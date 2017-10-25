@@ -96,6 +96,7 @@ public class ShowCaseTable {
                 .findFirst().orElse(null);
     }
 
+    @SuppressWarnings("unchecked")
     private void addGroup(Group groupEnum) {
         final ShowCaseGroup group = addGroup(groupEnum.getName(), groupEnum.getIcone(), groupEnum.getTipo());
 
@@ -105,7 +106,7 @@ public class ShowCaseTable {
         }
         for (Class<?> caseClass : classes) {
             final CaseItem caseItem = caseClass.getAnnotation(CaseItem.class);
-            CaseBase caseBase = null;
+            CaseBase caseBase;
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
                 caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
             } else {
@@ -122,13 +123,11 @@ public class ShowCaseTable {
                 } else {
                     resourceRef = ResourceRef.forClassWithExtension(resource.value(), resource.extension());
                 }
-                if (caseBase != null && resourceRef.isPresent()) {
+                if (resourceRef.isPresent()) {
                     caseBase.getAditionalSources().add(resourceRef.get());
                 }
             }
-            if (caseBase != null) {
-                group.addCase(caseBase);
-            }
+            group.addCase(caseBase);
         }
     }
 
