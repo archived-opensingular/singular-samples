@@ -14,8 +14,6 @@
    						   http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 
-    <bean class="org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration"/>
-
     <!-- DATA SOURCE CONFIGURATION -->
     <bean name="dataSource" class="org.opensingular.singular.form.showcase.db.SessionDataSource">
 	        <property name="driverClassName" value="org.h2.Driver"/>

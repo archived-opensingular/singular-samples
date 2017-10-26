@@ -33,12 +33,12 @@ import javax.inject.Inject;
 public class CRUDSamplePage extends SingularAdminTemplate {
 
     @Inject
-    private SpringFormPersistenceInMemory<EstudoResiduoForm, SIComposite> formPersistence;
+    private SpringFormPersistenceInMemory<EstudoResiduoForm, SIComposite> formRequirement;
 
     public CRUDSamplePage() {
         Form<Void> form = new Form<>("form");
         form.setMultiPart(true);
-        form.add(new SingularStudioSimpleCRUDPanel<EstudoResiduoForm, SIComposite>("crud", formPersistence) {
+        form.add(new SingularStudioSimpleCRUDPanel<EstudoResiduoForm, SIComposite>("crud", formRequirement) {
             @Override
             protected void buildListTable(BSDataTableBuilder<SIComposite, String, IColumn<SIComposite, String>> dataTableBuilder) {
                 dataTableBuilder

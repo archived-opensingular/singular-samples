@@ -18,6 +18,7 @@
 
 package org.opensingular.sample.studio.entity;
 
+import javax.annotation.Nullable;
 import javax.persistence.AttributeConverter;
 
 
@@ -34,6 +35,7 @@ public class SimNaoConverter implements AttributeConverter<Boolean, Character> {
         }
     }
 
+    @Nullable
     @Override
     public Boolean convertToEntityAttribute(Character dbData) {
         if (dbData == null) {

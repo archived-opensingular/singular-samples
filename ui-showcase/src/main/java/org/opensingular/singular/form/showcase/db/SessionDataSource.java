@@ -15,6 +15,15 @@
  */
 package org.opensingular.singular.form.showcase.db;
 
+import com.google.common.io.Files;
+import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.opensingular.lib.commons.util.Loggable;
+import org.opensingular.singular.form.showcase.db.job.DBCollectorJob;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -29,16 +38,6 @@ import java.time.ZonedDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.commons.dbcp.BasicDataSource;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.opensingular.lib.commons.util.Loggable;
-import org.opensingular.singular.form.showcase.db.job.DBCollectorJob;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.io.Files;
-
 /**
  * Datasource capaz de criar um pool de datasources para cada sessão http.<br>
  * Os banco são criado dentro da uma pasta "db" e ao encerrar a sessão serão
@@ -47,15 +46,14 @@ import com.google.common.io.Files;
  * Existe o job {@link DBCollectorJob} que é executado a cada 12h, que verifica
  * se o arquivo do banco tem mais que 24h de criado, caso seja positivo, o
  * arquivo é deletado.
- * 
  */
 public class SessionDataSource extends BasicDataSource implements Loggable {
 
-    private static final String                 INITIAL_DB_RESOURCE_PATH = "db/singulardb.mv.db";
+    private static final String INITIAL_DB_RESOURCE_PATH = "db/singulardb.mv.db";
 
-    private static final File                   baseDir                  = Files.createTempDir();
-    private static Map<String, BasicDataSource> internalPoolDS           = new ConcurrentHashMap<String, BasicDataSource>();
-    private static ThreadLocal<String>          sessionIdHolder          = new ThreadLocal<String>();
+    private static final File baseDir = Files.createTempDir();
+    private static Map<String, BasicDataSource> internalPoolDS = new ConcurrentHashMap<String, BasicDataSource>();
+    private static ThreadLocal<String> sessionIdHolder = new ThreadLocal<String>();
 
     public SessionDataSource() {
         super();
@@ -80,8 +78,8 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
     private static void generateDB(String sessionId) {
         final ClassLoader classLoader = SessionDataSource.class.getClassLoader();
         try (//
-            FileOutputStream fos = new FileOutputStream(getDatabaseMvFile(sessionId)); //
-            InputStream initialDB = classLoader.getResourceAsStream(INITIAL_DB_RESOURCE_PATH); //
+             FileOutputStream fos = new FileOutputStream(getDatabaseMvFile(sessionId)); //
+             InputStream initialDB = classLoader.getResourceAsStream(INITIAL_DB_RESOURCE_PATH); //
         ) {
 
             IOUtils.copy(initialDB, fos);
@@ -125,7 +123,7 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
 
             if (lastModified.isBefore(expirationDateTime)) {
                 logger.info("O Arquivo ({}) não é alterado a mais de {} horas será deletado: {}",
-                    file.getName(), hours, lastModified);
+                        file.getName(), hours, lastModified);
 
                 if (!file.delete())
                     logger.info("Não foi possivel deletar o arquivo: {}", file);
@@ -138,7 +136,7 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
     }
 
     private static String getDatabasePath(String sessionId) {
-        return String.format(baseDir.getAbsolutePath() + "/singulardb_%s", sessionId);
+        return String.format("%s/singulardb_%s", baseDir.getAbsolutePath(), sessionId);
     }
 
     @Override
@@ -187,6 +185,7 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
                 basicDataSource.close();
             }
         } catch (SQLException e) {
+            getLogger().error(e.getMessage(), e);
             getLogger().error("Erro ao fechar a conexão com o banco");
         }
         internalPoolDS.remove(sessionId);

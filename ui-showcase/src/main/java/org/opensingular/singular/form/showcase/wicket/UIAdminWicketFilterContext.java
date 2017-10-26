@@ -19,7 +19,7 @@ package org.opensingular.singular.form.showcase.wicket;
 import java.io.Serializable;
 
 public class UIAdminWicketFilterContext implements Serializable {
-    private static final long serialVersionUID = 8275388368722905119L;
+    private static final long serialVersionUID = 8275318311112905119L;
 
     private String adminWicketFilterContext;
 
@@ -30,7 +30,7 @@ public class UIAdminWicketFilterContext implements Serializable {
     public UIAdminWicketFilterContext(String adminWicketFilterContext) {
         if (adminWicketFilterContext == null
                 || adminWicketFilterContext.isEmpty()
-                || adminWicketFilterContext.equals("/")) {
+                || "/".equals(adminWicketFilterContext)) {
             this.adminWicketFilterContext = "";
         } else if (!adminWicketFilterContext.startsWith("/")) {
             this.adminWicketFilterContext = "/".concat(adminWicketFilterContext);
