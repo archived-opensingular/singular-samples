@@ -1,7 +1,15 @@
 package org.sample.form;
 
-import org.opensingular.form.*;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
+import org.opensingular.form.SInstance;
+import org.opensingular.form.STypeAttachmentList;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.SIBoolean;
+import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.core.attachment.STypeAttachment;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewByBlock;
 
@@ -10,11 +18,13 @@ import javax.annotation.Nonnull;
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
-    public STypeString           nomeCompleto;
-    public STypeString           nomeMae;
-    public STypeString           nomePai;
+    public STypeString nomeCompleto;
+    public STypeString nomeMae;
+    public STypeString nomePai;
     public STypeTelefoneNacional telefone;
     public STypeAttachmentList documentos;
+    public STypeAttachment fotoDoCachorro;
+    public STypeBoolean naoTenhoFotoCachorro;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -22,6 +32,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         this.asAtrAnnotation().setAnnotated();
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
+        nomeCompleto.asAtr().enabled(false);
         nomeMae = addField("nomeMae", STypeString.class);
         nomePai = addField("nomePai", STypeString.class);
         telefone = addField("telefone", STypeTelefoneNacional.class);
@@ -39,6 +50,13 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentos.withMiniumSizeOf(1);
         documentos.asAtr().dependsOn(nomeCompleto);
         documentos.asAtr().required(t -> !t.findNearest(nomeCompleto).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
+
+        naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
+        naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
+        fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
+        fotoDoCachorro.asAtr().label("Foto do cachorro");
+        fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
+        fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
