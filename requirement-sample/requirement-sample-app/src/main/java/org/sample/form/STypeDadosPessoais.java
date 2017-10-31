@@ -23,8 +23,9 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeString nomePai;
     public STypeTelefoneNacional telefone;
     public STypeAttachmentList documentos;
-    public STypeAttachment fotoDoCachorro;
     public STypeBoolean naoTenhoFotoCachorro;
+    public STypeAttachment fotoDoCachorro;
+    public STypeAttachmentList documentacaoComprobatoria;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -53,11 +54,17 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
         naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
+
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
         fotoDoCachorro.asAtr().label("Foto do cachorro");
         fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
         fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
+        documentacaoComprobatoria = this.addFieldListOfAttachment("documentacaoComprobatoria", "documento");
+        documentacaoComprobatoria.asAtr().label("Documentação comprobatória de que não possui cachorro");
+        documentacaoComprobatoria.asAtr().dependsOn(naoTenhoFotoCachorro);
+        documentacaoComprobatoria.getElementsType().asAtr().allowedFileTypes("pdf");
+        documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(nomeCompleto)
