@@ -18,6 +18,7 @@
 
 package org.opensingular.sample.studio.entity;
 
+import javax.annotation.Nullable;
 import javax.persistence.AttributeConverter;
 
 import org.opensingular.form.SInstance;
@@ -31,6 +32,7 @@ public class SimNaoConverter implements AttributeConverter<Boolean, Character>, 
 		return attribute ? 'S' : 'N';
 	}
 
+    @Nullable
 	public Boolean convertToEntityAttribute(Character dbData) {
 		if (dbData == null) {
 			return null;

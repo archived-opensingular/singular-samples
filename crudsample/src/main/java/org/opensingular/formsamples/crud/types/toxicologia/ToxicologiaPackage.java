@@ -27,7 +27,7 @@ import javax.annotation.Nonnull;
 @SInfoPackage(name = "br.org.anvisa.toxicologia")
 public class ToxicologiaPackage extends SPackage {
 
-    public static Boolean OBRIGATORIO = Boolean.TRUE;
+    public static final Boolean OBRIGATORIO = Boolean.TRUE;
 
     @Override
     protected void onLoadPackage(@Nonnull PackageBuilder pb) {

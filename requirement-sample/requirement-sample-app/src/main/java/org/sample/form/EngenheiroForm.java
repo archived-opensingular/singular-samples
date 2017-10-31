@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 @SInfoType(name = "Engenheiro", spackage = RequirementsamplePackage.class)
 public class EngenheiroForm extends STypeComposite<SIComposite> {
 
-    private STypeString nome;
+    public STypeString nome;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {

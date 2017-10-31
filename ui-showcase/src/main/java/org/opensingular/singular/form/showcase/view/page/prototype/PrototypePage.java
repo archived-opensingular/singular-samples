@@ -95,7 +95,7 @@ public class PrototypePage extends ShowcaseTemplate {
             @Override
             protected void onAction(AjaxRequestTarget target, Form<?> form) {
                 SIComposite instance = (SIComposite) singularFormPanel.getInstance();
-                prototype.setName(instance.getValueString(STypePrototype.NAME));
+                prototype.setName(instance.getValueString(STypePrototype.NAME_FIELD));
                 prototype.setXml(getXmlFromInstance(instance));
                 prototypeDAO.save(prototype);
                 addToastrSuccessMessage("message.save.success");

@@ -272,14 +272,14 @@ public class CrudPage extends ShowcaseTemplate implements SingularWicketContaine
 
         final String xmlPersistencia = model.getObject().getXml();
         final String xmlTabulado = getXmlTabulado(xmlPersistencia);
-        final String definicao = getDefinicao(model.getObject().getType());
+        final String definition = getDefinition(model.getObject().getType());
         final BSTabPanel xmlTabs = new BSTabPanel("xmlTabs");
 
         final Function<String, BOutputPanel> creator = val -> new BOutputPanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue(val));
 
         xmlTabs.addTab(getString("label.xml.tabulado"), creator.apply(xmlTabulado));
         xmlTabs.addTab(getString("label.xml.persistencia"), creator.apply(xmlPersistencia));
-        xmlTabs.addTab(getString("label.definicao"), creator.apply(definicao));
+        xmlTabs.addTab(getString("label.definicao"), creator.apply(definition));
 
         if (hasAnnotations()) {
             String xmlAnnotations = getXmlTabulado(model.getObject().getAnnnotations());
@@ -306,16 +306,16 @@ public class CrudPage extends ShowcaseTemplate implements SingularWicketContaine
         return StringUtils.EMPTY;
     }
 
-    private String getDefinicao(String typeName) {
+    private String getDefinition(String typeName) {
 
-        final StringBuilder definicaoOutput = new StringBuilder();
+        final StringBuilder definitionOutput = new StringBuilder();
 
         Optional.ofNullable(dictionaryLoader.findEntryByType(typeName))
                 .map(ShowcaseTypeLoader.TemplateEntry::getType)
                 .map(SType::getPackage)
-                .ifPresent(pckg -> pckg.debug(definicaoOutput));
+                .ifPresent(pckg -> pckg.debug(definitionOutput));
 
-        return definicaoOutput.toString();
+        return definitionOutput.toString();
     }
 
     private void updateListTableFromModal(AjaxRequestTarget target) {

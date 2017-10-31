@@ -55,11 +55,7 @@ public class CaseBaseForm extends CaseBase {
     public SType<?> getCaseType() {
         if (caseType == null) {
             SDictionary dictionary = SDictionary.create();
-
             caseType = dictionary.getType(getSTypeClass());
-            if (caseType == null){
-                throw new SingularFormException("O SType " + getSTypeClass().getName() + " não foi encontrado.");
-            }
         }
         return caseType;
     }

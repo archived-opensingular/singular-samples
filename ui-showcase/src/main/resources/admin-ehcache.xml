@@ -55,7 +55,7 @@
         <persistence strategy="none" synchronousWrites="false"/>
     </cache>
 
-    <cache name="retrieveMeanTimeByProcess" eternal="false"
+    <cache name="retrieveMeanTimeByFlowDefinition" eternal="false"
            maxEntriesLocalHeap="10000"
            timeToIdleSeconds="300"
            timeToLiveSeconds="600"

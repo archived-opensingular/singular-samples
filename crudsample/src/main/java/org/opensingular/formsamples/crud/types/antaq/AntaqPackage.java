@@ -24,10 +24,8 @@ import org.opensingular.form.SPackage;
 
 import javax.annotation.Nonnull;
 
-@SInfoPackage(name = "br.org.anvisa.toxicologia")
+@SInfoPackage(name = "br.org.antaq.resolucao912")
 public class AntaqPackage extends SPackage {
-
-    public static Boolean OBRIGATORIO = Boolean.TRUE;
 
     @Override
     protected void onLoadPackage(@Nonnull PackageBuilder pb) {
