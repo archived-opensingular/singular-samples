@@ -11,6 +11,7 @@ import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.attachment.STypeAttachment;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
+import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
 
 import javax.annotation.Nonnull;
@@ -56,6 +57,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
 
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
+        fotoDoCachorro.withView(SViewAttachmentImage::new);
         fotoDoCachorro.asAtr().label("Foto do cachorro");
         fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
         fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
