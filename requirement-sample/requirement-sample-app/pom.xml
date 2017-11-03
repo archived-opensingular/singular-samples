@@ -20,6 +20,11 @@
             <artifactId>singular-server-studio-app</artifactId>
             <version>${singular.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.opensingular</groupId>
+            <artifactId>singular-form-extras</artifactId>
+            <version>${singular.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
