@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.opensingular</groupId>
-            <artifactId>singular-form-extras</artifactId>
+            <artifactId>singular-enterprise-connector</artifactId>
             <version>${singular.version}</version>
         </dependency>
     </dependencies>
