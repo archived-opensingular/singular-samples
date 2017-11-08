@@ -6,7 +6,7 @@
     <groupId>org.opensingular</groupId>
     <artifactId>singular-samples</artifactId>
 
-    <version>1.6.9-RC3</version>
+    <version>1.6.9</version>
     <name>[singular-samples]</name>
     <description>Singular Samples and Showcase</description>
     <url>http://opensingular.org</url>
@@ -512,7 +512,7 @@
         <spring.security.version>4.0.4.RELEASE</spring.security.version>
         <wicket.version>7.3.0</wicket.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
-        <singular.version>1.6.9-RC3</singular.version>
+        <singular.version>1.6.9</singular.version>
     </properties>
 
 
