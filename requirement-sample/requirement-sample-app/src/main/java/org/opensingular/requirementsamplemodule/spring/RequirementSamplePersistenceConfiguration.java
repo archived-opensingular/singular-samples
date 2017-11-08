@@ -36,14 +36,6 @@ public class RequirementSamplePersistenceConfiguration extends SingularDefaultPe
     @Value("classpath:db/dml/insert-requirementsample-module.sql")
     private Resource requirementsampleModule;
 
-
-    @Value("classpath:/db/ddl/create-tables-form-extra.sql")
-    private Resource createTablesFormExtra;
-
-    @Value("classpath:/db/ddl/create-sequences-form-extra.sql")
-    private Resource createSequencesFormExtra;
-
-
     @Override
     protected String getUrlConnection() {
         return "jdbc:h2:file:./singularserverdb;AUTO_SERVER=TRUE;mode=ORACLE;CACHE_SIZE=4096;EARLY_FILTER=1;LOCK_TIMEOUT=15000;";
@@ -60,8 +52,6 @@ public class RequirementSamplePersistenceConfiguration extends SingularDefaultPe
     protected ResourceDatabasePopulator databasePopulator() {
         ResourceDatabasePopulator populator = super.databasePopulator();
         populator.addScript(requirementsampleModule);
-        populator.addScript(createTablesFormExtra);
-        populator.addScript(createSequencesFormExtra);
         return populator;
     }
 }

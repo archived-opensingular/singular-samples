@@ -26,7 +26,7 @@ import org.wicketstuff.annotation.mount.MountPath;
 
 import javax.inject.Inject;
 
-@MountPath(value = "/relatorios")
+@MountPath(value = "/reports")
 public class SampleReportPage extends ReportPage {
 
     @Inject
