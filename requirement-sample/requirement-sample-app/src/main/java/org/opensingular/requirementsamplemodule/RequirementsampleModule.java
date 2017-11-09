@@ -27,8 +27,8 @@ import org.opensingular.server.module.WorkspaceConfiguration;
 import org.opensingular.server.module.requirement.FormFlowSingularRequirement;
 import org.opensingular.server.module.workspace.DefaultDonebox;
 import org.opensingular.server.module.workspace.DefaultInbox;
-import org.opensingular.server.p.module.workspace.DefaultDraftbox;
-import org.opensingular.server.p.module.workspace.DefaultOngoingbox;
+import org.opensingular.server.module.workspace.DefaultDraftbox;
+import org.opensingular.server.module.workspace.DefaultOngoingbox;
 
 public class RequirementsampleModule implements SingularModule {
 
