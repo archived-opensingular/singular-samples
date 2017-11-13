@@ -16,6 +16,18 @@
 
 package org.opensingular.singular.form.showcase.component;
 
+import com.google.common.base.Throwables;
+import org.apache.wicket.util.string.StringValue;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.lib.commons.base.SingularException;
+import org.opensingular.lib.commons.base.SingularUtil;
+import org.opensingular.lib.commons.scan.SingularClassPathScanner;
+import org.opensingular.lib.commons.ui.Icon;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
+import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
+import org.springframework.stereotype.Service;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,19 +40,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.apache.wicket.util.string.StringValue;
-import org.opensingular.form.STypeComposite;
-import org.opensingular.lib.commons.base.SingularException;
-import org.opensingular.lib.commons.base.SingularUtil;
-import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.opensingular.lib.commons.ui.Icon;
-import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
-import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
-import org.reflections.Reflections;
-import org.springframework.stereotype.Service;
-
-import com.google.common.base.Throwables;
-
 @Service
 public class ShowCaseTable {
 
@@ -51,8 +50,7 @@ public class ShowCaseTable {
 
     public ShowCaseTable() {
 
-        Reflections reflections = new Reflections("org.opensingular.singular.form.showcase.component");
-        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(CaseItem.class);
+        Set<Class<?>> annotated = SingularClassPathScanner.get().findClassesAnnotatedWith(CaseItem.class, ShowCaseTable.class.getPackage().getName());
         for (Class<?> aClass : annotated) {
 
 
@@ -81,8 +79,8 @@ public class ShowCaseTable {
         addGroup(Group.IMPORTER);
 
         addGroup("XSD", DefaultIcons.CODE, ShowCaseType.FORM)
-            .addCase(new XsdCaseSimple())
-            .addCase(new XsdCaseSimple2());
+                .addCase(new XsdCaseSimple())
+                .addCase(new XsdCaseSimple2());
 
         addGroup(Group.STUDIO_SAMPLES);
         //@formatter:on
@@ -175,13 +173,13 @@ public class ShowCaseTable {
 
     public static class ShowCaseGroup implements Serializable {
 
-        private final String       groupName;
-        private final Icon         icon;
+        private final String groupName;
+        private final Icon icon;
         private final ShowCaseType tipo;
 
         private final Map<String, ShowCaseItem> itens = new TreeMap<>();
-        
-        
+
+
         public ShowCaseGroup(String groupName, Icon icon, ShowCaseType tipo) {
             this.groupName = groupName;
             this.icon = icon;
@@ -228,7 +226,7 @@ public class ShowCaseTable {
         private final String componentName;
 
         private final List<CaseBase> cases = new ArrayList<>();
-        
+
         private ShowCaseType showCaseType;
 
         public ShowCaseItem(String componentName, ShowCaseType showCaseType) {
@@ -248,7 +246,7 @@ public class ShowCaseTable {
             Collections.sort(cases, (case1, case2) -> case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
 
             CaseBase caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
-            if(caseBaseDefault != null){
+            if (caseBaseDefault != null) {
                 cases.remove(caseBaseDefault);
                 cases.add(0, caseBaseDefault);
             }
