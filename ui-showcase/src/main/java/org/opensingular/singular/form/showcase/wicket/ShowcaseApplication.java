@@ -31,6 +31,7 @@ import org.apache.wicket.util.lang.Bytes;
 import org.apache.wicket.util.time.Duration;
 import org.opensingular.lib.commons.base.SingularProperties;
 import org.opensingular.lib.support.spring.util.ApplicationContextProvider;
+import org.opensingular.lib.wicket.util.application.SingularAnnotatedMountScanner;
 import org.opensingular.lib.wicket.util.application.SkinnableApplication;
 import org.opensingular.lib.wicket.util.page.error.Error403Page;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
@@ -84,7 +85,7 @@ public class ShowcaseApplication extends AuthenticatedWebApplication implements 
         } else {
             getComponentInstantiationListeners().add(new SpringComponentInjector(this));
         }
-        new AnnotatedMountScanner().scanPackage("org.opensingular.singular.showcase.view.page.**").mount(this);
+        new SingularAnnotatedMountScanner().mountPages(this);
 
         setHeaderResponseDecorator(r -> new JavaScriptFilteredIntoFooterHeaderResponse(r, SingularTemplate.JAVASCRIPT_CONTAINER));
 
