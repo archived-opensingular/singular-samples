@@ -34,7 +34,7 @@ import static org.opensingular.requirementsamplemodule.flow.RequirementSampleFlo
 import static org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow.RequirementSampleTasks.REPROVADO;
 
 
-@DefinitionInfo("requirementsample")
+@DefinitionInfo(RequirementsampleModule.REQUIREMENT_SAMPLE)
 public class RequirementSampleFlow extends RequirementFlowDefinition<FlowInstance> {
 
     public enum RequirementSampleTasks implements ITaskDefinition {
@@ -57,7 +57,7 @@ public class RequirementSampleFlow extends RequirementFlowDefinition<FlowInstanc
 
     public RequirementSampleFlow() {
         super(FlowInstance.class);
-        this.setName(RequirementsampleModule.REQUIREMENT_SAMPLE, "Requirementsample");
+        this.setName(RequirementsampleModule.REQUIREMENT_SAMPLE, "Sample");
 
     }
 
