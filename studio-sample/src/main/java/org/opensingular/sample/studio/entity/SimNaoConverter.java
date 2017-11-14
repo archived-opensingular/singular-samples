@@ -32,10 +32,10 @@ public class SimNaoConverter implements AttributeConverter<Boolean, Character>, 
 		return attribute ? 'S' : 'N';
 	}
 
-    @Nullable
+	@Nullable
 	public Boolean convertToEntityAttribute(Character dbData) {
 		if (dbData == null) {
-			return null;
+			return null;//NOSONAR
 		}
 		if (Character.valueOf('S').equals(Character.toUpperCase(dbData))) {
 			return Boolean.TRUE;
@@ -43,7 +43,7 @@ public class SimNaoConverter implements AttributeConverter<Boolean, Character>, 
 		if (Character.valueOf('N').equals(Character.toUpperCase(dbData))) {
 			return Boolean.FALSE;
 		}
-		return null;
+		return null;//NOSONAR
 	}
 
 	public Object toRelationalColumn(SInstance fromInstance) {
