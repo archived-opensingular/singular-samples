@@ -39,7 +39,7 @@ public class SimNaoConverter implements AttributeConverter<Boolean, Character> {
     @Override
     public Boolean convertToEntityAttribute(Character dbData) {
         if (dbData == null) {
-            return null;
+            return null;//NOSONAR
         }
         if (Character.valueOf('S').equals(dbData) || Character.valueOf('s').equals(dbData)) {
             return Boolean.TRUE;
@@ -47,6 +47,6 @@ public class SimNaoConverter implements AttributeConverter<Boolean, Character> {
         if (Character.valueOf('N').equals(dbData) || Character.valueOf('n').equals(dbData)) {
             return Boolean.FALSE;
         }
-        return null;
+        return null;//NOSONAR
     }
 }

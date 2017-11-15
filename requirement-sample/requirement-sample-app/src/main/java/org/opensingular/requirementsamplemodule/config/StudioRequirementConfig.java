@@ -32,6 +32,7 @@ public class StudioRequirementConfig implements StudioConfig {
         return StudioMenu.Builder.newPortalMenu()
                 .addHTTPEndpoint(DefaultIcons.GLOBE, "Requerimento", "/requirement")
                 .addHTTPEndpoint(DefaultIcons.COMMENT, "Análise", "/worklist")
+                .addHTTPEndpoint(DefaultIcons.FILE_TEXT, "Relatórios", "/reports")
                 .addSidebarGroup(DefaultIcons.MAGIC, "Cadastros", cadastros -> {
                     cadastros.addStudioItem("Engenheiros", new EngenheiroFormDefinition());
                 })
