@@ -20,10 +20,7 @@ import org.opensingular.form.SDictionary;
 import org.opensingular.form.SFormUtil;
 import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.SingularFormException;
 import org.opensingular.form.wicket.enums.AnnotationMode;
-
-import java.util.Optional;
 
 
 public class CaseBaseForm extends CaseBase {
@@ -44,7 +41,7 @@ public class CaseBaseForm extends CaseBase {
 
     @SuppressWarnings("unchecked")
     private Class<? extends STypeComposite<?>> getSTypeClass() {
-        return caseClass;
+        return (Class<? extends STypeComposite<?>>) caseClass;
     }
 
 
@@ -58,12 +55,6 @@ public class CaseBaseForm extends CaseBase {
             caseType = dictionary.getType(getSTypeClass());
         }
         return caseType;
-    }
-
-
-    @Override
-    public Optional<ResourceRef> getMainSourceResourceName() {
-        return ResourceRef.forSource(getSTypeClass());
     }
 
 

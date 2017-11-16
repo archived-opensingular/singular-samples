@@ -76,7 +76,7 @@ public class ShowcaseMenu extends Panel {
                 final String componentName = item.getComponentName();
                 showCaseGroup.addItem(
                         new MetronicMenuItem(null, item.getComponentName(), ComponentPage.class,
-                                ShowCaseType.buildPageParameters(componentName.toLowerCase())));
+                                ShowCaseType.buildPageParameters(componentName.toLowerCase(), item.getShowCaseType())));
             });
             menu.addItem(showCaseGroup);
         });

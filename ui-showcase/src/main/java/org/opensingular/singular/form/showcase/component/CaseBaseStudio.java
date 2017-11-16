@@ -16,24 +16,22 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import java.util.Optional;
-
-import org.opensingular.form.STypeComposite;
 import org.opensingular.form.wicket.enums.AnnotationMode;
+import org.opensingular.lib.commons.base.SingularException;
+import org.opensingular.studio.core.definition.StudioDefinition;
 
 public class CaseBaseStudio extends CaseBase {
 
-    public CaseBaseStudio(Class<? extends STypeComposite<?>> caseClass, String componentName, String subCaseName, AnnotationMode annotation) {
+    public CaseBaseStudio(Class<? extends StudioDefinition> caseClass, String componentName, String subCaseName, AnnotationMode annotation) {
         super(caseClass, ShowCaseType.STUDIO, componentName, subCaseName, annotation);
     }
 
-    @Override
-    public Optional<ResourceRef> getMainSourceResourceName() {
-        return Optional.ofNullable(new ResourceRef(caseClass, ""));
+
+    public StudioDefinition getStudioDefinition() {
+        try {
+            return (StudioDefinition) caseClass.newInstance();
+        } catch (Exception e) {
+            throw SingularException.rethrow(e.getMessage(), e);
+        }
     }
-
-
-//    public Class<? extends CollectionDefinition> getCollectionDefinition() {
-//        return (Class<? extends CollectionDefinition>) caseClass;
-//    }
 }

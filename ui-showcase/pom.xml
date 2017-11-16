@@ -74,6 +74,11 @@
             <artifactId>singular-form-service</artifactId>
             <version>${singular.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.opensingular</groupId>
+            <artifactId>singular-studio-core</artifactId>
+            <version>${singular.version}</version>
+        </dependency>
 
         <!-- PERSISTENCE -->
         <dependency>
@@ -115,6 +120,7 @@
             <artifactId>jboss-vfs</artifactId>
             <version>3.2.11.Final</version>
         </dependency>
+
 
     </dependencies>
 
