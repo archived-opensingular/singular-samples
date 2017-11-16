@@ -24,6 +24,9 @@
         <constructor-arg ref="hikariConfig"/>
     </bean>
 
+    <bean class="org.opensingular.form.persistence.service.RelationalDatabaseHibernate">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
 
     <!-- HIBERNATE CONFIGURATION -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

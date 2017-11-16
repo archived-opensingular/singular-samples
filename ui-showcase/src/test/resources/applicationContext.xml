@@ -28,12 +28,12 @@
         <property name="typeLoader" ref="showcaseTypeLoader"/>
     </bean>
 
-    <bean id="showcaseDatabaseDocumentFactory"
+    <bean id="documentFactory"
           class="org.opensingular.singular.form.showcase.view.page.form.crud.services.ShowcaseDocumentFactory"/>
 
     <bean id="formConfigWithDatabase" class="org.opensingular.form.spring.SpringFormConfig">
         <property name="typeLoader" ref="showcaseTypeLoader"/>
-        <property name="documentFactory" ref="showcaseDatabaseDocumentFactory"/>
+        <property name="documentFactory" ref="documentFactory"/>
     </bean>
 
     <bean id="filePersistence" class="org.opensingular.form.persistence.service.AttachmentPersistenceService"/>
