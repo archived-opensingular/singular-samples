@@ -45,6 +45,7 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
     public STypeComposite<SIComposite> request;
     public STypeComposite<SIComposite> id;
     public STypeAttachmentList         anexoMultiplo;
+    public STypeCPF cpf;
 
     /*
      * Observe que as anotações só estão disponíveis quando devidamente configuradas no
@@ -93,6 +94,10 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
         anexoMultiplo = this.addFieldListOfAttachment("anexoMultiplo", "anexo");
         anexoMultiplo.asAtr().label("Anexos de qualquer coisa");
         anexoMultiplo.asAtrAnnotation().setAnnotated();
+
+        cpf = this.addField("cpf", STypeCPF.class);
+        cpf.asAtrAnnotation().setAnnotated();
+
 
     }
 }
