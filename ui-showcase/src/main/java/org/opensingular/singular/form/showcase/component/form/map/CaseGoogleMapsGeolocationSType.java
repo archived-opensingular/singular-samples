@@ -30,7 +30,8 @@ import org.opensingular.singular.form.showcase.component.Group;
 import javax.annotation.Nonnull;
 
 /**
- * Para adicionar um marcador basta clicar no posição do mapa.
+ * Nesse exemplo a posição é informada apenas de maneira automática pela geolocation API do browser.
+ * Essa API exige que a aplicação esteja em HTTPS.
  */
 @CaseItem(componentName = "Google Maps Geolocation", group = Group.MAPS, subCaseName = "Geolocation API")
 @SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMapsGeo")
