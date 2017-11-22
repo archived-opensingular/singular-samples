@@ -18,6 +18,7 @@ package org.opensingular.singular.form.showcase.component.form.custom.comment;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
+import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
@@ -43,6 +44,7 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
     public STypeComposite<SIComposite> endereco;
     public STypeComposite<SIComposite> request;
     public STypeComposite<SIComposite> id;
+    public STypeAttachmentList         anexoMultiplo;
 
     /*
      * Observe que as anotações só estão disponíveis quando devidamente configuradas no
@@ -87,5 +89,10 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
 
         //@destacar
         request.asAtrAnnotation().setAnnotated().label("Observações Finais"); //Permite definir seu pŕoprio rótulo
+
+        anexoMultiplo = this.addFieldListOfAttachment("anexoMultiplo", "anexo");
+        anexoMultiplo.asAtr().label("Anexos de qualquer coisa");
+        anexoMultiplo.asAtrAnnotation().setAnnotated();
+
     }
 }
