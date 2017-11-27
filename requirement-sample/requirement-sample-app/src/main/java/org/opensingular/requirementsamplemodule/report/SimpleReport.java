@@ -18,22 +18,20 @@
 
 package org.opensingular.requirementsamplemodule.report;
 
-import org.opensingular.form.report.FormReportMetadata;
-import org.opensingular.form.report.SingularFormReport;
+import org.opensingular.form.SIComposite;
 import org.opensingular.lib.commons.table.ColumnType;
 import org.opensingular.lib.commons.table.TablePopulator;
 import org.opensingular.lib.commons.table.TableTool;
 import org.opensingular.lib.commons.views.ViewGenerator;
 import org.opensingular.lib.commons.views.ViewOutputFormat;
 import org.opensingular.requirementsamplemodule.report.filter.STypeSimpleReportFilter;
+import org.opensingular.server.commons.form.report.AbstractSingularFormReport;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.Collections;
 import java.util.List;
 
-@Named
-public class SimpleReport implements SingularFormReport {
+public class SimpleReport extends AbstractSingularFormReport<SIComposite> {
 
     @Inject
     private SimpleReportService simpleReportService;
@@ -49,13 +47,13 @@ public class SimpleReport implements SingularFormReport {
     }
 
     @Override
-    public ViewGenerator makeViewGenerator(FormReportMetadata reportMetadata) {
+    public ViewGenerator getViewGenerator() {
         TableTool table = new TableTool();
         table.addColumn(ColumnType.STRING, "Código");
         table.addColumn(ColumnType.STRING, "Nome");
         table.addColumn(ColumnType.STRING, "Descrição");
         TablePopulator populator = table.createSimpleTablePopulator();
-        for (SimpleDTO simpleDTO : simpleReportService.listSimpleData(reportMetadata.getFilter())) {
+        for (SimpleDTO simpleDTO : simpleReportService.listSimpleData(getFilterValue())) {
             TablePopulator tablePopulator = populator.insertLine();
             tablePopulator.setValue(0, simpleDTO.getCodigo());
             tablePopulator.setValue(1, simpleDTO.getNome());
@@ -68,4 +66,6 @@ public class SimpleReport implements SingularFormReport {
     public List<ViewOutputFormat> getEnabledExportFormats() {
         return Collections.singletonList(ViewOutputFormat.EXCEL);
     }
+
+
 }

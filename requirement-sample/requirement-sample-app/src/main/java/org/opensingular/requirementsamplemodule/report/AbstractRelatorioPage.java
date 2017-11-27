@@ -35,7 +35,7 @@ public abstract class AbstractRelatorioPage extends ServerTemplate {
     }
 
     private void addReportPanel() {
-        add(new SingularReportPanel("report", this::getSingularFormReport));
+        add(new SingularReportPanel("report", this.getSingularFormReport()));
     }
 
     @Override
