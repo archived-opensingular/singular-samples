@@ -50,6 +50,7 @@ public class CaseListByFormPreAddLinesSType extends STypeComposite<SIComposite> 
         STypeYearMonth                                      dtFimExperiencia    = experiencia.addField("fim", STypeYearMonth.class);
         STypeString                                         empresa             = experiencia.addFieldString("empresa", true);
         STypeString                                         cargo               = experiencia.addFieldString("cargo", true);
+
         STypeString atividades = experiencia.addFieldString("atividades");
 
         {
@@ -59,7 +60,12 @@ public class CaseListByFormPreAddLinesSType extends STypeComposite<SIComposite> 
                     //@destacar:bloco
                     .withView(() -> new SViewListByForm().setInitialNumberOfLines(2))
                      //@destacar:fim
-                    .asAtr().label("Experiências profissionais");
+                    .asAtr()
+                    .label("Experiências profissionais");
+            experiencia
+                    .asAtr()
+                    .displayString("${cargo!} na empresa ${empresa!}")
+                    .dependsOn(cargo, empresa);
             dtInicioExperiencia
                     .asAtr().label("Data inicial")
                     .asAtrBootstrap().colPreference(2);
