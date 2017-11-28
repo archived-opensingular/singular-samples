@@ -18,14 +18,16 @@
 
 package org.opensingular.requirementsamplemodule.report;
 
+import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SType;
+import org.opensingular.form.report.AbstractSingularFormReport;
 import org.opensingular.lib.commons.table.ColumnType;
 import org.opensingular.lib.commons.table.TablePopulator;
 import org.opensingular.lib.commons.table.TableTool;
 import org.opensingular.lib.commons.views.ViewGenerator;
 import org.opensingular.lib.commons.views.ViewOutputFormat;
 import org.opensingular.requirementsamplemodule.report.filter.STypeSimpleReportFilter;
-import org.opensingular.server.commons.form.report.AbstractSingularFormReport;
 
 import javax.inject.Inject;
 import java.util.Collections;
@@ -41,10 +43,6 @@ public class SimpleReport extends AbstractSingularFormReport<SIComposite> {
         return "Relatório Simples";
     }
 
-    @Override
-    public Class<STypeSimpleReportFilter> getFilterType() {
-        return STypeSimpleReportFilter.class;
-    }
 
     @Override
     public ViewGenerator getViewGenerator() {
@@ -68,4 +66,8 @@ public class SimpleReport extends AbstractSingularFormReport<SIComposite> {
     }
 
 
+    @Override
+    public SType<SIComposite> getFilterType(PackageBuilder packageBuilder) {
+        return packageBuilder.getType(STypeSimpleReportFilter.class);
+    }
 }
