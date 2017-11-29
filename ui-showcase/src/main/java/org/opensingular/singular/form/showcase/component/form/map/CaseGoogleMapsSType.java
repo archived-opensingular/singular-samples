@@ -16,10 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.map;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.util.STypeLatitudeLongitude;
