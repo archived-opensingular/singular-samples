@@ -49,6 +49,8 @@
     <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
         <jdbc:script location="classpath:ddl/toxicologia-ddl.sql"/>
         <jdbc:script location="classpath:dml/toxicologia-dml.sql"/>
+        <jdbc:script location="classpath:org/opensingular/singular/form/showcase/component/studio/simplepersistence/PessoaStudioDefinition.sql"/>
+        <jdbc:script location="classpath:org/opensingular/singular/form/showcase/component/studio/simplepersistence/DemandaStudioDefinition.sql"/>
     </jdbc:initialize-database>
 
     <!-- HIBERNATE TRANSACTION CONFIGURATION -->

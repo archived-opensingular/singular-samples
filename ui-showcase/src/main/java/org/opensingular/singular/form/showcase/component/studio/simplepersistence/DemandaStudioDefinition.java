@@ -26,30 +26,31 @@ import org.opensingular.studio.core.definition.StudioDefinition;
 import org.opensingular.studio.core.definition.StudioTableDefinition;
 
 /**
- * Exemplo de mapeamento simples de persistência
+ * Persistence mapping for multiple Foreign Keys
  */
-@CaseItem(componentName = "Simple Persistence", group = Group.STUDIO_PERSISTENCE,
-        resources = {
-                @Resource(CulturaPackage.class),
-                @Resource(CulturaRef.class),
-                @Resource(CulturaRepository.class),
-                @Resource(STypeCultura.class)
-        })
-public class CulturaStudioDefinition implements StudioDefinition {
+@CaseItem(componentName = "2. Multiple Foreign Keys", group = Group.STUDIO_PERSISTENCE,
+resources = {
+        @Resource(DemandaPackage.class),
+        @Resource(DemandaRepository.class),
+        @Resource(STypeDemanda.class),
+        @Resource(PessoaRef.class),
+        @Resource(value = DemandaStudioDefinition.class, extension = "sql")
+})
+public class DemandaStudioDefinition implements StudioDefinition {
 
     @Override
-    public Class<CulturaRepository> getRepositoryClass() {
-        return CulturaRepository.class;
+    public Class<DemandaRepository> getRepositoryClass() {
+        return DemandaRepository.class;
     }
 
     @Override
     public void configureStudioDataTable(StudioTableDefinition studioDataTable) {
-        studioDataTable.add("STypeCultura", "nome");
+        studioDataTable.add("STypeDemanda", "titulo");
     }
 
     @Override
     public String getTitle() {
-        return "Cadastro de Culturas";
+        return "Cadastro de Demandas";
     }
 
     @Override

@@ -18,21 +18,20 @@
 
 package org.opensingular.singular.form.showcase.component.studio.simplepersistence;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.document.SDocumentFactory;
 import org.opensingular.form.persistence.FormPersistenceInRelationalDB;
 import org.opensingular.form.persistence.RelationalDatabase;
 
+@Named("pessoaRepository")
+public class PessoaRepository extends FormPersistenceInRelationalDB<STypePessoa, SIComposite> {
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
-@Named("culturaRepository")
-public class CulturaRepository extends FormPersistenceInRelationalDB<STypeCultura, SIComposite> {
-
-	@Inject
-	public CulturaRepository(RelationalDatabase db, @Named("showcaseDocumentFactory") SDocumentFactory documentFactory) {
-		super(db, documentFactory, STypeCultura.class);
-	}
+    @Inject
+    public PessoaRepository(RelationalDatabase db, @Named("showcaseDocumentFactory") SDocumentFactory documentFactory) {
+        super(db, documentFactory, STypePessoa.class);
+    }
 
 }
