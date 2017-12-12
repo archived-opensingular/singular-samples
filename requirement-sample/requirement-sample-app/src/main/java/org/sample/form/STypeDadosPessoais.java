@@ -16,7 +16,6 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewListByForm;
-import org.opensingular.form.view.SViewListByMasterDetail;
 
 import javax.annotation.Nonnull;
 
@@ -32,6 +31,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeAttachment                      fotoDoCachorro;
     public STypeAttachmentList                  documentacaoComprobatoria;
     public STypeList<STypeAddress, SIComposite> listEnderecos;
+    public STypeBoolean                         brasileiro;
 
 
     @Override
@@ -61,6 +61,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
         naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
+        naoTenhoFotoCachorro.asAtr().enabled(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
         fotoDoCachorro.withView(SViewAttachmentImage::new);
@@ -74,13 +75,17 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentacaoComprobatoria.getElementsType().asAtr().allowedFileTypes("pdf");
         documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
+        brasileiro = this.addFieldBoolean("brasileiro");
+        brasileiro.asAtr().label("Brasileiro");
+        brasileiro.asAtr().enabled(true);
+
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
         listEnderecos.asAtr().label("Endereços");
         listEnderecos.withView(SViewListByForm::new);
         listEnderecos.getElementsType()
                 .pais
                 .asAtr()
-                .exists(p -> p.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
+                .exists(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(nomeCompleto)
