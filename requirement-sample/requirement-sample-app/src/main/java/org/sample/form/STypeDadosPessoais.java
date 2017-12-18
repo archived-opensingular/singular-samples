@@ -5,28 +5,34 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIBoolean;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.attachment.STypeAttachment;
+import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
+import org.opensingular.form.view.SViewListByForm;
 
 import javax.annotation.Nonnull;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
-    public STypeString nomeCompleto;
-    public STypeString nomeMae;
-    public STypeString nomePai;
-    public STypeTelefoneNacional telefone;
-    public STypeAttachmentList documentos;
-    public STypeBoolean naoTenhoFotoCachorro;
-    public STypeAttachment fotoDoCachorro;
-    public STypeAttachmentList documentacaoComprobatoria;
+    public STypeString                          nomeCompleto;
+    public STypeString                          nomeMae;
+    public STypeString                          nomePai;
+    public STypeTelefoneNacional                telefone;
+    public STypeAttachmentList                  documentos;
+    public STypeBoolean                         naoTenhoFotoCachorro;
+    public STypeAttachment                      fotoDoCachorro;
+    public STypeAttachmentList                  documentacaoComprobatoria;
+    public STypeList<STypeAddress, SIComposite> listEnderecos;
+    public STypeBoolean                         brasileiro;
+
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -55,6 +61,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
         naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
+        naoTenhoFotoCachorro.asAtr().enabled(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
         fotoDoCachorro.withView(SViewAttachmentImage::new);
@@ -67,6 +74,18 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentacaoComprobatoria.asAtr().dependsOn(naoTenhoFotoCachorro);
         documentacaoComprobatoria.getElementsType().asAtr().allowedFileTypes("pdf");
         documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
+
+        brasileiro = this.addFieldBoolean("brasileiro");
+        brasileiro.asAtr().label("Brasileiro");
+        brasileiro.asAtr().enabled(true);
+
+        listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
+        listEnderecos.asAtr().label("Endereços");
+        listEnderecos.withView(SViewListByForm::new);
+        listEnderecos.getElementsType()
+                .pais
+                .asAtr()
+                .exists(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(nomeCompleto)
