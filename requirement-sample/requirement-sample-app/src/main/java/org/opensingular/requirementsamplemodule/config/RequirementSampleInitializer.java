@@ -38,4 +38,6 @@ public class RequirementSampleInitializer implements ServerStudioAppInitializer 
     public Class<? extends SingularDefaultPersistenceConfiguration> persistenceConfiguration() {
         return RequirementSamplePersistenceConfiguration.class;
     }
+
+
 }
