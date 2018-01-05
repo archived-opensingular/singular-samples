@@ -62,6 +62,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
         naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
+        naoTenhoFotoCachorro.asAtr().required(false);
         naoTenhoFotoCachorro.asAtr().enabled(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
