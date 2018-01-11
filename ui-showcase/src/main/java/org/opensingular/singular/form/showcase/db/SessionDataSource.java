@@ -16,7 +16,7 @@
 package org.opensingular.singular.form.showcase.db;
 
 import com.google.common.io.Files;
-import org.apache.commons.dbcp.BasicDataSource;
+import com.zaxxer.hikari.HikariDataSource;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.opensingular.lib.commons.util.Loggable;
@@ -47,12 +47,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * se o arquivo do banco tem mais que 24h de criado, caso seja positivo, o
  * arquivo é deletado.
  */
-public class SessionDataSource extends BasicDataSource implements Loggable {
+public class SessionDataSource extends HikariDataSource implements Loggable {
 
     private static final String INITIAL_DB_RESOURCE_PATH = "db/singulardb.mv.db";
 
     private static final File baseDir = Files.createTempDir();
-    private static Map<String, BasicDataSource> internalPoolDS = new ConcurrentHashMap<String, BasicDataSource>();
+    private static Map<String, HikariDataSource> internalPoolDS = new ConcurrentHashMap<String, HikariDataSource>();
     private static ThreadLocal<String> sessionIdHolder = new ThreadLocal<String>();
 
     public SessionDataSource() {
@@ -159,32 +159,28 @@ public class SessionDataSource extends BasicDataSource implements Loggable {
         }
     }
 
-    public BasicDataSource createNewDb(String sessionId) {
-        final String dbOptions = StringUtils.substringAfter(this.getUrl(), ";");
+    public HikariDataSource createNewDb(String sessionId) {
+        final String dbOptions = StringUtils.substringAfter(this.getJdbcUrl(), ";");
 
         generateDB(sessionId);
 
-        final BasicDataSource ddss = new BasicDataSource();
+        final HikariDataSource ddss = new HikariDataSource();
         String newDbUrl = "jdbc:h2:file:" + getDatabasePath(sessionId) + ";" + dbOptions;
-        System.out.println(newDbUrl);
-        ddss.setUrl(newDbUrl);
+        getLogger().info(newDbUrl);
+        ddss.setJdbcUrl(newDbUrl);
         ddss.setDriverClassName("org.h2.Driver");
         ddss.setUsername("sa");
         ddss.setPassword("sa");
-        ddss.setRemoveAbandoned(true);
-        ddss.setInitialSize(5);
-        ddss.setMaxActive(10);
-        ddss.setMinIdle(1);
         return ddss;
     }
 
     public void removeDB(String sessionId) {
-        BasicDataSource basicDataSource = internalPoolDS.get(sessionId);
+        HikariDataSource hikariDataSource = internalPoolDS.get(sessionId);
         try {
-            if (basicDataSource != null) {
-                basicDataSource.close();
+            if (hikariDataSource != null) {
+                hikariDataSource.close();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             getLogger().error(e.getMessage(), e);
             getLogger().error("Erro ao fechar a conexão com o banco");
         }

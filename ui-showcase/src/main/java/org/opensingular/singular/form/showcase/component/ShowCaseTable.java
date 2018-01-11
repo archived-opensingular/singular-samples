@@ -26,6 +26,7 @@ import org.opensingular.lib.commons.ui.Icon;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
+import org.opensingular.studio.core.definition.StudioDefinition;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -82,7 +83,7 @@ public class ShowCaseTable {
                 .addCase(new XsdCaseSimple())
                 .addCase(new XsdCaseSimple2());
 
-        addGroup(Group.STUDIO_SAMPLES);
+        addGroup(Group.STUDIO_PERSISTENCE);
         //@formatter:on
     }
 
@@ -107,6 +108,8 @@ public class ShowCaseTable {
             CaseBase caseBase;
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
                 caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
+            } else if (StudioDefinition.class.isAssignableFrom(caseClass)) {
+                caseBase = new CaseBaseStudio((Class<? extends StudioDefinition>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
             } else {
                 throw new SingularException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
             }

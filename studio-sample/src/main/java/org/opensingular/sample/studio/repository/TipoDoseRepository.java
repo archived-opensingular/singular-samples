@@ -18,35 +18,21 @@
 
 package org.opensingular.sample.studio.repository;
 
-import org.opensingular.form.SIComposite;
-import org.opensingular.form.spring.SpringFormPersistenceInMemory;
-import org.opensingular.sample.studio.dao.TipoDoseDAO;
-import org.opensingular.sample.studio.entity.TipoDoseEntity;
-import org.opensingular.sample.studio.form.TipoDose;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
-
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
+
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.document.SDocumentFactory;
+import org.opensingular.form.persistence.FormPersistenceInRelationalDB;
+import org.opensingular.form.persistence.RelationalDatabase;
+import org.opensingular.sample.studio.form.TipoDose;
 
 @Named("tipoDoseRepository")
-public class TipoDoseRepository extends SpringFormPersistenceInMemory<TipoDose, SIComposite>
-        implements ApplicationListener<ContextRefreshedEvent> {
-    @Inject
-    private TipoDoseDAO tipoDoseDAO;
+public class TipoDoseRepository extends FormPersistenceInRelationalDB<TipoDose, SIComposite> {
 
-    public TipoDoseRepository() {
-        super(TipoDose.class);
-    }
+	@Inject
+	public TipoDoseRepository(RelationalDatabase db, SDocumentFactory documentFactory) {
+		super(db, documentFactory, TipoDose.class);
+	}
 
-    @Transactional
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        for (TipoDoseEntity t : tipoDoseDAO.listAll()) {
-            SIComposite instance = createInstance();
-            instance.setValue("nome", t.getNome());
-            insert(instance, null);
-        }
-    }
 }

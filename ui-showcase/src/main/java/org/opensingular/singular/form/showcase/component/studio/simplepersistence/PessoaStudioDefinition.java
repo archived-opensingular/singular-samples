@@ -16,27 +16,41 @@
  *
  */
 
-package org.opensingular.sample.studio.definition;
+package org.opensingular.singular.form.showcase.component.studio.simplepersistence;
 
 import org.opensingular.form.studio.StudioCRUDPermissionStrategy;
-import org.opensingular.sample.studio.repository.CulturaRepository;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.importer.CaseImporterSType;
 import org.opensingular.studio.core.definition.StudioDefinition;
 import org.opensingular.studio.core.definition.StudioTableDefinition;
 
-public class CulturaStudioDefinition implements StudioDefinition {
+/**
+ * Persistence mapping for simple Entity
+ */
+@CaseItem(componentName = "1. Simple Entity", group = Group.STUDIO_PERSISTENCE,
+resources = {
+        @Resource(DemandaPackage.class),
+        @Resource(PessoaRepository.class),
+        @Resource(STypePessoa.class),
+        @Resource(value = PessoaStudioDefinition.class, extension = "sql")
+})
+public class PessoaStudioDefinition implements StudioDefinition {
+
     @Override
-    public Class<CulturaRepository> getRepositoryClass() {
-        return CulturaRepository.class;
+    public Class<PessoaRepository> getRepositoryClass() {
+        return PessoaRepository.class;
     }
 
     @Override
     public void configureStudioDataTable(StudioTableDefinition studioDataTable) {
-        studioDataTable.add("Cultura", "nome");
+        studioDataTable.add("STypePessoa", "nome");
     }
 
     @Override
     public String getTitle() {
-        return "Cadastro de Culturas";
+        return "Cadastro de Pessoas";
     }
 
     @Override
