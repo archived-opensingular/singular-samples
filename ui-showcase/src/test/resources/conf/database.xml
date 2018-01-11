@@ -24,6 +24,9 @@
         <constructor-arg ref="hikariConfig"/>
     </bean>
 
+    <bean class="org.opensingular.form.persistence.service.RelationalDatabaseHibernate">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
 
     <!-- HIBERNATE CONFIGURATION -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -42,6 +45,13 @@
             </props>
         </property>
     </bean>
+
+    <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
+        <jdbc:script location="classpath:ddl/toxicologia-ddl.sql"/>
+        <jdbc:script location="classpath:dml/toxicologia-dml.sql"/>
+        <jdbc:script location="classpath:org/opensingular/singular/form/showcase/component/studio/simplepersistence/PessoaStudioDefinition.sql"/>
+        <jdbc:script location="classpath:org/opensingular/singular/form/showcase/component/studio/simplepersistence/DemandaStudioDefinition.sql"/>
+    </jdbc:initialize-database>
 
     <!-- HIBERNATE TRANSACTION CONFIGURATION -->
     <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>

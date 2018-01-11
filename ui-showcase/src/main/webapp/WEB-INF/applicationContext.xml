@@ -17,6 +17,10 @@
     <import resource="conf/cache.xml"/>
     <import resource="conf/schedule.xml"/>
 
+    <bean class="org.opensingular.form.persistence.service.RelationalDatabaseHibernate" >
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+
     <bean id="uiAdminWicketFilterContext" class="org.opensingular.singular.form.showcase.wicket.UIAdminWicketFilterContext"/>
 
     <bean class="org.opensingular.lib.context.singleton.SpringBoundedSingletonStrategy"/>
@@ -28,13 +32,10 @@
 	<bean id="formConfigWithoutDatabase" class="org.opensingular.form.spring.SpringFormConfig">
         <property name="typeLoader" ref="showcaseTypeLoader"/>
 	</bean>
-	
-	<bean id="showcaseDatabaseDocumentFactory" 
-		  class="org.opensingular.singular.form.showcase.view.page.form.crud.services.ShowcaseDocumentFactory"/>
 
 	<bean id="formConfigWithDatabase" class="org.opensingular.form.spring.SpringFormConfig" >
         <property name="typeLoader" ref="showcaseTypeLoader"/>
-        <property name="documentFactory" ref="showcaseDatabaseDocumentFactory"/>
+        <property name="documentFactory" ref="showcaseDocumentFactory"/>
 	</bean>
 
     <!--<bean id="showcaseStudioTypeLoader" class="org.opensingular.singular.form.showcase.dao.form.studio.ShowcaseStudioTypeLoader" />-->

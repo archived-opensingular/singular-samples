@@ -166,7 +166,7 @@ public class SessionDataSource extends HikariDataSource implements Loggable {
 
         final HikariDataSource ddss = new HikariDataSource();
         String newDbUrl = "jdbc:h2:file:" + getDatabasePath(sessionId) + ";" + dbOptions;
-        System.out.println(newDbUrl);
+        getLogger().info(newDbUrl);
         ddss.setJdbcUrl(newDbUrl);
         ddss.setDriverClassName("org.h2.Driver");
         ddss.setUsername("sa");

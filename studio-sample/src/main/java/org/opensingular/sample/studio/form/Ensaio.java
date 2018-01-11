@@ -47,5 +47,14 @@ public class Ensaio extends STypeComposite<SIComposite> {
                 .col(amostra.dat, "DAT")
                 .col(amostra.loq, "LOQ")
         );
+		// relational mapping
+        this.asSQL()
+                .table("TB_ENSAIO_ESTUDO_RESIDUOS")
+                .tablePK("CO_SEQ_ENSAIO_ESTUDO")
+                .addTableFK("CO_ESTUDO_RESIDUOS", EstudoResiduo.class);
+        codigo.asSQL()
+				.column("DS_CODIGO_ENSAIO");
+        cidade.asSQL()
+				.column("DS_CIDADE");
     }
 }

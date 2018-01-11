@@ -33,7 +33,7 @@ import org.junit.runner.RunWith;
 import org.opensingular.form.context.SFormConfig;
 import org.opensingular.singular.form.showcase.SpringWicketTester;
 import org.opensingular.singular.form.showcase.component.CaseBaseForm;
-import org.opensingular.singular.form.showcase.view.page.FormItemCasePanel;
+import org.opensingular.singular.form.showcase.view.page.form.FormItemCasePanel;
 import org.opensingular.singular.form.showcase.view.page.ItemCasePanel;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
