@@ -42,7 +42,7 @@ public class RequirementsampleModule implements SingularModule {
 
     @Override
     public String name() {
-        return "Módulo Requirementsample";
+        return "Módulo Exemplo de Requerimentos";
     }
 
     @Override

@@ -16,27 +16,41 @@
  *
  */
 
-package org.opensingular.sample.studio.definition;
+package org.opensingular.singular.form.showcase.component.studio.simplepersistence;
 
 import org.opensingular.form.studio.StudioCRUDPermissionStrategy;
-import org.opensingular.sample.studio.repository.CulturaRepository;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.studio.core.definition.StudioDefinition;
 import org.opensingular.studio.core.definition.StudioTableDefinition;
 
-public class CulturaStudioDefinition implements StudioDefinition {
+/**
+ * Persistence mapping for multiple Foreign Keys
+ */
+@CaseItem(componentName = "2. Multiple Foreign Keys", group = Group.STUDIO_PERSISTENCE,
+resources = {
+        @Resource(DemandaPackage.class),
+        @Resource(DemandaRepository.class),
+        @Resource(STypeDemanda.class),
+        @Resource(PessoaRef.class),
+        @Resource(value = DemandaStudioDefinition.class, extension = "sql")
+})
+public class DemandaStudioDefinition implements StudioDefinition {
+
     @Override
-    public Class<CulturaRepository> getRepositoryClass() {
-        return CulturaRepository.class;
+    public Class<DemandaRepository> getRepositoryClass() {
+        return DemandaRepository.class;
     }
 
     @Override
     public void configureStudioDataTable(StudioTableDefinition studioDataTable) {
-        studioDataTable.add("Cultura", "nome");
+        studioDataTable.add("STypeDemanda", "titulo");
     }
 
     @Override
     public String getTitle() {
-        return "Cadastro de Culturas";
+        return "Cadastro de Demandas";
     }
 
     @Override

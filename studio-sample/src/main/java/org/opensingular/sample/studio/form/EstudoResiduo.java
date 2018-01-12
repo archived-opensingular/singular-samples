@@ -19,18 +19,18 @@
 package org.opensingular.sample.studio.form;
 
 
-import org.opensingular.form.*;
+import javax.annotation.Nonnull;
+
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.sample.studio.repository.ModalidadeEmpregoRepository;
-import org.opensingular.sample.studio.repository.NormaRepository;
-import org.opensingular.sample.studio.repository.TipoDoseRepository;
-
-import javax.annotation.Nonnull;
-import javax.inject.Inject;
-import java.util.List;
+import org.opensingular.sample.studio.entity.SimNaoConverter;
 
 @SInfoType(name = "EstudoResiduo", spackage = ResiduoPackage.class)
 public class EstudoResiduo extends STypeComposite<SIComposite> {
@@ -79,5 +79,25 @@ public class EstudoResiduo extends STypeComposite<SIComposite> {
         ensaios.withView(new SViewListByMasterDetail(), view -> view
                 .col(ensaio.codigo, "Código")
                 .col(ensaio.cidade, "Cidade"));
+		// relational mapping
+        this.asSQL()
+        		.table("TB_ESTUDO_RESIDUOS_TOXICOS")
+        		.tablePK("CO_SEQ_ESTUDO_RESIDUOS")
+		        .addTableFK("CO_CULTURA", Cultura.class)
+		        .addTableFK("CO_MODALIDADE_EMPREGO", ModalidadeDeEmprego.class)
+		        .addTableFK("CO_TIPO_DOSE", TipoDose.class)
+		        .addTableFK("CO_NORMA", Norma.class);
+        parteComestivel.asSQL()
+				.column("ST_PARTE_COMESTIVEL")
+				.columnConverter(SimNaoConverter::new);
+        adjuvante.asSQL()
+				.column("ST_ADJUVANTE")
+				.columnConverter(SimNaoConverter::new);
+        intervaloSeguranca.asSQL()
+				.column("QT_DIAS_INTERVALO_SEGURANCA");
+        numeroAplicacoes.asSQL()
+				.column("NU_APLICACOES");
+        observacao.asSQL()
+				.column("DS_OBSERVACAO");
     }
 }

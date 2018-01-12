@@ -26,6 +26,7 @@ public enum ShowCaseType {
     STUDIO;
 
     public static final String SHOWCASE_TYPE_PARAM = "tp";
+    public static final String COMPONENT_NAME = "cn";
 
 
     public static PageParameters buildPageParameters(ShowCaseType showCaseType){
@@ -48,7 +49,7 @@ public enum ShowCaseType {
         }
 
         if (StringUtils.isNotEmpty(componentName)) {
-            pageParameters.add("cn", componentName);
+            pageParameters.add(COMPONENT_NAME, componentName);
         }
         return pageParameters;
     }

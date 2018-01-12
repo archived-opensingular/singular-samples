@@ -16,7 +16,7 @@
  *
  */
 
-package org.opensingular.sample.studio.repository;
+package org.opensingular.singular.form.showcase.component.studio.simplepersistence;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,13 +25,13 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.document.SDocumentFactory;
 import org.opensingular.form.persistence.FormPersistenceInRelationalDB;
 import org.opensingular.form.persistence.RelationalDatabase;
-import org.opensingular.sample.studio.form.ModalidadeDeEmprego;
 
-@Named("modalidadeDeEmpregoRepository")
-public class ModalidadeEmpregoRepository extends FormPersistenceInRelationalDB<ModalidadeDeEmprego, SIComposite> {
+@Named("demandaRepository")
+public class DemandaRepository extends FormPersistenceInRelationalDB<STypeDemanda, SIComposite> {
 
-	@Inject
-	public ModalidadeEmpregoRepository(RelationalDatabase db, SDocumentFactory documentFactory) {
-		super(db, documentFactory, ModalidadeDeEmprego.class);
-	}
+    @Inject
+    public DemandaRepository(RelationalDatabase db, @Named("showcaseDocumentFactory") SDocumentFactory documentFactory) {
+        super(db, documentFactory, STypeDemanda.class);
+    }
+
 }
