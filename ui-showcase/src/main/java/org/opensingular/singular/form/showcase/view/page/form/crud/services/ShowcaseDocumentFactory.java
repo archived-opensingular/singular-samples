@@ -24,6 +24,7 @@ import org.opensingular.lib.commons.context.RefService;
 import org.opensingular.lib.commons.context.ServiceRegistryLocator;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Named;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +32,7 @@ import java.util.logging.Logger;
 import static org.opensingular.form.type.core.attachment.handlers.FileSystemAttachmentPersistenceHandler
         .newTemporaryHandler;
 
-@Component("showcaseDocumentFactory")
+@Named("showcaseDocumentFactory")
 public class ShowcaseDocumentFactory extends SpringSDocumentFactory {
     @Override
     protected void setupDocument(SDocument document) {
