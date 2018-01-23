@@ -1,0 +1,2 @@
+wsimport -keep http://localhost:8080/singularee/ws/Requirementsample?wsdl -p com.opensingular.ws.requeriment -Xnocompile
+wsimport -keep http://localhost:8080/singularee/uploadws?wsdl -p com.opensingular.ws.upload -Xnocompile

@@ -44,6 +44,7 @@
         <module>crudsample</module>
         <module>studio-sample</module>
         <module>requirement-sample</module>
+        <module>enterprise-ws-sample</module>
     </modules>
 
     <build>
