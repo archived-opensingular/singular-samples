@@ -18,6 +18,7 @@
 
 package org.opensingular.requirementsamplemodule.spring;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.opensingular.server.commons.spring.SingularDefaultPersistenceConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -43,9 +44,7 @@ public class RequirementSamplePersistenceConfiguration extends SingularDefaultPe
 
     @Override
     protected String[] hibernatePackagesToScan() {
-        List<String> packages = new ArrayList<>(Arrays.asList(super.hibernatePackagesToScan())) ;
-        packages.add("com.opensingular.form");
-        return packages.toArray(new String[packages.size()]);
+        return ArrayUtils.add(super.hibernatePackagesToScan(), "com.opensingular.form");
     }
 
     @Override
