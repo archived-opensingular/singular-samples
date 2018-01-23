@@ -34,26 +34,16 @@ import javax.xml.bind.annotation.XmlType;
  *                     &lt;complexType>
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence minOccurs="0">
- *                             &lt;element name="documentoList">
+ *                           &lt;sequence>
+ *                             &lt;element name="documento" maxOccurs="unbounded">
  *                               &lt;complexType>
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;sequence>
- *                                       &lt;element name="documento" maxOccurs="10">
- *                                         &lt;complexType>
- *                                           &lt;complexContent>
- *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                               &lt;sequence minOccurs="0">
- *                                                 &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
- *                                               &lt;/sequence>
- *                                             &lt;/restriction>
- *                                           &lt;/complexContent>
- *                                         &lt;/complexType>
- *                                       &lt;/element>
+ *                                     &lt;sequence minOccurs="0">
+ *                                       &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
  *                                     &lt;/sequence>
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
@@ -83,26 +73,16 @@ import javax.xml.bind.annotation.XmlType;
  *                     &lt;complexType>
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence minOccurs="0">
- *                             &lt;element name="documentoList">
+ *                           &lt;sequence>
+ *                             &lt;element name="documento" maxOccurs="unbounded">
  *                               &lt;complexType>
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;sequence>
- *                                       &lt;element name="documento" maxOccurs="unbounded">
- *                                         &lt;complexType>
- *                                           &lt;complexContent>
- *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                               &lt;sequence minOccurs="0">
- *                                                 &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
- *                                               &lt;/sequence>
- *                                             &lt;/restriction>
- *                                           &lt;/complexContent>
- *                                         &lt;/complexType>
- *                                       &lt;/element>
+ *                                     &lt;sequence minOccurs="0">
+ *                                       &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
  *                                     &lt;/sequence>
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
@@ -118,41 +98,31 @@ import javax.xml.bind.annotation.XmlType;
  *                     &lt;complexType>
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence minOccurs="0">
- *                             &lt;element name="EnderecoCompletoList">
+ *                           &lt;sequence>
+ *                             &lt;element name="EnderecoCompleto" maxOccurs="unbounded">
  *                               &lt;complexType>
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;sequence>
- *                                       &lt;element name="EnderecoCompleto" maxOccurs="unbounded">
+ *                                     &lt;sequence minOccurs="0">
+ *                                       &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="logradouro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="complemento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="estado">
  *                                         &lt;complexType>
  *                                           &lt;complexContent>
  *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                               &lt;sequence minOccurs="0">
- *                                                 &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="logradouro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="complemento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                 &lt;element name="estado">
- *                                                   &lt;complexType>
- *                                                     &lt;complexContent>
- *                                                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                                         &lt;sequence minOccurs="0">
- *                                                           &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                           &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                                                         &lt;/sequence>
- *                                                       &lt;/restriction>
- *                                                     &lt;/complexContent>
- *                                                   &lt;/complexType>
- *                                                 &lt;/element>
- *                                                 &lt;element name="pais" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                                 &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                                 &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                                               &lt;/sequence>
  *                                             &lt;/restriction>
  *                                           &lt;/complexContent>
  *                                         &lt;/complexType>
  *                                       &lt;/element>
+ *                                       &lt;element name="pais" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *                                     &lt;/sequence>
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
@@ -228,26 +198,16 @@ public class Requirementsample {
      *           &lt;complexType>
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence minOccurs="0">
-     *                   &lt;element name="documentoList">
+     *                 &lt;sequence>
+     *                   &lt;element name="documento" maxOccurs="unbounded">
      *                     &lt;complexType>
      *                       &lt;complexContent>
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;sequence>
-     *                             &lt;element name="documento" maxOccurs="10">
-     *                               &lt;complexType>
-     *                                 &lt;complexContent>
-     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                     &lt;sequence minOccurs="0">
-     *                                       &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-     *                                     &lt;/sequence>
-     *                                   &lt;/restriction>
-     *                                 &lt;/complexContent>
-     *                               &lt;/complexType>
-     *                             &lt;/element>
+     *                           &lt;sequence minOccurs="0">
+     *                             &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
      *                           &lt;/sequence>
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
@@ -277,26 +237,16 @@ public class Requirementsample {
      *           &lt;complexType>
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence minOccurs="0">
-     *                   &lt;element name="documentoList">
+     *                 &lt;sequence>
+     *                   &lt;element name="documento" maxOccurs="unbounded">
      *                     &lt;complexType>
      *                       &lt;complexContent>
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;sequence>
-     *                             &lt;element name="documento" maxOccurs="unbounded">
-     *                               &lt;complexType>
-     *                                 &lt;complexContent>
-     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                     &lt;sequence minOccurs="0">
-     *                                       &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-     *                                     &lt;/sequence>
-     *                                   &lt;/restriction>
-     *                                 &lt;/complexContent>
-     *                               &lt;/complexType>
-     *                             &lt;/element>
+     *                           &lt;sequence minOccurs="0">
+     *                             &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
      *                           &lt;/sequence>
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
@@ -312,41 +262,31 @@ public class Requirementsample {
      *           &lt;complexType>
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence minOccurs="0">
-     *                   &lt;element name="EnderecoCompletoList">
+     *                 &lt;sequence>
+     *                   &lt;element name="EnderecoCompleto" maxOccurs="unbounded">
      *                     &lt;complexType>
      *                       &lt;complexContent>
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;sequence>
-     *                             &lt;element name="EnderecoCompleto" maxOccurs="unbounded">
+     *                           &lt;sequence minOccurs="0">
+     *                             &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="logradouro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="complemento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="estado">
      *                               &lt;complexType>
      *                                 &lt;complexContent>
      *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                                     &lt;sequence minOccurs="0">
-     *                                       &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="logradouro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="complemento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                       &lt;element name="estado">
-     *                                         &lt;complexType>
-     *                                           &lt;complexContent>
-     *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                                               &lt;sequence minOccurs="0">
-     *                                                 &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                                 &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                                               &lt;/sequence>
-     *                                             &lt;/restriction>
-     *                                           &lt;/complexContent>
-     *                                         &lt;/complexType>
-     *                                       &lt;/element>
-     *                                       &lt;element name="pais" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                                       &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                                       &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                                     &lt;/sequence>
      *                                   &lt;/restriction>
      *                                 &lt;/complexContent>
      *                               &lt;/complexType>
      *                             &lt;/element>
+     *                             &lt;element name="pais" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
      *                           &lt;/sequence>
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
@@ -641,26 +581,16 @@ public class Requirementsample {
          * &lt;complexType>
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence minOccurs="0">
-         *         &lt;element name="documentoList">
+         *       &lt;sequence>
+         *         &lt;element name="documento" maxOccurs="unbounded">
          *           &lt;complexType>
          *             &lt;complexContent>
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;sequence>
-         *                   &lt;element name="documento" maxOccurs="unbounded">
-         *                     &lt;complexType>
-         *                       &lt;complexContent>
-         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                           &lt;sequence minOccurs="0">
-         *                             &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-         *                           &lt;/sequence>
-         *                         &lt;/restriction>
-         *                       &lt;/complexContent>
-         *                     &lt;/complexType>
-         *                   &lt;/element>
+         *                 &lt;sequence minOccurs="0">
+         *                   &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
          *                 &lt;/sequence>
          *               &lt;/restriction>
          *             &lt;/complexContent>
@@ -676,34 +606,40 @@ public class Requirementsample {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "documentoList"
+            "documento"
         })
         public static class DocumentacaoComprobatoria {
 
-            protected Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList documentoList;
+            @XmlElement(required = true)
+            protected List<Requirementsample.DadosPessoais.DocumentacaoComprobatoria.Documento> documento;
 
             /**
-             * Obtém o valor da propriedade documentoList.
+             * Gets the value of the documento property.
              * 
-             * @return
-             *     possible object is
-             *     {@link Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList }
-             *     
-             */
-            public Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList getDocumentoList() {
-                return documentoList;
-            }
-
-            /**
-             * Define o valor da propriedade documentoList.
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the documento property.
              * 
-             * @param value
-             *     allowed object is
-             *     {@link Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList }
-             *     
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getDocumento().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link Requirementsample.DadosPessoais.DocumentacaoComprobatoria.Documento }
+             * 
+             * 
              */
-            public void setDocumentoList(Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList value) {
-                this.documentoList = value;
+            public List<Requirementsample.DadosPessoais.DocumentacaoComprobatoria.Documento> getDocumento() {
+                if (documento == null) {
+                    documento = new ArrayList<Requirementsample.DadosPessoais.DocumentacaoComprobatoria.Documento>();
+                }
+                return this.documento;
             }
 
 
@@ -716,21 +652,11 @@ public class Requirementsample {
              * &lt;complexType>
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;sequence>
-             *         &lt;element name="documento" maxOccurs="unbounded">
-             *           &lt;complexType>
-             *             &lt;complexContent>
-             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                 &lt;sequence minOccurs="0">
-             *                   &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-             *                 &lt;/sequence>
-             *               &lt;/restriction>
-             *             &lt;/complexContent>
-             *           &lt;/complexType>
-             *         &lt;/element>
+             *       &lt;sequence minOccurs="0">
+             *         &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
              *       &lt;/sequence>
              *     &lt;/restriction>
              *   &lt;/complexContent>
@@ -741,175 +667,112 @@ public class Requirementsample {
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
-                "documento"
+                "fileId",
+                "name",
+                "hashSHA1",
+                "fileSize"
             })
-            public static class DocumentoList {
+            public static class Documento {
 
-                @XmlElement(required = true)
-                protected List<Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList.Documento> documento;
+                protected String fileId;
+                protected String name;
+                protected String hashSHA1;
+                protected BigInteger fileSize;
 
                 /**
-                 * Gets the value of the documento property.
+                 * Obtém o valor da propriedade fileId.
                  * 
-                 * <p>
-                 * This accessor method returns a reference to the live list,
-                 * not a snapshot. Therefore any modification you make to the
-                 * returned list will be present inside the JAXB object.
-                 * This is why there is not a <CODE>set</CODE> method for the documento property.
-                 * 
-                 * <p>
-                 * For example, to add a new item, do as follows:
-                 * <pre>
-                 *    getDocumento().add(newItem);
-                 * </pre>
-                 * 
-                 * 
-                 * <p>
-                 * Objects of the following type(s) are allowed in the list
-                 * {@link Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList.Documento }
-                 * 
-                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
                  */
-                public List<Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList.Documento> getDocumento() {
-                    if (documento == null) {
-                        documento = new ArrayList<Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList.Documento>();
-                    }
-                    return this.documento;
+                public String getFileId() {
+                    return fileId;
                 }
 
+                /**
+                 * Define o valor da propriedade fileId.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setFileId(String value) {
+                    this.fileId = value;
+                }
 
                 /**
-                 * <p>Classe Java de anonymous complex type.
+                 * Obtém o valor da propriedade name.
                  * 
-                 * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
-                 * 
-                 * <pre>
-                 * &lt;complexType>
-                 *   &lt;complexContent>
-                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *       &lt;sequence minOccurs="0">
-                 *         &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-                 *       &lt;/sequence>
-                 *     &lt;/restriction>
-                 *   &lt;/complexContent>
-                 * &lt;/complexType>
-                 * </pre>
-                 * 
-                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
                  */
-                @XmlAccessorType(XmlAccessType.FIELD)
-                @XmlType(name = "", propOrder = {
-                    "fileId",
-                    "name",
-                    "hashSHA1",
-                    "fileSize"
-                })
-                public static class Documento {
+                public String getName() {
+                    return name;
+                }
 
-                    protected String fileId;
-                    protected String name;
-                    protected String hashSHA1;
-                    protected BigInteger fileSize;
+                /**
+                 * Define o valor da propriedade name.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setName(String value) {
+                    this.name = value;
+                }
 
-                    /**
-                     * Obtém o valor da propriedade fileId.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getFileId() {
-                        return fileId;
-                    }
+                /**
+                 * Obtém o valor da propriedade hashSHA1.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getHashSHA1() {
+                    return hashSHA1;
+                }
 
-                    /**
-                     * Define o valor da propriedade fileId.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setFileId(String value) {
-                        this.fileId = value;
-                    }
+                /**
+                 * Define o valor da propriedade hashSHA1.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setHashSHA1(String value) {
+                    this.hashSHA1 = value;
+                }
 
-                    /**
-                     * Obtém o valor da propriedade name.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getName() {
-                        return name;
-                    }
+                /**
+                 * Obtém o valor da propriedade fileSize.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link BigInteger }
+                 *     
+                 */
+                public BigInteger getFileSize() {
+                    return fileSize;
+                }
 
-                    /**
-                     * Define o valor da propriedade name.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setName(String value) {
-                        this.name = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade hashSHA1.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getHashSHA1() {
-                        return hashSHA1;
-                    }
-
-                    /**
-                     * Define o valor da propriedade hashSHA1.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setHashSHA1(String value) {
-                        this.hashSHA1 = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade fileSize.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link BigInteger }
-                     *     
-                     */
-                    public BigInteger getFileSize() {
-                        return fileSize;
-                    }
-
-                    /**
-                     * Define o valor da propriedade fileSize.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link BigInteger }
-                     *     
-                     */
-                    public void setFileSize(BigInteger value) {
-                        this.fileSize = value;
-                    }
-
+                /**
+                 * Define o valor da propriedade fileSize.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link BigInteger }
+                 *     
+                 */
+                public void setFileSize(BigInteger value) {
+                    this.fileSize = value;
                 }
 
             }
@@ -926,26 +789,16 @@ public class Requirementsample {
          * &lt;complexType>
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence minOccurs="0">
-         *         &lt;element name="documentoList">
+         *       &lt;sequence>
+         *         &lt;element name="documento" maxOccurs="unbounded">
          *           &lt;complexType>
          *             &lt;complexContent>
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;sequence>
-         *                   &lt;element name="documento" maxOccurs="10">
-         *                     &lt;complexType>
-         *                       &lt;complexContent>
-         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                           &lt;sequence minOccurs="0">
-         *                             &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-         *                           &lt;/sequence>
-         *                         &lt;/restriction>
-         *                       &lt;/complexContent>
-         *                     &lt;/complexType>
-         *                   &lt;/element>
+         *                 &lt;sequence minOccurs="0">
+         *                   &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
          *                 &lt;/sequence>
          *               &lt;/restriction>
          *             &lt;/complexContent>
@@ -961,34 +814,40 @@ public class Requirementsample {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "documentoList"
+            "documento"
         })
         public static class Documentos {
 
-            protected Requirementsample.DadosPessoais.Documentos.DocumentoList documentoList;
+            @XmlElement(required = true)
+            protected List<Requirementsample.DadosPessoais.Documentos.Documento> documento;
 
             /**
-             * Obtém o valor da propriedade documentoList.
+             * Gets the value of the documento property.
              * 
-             * @return
-             *     possible object is
-             *     {@link Requirementsample.DadosPessoais.Documentos.DocumentoList }
-             *     
-             */
-            public Requirementsample.DadosPessoais.Documentos.DocumentoList getDocumentoList() {
-                return documentoList;
-            }
-
-            /**
-             * Define o valor da propriedade documentoList.
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the documento property.
              * 
-             * @param value
-             *     allowed object is
-             *     {@link Requirementsample.DadosPessoais.Documentos.DocumentoList }
-             *     
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getDocumento().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link Requirementsample.DadosPessoais.Documentos.Documento }
+             * 
+             * 
              */
-            public void setDocumentoList(Requirementsample.DadosPessoais.Documentos.DocumentoList value) {
-                this.documentoList = value;
+            public List<Requirementsample.DadosPessoais.Documentos.Documento> getDocumento() {
+                if (documento == null) {
+                    documento = new ArrayList<Requirementsample.DadosPessoais.Documentos.Documento>();
+                }
+                return this.documento;
             }
 
 
@@ -1001,21 +860,11 @@ public class Requirementsample {
              * &lt;complexType>
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;sequence>
-             *         &lt;element name="documento" maxOccurs="10">
-             *           &lt;complexType>
-             *             &lt;complexContent>
-             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                 &lt;sequence minOccurs="0">
-             *                   &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-             *                 &lt;/sequence>
-             *               &lt;/restriction>
-             *             &lt;/complexContent>
-             *           &lt;/complexType>
-             *         &lt;/element>
+             *       &lt;sequence minOccurs="0">
+             *         &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
              *       &lt;/sequence>
              *     &lt;/restriction>
              *   &lt;/complexContent>
@@ -1026,175 +875,112 @@ public class Requirementsample {
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
-                "documento"
+                "fileId",
+                "name",
+                "hashSHA1",
+                "fileSize"
             })
-            public static class DocumentoList {
+            public static class Documento {
 
-                @XmlElement(required = true)
-                protected List<Requirementsample.DadosPessoais.Documentos.DocumentoList.Documento> documento;
+                protected String fileId;
+                protected String name;
+                protected String hashSHA1;
+                protected BigInteger fileSize;
 
                 /**
-                 * Gets the value of the documento property.
+                 * Obtém o valor da propriedade fileId.
                  * 
-                 * <p>
-                 * This accessor method returns a reference to the live list,
-                 * not a snapshot. Therefore any modification you make to the
-                 * returned list will be present inside the JAXB object.
-                 * This is why there is not a <CODE>set</CODE> method for the documento property.
-                 * 
-                 * <p>
-                 * For example, to add a new item, do as follows:
-                 * <pre>
-                 *    getDocumento().add(newItem);
-                 * </pre>
-                 * 
-                 * 
-                 * <p>
-                 * Objects of the following type(s) are allowed in the list
-                 * {@link Requirementsample.DadosPessoais.Documentos.DocumentoList.Documento }
-                 * 
-                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
                  */
-                public List<Requirementsample.DadosPessoais.Documentos.DocumentoList.Documento> getDocumento() {
-                    if (documento == null) {
-                        documento = new ArrayList<Requirementsample.DadosPessoais.Documentos.DocumentoList.Documento>();
-                    }
-                    return this.documento;
+                public String getFileId() {
+                    return fileId;
                 }
 
+                /**
+                 * Define o valor da propriedade fileId.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setFileId(String value) {
+                    this.fileId = value;
+                }
 
                 /**
-                 * <p>Classe Java de anonymous complex type.
+                 * Obtém o valor da propriedade name.
                  * 
-                 * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
-                 * 
-                 * <pre>
-                 * &lt;complexType>
-                 *   &lt;complexContent>
-                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *       &lt;sequence minOccurs="0">
-                 *         &lt;element name="fileId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="hashSHA1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="fileSize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-                 *       &lt;/sequence>
-                 *     &lt;/restriction>
-                 *   &lt;/complexContent>
-                 * &lt;/complexType>
-                 * </pre>
-                 * 
-                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
                  */
-                @XmlAccessorType(XmlAccessType.FIELD)
-                @XmlType(name = "", propOrder = {
-                    "fileId",
-                    "name",
-                    "hashSHA1",
-                    "fileSize"
-                })
-                public static class Documento {
+                public String getName() {
+                    return name;
+                }
 
-                    protected String fileId;
-                    protected String name;
-                    protected String hashSHA1;
-                    protected BigInteger fileSize;
+                /**
+                 * Define o valor da propriedade name.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setName(String value) {
+                    this.name = value;
+                }
 
-                    /**
-                     * Obtém o valor da propriedade fileId.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getFileId() {
-                        return fileId;
-                    }
+                /**
+                 * Obtém o valor da propriedade hashSHA1.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getHashSHA1() {
+                    return hashSHA1;
+                }
 
-                    /**
-                     * Define o valor da propriedade fileId.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setFileId(String value) {
-                        this.fileId = value;
-                    }
+                /**
+                 * Define o valor da propriedade hashSHA1.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setHashSHA1(String value) {
+                    this.hashSHA1 = value;
+                }
 
-                    /**
-                     * Obtém o valor da propriedade name.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getName() {
-                        return name;
-                    }
+                /**
+                 * Obtém o valor da propriedade fileSize.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link BigInteger }
+                 *     
+                 */
+                public BigInteger getFileSize() {
+                    return fileSize;
+                }
 
-                    /**
-                     * Define o valor da propriedade name.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setName(String value) {
-                        this.name = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade hashSHA1.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getHashSHA1() {
-                        return hashSHA1;
-                    }
-
-                    /**
-                     * Define o valor da propriedade hashSHA1.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setHashSHA1(String value) {
-                        this.hashSHA1 = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade fileSize.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link BigInteger }
-                     *     
-                     */
-                    public BigInteger getFileSize() {
-                        return fileSize;
-                    }
-
-                    /**
-                     * Define o valor da propriedade fileSize.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link BigInteger }
-                     *     
-                     */
-                    public void setFileSize(BigInteger value) {
-                        this.fileSize = value;
-                    }
-
+                /**
+                 * Define o valor da propriedade fileSize.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link BigInteger }
+                 *     
+                 */
+                public void setFileSize(BigInteger value) {
+                    this.fileSize = value;
                 }
 
             }
@@ -1346,41 +1132,31 @@ public class Requirementsample {
          * &lt;complexType>
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence minOccurs="0">
-         *         &lt;element name="EnderecoCompletoList">
+         *       &lt;sequence>
+         *         &lt;element name="EnderecoCompleto" maxOccurs="unbounded">
          *           &lt;complexType>
          *             &lt;complexContent>
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;sequence>
-         *                   &lt;element name="EnderecoCompleto" maxOccurs="unbounded">
+         *                 &lt;sequence minOccurs="0">
+         *                   &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="logradouro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="complemento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="estado">
          *                     &lt;complexType>
          *                       &lt;complexContent>
          *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                           &lt;sequence minOccurs="0">
-         *                             &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="logradouro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="complemento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                             &lt;element name="estado">
-         *                               &lt;complexType>
-         *                                 &lt;complexContent>
-         *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                                     &lt;sequence minOccurs="0">
-         *                                       &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                                       &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *                                     &lt;/sequence>
-         *                                   &lt;/restriction>
-         *                                 &lt;/complexContent>
-         *                               &lt;/complexType>
-         *                             &lt;/element>
-         *                             &lt;element name="pais" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                             &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                             &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *                           &lt;/sequence>
          *                         &lt;/restriction>
          *                       &lt;/complexContent>
          *                     &lt;/complexType>
          *                   &lt;/element>
+         *                   &lt;element name="pais" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
          *                 &lt;/sequence>
          *               &lt;/restriction>
          *             &lt;/complexContent>
@@ -1396,35 +1172,40 @@ public class Requirementsample {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "enderecoCompletoList"
+            "enderecoCompleto"
         })
         public static class ListEnderecos {
 
-            @XmlElement(name = "EnderecoCompletoList")
-            protected Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList enderecoCompletoList;
+            @XmlElement(name = "EnderecoCompleto", required = true)
+            protected List<Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto> enderecoCompleto;
 
             /**
-             * Obtém o valor da propriedade enderecoCompletoList.
+             * Gets the value of the enderecoCompleto property.
              * 
-             * @return
-             *     possible object is
-             *     {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList }
-             *     
-             */
-            public Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList getEnderecoCompletoList() {
-                return enderecoCompletoList;
-            }
-
-            /**
-             * Define o valor da propriedade enderecoCompletoList.
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the enderecoCompleto property.
              * 
-             * @param value
-             *     allowed object is
-             *     {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList }
-             *     
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getEnderecoCompleto().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto }
+             * 
+             * 
              */
-            public void setEnderecoCompletoList(Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList value) {
-                this.enderecoCompletoList = value;
+            public List<Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto> getEnderecoCompleto() {
+                if (enderecoCompleto == null) {
+                    enderecoCompleto = new ArrayList<Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto>();
+                }
+                return this.enderecoCompleto;
             }
 
 
@@ -1437,36 +1218,26 @@ public class Requirementsample {
              * &lt;complexType>
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;sequence>
-             *         &lt;element name="EnderecoCompleto" maxOccurs="unbounded">
+             *       &lt;sequence minOccurs="0">
+             *         &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="logradouro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="complemento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="estado">
              *           &lt;complexType>
              *             &lt;complexContent>
              *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *                 &lt;sequence minOccurs="0">
-             *                   &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="logradouro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="complemento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                   &lt;element name="estado">
-             *                     &lt;complexType>
-             *                       &lt;complexContent>
-             *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *                           &lt;sequence minOccurs="0">
-             *                             &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                             &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-             *                           &lt;/sequence>
-             *                         &lt;/restriction>
-             *                       &lt;/complexContent>
-             *                     &lt;/complexType>
-             *                   &lt;/element>
-             *                   &lt;element name="pais" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *                   &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *                   &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
              *                 &lt;/sequence>
              *               &lt;/restriction>
              *             &lt;/complexContent>
              *           &lt;/complexType>
              *         &lt;/element>
+             *         &lt;element name="pais" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
              *       &lt;/sequence>
              *     &lt;/restriction>
              *   &lt;/complexContent>
@@ -1477,40 +1248,216 @@ public class Requirementsample {
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
-                "enderecoCompleto"
+                "cep",
+                "logradouro",
+                "numero",
+                "complemento",
+                "bairro",
+                "cidade",
+                "estado",
+                "pais"
             })
-            public static class EnderecoCompletoList {
+            public static class EnderecoCompleto {
 
-                @XmlElement(name = "EnderecoCompleto", required = true)
-                protected List<Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto> enderecoCompleto;
+                protected String cep;
+                protected String logradouro;
+                protected String numero;
+                protected String complemento;
+                protected String bairro;
+                protected String cidade;
+                protected Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto.Estado estado;
+                protected String pais;
 
                 /**
-                 * Gets the value of the enderecoCompleto property.
+                 * Obtém o valor da propriedade cep.
                  * 
-                 * <p>
-                 * This accessor method returns a reference to the live list,
-                 * not a snapshot. Therefore any modification you make to the
-                 * returned list will be present inside the JAXB object.
-                 * This is why there is not a <CODE>set</CODE> method for the enderecoCompleto property.
-                 * 
-                 * <p>
-                 * For example, to add a new item, do as follows:
-                 * <pre>
-                 *    getEnderecoCompleto().add(newItem);
-                 * </pre>
-                 * 
-                 * 
-                 * <p>
-                 * Objects of the following type(s) are allowed in the list
-                 * {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto }
-                 * 
-                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
                  */
-                public List<Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto> getEnderecoCompleto() {
-                    if (enderecoCompleto == null) {
-                        enderecoCompleto = new ArrayList<Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto>();
-                    }
-                    return this.enderecoCompleto;
+                public String getCep() {
+                    return cep;
+                }
+
+                /**
+                 * Define o valor da propriedade cep.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setCep(String value) {
+                    this.cep = value;
+                }
+
+                /**
+                 * Obtém o valor da propriedade logradouro.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getLogradouro() {
+                    return logradouro;
+                }
+
+                /**
+                 * Define o valor da propriedade logradouro.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setLogradouro(String value) {
+                    this.logradouro = value;
+                }
+
+                /**
+                 * Obtém o valor da propriedade numero.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getNumero() {
+                    return numero;
+                }
+
+                /**
+                 * Define o valor da propriedade numero.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setNumero(String value) {
+                    this.numero = value;
+                }
+
+                /**
+                 * Obtém o valor da propriedade complemento.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getComplemento() {
+                    return complemento;
+                }
+
+                /**
+                 * Define o valor da propriedade complemento.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setComplemento(String value) {
+                    this.complemento = value;
+                }
+
+                /**
+                 * Obtém o valor da propriedade bairro.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getBairro() {
+                    return bairro;
+                }
+
+                /**
+                 * Define o valor da propriedade bairro.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setBairro(String value) {
+                    this.bairro = value;
+                }
+
+                /**
+                 * Obtém o valor da propriedade cidade.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getCidade() {
+                    return cidade;
+                }
+
+                /**
+                 * Define o valor da propriedade cidade.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setCidade(String value) {
+                    this.cidade = value;
+                }
+
+                /**
+                 * Obtém o valor da propriedade estado.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto.Estado }
+                 *     
+                 */
+                public Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto.Estado getEstado() {
+                    return estado;
+                }
+
+                /**
+                 * Define o valor da propriedade estado.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto.Estado }
+                 *     
+                 */
+                public void setEstado(Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto.Estado value) {
+                    this.estado = value;
+                }
+
+                /**
+                 * Obtém o valor da propriedade pais.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getPais() {
+                    return pais;
+                }
+
+                /**
+                 * Define o valor da propriedade pais.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setPais(String value) {
+                    this.pais = value;
                 }
 
 
@@ -1524,25 +1471,8 @@ public class Requirementsample {
                  *   &lt;complexContent>
                  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
                  *       &lt;sequence minOccurs="0">
-                 *         &lt;element name="cep" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="logradouro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="numero" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="complemento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="bairro" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="cidade" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *         &lt;element name="estado">
-                 *           &lt;complexType>
-                 *             &lt;complexContent>
-                 *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                 *                 &lt;sequence minOccurs="0">
-                 *                   &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *                   &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                 *                 &lt;/sequence>
-                 *               &lt;/restriction>
-                 *             &lt;/complexContent>
-                 *           &lt;/complexType>
-                 *         &lt;/element>
-                 *         &lt;element name="pais" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+                 *         &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+                 *         &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
                  *       &lt;/sequence>
                  *     &lt;/restriction>
                  *   &lt;/complexContent>
@@ -1553,297 +1483,60 @@ public class Requirementsample {
                  */
                 @XmlAccessorType(XmlAccessType.FIELD)
                 @XmlType(name = "", propOrder = {
-                    "cep",
-                    "logradouro",
-                    "numero",
-                    "complemento",
-                    "bairro",
-                    "cidade",
-                    "estado",
-                    "pais"
+                    "sigla",
+                    "nome"
                 })
-                public static class EnderecoCompleto {
+                public static class Estado {
 
-                    protected String cep;
-                    protected String logradouro;
-                    protected String numero;
-                    protected String complemento;
-                    protected String bairro;
-                    protected String cidade;
-                    protected Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto.Estado estado;
-                    protected String pais;
+                    protected String sigla;
+                    protected String nome;
 
                     /**
-                     * Obtém o valor da propriedade cep.
+                     * Obtém o valor da propriedade sigla.
                      * 
                      * @return
                      *     possible object is
                      *     {@link String }
                      *     
                      */
-                    public String getCep() {
-                        return cep;
+                    public String getSigla() {
+                        return sigla;
                     }
 
                     /**
-                     * Define o valor da propriedade cep.
+                     * Define o valor da propriedade sigla.
                      * 
                      * @param value
                      *     allowed object is
                      *     {@link String }
                      *     
                      */
-                    public void setCep(String value) {
-                        this.cep = value;
+                    public void setSigla(String value) {
+                        this.sigla = value;
                     }
 
                     /**
-                     * Obtém o valor da propriedade logradouro.
+                     * Obtém o valor da propriedade nome.
                      * 
                      * @return
                      *     possible object is
                      *     {@link String }
                      *     
                      */
-                    public String getLogradouro() {
-                        return logradouro;
+                    public String getNome() {
+                        return nome;
                     }
 
                     /**
-                     * Define o valor da propriedade logradouro.
+                     * Define o valor da propriedade nome.
                      * 
                      * @param value
                      *     allowed object is
                      *     {@link String }
                      *     
                      */
-                    public void setLogradouro(String value) {
-                        this.logradouro = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade numero.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getNumero() {
-                        return numero;
-                    }
-
-                    /**
-                     * Define o valor da propriedade numero.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setNumero(String value) {
-                        this.numero = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade complemento.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getComplemento() {
-                        return complemento;
-                    }
-
-                    /**
-                     * Define o valor da propriedade complemento.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setComplemento(String value) {
-                        this.complemento = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade bairro.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getBairro() {
-                        return bairro;
-                    }
-
-                    /**
-                     * Define o valor da propriedade bairro.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setBairro(String value) {
-                        this.bairro = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade cidade.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getCidade() {
-                        return cidade;
-                    }
-
-                    /**
-                     * Define o valor da propriedade cidade.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setCidade(String value) {
-                        this.cidade = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade estado.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto.Estado }
-                     *     
-                     */
-                    public Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto.Estado getEstado() {
-                        return estado;
-                    }
-
-                    /**
-                     * Define o valor da propriedade estado.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto.Estado }
-                     *     
-                     */
-                    public void setEstado(Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto.Estado value) {
-                        this.estado = value;
-                    }
-
-                    /**
-                     * Obtém o valor da propriedade pais.
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link String }
-                     *     
-                     */
-                    public String getPais() {
-                        return pais;
-                    }
-
-                    /**
-                     * Define o valor da propriedade pais.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link String }
-                     *     
-                     */
-                    public void setPais(String value) {
-                        this.pais = value;
-                    }
-
-
-                    /**
-                     * <p>Classe Java de anonymous complex type.
-                     * 
-                     * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
-                     * 
-                     * <pre>
-                     * &lt;complexType>
-                     *   &lt;complexContent>
-                     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-                     *       &lt;sequence minOccurs="0">
-                     *         &lt;element name="sigla" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                     *         &lt;element name="nome" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-                     *       &lt;/sequence>
-                     *     &lt;/restriction>
-                     *   &lt;/complexContent>
-                     * &lt;/complexType>
-                     * </pre>
-                     * 
-                     * 
-                     */
-                    @XmlAccessorType(XmlAccessType.FIELD)
-                    @XmlType(name = "", propOrder = {
-                        "sigla",
-                        "nome"
-                    })
-                    public static class Estado {
-
-                        protected String sigla;
-                        protected String nome;
-
-                        /**
-                         * Obtém o valor da propriedade sigla.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
-                         */
-                        public String getSigla() {
-                            return sigla;
-                        }
-
-                        /**
-                         * Define o valor da propriedade sigla.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
-                         */
-                        public void setSigla(String value) {
-                            this.sigla = value;
-                        }
-
-                        /**
-                         * Obtém o valor da propriedade nome.
-                         * 
-                         * @return
-                         *     possible object is
-                         *     {@link String }
-                         *     
-                         */
-                        public String getNome() {
-                            return nome;
-                        }
-
-                        /**
-                         * Define o valor da propriedade nome.
-                         * 
-                         * @param value
-                         *     allowed object is
-                         *     {@link String }
-                         *     
-                         */
-                        public void setNome(String value) {
-                            this.nome = value;
-                        }
-
+                    public void setNome(String value) {
+                        this.nome = value;
                     }
 
                 }

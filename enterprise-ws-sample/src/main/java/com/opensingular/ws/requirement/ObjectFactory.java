@@ -54,19 +54,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList }
+     * Create an instance of {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto }
      * 
      */
-    public Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList createRequirementsampleDadosPessoaisListEnderecosEnderecoCompletoList() {
-        return new Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList();
-    }
-
-    /**
-     * Create an instance of {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto }
-     * 
-     */
-    public Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto createRequirementsampleDadosPessoaisListEnderecosEnderecoCompletoListEnderecoCompleto() {
-        return new Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto();
+    public Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto createRequirementsampleDadosPessoaisListEnderecosEnderecoCompleto() {
+        return new Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto();
     }
 
     /**
@@ -78,27 +70,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList }
-     * 
-     */
-    public Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList createRequirementsampleDadosPessoaisDocumentacaoComprobatoriaDocumentoList() {
-        return new Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList();
-    }
-
-    /**
      * Create an instance of {@link Requirementsample.DadosPessoais.Documentos }
      * 
      */
     public Requirementsample.DadosPessoais.Documentos createRequirementsampleDadosPessoaisDocumentos() {
         return new Requirementsample.DadosPessoais.Documentos();
-    }
-
-    /**
-     * Create an instance of {@link Requirementsample.DadosPessoais.Documentos.DocumentoList }
-     * 
-     */
-    public Requirementsample.DadosPessoais.Documentos.DocumentoList createRequirementsampleDadosPessoaisDocumentosDocumentoList() {
-        return new Requirementsample.DadosPessoais.Documentos.DocumentoList();
     }
 
     /**
@@ -158,27 +134,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto.Estado }
+     * Create an instance of {@link Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto.Estado }
      * 
      */
-    public Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto.Estado createRequirementsampleDadosPessoaisListEnderecosEnderecoCompletoListEnderecoCompletoEstado() {
-        return new Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto.Estado();
+    public Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto.Estado createRequirementsampleDadosPessoaisListEnderecosEnderecoCompletoEstado() {
+        return new Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto.Estado();
     }
 
     /**
-     * Create an instance of {@link Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList.Documento }
+     * Create an instance of {@link Requirementsample.DadosPessoais.DocumentacaoComprobatoria.Documento }
      * 
      */
-    public Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList.Documento createRequirementsampleDadosPessoaisDocumentacaoComprobatoriaDocumentoListDocumento() {
-        return new Requirementsample.DadosPessoais.DocumentacaoComprobatoria.DocumentoList.Documento();
+    public Requirementsample.DadosPessoais.DocumentacaoComprobatoria.Documento createRequirementsampleDadosPessoaisDocumentacaoComprobatoriaDocumento() {
+        return new Requirementsample.DadosPessoais.DocumentacaoComprobatoria.Documento();
     }
 
     /**
-     * Create an instance of {@link Requirementsample.DadosPessoais.Documentos.DocumentoList.Documento }
+     * Create an instance of {@link Requirementsample.DadosPessoais.Documentos.Documento }
      * 
      */
-    public Requirementsample.DadosPessoais.Documentos.DocumentoList.Documento createRequirementsampleDadosPessoaisDocumentosDocumentoListDocumento() {
-        return new Requirementsample.DadosPessoais.Documentos.DocumentoList.Documento();
+    public Requirementsample.DadosPessoais.Documentos.Documento createRequirementsampleDadosPessoaisDocumentosDocumento() {
+        return new Requirementsample.DadosPessoais.Documentos.Documento();
     }
 
 }

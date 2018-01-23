@@ -4,7 +4,7 @@ import com.opensingular.ws.requirement.Requirementsample;
 import com.opensingular.ws.requirement.Requirementsample.DadosPessoais.DocumentacaoComprobatoria;
 import com.opensingular.ws.requirement.Requirementsample.DadosPessoais.Documentos;
 import com.opensingular.ws.requirement.Requirementsample.DadosPessoais.FotoDoCachorro;
-import com.opensingular.ws.requirement.Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList.EnderecoCompleto;
+import com.opensingular.ws.requirement.Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompleto;
 import com.opensingular.ws.requirement.RequirementsampleResponse;
 import com.opensingular.ws.service.RequerimentService;
 import com.opensingular.ws.service.UploadService;
@@ -49,8 +49,7 @@ public class Main {
 
     private static Requirementsample.DadosPessoais.ListEnderecos preencheDadosEndereco() {
         Requirementsample.DadosPessoais.ListEnderecos listEnderecos = new Requirementsample.DadosPessoais.ListEnderecos();
-        Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList enderecoCompletoList = new Requirementsample.DadosPessoais.ListEnderecos.EnderecoCompletoList();
-        List<EnderecoCompleto> enderecos = enderecoCompletoList.getEnderecoCompleto();
+        List<EnderecoCompleto> enderecos = listEnderecos.getEnderecoCompleto();
         EnderecoCompleto enderecoCompleto = new EnderecoCompleto();
         enderecoCompleto.setBairro("Asa Norte");
         enderecoCompleto.setCep("99999-888");
@@ -64,16 +63,14 @@ public class Main {
         enderecoCompleto.setNumero("5");
         enderecoCompleto.setPais("Brasil");
         enderecos.add(enderecoCompleto);
-        listEnderecos.setEnderecoCompletoList(enderecoCompletoList);
         return listEnderecos;
 
     }
 
     private static DocumentacaoComprobatoria preencheDadosDocumentacaoComprobatoria(AttachmentResponse infoResponse) {
         DocumentacaoComprobatoria documentacaoComprobatoria = new DocumentacaoComprobatoria();
-        documentacaoComprobatoria.setDocumentoList(new DocumentacaoComprobatoria.DocumentoList());
-        List<DocumentacaoComprobatoria.DocumentoList.Documento> documentos = documentacaoComprobatoria.getDocumentoList().getDocumento();
-        DocumentacaoComprobatoria.DocumentoList.Documento doc = new DocumentacaoComprobatoria.DocumentoList.Documento();
+        List<DocumentacaoComprobatoria.Documento> documentos = documentacaoComprobatoria.getDocumento();
+        DocumentacaoComprobatoria.Documento doc = new DocumentacaoComprobatoria.Documento();
 
         doc.setFileId(infoResponse.getFileId());
         doc.setFileSize(BigInteger.valueOf(infoResponse.getFileSize()));
@@ -86,10 +83,9 @@ public class Main {
 
     private static Documentos preencheDadosDocumentos(AttachmentResponse docResponse) {
         Documentos documentos = new Documentos();
-        documentos.setDocumentoList(new Documentos.DocumentoList());
-        List<Documentos.DocumentoList.Documento> documentoList = documentos.getDocumentoList().getDocumento();
+        List<Documentos.Documento> documentoList = documentos.getDocumento();
 
-        Documentos.DocumentoList.Documento doc = new Documentos.DocumentoList.Documento();
+        Documentos.Documento doc = new Documentos.Documento();
         doc.setFileId(docResponse.getFileId());
         doc.setFileSize(BigInteger.valueOf(docResponse.getFileSize()));
         doc.setHashSHA1(docResponse.getHashSHA1());
