@@ -53,7 +53,7 @@ public class EstudoResiduoStudioDefinition implements StudioDefinition {
 
 
     @Override
-    public CrudEditContent makeEditContent(CrudShellManager crudShellManager, CrudShellContent previousContent, IModel<SInstance> instance) {
+    public CrudEditContent buildEditContent(CrudShellManager crudShellManager, CrudShellContent previousContent, IModel<SInstance> instance) {
         CrudEditContent crudEditContent = new CrudEditContent(crudShellManager, previousContent, instance);
         crudEditContent.setSaveButtonFactory(new CrudEditContent.SaveButtonFactory(crudShellManager) {
             @Override
