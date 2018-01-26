@@ -59,12 +59,8 @@ public class STypeDemanda extends STypeComposite<SIComposite> {
                 // @destacar
                 .column("TITULO");
         // @destacar
-        demandante.key.asSQL()
-                // @destacar
-                .column("ID_DEMANDANTE");
+        demandante.bindForeignColumn("ID_DEMANDANTE");
         // @destacar
-        atendente.key.asSQL()
-                // @destacar
-                .column("ID_ATENDENTE");
+        atendente.bindForeignColumn("ID_ATENDENTE");
     }
 }
