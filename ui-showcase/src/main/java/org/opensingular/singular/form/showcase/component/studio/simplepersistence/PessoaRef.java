@@ -20,12 +20,10 @@ package org.opensingular.singular.form.showcase.component.studio.simplepersisten
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.document.SDocument;
 import org.opensingular.form.persistence.FormKeyRelational;
 import org.opensingular.form.type.ref.STypeRef;
@@ -50,13 +48,9 @@ public class PessoaRef extends STypeRef<SIComposite> {
         return pessoaRepository.loadAll();
     }
 
-    @Override
-    protected void onLoadType(@Nonnull TypeBuilder tb) {
-        super.onLoadType(tb);
+    public void bindForeignColumn(String keyColumn) {
         // relational mapping
-        // @destacar
-        display.asSQL()
-                // @destacar
-                .foreignColumn("NOME", "ID_" + this.getNameSimple(), STypePessoa.class);
+        key.asSQL().column(keyColumn);
+        display.asSQL().foreignColumn("NOME", keyColumn, STypePessoa.class);
     }
 }
