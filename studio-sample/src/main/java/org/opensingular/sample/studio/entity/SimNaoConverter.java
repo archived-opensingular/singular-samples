@@ -37,10 +37,10 @@ public class SimNaoConverter implements AttributeConverter<Boolean, Character>, 
 		if (dbData == null) {
 			return null;//NOSONAR
 		}
-		if (Character.valueOf('S').equals(Character.toUpperCase(dbData))) {
+		if (Character.valueOf('S').equals(Character.toUpperCase(dbData))) {//NOSONAR
 			return Boolean.TRUE;
 		}
-		if (Character.valueOf('N').equals(Character.toUpperCase(dbData))) {
+		if (Character.valueOf('N').equals(Character.toUpperCase(dbData))) {//NOSONAR
 			return Boolean.FALSE;
 		}
 		return null;//NOSONAR
