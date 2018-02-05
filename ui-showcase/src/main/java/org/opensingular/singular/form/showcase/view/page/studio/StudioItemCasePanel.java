@@ -29,7 +29,6 @@ import org.opensingular.studio.core.panel.CrudShell;
 public class StudioItemCasePanel extends ItemCasePanel<CaseBaseStudio> implements SingularWicketContainer<StudioItemCasePanel, Void> {
 
     private static final long serialVersionUID = 1L;
-    private CrudShell singularFormPanel = null;
 
 
     public StudioItemCasePanel(String id, IModel<CaseBaseStudio> caseBase) {
@@ -48,8 +47,7 @@ public class StudioItemCasePanel extends ItemCasePanel<CaseBaseStudio> implement
     }
 
     private CrudShell buildSingularBasePanel() {
-        singularFormPanel = new CrudShell("singularFormPanel", getCaseBase().getObject().getStudioDefinition());
-        return singularFormPanel;
+        return new CrudShell("singularFormPanel", getCaseBase().getObject().getStudioDefinition());
     }
 
 
