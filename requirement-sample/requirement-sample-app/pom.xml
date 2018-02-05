@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>org.opensingular</groupId>
-            <artifactId>singular-server-studio-app</artifactId>
+            <artifactId>singular-requirement-studio-app</artifactId>
             <version>${singular.version}</version>
         </dependency>
     </dependencies>
