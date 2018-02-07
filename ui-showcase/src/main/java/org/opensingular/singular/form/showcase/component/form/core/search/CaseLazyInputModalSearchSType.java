@@ -45,8 +45,8 @@ public class CaseLazyInputModalSearchSType extends STypeComposite<SIComposite> {
         funcionario = this.addFieldComposite("funcionario");
         funcionario.asAtr().label("Funcionario").displayString("${nome} - ${funcao}");
 
-        final STypeString nome   = funcionario.addFieldString("nome");
-        final STypeString funcao = funcionario.addFieldString("funcao");
+        final STypeString nome   = funcionario.addFieldString("nome");//NOSONAR
+        final STypeString funcao = funcionario.addFieldString("funcao");//NOSONAR
 
         funcionario.withView(new SViewSearchModal().title("Buscar Profissionais"))
                 .asAtrProvider()

@@ -40,11 +40,13 @@ public class CaseInputCoreDecimalSType extends STypeComposite<SIComposite> {
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         decimalPadrao = this.addFieldDecimal("decimalPadrao");
         decimalPadrao
-                .asAtr().label("Número decimal default");
+                .asAtr().label("Número decimal default")
+                .required();
 
         decimalLongo = this.addFieldDecimal("decimalLongo");
         decimalLongo
                 .asAtr().label("Decimal com 15 inteiros e 10 dígitos")
+                .required()
                 .integerMaxLength(15)
                 .fractionalMaxLength(10);
     }
