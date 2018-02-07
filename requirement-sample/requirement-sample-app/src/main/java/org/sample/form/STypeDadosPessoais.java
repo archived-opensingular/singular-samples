@@ -82,10 +82,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
         listEnderecos.asAtr().label("Endereços");
         listEnderecos.withView(SViewListByForm::new);
-        listEnderecos.getElementsType()
-                .pais
-                .asAtr()
-                .exists(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
+
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(nomeCompleto)
