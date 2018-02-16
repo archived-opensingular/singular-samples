@@ -13,7 +13,9 @@ public class RequirementsampleForm extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(TypeBuilder tb) {
+        this.asAtrIndex().indexed(true);
         dadosPessoais = addField("dadosPessoais", STypeDadosPessoais.class);
+        dadosPessoais.asAtrIndex().indexed(true);
         SViewTab sViewTab = new SViewTab();
         sViewTab.addTab(dadosPessoais);
         this.withView(sViewTab);
