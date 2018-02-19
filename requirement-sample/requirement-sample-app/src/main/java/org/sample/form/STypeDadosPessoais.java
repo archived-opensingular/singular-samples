@@ -40,8 +40,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         this.asAtrAnnotation().setAnnotated();
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
-        nomeCompleto.asAtr().enabled(false);
         nomeMae = addField("nomeMae", STypeString.class);
+        nomeMae.asAtr().enabled(false);
         nomePai = addField("nomePai", STypeString.class);
         telefone = addField("telefone", STypeTelefoneNacional.class);
 

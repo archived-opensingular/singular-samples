@@ -17,7 +17,7 @@ public class RequirementsampleForm extends STypeComposite<SIComposite> {
         SViewTab sViewTab = new SViewTab();
         sViewTab.addTab(dadosPessoais);
         this.withView(sViewTab);
-        this.asAtr().label("Formulário de Requerimento").displayString("Requerimento de ${nome!}");
+        this.asAtr().label("Formulário de Requerimento").displayString("Requerimento de ${dadosPessoais.nomeCompleto!}");
     }
 
 }
