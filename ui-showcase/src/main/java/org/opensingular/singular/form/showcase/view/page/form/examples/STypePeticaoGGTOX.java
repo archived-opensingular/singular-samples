@@ -77,7 +77,7 @@ public class STypePeticaoGGTOX extends STypeComposite<SIComposite> {
         choice.withView(SViewAutoComplete::new);
         choice.selectionOf("One", "Two", "Three", "Four", "Five", "Six", "Seven");
 
-        SType<?> forshow = addFieldString("forshow").asAtr().label("Just here").getTipo();
+        SType<?> forshow = addFieldString("forshow").asAtr().label("Just here").getType();
 
         SViewTab tabbed = new SViewTab();
         tabbed.addTab("tudo", "Tudo").add(dadosResponsavel.root).add(componentes.root)

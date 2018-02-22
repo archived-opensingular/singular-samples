@@ -16,13 +16,13 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import java.util.Optional;
-
 import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SDictionary;
 import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.type.core.STypeString;
+
+import java.util.Optional;
 
 public class DynamicCaseBase extends CaseBaseForm {
 
@@ -44,8 +44,8 @@ public class DynamicCaseBase extends CaseBaseForm {
 
     @Override
     public SType<?> getCaseType() {
-        SDictionary dicionario = SDictionary.create();
-        PackageBuilder pb = dicionario.createNewPackage(packageName);
+        SDictionary dictionary = SDictionary.create();
+        PackageBuilder pb = dictionary.createNewPackage(packageName);
         STypeComposite<?> tipoEndereco = pb.createCompositeType(typeName);
         tipoEndereco.addField("rua", STypeString.class).asAtr().label("Rua");
         tipoEndereco.addFieldString("bairro", true).asAtr().label("Bairro");

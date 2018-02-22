@@ -10,20 +10,23 @@
                            http://www.springframework.org/schema/jdbc
                            http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
 
-    <bean class="org.opensingular.form.exemplos.notificacaosimplificada.spring.NotificaoSimplificadaSpringConfiguration"/>
 
     <!-- DATA SOURCE CONFIGURATION -->
-    <bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="poolName" value="springHikariCP"/>
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:file:./singulardb;AUTO_SERVER=TRUE;mode=ORACLE;CACHE_SIZE=2048;INIT=CREATE SCHEMA IF NOT EXISTS DBSINGULAR;MVCC=TRUE;LOCK_TIMEOUT=15000;"/>
+        <property name="jdbcUrl" value="jdbc:h2:file:./singulardb;AUTO_SERVER=TRUE;mode=ORACLE;CACHE_SIZE=2048;MVCC=TRUE;LOCK_TIMEOUT=15000;" />
         <property name="username" value="sa"/>
         <property name="password" value="sa"/>
-        <property name="removeAbandoned" value="true"/>
-        <property name="initialSize" value="5" />
-        <property name="maxActive" value="10" />
-        <property name="minIdle" value="1" />
     </bean>
 
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="hikariConfig"/>
+    </bean>
+
+    <bean class="org.opensingular.form.persistence.service.RelationalDatabaseHibernate">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
 
     <!-- HIBERNATE CONFIGURATION -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -42,6 +45,13 @@
             </props>
         </property>
     </bean>
+
+    <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
+        <jdbc:script location="classpath:ddl/toxicologia-ddl.sql"/>
+        <jdbc:script location="classpath:dml/toxicologia-dml.sql"/>
+        <jdbc:script location="classpath:org/opensingular/singular/form/showcase/component/studio/simplepersistence/PessoaStudioDefinition.sql"/>
+        <jdbc:script location="classpath:org/opensingular/singular/form/showcase/component/studio/simplepersistence/DemandaStudioDefinition.sql"/>
+    </jdbc:initialize-database>
 
     <!-- HIBERNATE TRANSACTION CONFIGURATION -->
     <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>

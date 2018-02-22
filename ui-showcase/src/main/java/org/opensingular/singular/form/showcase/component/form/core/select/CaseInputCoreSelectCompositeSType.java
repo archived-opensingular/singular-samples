@@ -48,11 +48,11 @@ public class CaseInputCoreSelectCompositeSType extends STypeComposite<SIComposit
         ingredienteQuimico.selection()
                 .id(formulaQuimica)
                 .display("${nome} - ${formulaQuimica}")
-                .simpleProvider(listaBuilder -> {
-                    listaBuilder.add().set(formulaQuimica, "H20").set(nome, "Água");
-                    listaBuilder.add().set(formulaQuimica, "H2O2").set(nome, "Água Oxigenada");
-                    listaBuilder.add().set(formulaQuimica, "O2").set(nome, "Gás Oxigênio");
-                    listaBuilder.add().set(formulaQuimica, "C12H22O11").set(nome, "Açúcar");
+                .simpleProvider(listBuilder -> {
+                    listBuilder.add().set(formulaQuimica, "H20").set(nome, "Água");
+                    listBuilder.add().set(formulaQuimica, "H2O2").set(nome, "Água Oxigenada");
+                    listBuilder.add().set(formulaQuimica, "O2").set(nome, "Gás Oxigênio");
+                    listBuilder.add().set(formulaQuimica, "C12H22O11").set(nome, "Açúcar");
                 });
     }
 }

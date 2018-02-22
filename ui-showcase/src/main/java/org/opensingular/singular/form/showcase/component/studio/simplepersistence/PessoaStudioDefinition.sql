@@ -1,0 +1,13 @@
+CREATE TABLE T_PESSOA (
+  ID             INT AUTO_INCREMENT,
+  NOME           VARCHAR(200) NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+INSERT INTO T_PESSOA ( NOME ) VALUES ('Anastácio Medeiros');
+INSERT INTO T_PESSOA ( NOME ) VALUES ('Clóvis Albuquerque');
+INSERT INTO T_PESSOA ( NOME ) VALUES ('Dantas Olegário');
+INSERT INTO T_PESSOA ( NOME ) VALUES ('Francisco Pereira');
+INSERT INTO T_PESSOA ( NOME ) VALUES ('Pedro Camurça');
+INSERT INTO T_PESSOA ( NOME ) VALUES ('Tiago Coimbra');
+INSERT INTO T_PESSOA ( NOME ) VALUES ('Valter Souza');

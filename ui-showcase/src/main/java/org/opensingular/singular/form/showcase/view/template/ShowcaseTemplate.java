@@ -24,12 +24,12 @@ import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.PackageResourceReference;
-import org.jetbrains.annotations.NotNull;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminTemplate;
 import org.opensingular.lib.wicket.util.toastr.ToastrHelper;
+
+import javax.annotation.Nonnull;
 
 @AuthorizeAction(action = Action.RENDER, roles = Roles.ADMIN)
 public abstract class ShowcaseTemplate extends SingularAdminTemplate {
@@ -54,7 +54,8 @@ public abstract class ShowcaseTemplate extends SingularAdminTemplate {
     }
 
     @Override
-    protected @NotNull WebMarkupContainer buildPageMenu(String id) {
+    protected @Nonnull
+    WebMarkupContainer buildPageMenu(String id) {
         if (isWithMenu()) {
             return new ShowcaseMenu("menu");
         } else {

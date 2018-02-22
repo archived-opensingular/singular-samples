@@ -53,6 +53,9 @@ public class CaseListByFormDefaultSType extends STypeComposite<SIComposite> {
             experienciasProfissionais
                     .withView(new SViewListByForm(empresa))
                     .asAtr().label("Experiências profissionais");
+            experiencia
+                    .asAtr()
+                    .dependsOn(empresa);
             dtInicioExperiencia
                     .asAtr().label("Data inicial")
                     .asAtrBootstrap().colPreference(2);

@@ -16,6 +16,19 @@
 
 package org.opensingular.singular.form.showcase.component;
 
+import com.google.common.base.Throwables;
+import org.apache.wicket.util.string.StringValue;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.lib.commons.base.SingularException;
+import org.opensingular.lib.commons.base.SingularUtil;
+import org.opensingular.lib.commons.scan.SingularClassPathScanner;
+import org.opensingular.lib.commons.ui.Icon;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
+import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
+import org.opensingular.studio.core.definition.StudioDefinition;
+import org.springframework.stereotype.Service;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,19 +41,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.apache.wicket.util.string.StringValue;
-import org.opensingular.form.STypeComposite;
-import org.opensingular.lib.commons.base.SingularException;
-import org.opensingular.lib.commons.base.SingularUtil;
-import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.opensingular.lib.wicket.util.resource.Icon;
-import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
-import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
-import org.reflections.Reflections;
-import org.springframework.stereotype.Service;
-
-import com.google.common.base.Throwables;
-
 @Service
 public class ShowCaseTable {
 
@@ -50,8 +50,8 @@ public class ShowCaseTable {
     private final Map<Group, List<Class<?>>> casePorGrupo = new EnumMap<>(Group.class);
 
     public ShowCaseTable() {
-        Reflections reflections = new Reflections("org.opensingular.singular.form.showcase.component");
-        Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(CaseItem.class);
+
+        Set<Class<?>> annotated = SingularClassPathScanner.get().findClassesAnnotatedWith(CaseItem.class, ShowCaseTable.class.getPackage().getName());
         for (Class<?> aClass : annotated) {
             final CaseItem annotation = aClass.getAnnotation(CaseItem.class);
             List<Class<?>> classes = casePorGrupo.get(annotation.group());
@@ -75,10 +75,10 @@ public class ShowCaseTable {
         addGroup(Group.IMPORTER);
 
         addGroup("XSD", DefaultIcons.CODE, ShowCaseType.FORM)
-            .addCase(new XsdCaseSimple())
-            .addCase(new XsdCaseSimple2());
+                .addCase(new XsdCaseSimple())
+                .addCase(new XsdCaseSimple2());
 
-        addGroup(Group.STUDIO_SAMPLES);
+        addGroup(Group.STUDIO_PERSISTENCE);
         //@formatter:on
     }
 
@@ -90,6 +90,7 @@ public class ShowCaseTable {
                 .findFirst().orElse(null);
     }
 
+    @SuppressWarnings("unchecked")
     private void addGroup(Group groupEnum) {
         final ShowCaseGroup group = addGroup(groupEnum.getName(), groupEnum.getIcone(), groupEnum.getTipo());
 
@@ -102,6 +103,8 @@ public class ShowCaseTable {
             CaseBase caseBase;
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
                 caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
+            } else if (StudioDefinition.class.isAssignableFrom(caseClass)) {
+                caseBase = new CaseBaseStudio((Class<? extends StudioDefinition>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
             } else {
                 throw new SingularException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
             }
@@ -117,6 +120,9 @@ public class ShowCaseTable {
                     resourceRef = ResourceRef.forClassWithExtension(resource.value(), resource.extension());
                 }
                 resourceRef.ifPresent(resourceRef1 -> caseBase.getAditionalSources().add(resourceRef1));
+                if (resourceRef.isPresent()) {
+                    caseBase.getAditionalSources().add(resourceRef.get());
+                }
             }
             group.addCase(caseBase);
         }
@@ -160,8 +166,8 @@ public class ShowCaseTable {
 
     public static class ShowCaseGroup implements Serializable {
 
-        private final String       groupName;
-        private final Icon         icon;
+        private final String groupName;
+        private final Icon icon;
         private final ShowCaseType tipo;
 
         private final Map<String, ShowCaseItem> itens = new TreeMap<>();
@@ -229,7 +235,7 @@ public class ShowCaseTable {
             cases.sort( (case1, case2) ->  case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
 
             CaseBase caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
-            if(caseBaseDefault != null){
+            if (caseBaseDefault != null) {
                 cases.remove(caseBaseDefault);
                 cases.add(0, caseBaseDefault);}
             return cases;

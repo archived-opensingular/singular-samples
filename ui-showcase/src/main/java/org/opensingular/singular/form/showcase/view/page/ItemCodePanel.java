@@ -16,37 +16,36 @@
 
 package org.opensingular.singular.form.showcase.view.page;
 
-import java.util.List;
-
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.opensingular.form.wicket.util.ProcessadorCodigoFonte;
+import org.opensingular.form.wicket.util.SourceCodeProcessor;
 import org.opensingular.lib.wicket.util.util.WicketUtils;
+
+import java.util.List;
 
 public class ItemCodePanel extends Panel {
 
     public ItemCodePanel(String id, IModel<String> code, String extension) {
         super(id);
-        final ProcessadorCodigoFonte pcf = new ProcessadorCodigoFonte(code.getObject());
-        add(new Label("code", pcf.getFonteProcessado())
-                .add(WicketUtils.$b.classAppender(getSyntaxHighlighterConfig(pcf.getLinhasParaDestacar(), extension))));
+        final SourceCodeProcessor pcf = new SourceCodeProcessor(code.getObject());
+        add(new Label("code", pcf.getResultSourceCode())
+                .add(WicketUtils.$b.classAppender(getSyntaxHighlighterConfig(pcf.getLinesToBeHighlighted(), extension))));
     }
 
-    private String getSyntaxHighlighterConfig(List<Integer> linhasParaDestacar, String extension) {
+    private String getSyntaxHighlighterConfig(List<Integer> linesToBeHighlighted, String extensionParam) {
+        String extension = extensionParam;
         StringBuilder config = new StringBuilder();
         if ("xsd".equalsIgnoreCase(extension)) {
             extension = "xml";
         }
         config.append(String.format("brush: %s;", extension));
 
-        if (!linhasParaDestacar.isEmpty()) {
+        if (!linesToBeHighlighted.isEmpty()) {
             config.append(" highlight: [");
-            linhasParaDestacar.forEach(l -> {
+            linesToBeHighlighted.forEach(l -> {
                 config.append(l);
-                if (linhasParaDestacar.indexOf(l) != linhasParaDestacar.size() - 1) {
+                if (linesToBeHighlighted.indexOf(l) != linesToBeHighlighted.size() - 1) {
                     config.append(", ");
                 }
             });

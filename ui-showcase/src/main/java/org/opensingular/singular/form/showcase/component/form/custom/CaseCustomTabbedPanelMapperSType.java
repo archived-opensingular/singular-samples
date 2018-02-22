@@ -69,7 +69,7 @@ public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite
         tab3.addFieldInteger("int2").asAtr().label("Inteiro 2");
 
         //@destacar
-        mainComposite.withCustomMapper(new CustomTabMapper());
+        mainComposite.setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, CustomTabMapper::new);
     }
 
     // Mapper recursivo
@@ -105,12 +105,12 @@ public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite
         @Override
         public WebMarkupContainer getPanel(String containerId) {
             // container filho
-            final BSContainer<?> childContainer = new BSContainer<>(containerId);
+            BSContainer<?> childContainer = new BSContainer<>(containerId);
             // contexto filho
-            final WicketBuildContext childCtx = parentCtx.createChild(childContainer, true, model);
+            WicketBuildContext childCtx = parentCtx.createChild(childContainer, model, parentCtx.getConfirmationModal());
 
             // chamada recursiva ao UIBuilderWicket
-            childCtx.getUiBuilderWicket().build(childCtx, childCtx.getViewMode());
+            childCtx.build();
 
             return childContainer;
         }

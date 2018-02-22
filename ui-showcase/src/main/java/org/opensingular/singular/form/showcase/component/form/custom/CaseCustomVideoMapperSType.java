@@ -57,7 +57,7 @@ public class CaseCustomVideoMapperSType extends STypeComposite<SIComposite> {
                 }
             })
             //@destacar
-            .withCustomMapper(new VideoMapper())
+            .setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, VideoMapper::new)
             .asAtr().label("Vídeo").required(true);
     }
 

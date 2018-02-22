@@ -157,7 +157,7 @@ public class PrototypeListPage extends ShowcaseTemplate implements
                 .appendAction(getMessage("label.table.column.visualizar"),
                         DefaultIcons.EYE,
                         (target, model) -> {
-                            setResponsePage(new PreviewPage(getMInstance(model.getObject()), PrototypeListPage.this.getPage()));
+                            setResponsePage(new PreviewPage(getSInstance(model.getObject()), PrototypeListPage.this.getPage()));
                         })
                 .appendAction(getMessage("label.table.column.delete"),
                         DefaultIcons.MINUS, this::deleteSelected)
@@ -165,7 +165,7 @@ public class PrototypeListPage extends ShowcaseTemplate implements
                         DefaultIcons.EYE, this::viewXml);
     }
 
-    private SInstanceRootModel<SIComposite> getMInstance(Prototype prototype) {
+    private SInstanceRootModel<SIComposite> getSInstance(Prototype prototype) {
         String xml = prototype.getXml();
         RefType refType = RefType.of(() -> dictionary.getType(STypePrototype.class));
         SIComposite instance = SFormXMLUtil.fromXML(refType, xml, singularFormConfig.getDocumentFactory());

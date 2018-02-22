@@ -43,7 +43,7 @@ public class CaseBaseForm extends CaseBase {
 
     @SuppressWarnings("unchecked")
     private Class<? extends STypeComposite<?>> getSTypeClass() {
-        return caseClass;
+        return (Class<? extends STypeComposite<?>>) caseClass;
     }
 
     public String getTypeName() {
@@ -61,6 +61,7 @@ public class CaseBaseForm extends CaseBase {
     public Optional<ResourceRef> getMainSourceResourceName() {
         return ResourceRef.forSource(getSTypeClass());
     }
+
 
     public boolean showValidateButton() {
         return getCaseType().hasAnyValidation();

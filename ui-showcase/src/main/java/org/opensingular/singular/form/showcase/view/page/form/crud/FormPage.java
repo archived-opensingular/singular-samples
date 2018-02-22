@@ -214,8 +214,8 @@ public class FormPage extends ShowcaseTemplate implements SingularWicketContaine
         return button.add(visibleOnlyInAnnotationBehaviour());
     }
 
-    private void addAnnotationsToModel(SInstance instancia) {
-        Optional<String> xmlAnnotation = SFormXMLUtil.annotationToXmlString(instancia);
+    private void addAnnotationsToModel(SInstance instance) {
+        Optional<String> xmlAnnotation = SFormXMLUtil.annotationToXmlString(instance);
         currentModel.setAnnotations(xmlAnnotation.orElse(null));
     }
 
