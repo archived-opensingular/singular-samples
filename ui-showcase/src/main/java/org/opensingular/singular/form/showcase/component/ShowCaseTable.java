@@ -53,18 +53,13 @@ public class ShowCaseTable {
 
         Set<Class<?>> annotated = SingularClassPathScanner.get().findClassesAnnotatedWith(CaseItem.class, ShowCaseTable.class.getPackage().getName());
         for (Class<?> aClass : annotated) {
-
-
             final CaseItem annotation = aClass.getAnnotation(CaseItem.class);
-
             List<Class<?>> classes = casePorGrupo.get(annotation.group());
             if (classes == null) {
                 classes = new ArrayList<>();
             }
             classes.add(aClass);
             casePorGrupo.put(annotation.group(), classes);
-
-
         }
 
         // @formatter:off
@@ -124,6 +119,7 @@ public class ShowCaseTable {
                 } else {
                     resourceRef = ResourceRef.forClassWithExtension(resource.value(), resource.extension());
                 }
+                resourceRef.ifPresent(resourceRef1 -> caseBase.getAditionalSources().add(resourceRef1));
                 if (resourceRef.isPresent()) {
                     caseBase.getAditionalSources().add(resourceRef.get());
                 }
@@ -148,13 +144,7 @@ public class ShowCaseTable {
             groups = studioGroups;
         }
 
-        ShowCaseGroup group = groups.get(groupName);
-        if (group == null) {
-            group = new ShowCaseGroup(groupName, icon, tipo);
-            groups.put(groupName, group);
-        }
-
-        return group;
+        return groups.computeIfAbsent(groupName, n -> new ShowCaseGroup(n, icon, tipo));
     }
 
     public Collection<ShowCaseGroup> getGroups() {
@@ -163,15 +153,15 @@ public class ShowCaseTable {
         return groups;
     }
 
-    public Collection<ShowCaseGroup> getGroups(StringValue tipoValue) {
-        if (tipoValue.isNull() || ShowCaseType.FORM.toString().equals(tipoValue.toString())) {
-            return formGroups.values();
-        } else if (ShowCaseType.STUDIO.toString().equals(tipoValue.toString())) {
-            return studioGroups.values();
-        } else {
-            return Collections.emptyList();
+    public Collection<ShowCaseGroup> getGroups(ShowCaseType showCaseType) {
+        switch (showCaseType){
+            case STUDIO:
+                return studioGroups.values();
+            case FORM:
+                return formGroups.values();
+            default:
+                return Collections.emptyList();
         }
-
     }
 
     public static class ShowCaseGroup implements Serializable {
@@ -202,11 +192,7 @@ public class ShowCaseTable {
         }
 
         private ShowCaseGroup addCase(CaseBase c) {
-            ShowCaseItem item = itens.get(c.getComponentName());
-            if (item == null) {
-                item = new ShowCaseItem(c.getComponentName(), c.getShowCaseType());
-                itens.put(c.getComponentName(), item);
-            }
+            ShowCaseItem item = itens.computeIfAbsent(c.getComponentName(), k -> new ShowCaseItem(c.getComponentName(), c.getShowCaseType()));
             item.addCase(c);
             return this;
         }
@@ -246,13 +232,12 @@ public class ShowCaseTable {
         }
 
         public List<CaseBase> getCases() {
-            Collections.sort(cases, (case1, case2) -> case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
+            cases.sort( (case1, case2) ->  case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
 
             CaseBase caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
             if (caseBaseDefault != null) {
                 cases.remove(caseBaseDefault);
-                cases.add(0, caseBaseDefault);
-            }
+                cases.add(0, caseBaseDefault);}
             return cases;
         }
 
