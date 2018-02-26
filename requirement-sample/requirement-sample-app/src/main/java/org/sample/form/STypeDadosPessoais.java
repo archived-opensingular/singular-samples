@@ -49,9 +49,9 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         nomeCompleto.asAtr().label("Nome Completo").asAtrBootstrap().colPreference(6);
         nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(6);
         nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(6);
-        nomePai.asAtrIndex().indexed(true);
+        nomePai.asAtrIndex().indexed(Boolean.TRUE);
         telefone.asAtr().label("Telefone").asAtrBootstrap().colPreference(6);
-        telefone.asAtrIndex().indexed(true);
+        telefone.asAtrIndex().indexed(Boolean.TRUE);
 
         nomeCompleto.asAtrAnnotation().setAnnotated();
         nomePai.asAtrAnnotation().setAnnotated();
