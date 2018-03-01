@@ -22,6 +22,8 @@ import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 
+import java.util.Optional;
+
 
 public class CaseBaseForm extends CaseBase {
 
@@ -44,23 +46,24 @@ public class CaseBaseForm extends CaseBase {
         return (Class<? extends STypeComposite<?>>) caseClass;
     }
 
-
     public String getTypeName() {
         return SFormUtil.getTypeName(getSTypeClass());
     }
 
     public SType<?> getCaseType() {
         if (caseType == null) {
-            SDictionary dictionary = SDictionary.create();
-            caseType = dictionary.getType(getSTypeClass());
+            caseType = SDictionary.create().getType(getSTypeClass());
         }
         return caseType;
+    }
+
+    @Override
+    public Optional<ResourceRef> getMainSourceResourceName() {
+        return ResourceRef.forSource(getSTypeClass());
     }
 
 
     public boolean showValidateButton() {
         return getCaseType().hasAnyValidation();
     }
-
-
 }

@@ -22,7 +22,7 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.util.STypeLatitudeLongitude;
+import org.opensingular.form.type.util.STypeLatitudeLongitudeGMaps;
 import org.opensingular.form.view.SViewCurrentLocation;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
@@ -37,11 +37,11 @@ import javax.annotation.Nonnull;
 @SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMapsGeo")
 public class CaseGoogleMapsGeolocationSType extends STypeComposite<SIComposite> {
 
-    public STypeLatitudeLongitude coordenada;
+    public STypeLatitudeLongitudeGMaps coordenada;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        coordenada = this.addField("coordenada", STypeLatitudeLongitude.class);
+        coordenada = this.addField("coordenada", STypeLatitudeLongitudeGMaps.class);
         //@destacar
         coordenada.withView(new SViewCurrentLocation().disableUserLocationSelection());
         coordenada

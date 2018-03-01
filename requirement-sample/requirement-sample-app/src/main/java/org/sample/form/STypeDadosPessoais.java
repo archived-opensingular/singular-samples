@@ -7,6 +7,7 @@ import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.basic.AtrIndex;
 import org.opensingular.form.type.core.SIBoolean;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeString;
@@ -48,7 +49,9 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         nomeCompleto.asAtr().label("Nome Completo").asAtrBootstrap().colPreference(6);
         nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(6);
         nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(6);
+        nomePai.asAtrIndex().indexed(Boolean.TRUE);
         telefone.asAtr().label("Telefone").asAtrBootstrap().colPreference(6);
+        telefone.asAtrIndex().indexed(Boolean.TRUE);
 
         nomeCompleto.asAtrAnnotation().setAnnotated();
         nomePai.asAtrAnnotation().setAnnotated();

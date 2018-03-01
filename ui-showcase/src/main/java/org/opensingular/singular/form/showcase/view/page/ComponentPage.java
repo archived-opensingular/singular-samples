@@ -37,7 +37,7 @@ import javax.inject.Inject;
 
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
-@MountPath("component/component")
+@MountPath("component")
 @SuppressWarnings("serial")
 public class ComponentPage extends ShowcaseTemplate {
 

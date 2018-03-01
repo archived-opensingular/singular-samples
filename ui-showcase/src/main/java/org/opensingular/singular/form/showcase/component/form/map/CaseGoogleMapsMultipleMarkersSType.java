@@ -20,25 +20,25 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.util.STypeLatitudeLongitudeGMaps;
+import org.opensingular.form.type.util.STypeLatitudeLongitudeList;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
 import javax.annotation.Nonnull;
 
 /**
- * Para adicionar um marcador basta clicar no posição do mapa.
+ *
  */
-@CaseItem(componentName = "Google Maps", group = Group.MAPS)
-@SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMaps")
-public class CaseGoogleMapsSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Google Maps com multiplos marcadores", group = Group.MAPS)
+@SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMapsMultipleMarkers")
+public class CaseGoogleMapsMultipleMarkersSType extends STypeComposite<SIComposite> {
 
-    public STypeLatitudeLongitudeGMaps coordenada;
+    public STypeLatitudeLongitudeList coordenadas;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        coordenada = this.addField("coordenada", STypeLatitudeLongitudeGMaps.class);
-        coordenada
+        coordenadas = this.addField("coordenadas", STypeLatitudeLongitudeList.class);
+        coordenadas
                 .asAtr().required();
     }
 }
