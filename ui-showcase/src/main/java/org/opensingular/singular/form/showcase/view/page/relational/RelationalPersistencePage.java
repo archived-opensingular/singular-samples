@@ -40,7 +40,7 @@ public abstract class RelationalPersistencePage extends ShowcaseTemplate impleme
         BSTabPanel tabs = new BSTabPanel("sources");
         for(Class<?> source : getSources()){
             try {
-                InputStream script = Thread.currentThread().getContextClassLoader().getResourceAsStream(source.getName().replace(".", "/") + ".java");
+                InputStream script = Thread.currentThread().getContextClassLoader().getResourceAsStream(source.getName().replace('.', '/') + ".java");
                 ItemCodePanel itemCodePanel = new ItemCodePanel(BSTabPanel.TAB_PANEL_ID, Model.of(IOUtils.toString(script, StandardCharsets.UTF_8)), "java");
                 tabs.addTab(source.getSimpleName(), itemCodePanel);
             } catch (Exception e) {
