@@ -107,7 +107,7 @@ public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite
             // container filho
             BSContainer<?> childContainer = new BSContainer<>(containerId);
             // contexto filho
-            WicketBuildContext childCtx = parentCtx.createChild(childContainer, model, parentCtx.getConfirmationModal());
+            WicketBuildContext childCtx = parentCtx.createChild(childContainer, parentCtx.getExternalContainer(), model);
 
             // chamada recursiva ao UIBuilderWicket
             childCtx.build();
