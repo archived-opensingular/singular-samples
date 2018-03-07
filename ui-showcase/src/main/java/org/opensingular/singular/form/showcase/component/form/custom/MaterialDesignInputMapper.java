@@ -47,7 +47,7 @@ public class MaterialDesignInputMapper implements IWicketComponentMapper {
         } else {
             formGroup.appendInputText(new TextField<>(mi.getName(), new SInstanceValueModel<>(model)));
             formGroup.appendLabel(label);
-            formGroup.add(new AttributeAppender("class", " form-md-line-input form-md-floating-label"));
+            formGroup.add(new AttributeAppender("class", " form-md-line-input form-md-floating-label", " "));
         }
     }
 
