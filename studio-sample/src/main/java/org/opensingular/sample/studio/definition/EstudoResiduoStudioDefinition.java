@@ -55,10 +55,10 @@ public class EstudoResiduoStudioDefinition implements StudioDefinition {
     @Override
     public CrudEditContent buildEditContent(CrudShellManager crudShellManager, CrudShellContent previousContent, IModel<SInstance> instance) {
         CrudEditContent crudEditContent = new CrudEditContent(crudShellManager, previousContent, instance);
-        crudEditContent.setSaveButtonFactory(new CrudEditContent.SaveButtonFactory(crudShellManager) {
+        crudEditContent.setSaveButtonFactory(new CrudEditContent.SaveButtonFactory(crudShellManager, crudEditContent) {
             @Override
             public Button make(String id, IModel<SInstance> instanceModel) {
-                return new CrudEditContent.StudioSaveButton(id, instanceModel, crudShellManager) {
+                return new CrudEditContent.StudioSaveButton(id, instanceModel, crudShellManager, crudEditContent) {
                     @Override
                     protected void onValidationSuccess(AjaxRequestTarget target, Form<?> form, IModel<? extends SInstance> instanceModel) {
                         crudShellManager.addConfirm("Tem certeza que deseja salvar?", target, newTarget -> {
