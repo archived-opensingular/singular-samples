@@ -7,7 +7,6 @@ import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.basic.AtrIndex;
 import org.opensingular.form.type.core.SIBoolean;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeString;
@@ -85,6 +84,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
         listEnderecos.asAtr().label("Endereços");
         listEnderecos.withView(SViewListByForm::new);
+        listEnderecos.asAtrIndex().indexed(Boolean.TRUE);
 
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
