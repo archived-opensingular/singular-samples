@@ -39,7 +39,7 @@ public class STypePDIProjetoPedagogico extends STypeComposite<SIComposite>{
         addOutrosProjetosPedagogicosCurso();
         
         // cria um bloco por campo
-        setView(SViewByBlock::new)
+        withView(new SViewByBlock()
             .newBlock("12 Justificativa da Oferta do Curso").add("justificativaOfertaCurso")
             .newBlock("13 Atividades do Curso").add("atividadesComplementares")
             .newBlock("14 Perfil do Egresso").add("perfilEgresso")
@@ -49,7 +49,8 @@ public class STypePDIProjetoPedagogico extends STypeComposite<SIComposite>{
             .newBlock("18 Sistema de Avaliação do Projeto de Curso").add("sistemaAvaliacaoProjetoCurso")
             .newBlock("19 Atividades de Conclusão de Curso (TCC)").add("atividadesConclusaoCurso")
             .newBlock("20 Ato autorizativo anterior ou ato de criação").add("atoAutorizativoCriacao")
-            .newBlock("21 Outros Projetos Pedagógicos de Curso").add("informacoesOutrosProjetosPedagogicosCurso");
+            .newBlock("21 Outros Projetos Pedagógicos de Curso").add("informacoesOutrosProjetosPedagogicosCurso")
+        .getView());
     }
 
     private void addPerfilCurso() {

@@ -28,6 +28,7 @@ import org.opensingular.sample.studio.repository.TipoDoseRepository;
 import org.opensingular.studio.core.definition.StudioDefinition;
 import org.opensingular.studio.core.definition.StudioTableDefinition;
 import org.opensingular.studio.core.panel.CrudListContent;
+import org.opensingular.studio.core.panel.CrudShellManager;
 
 public class TipoDoseStudioDefinition implements StudioDefinition {
     @Override
@@ -45,7 +46,7 @@ public class TipoDoseStudioDefinition implements StudioDefinition {
             }
 
             @Override
-            public void onAction(AjaxRequestTarget target, IModel<SInstance> model) {
+            public void onAction(AjaxRequestTarget target, IModel<SInstance> model, CrudShellManager crudShellManager) {
                 target.appendJavaScript("alert('Ola Mundo!!!');");
             }
         });

@@ -67,7 +67,7 @@ public class STypePDI extends STypeComposite<SIComposite>{
         addOutros();
         
         // cria um bloco por campo
-        setView(SViewByBlock::new)
+        withView(new SViewByBlock()
             .newBlock("1 Perfil Institucional").add("perfilInstitucional")
             .newBlock("2 Projeto Pedagógico da Instituição").add("projetoPedagogicoInstituicao")
             .newBlock("3 Implantação de Desenvolvimento da Instituição - Programa de Abertura de Cursos de Pós Graduação").add("implantacaoInstituicao")
@@ -78,7 +78,8 @@ public class STypePDI extends STypeComposite<SIComposite>{
             .newBlock("8 Atendimento de Pessoas com Necessidades Especiais").add("atendimentoPessoasNecessidadesEspeciais")
             .newBlock("9 Ato autorizativo anterior ou ato de criação").add("atoAutorizativoCriacao")
             .newBlock("10 Demonstrativo de Capacidade e Sustentabilidade Financeira").add("demonstrativoCapacidadeSustentabilidadeFinanceira")
-            .newBlock("11 Outros").add("outros");
+            .newBlock("11 Outros").add("outros")
+        .getView());
     }
     
     private void addPerfilInstitucional() {
@@ -188,13 +189,13 @@ public class STypePDI extends STypeComposite<SIComposite>{
         ano.asAtr().label("Demonstrativo Financeiro").enabled(false);
         
         final STypeList<STypeComposite<SIComposite>, SIComposite> receitas = demonstrativo.addFieldListOfComposite("receitas", "receita");
-        receitas.setView(SViewListByTable::new).disableNew().disableDelete();
+        receitas.withView(new SViewListByTable().disableNew().disableDelete());
         receitas.asAtr().label("Receitas");
         receitas.getElementsType().addFieldString("tipo").asAtr().enabled(false);
         receitas.getElementsType().addFieldMonetary("valor");
 
         final STypeList<STypeComposite<SIComposite>, SIComposite> despesas = demonstrativo.addFieldListOfComposite("despesas", "despesa");
-        despesas.setView(SViewListByTable::new).disableNew().disableDelete();
+        despesas.withView(new SViewListByTable().disableNew().disableDelete());
         despesas.asAtr().label("Despesas");
         despesas.getElementsType().addFieldString("tipo").asAtr().enabled(false);
         despesas.getElementsType().addFieldMonetary("valor");
