@@ -57,16 +57,19 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentos = this.addFieldListOfAttachment("documentos", "documento");
         documentos.asAtr().label("Documentos");
         documentos.withMaximumSizeOf(10);
-        documentos.withMiniumSizeOf(1);
+        documentos.withMiniumSizeOf(0);
+        documentos.asAtr().required(false);
         documentos.asAtr().dependsOn(nomeCompleto);
-        documentos.asAtr().required(t -> !t.findNearest(nomeCompleto).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
+
 
         naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
         naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
+        naoTenhoFotoCachorro.asAtr().required(false);
         naoTenhoFotoCachorro.asAtr().enabled(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
         fotoDoCachorro.withView(SViewAttachmentImage::new);
+        fotoDoCachorro.asAtr().required(false);
         fotoDoCachorro.asAtr().label("Foto do cachorro");
         fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
         fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
@@ -75,6 +78,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentacaoComprobatoria.asAtr().label("Documentação comprobatória de que não possui cachorro");
         documentacaoComprobatoria.asAtr().dependsOn(naoTenhoFotoCachorro);
         documentacaoComprobatoria.getElementsType().asAtr().allowedFileTypes("pdf");
+        documentacaoComprobatoria.asAtr().required(false);
+        documentacaoComprobatoria.withMiniumSizeOf(0);
         documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         brasileiro = this.addFieldBoolean("brasileiro");
