@@ -86,7 +86,7 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
         item.addFieldString("obs").asAtr().label("Observações");
         item.asAtrAnnotation().setAnnotated();
 
-        itens.setView(() -> new SViewListByMasterDetail());
+        itens.withView(() -> new SViewListByMasterDetail());
 
         //@destacar
         request.asAtrAnnotation().setAnnotated().label("Observações Finais"); //Permite definir seu pŕoprio rótulo

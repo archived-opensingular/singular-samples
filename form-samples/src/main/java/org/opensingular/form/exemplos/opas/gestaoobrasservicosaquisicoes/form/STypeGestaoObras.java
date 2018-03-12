@@ -29,9 +29,10 @@ public class STypeGestaoObras extends STypeComposite<SIComposite>{
         this.asAtr().label("Gestão de Obras");
         
         
-        SViewTab tabbed = this.setView(SViewTab::new);
+        SViewTab tabbed = new SViewTab();
         tabbed.addTab(addField("checklist", STypeChecklist.class), "Checklist");
         tabbed.addTab(addField("processo", STypeProcesso.class), "Processo");
+        this.withView(tabbed);
         
         // configuração do tamanho da coluna de navegação das abas
         tabbed.navColPreference(1).navColMd(2).navColSm(2).navColXs(3);

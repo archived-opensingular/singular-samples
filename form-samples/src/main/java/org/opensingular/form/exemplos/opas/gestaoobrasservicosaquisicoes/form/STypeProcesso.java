@@ -42,10 +42,11 @@ public class STypeProcesso extends STypeComposite<SIComposite> {
     protected void onLoadType(TypeBuilder tb) {
         addDadosProcesso();
         addObrasProcesso();
-        
-        setView(SViewByBlock::new)
+
+        withView(new SViewByBlock()
             .newBlock("Dados do Processo").add("dadosProcesso")
-            .newBlock("Obras do Processo").add(FIELD_OBRAS_PROCESSO);
+            .newBlock("Obras do Processo").add(FIELD_OBRAS_PROCESSO)
+        .getView());
     }
 
     private void addDadosProcesso(){

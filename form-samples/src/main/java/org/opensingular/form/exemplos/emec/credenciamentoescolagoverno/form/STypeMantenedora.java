@@ -36,9 +36,10 @@ public class STypeMantenedora extends STypeComposite<SIComposite> {
         addRepresentanteLegal();
 
         // cria um bloco por campo
-        setView(SViewByBlock::new)
+        withView(new SViewByBlock()
                 .newBlock("Dados da Mantenedora").add("dadosMantenedora")
-                .newBlock("Representante Legal").add("representanteLegal");
+                .newBlock("Representante Legal").add("representanteLegal")
+                .getView());
     }
 
     private void addDadosMantenedora() {

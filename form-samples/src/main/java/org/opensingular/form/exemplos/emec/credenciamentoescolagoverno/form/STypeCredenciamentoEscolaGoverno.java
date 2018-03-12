@@ -31,7 +31,7 @@ public class STypeCredenciamentoEscolaGoverno extends STypeComposite<SIComposite
         this.asAtr().label("Credenciamento de Escola de Governo");
         
         
-        SViewTab tabbed = this.setView(SViewTab::new);
+        SViewTab tabbed = new SViewTab();
         tabbed.addTab(addField("mantenedora", STypeMantenedora.class), "Mantenedora");
 //        tabbed.addTab("mantida", "Mantida");
         tabbed.addTab(addField("corpoDirigenteMembrosCPA", STypeCorpoDirigente.class), "Corpo Dirigente/CPA");
@@ -41,6 +41,7 @@ public class STypeCredenciamentoEscolaGoverno extends STypeComposite<SIComposite
         tabbed.addTab(addRegimentoEstatuto(), "Regimento/Estatuto");
         // configuração do tamanho da coluna de navegação das abas
         tabbed.navColPreference(2).navColMd(3).navColSm(3).navColXs(4);
+        this.withView(tabbed);
         
     }
     
@@ -51,7 +52,7 @@ public class STypeCredenciamentoEscolaGoverno extends STypeComposite<SIComposite
             .withTextAreaView()
             .asAtrBootstrap().colPreference(12);
         
-        regimentoEstatuto.setView(SViewByBlock::new).newBlock("25 Texto do Regimento").add("textoRegimento");
+        regimentoEstatuto.withView(new SViewByBlock().newBlock("25 Texto do Regimento").add("textoRegimento").getView());
         return regimentoEstatuto;
     }
 }

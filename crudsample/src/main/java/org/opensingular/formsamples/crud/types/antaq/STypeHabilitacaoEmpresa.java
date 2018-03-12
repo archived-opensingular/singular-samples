@@ -246,7 +246,7 @@ public class STypeHabilitacaoEmpresa extends STypeComposite<SIComposite> {
             .allowedFileTypes(PDF)
             .label("Declaração de Regularidade")
             .dependsOn(enviarDeclaracaoReg)
-            .exists(i -> i.findNearest(enviarDeclaracaoReg).filter(ii -> Boolean.TRUE.equals(ii.getValue())).isPresent())
+            .exists(SingularPredicates.typeValueIsTrueAndNotNull(enviarDeclaracaoReg))
             .required(i -> i.findNearest(enviarDeclaracaoReg).filter(ii -> Boolean.TRUE.equals(ii.getValue())).isPresent())
             .asAtrBootstrap()
             .colPreference(6)
