@@ -49,10 +49,11 @@ public class STypeObra extends STypeComposite<SIComposite>{
             .asAtr().label("Valor Contratado").asAtrBootstrap().colPreference(3);
         
         addValoresEmpenhados();
-        
-        setView(SViewByBlock::new)
+
+        withView(new SViewByBlock()
             .newBlock("Dados da Obra").add(FIELD_NUM_CONTRATO, FIELD_DESCRICAO_OBRA, FIELD_DATA_INICIO, FIELD_DATA_FIM)
-            .newBlock("Orçamento").add(FIELD_VALOR_SOLICITADO, FIELD_VALOR_CONTRATADO, FIELD_VALORES_EMPENHADOS);
+            .newBlock("Orçamento").add(FIELD_VALOR_SOLICITADO, FIELD_VALOR_CONTRATADO, FIELD_VALORES_EMPENHADOS)
+        .getView());
     }
 
     private void addValoresEmpenhados() {

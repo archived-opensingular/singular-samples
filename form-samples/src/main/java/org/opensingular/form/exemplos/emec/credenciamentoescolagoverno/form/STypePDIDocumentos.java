@@ -30,14 +30,15 @@ public class STypePDIDocumentos extends STypeComposite<SIComposite>{
         addSituacaoLegal();
         addRegularidadeFiscal();
         addDemonstracaoPatrimonio();
-        
+
         // cria um bloco por campo
-        setView(SViewByBlock::new)
+        withView(new SViewByBlock()
             .newBlock("22 Situação Legal").add("situacaoLegal")
             .newBlock("23 Regularidade Fiscal").add("regularidadeFiscal")
-            .newBlock("24 Demonstração de Patrimônio").add("demonstracaoPatrimonio");
+            .newBlock("24 Demonstração de Patrimônio").add("demonstracaoPatrimonio")
+                .getView());
     }
-    
+
     private void addSituacaoLegal() {
         final STypeComposite<SIComposite> situacaoLegal = this.addFieldComposite("situacaoLegal");
         situacaoLegal.addFieldAttachment("atosConstitutivos")
@@ -71,5 +72,5 @@ public class STypePDIDocumentos extends STypeComposite<SIComposite>{
         demonstracaoPatrimonio.addFieldAttachment("demonstracoesContabeis")
             .asAtr().label("Demonstrações Contábeis");
     }
-    
+
 }
