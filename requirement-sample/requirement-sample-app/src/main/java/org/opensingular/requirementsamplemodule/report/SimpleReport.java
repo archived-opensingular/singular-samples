@@ -32,6 +32,7 @@ import org.opensingular.requirementsamplemodule.report.filter.STypeSimpleReportF
 import javax.inject.Inject;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class SimpleReport extends AbstractSingularFormReport<SIComposite> {
 
@@ -67,7 +68,7 @@ public class SimpleReport extends AbstractSingularFormReport<SIComposite> {
 
 
     @Override
-    public SType<SIComposite> getFilterType(PackageBuilder packageBuilder) {
-        return packageBuilder.getType(STypeSimpleReportFilter.class);
+    public Optional<SType<SIComposite>> getFilterType(PackageBuilder packageBuilder) {
+        return Optional.of(packageBuilder.getType(STypeSimpleReportFilter.class));
     }
 }
