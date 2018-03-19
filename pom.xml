@@ -503,11 +503,7 @@
         <sonar.exclusions>**/*.less, **/*.sass, **/*.html, **/*.xml, **/*.js, **/*.css, **/form/exemplos/*</sonar.exclusions>
         <jdk.version>1.8</jdk.version>
         <skipTests>false</skipTests>
-        <spring.version>4.2.5.RELEASE</spring.version>
-        <spring.security.version>4.0.4.RELEASE</spring.security.version>
-        <wicket.version>7.3.0</wicket.version>
-        <hibernate.version>4.3.11.Final</hibernate.version>
-        <singular.version>1.7.1-SNAPSHOT</singular.version>
+        
     </properties>
 
 
