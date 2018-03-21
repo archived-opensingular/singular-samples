@@ -45,7 +45,7 @@ public class CaseListByMasterDetailPagingSType extends STypeComposite<SIComposit
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
         //@destacar:bloco
-        experienciasProfissionais.withView(new SViewListByMasterDetail().);
+        experienciasProfissionais.withView(new SViewListByMasterDetail());
         //@destacar:fim
         experienciasProfissionais.withInitListener(this::fillWithBlankValues);
     }
