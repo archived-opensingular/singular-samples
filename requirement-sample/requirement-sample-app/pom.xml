@@ -22,7 +22,6 @@
         <dependency>
             <groupId>com.opensingular</groupId>
             <artifactId>singular-enterprise-connector</artifactId>
-            <version>${singular.version}</version>
         </dependency>
     </dependencies>
 
