@@ -5,13 +5,13 @@ import javax.annotation.Nonnull;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.dialect.Dialect;
-import org.hibernate.dialect.SQLServer2008Dialect;
+import org.hibernate.dialect.Oracle10gDialect;
 import org.opensingular.server.commons.spring.ConfigureDatabaseResource;
 
 public class ConfigureSampleDatabaseResource extends ConfigureDatabaseResource {
 
     private String MODE_ORACLE = "ORACLE";
-    private String MODE_SQLSERVER = "SQLSERVER";
+    private String MODE_SQLSERVER = "MSSQLServer";
 
 
     @Override
@@ -22,14 +22,13 @@ public class ConfigureSampleDatabaseResource extends ConfigureDatabaseResource {
     @Nonnull
     @Override
     public Class<? extends Dialect> getHibernateDialect() {
-        return SQLServer2008Dialect.class;
+        return Oracle10gDialect.class;
     }
 
     @Override
     public String[] getHibernatePackagesToScan() {
         return ArrayUtils.add(super.getHibernatePackagesToScan(), "com.opensingular.form");
     }
-
     @Override
     public List<String> getScriptsPath() {
         return super.getScriptsPath();

@@ -20,6 +20,12 @@
             <artifactId>singular-requirement-studio-app</artifactId>
             <version>${singular.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.opensingular</groupId>
+            <artifactId>singular-requirement-commons-test</artifactId>
+            <version>${singular.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
