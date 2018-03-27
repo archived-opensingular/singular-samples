@@ -17,7 +17,6 @@
         <dependency>
             <groupId>org.opensingular</groupId>
             <artifactId>singular-ui-resources</artifactId>
-            <version>${singular.version}</version>
             <type>war</type>
         </dependency>
     </dependencies>
