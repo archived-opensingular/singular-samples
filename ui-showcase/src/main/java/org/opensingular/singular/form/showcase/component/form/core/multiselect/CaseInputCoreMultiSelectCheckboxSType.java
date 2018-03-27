@@ -41,9 +41,8 @@ public class CaseInputCoreMultiSelectCheckboxSType extends STypeComposite<SIComp
         this.asAtr().label("Salada de Frutas");
 
         frutas = this.addFieldListOf("frutas", STypeString.class);
-        frutas.selectionOf(String.class, new SMultiSelectionByCheckboxView().inline(true))
+        frutas.selectionOf(String.class, new SMultiSelectionByCheckboxView())
                 .selfIdAndDisplay()
                 .simpleProviderOf("Amora", "Banana", "Maçã", "Laranja", "Manga", "Melão", "Morango");
-
     }
 }
