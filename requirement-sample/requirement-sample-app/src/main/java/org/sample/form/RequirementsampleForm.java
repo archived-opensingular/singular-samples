@@ -6,7 +6,7 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewTab;
 
-@SInfoType(spackage = RequirementsamplePackage.class, name = "Requirementsample", label = "Example Requirement Form")
+@SInfoType(spackage = RequirementsamplePackage.class, name = "Requirementsample", label = "Formulário de Requerimento")
 public class RequirementsampleForm extends STypeComposite<SIComposite> {
 
     public STypeDadosPessoais dadosPessoais;
