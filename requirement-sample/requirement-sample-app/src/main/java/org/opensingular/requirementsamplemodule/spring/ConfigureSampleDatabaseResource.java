@@ -35,7 +35,7 @@ public class ConfigureSampleDatabaseResource extends ConfigureDatabaseResource {
     }
 
     @Override
-    public String getImportFiles(String... directoryAndFile) {
+    public List<String> getImportFiles(String... directoryAndFile) {
         return super.getImportFiles("/db/dml/import.sql");
     }
 
