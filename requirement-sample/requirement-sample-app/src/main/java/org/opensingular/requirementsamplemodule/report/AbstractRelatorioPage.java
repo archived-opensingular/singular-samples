@@ -22,7 +22,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.opensingular.form.report.SingularFormReport;
 import org.opensingular.lib.wicket.views.SingularReportPanel;
-import org.opensingular.server.commons.wicket.view.template.ServerTemplate;
+import org.opensingular.requirement.commons.wicket.view.template.ServerTemplate;
 
 public abstract class AbstractRelatorioPage extends ServerTemplate {
 
