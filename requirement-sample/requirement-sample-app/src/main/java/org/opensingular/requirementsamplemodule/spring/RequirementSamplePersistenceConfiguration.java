@@ -32,4 +32,8 @@ public class RequirementSamplePersistenceConfiguration extends SingularDefaultPe
         return new ConfigureSampleDatabaseResource();
     }
 
+    @Override
+    protected boolean getAdicionarAtorDefault() {
+        return true;
+    }
 }

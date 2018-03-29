@@ -39,4 +39,8 @@ public class ConfigureSampleDatabaseResource extends ConfigureDatabaseResource {
         return super.getImportFiles("/db/dml/import.sql");
     }
 
+    @Override
+    protected boolean isHibernateShowSql() {
+        return true;
+    }
 }
