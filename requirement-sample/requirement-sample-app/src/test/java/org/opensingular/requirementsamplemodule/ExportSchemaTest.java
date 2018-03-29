@@ -9,6 +9,6 @@ public class ExportSchemaTest extends SingularSchemaExportTest {
     @Override
     public void generateScriptByDialect() {
         ConfigureSampleDatabaseResource config = new ConfigureSampleDatabaseResource();
-        generateScript(null ,config.getHibernateDialect(), config.getScriptsPath());
+        generateScript(null, null ,config.getHibernateDialect(), config.getScriptsPath());
     }
 }
