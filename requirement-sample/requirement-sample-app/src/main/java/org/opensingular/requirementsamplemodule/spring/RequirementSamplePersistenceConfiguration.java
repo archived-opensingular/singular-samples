@@ -18,7 +18,7 @@
 
 package org.opensingular.requirementsamplemodule.spring;
 
-import org.opensingular.server.commons.spring.ConfigureDatabaseResource;
+import org.opensingular.requirement.commons.spring.ConfigureDatabaseResource;
 import org.opensingular.requirement.commons.spring.SingularDefaultPersistenceConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
