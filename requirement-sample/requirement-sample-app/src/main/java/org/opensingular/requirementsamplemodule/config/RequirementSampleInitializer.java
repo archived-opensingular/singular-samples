@@ -20,8 +20,6 @@ package org.opensingular.requirementsamplemodule.config;
 
 import org.opensingular.requirement.studio.init.RequirementStudioAppInitializer;
 import org.opensingular.requirementsamplemodule.RequirementsampleModule;
-import org.opensingular.requirementsamplemodule.spring.RequirementSamplePersistenceConfiguration;
-import org.opensingular.requirement.commons.spring.SingularDefaultPersistenceConfiguration;
 
 
 public class RequirementSampleInitializer implements RequirementStudioAppInitializer {
@@ -33,11 +31,6 @@ public class RequirementSampleInitializer implements RequirementStudioAppInitial
     @Override
     public String[] springPackagesToScan() {
         return new String[]{"org.opensingular"};
-    }
-
-    @Override
-    public Class<? extends SingularDefaultPersistenceConfiguration> persistenceConfiguration() {
-        return RequirementSamplePersistenceConfiguration.class;
     }
 
 
