@@ -21,7 +21,7 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.ValueToSICompositeConverter;
-import org.opensingular.form.enums.ViewMode;
+import org.opensingular.form.enums.ModalViewMode;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewSearchModal;
 import org.opensingular.singular.form.showcase.component.CaseItem;
@@ -35,7 +35,7 @@ import javax.annotation.Nonnull;
  * Permite a seleção a partir de uma busca filtrada, fazendo o controle de paginação de forma automatica.
  */
 @CaseItem(componentName = "Search Select", subCaseName = "TreeView in memory Pagination", group = Group.INPUT,
-resources = {@Resource(Funcionario.class), @Resource(FuncionarioProvider.class), @Resource(FuncionarioRepository.class)})
+        resources = {@Resource(Processo.class), @Resource(ProcessoProvider.class), @Resource(ProcessoProvider.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewPagination")
 public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
 
@@ -44,18 +44,18 @@ public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         funcionario = this.addFieldComposite("funcionario");
-        funcionario.asAtr().label("Funcionario").displayString("${nome} - ${funcao}");
+        funcionario.asAtr().label("Processo").displayString("${nome} - ${funcao}");
 
         final STypeString nome  = funcionario.addFieldString("nome");//NOSONAR
         final STypeString funcao = funcionario.addFieldString("funcao");//NOSONAR
 
-        funcionario.withView(new SViewSearchModal().title("Buscar Profissionais").withViewMode(ViewMode.TREE))
+        funcionario.withView(new SViewSearchModal().title("Buscar Processos").withViewMode(ModalViewMode.TREE))
                 .asAtrProvider()
                 //@destacar
-                .filteredProvider(new FuncionarioProvider())
-                .converter((ValueToSICompositeConverter<Funcionario>) (newFunc, func) -> {
-                    newFunc.setValue(nome, func.getNome());
-                    newFunc.setValue(funcao, func.getFuncao());
+                .filteredProvider(new ProcessoProvider())
+                .converter((ValueToSICompositeConverter<Processo>) (newProc, p) -> {
+                    newProc.setValue(nome, p.getNumeroProcesso());
+                    newProc.setValue(funcao, p.getNumeroProcesso());
                 });
     }
 }
