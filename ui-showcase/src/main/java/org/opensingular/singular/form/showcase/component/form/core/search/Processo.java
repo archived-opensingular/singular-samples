@@ -1,16 +1,14 @@
 package org.opensingular.singular.form.showcase.component.form.core.search;
 
-import org.opensingular.form.wicket.mapper.tree.TreeNode;
-
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Processo implements TreeNode<Processo> {
+public class Processo implements Serializable {
 
     private Long numeroProcesso;
     private String descricao;
     private List<Processo> processosFilhos = new LinkedList<>();
-    private Processo processoPai;
 
     Processo(Long numeroProcesso, String descricao) {
         this.numeroProcesso = numeroProcesso;
@@ -33,29 +31,15 @@ public class Processo implements TreeNode<Processo> {
         this.descricao = descricao;
     }
 
-    @Override
-    public Long getId() {
-        return numeroProcesso;
-    }
-
-    @Override
-    public String getDisplayLabel() {
-        return descricao;
-    }
-
-    @Override
-    public Processo getParent() {
-        return processoPai;
-    }
-
-    @Override
-    public void setParent(Processo parent) {
-        this.processoPai = parent;
-    }
-
-    @Override
-    public List<Processo> getChildrens() {
+    public List<Processo> getProcessosFilhos() {
         return processosFilhos;
     }
 
+    public void setProcessosFilhos(List<Processo> processosFilhos) {
+        this.processosFilhos = processosFilhos;
+    }
+
+    public void addFilho(Processo processo) {
+        processosFilhos.add(processo);
+    }
 }

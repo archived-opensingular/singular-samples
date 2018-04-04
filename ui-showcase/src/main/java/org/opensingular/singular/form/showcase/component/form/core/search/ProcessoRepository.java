@@ -5,43 +5,45 @@ import org.opensingular.form.SInstance;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessoRepository  {
+public class ProcessoRepository {
 
     private static final List<Processo> PROCESSOS;
 
     static {
         PROCESSOS = new ArrayList<>();
-        Processo mirante = new Processo(0L, "Mirante Tecnologia");
-        Processo anvisa = new Processo(1L, "Anvisa");
-        Processo montreal = new Processo(2L, "Montreal");
+        Processo mirante = new Processo(1L, "Mirante Tecnologia");
+        Processo anvisa = new Processo(2L, "Anvisa");
+        Processo montreal = new Processo(3L, "Montreal");
 
-        Processo pei = new Processo(11L, "petição-importação");
-        pei.addChild(new Processo(112L, "siscomex"));
-        anvisa.addChild(new Processo(12L, "unigru"));
-        anvisa.addChild(pei);
+        Processo pei = new Processo(4L, "petição-importação");
+        pei.addFilho(new Processo(5L, "siscomex"));
+        anvisa.addFilho(new Processo(6L, "unigru"));
+        anvisa.addFilho(pei);
 
-        Processo vendas = new Processo(21L, "vendas");
-        vendas.addChild(new Processo(221L, "comissões"));
-        montreal.addChild(vendas);
-        Processo hotelaria = new Processo(22L, "hotelaria");
-        hotelaria.addChild(new Processo(223L, "remanejamento"));
-        montreal.addChild(hotelaria);
+        Processo vendas = new Processo(7L, "vendas");
+        vendas.addFilho(new Processo(8L, "comissões"));
+        montreal.addFilho(vendas);
 
-        mirante.addChild(anvisa);
-        mirante.addChild(montreal);
+        Processo hotelaria = new Processo(9L, "hotelaria");
+        hotelaria.addFilho(new Processo(10L, "remanejamento"));
+        montreal.addFilho(hotelaria);
 
-        Processo singular = new Processo(3L, "Singular");
-        Processo antaq = new Processo(31L, "antaq");
-        antaq.addChild(new Processo(312L, "outorga"));
-        antaq.addChild(new Processo(313L, "travessia"));
+        mirante.addFilho(anvisa);
+        mirante.addFilho(montreal);
 
-        Processo anvisaSingular = new Processo(4L, "anvisa-singular");
-        anvisaSingular.addChild(new Processo(41L, "ggtox"));
-        anvisaSingular.addChild(new Processo(42L, "ggmed"));
-        anvisaSingular.addChild(new Processo(43L, "ggtin"));
+        Processo singular = new Processo(11L, "Singular");
 
-        singular.addChild(antaq);
-        singular.addChild(anvisaSingular);
+        Processo antaq = new Processo(12L, "antaq");
+        antaq.addFilho(new Processo(13L, "outorga"));
+        antaq.addFilho(new Processo(14L, "travessia"));
+
+        Processo anvisaSingular = new Processo(15L, "anvisa-singular");
+        anvisaSingular.addFilho(new Processo(16L, "ggtox"));
+        anvisaSingular.addFilho(new Processo(17L, "ggmed"));
+        anvisaSingular.addFilho(new Processo(18L, "ggtin"));
+
+        singular.addFilho(antaq);
+        singular.addFilho(anvisaSingular);
 
         PROCESSOS.add(mirante);
         PROCESSOS.add(singular);

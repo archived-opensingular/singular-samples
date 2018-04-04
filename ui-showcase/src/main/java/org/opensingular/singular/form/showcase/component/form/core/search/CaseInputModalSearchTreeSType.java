@@ -16,15 +16,13 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.search;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.ValueToSICompositeConverter;
-import org.opensingular.form.enums.ModalViewMode;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewSearchModal;
+import org.opensingular.form.view.SViewTree;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -33,30 +31,38 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 import javax.annotation.Nonnull;
 
 /**
- * Permite a seleção a partir de uma busca filtrada, fazendo o controle de paginação de forma automatica.
+ * Permite a seleção a partir de uma busca no modo de tree
  */
 @CaseItem(componentName = "Search Select", subCaseName = "TreeView in memory Pagination", group = Group.INPUT,
-        resources = {@Resource(Processo.class), @Resource(ProcessoProvider.class), @Resource(ProcessoProvider.class)})
+        resources = {@Resource(Processo.class), @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewPagination")
 public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite processo;
+    public STypeComposite<SIComposite> processo;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         processo = this.addFieldComposite("processo");
-        processo.asAtr().label("Processo").displayString("${numeroProcesso} - ${descricao}");
+        processo.asAtr()
+                .label("Processo")
+                .displayString("${numeroProcesso} - ${descricao}")
+                .asAtrBootstrap()
+                .colPreference(6);
 
-        final STypeString numeroProcesso  = processo.addFieldString("numeroProcesso");//NOSONAR
+        final STypeString numeroProcesso = processo.addFieldString("numeroProcesso");//NOSONAR
         final STypeString descricao = processo.addFieldString("descricao");//NOSONAR
 
-        processo.withView(new SViewSearchModal().title("Buscar Processos").withViewMode(ModalViewMode.TREE))
+        processo.withView(new SViewTree()
+                .setTitle("Buscar Processos"))
                 .asAtrProvider()
-                //@destacar
-                .filteredProvider(new ProcessoProvider())
-                .converter((ValueToSICompositeConverter<Pair<String, String>>) (newProc, pair) -> {
-                    newProc.setValue(numeroProcesso, pair.getKey());
-                    newProc.setValue(descricao, pair.getValue());
+                .idFunction(Processo::getNumeroProcesso)
+                .displayFunction(Processo::getDescricao)
+                .treeProvider(new ProcessoProvider())
+                .converter((ValueToSICompositeConverter<Processo>) (newProc, processo) -> {
+                    newProc.setValue(numeroProcesso, processo.getNumeroProcesso());
+                    newProc.setValue(descricao, processo.getDescricao());
                 });
     }
+
+
 }

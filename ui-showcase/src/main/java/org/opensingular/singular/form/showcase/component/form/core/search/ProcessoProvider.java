@@ -1,27 +1,22 @@
 package org.opensingular.singular.form.showcase.component.form.core.search;
 
+import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInstance;
-import org.opensingular.form.provider.Config;
-import org.opensingular.form.provider.FilteredProvider;
-import org.opensingular.form.provider.ProviderContext;
+import org.opensingular.form.provider.*;
 
 import java.util.List;
 
-public class ProcessoProvider implements FilteredProvider<Processo> {
+public class ProcessoProvider implements TreeProvider<Processo> {
 
-    private ProcessoRepository repository = new ProcessoRepository();
+    private static final ProcessoRepository repository = new ProcessoRepository();
 
     @Override
-    public void configureProvider(Config cfg) {
-        cfg.getFilter().addFieldString("nome").asAtr().label("Nome").asAtrBootstrap().colPreference(6);
-        cfg.result()
-                .addColumn("nome", "Nome");
+    public List<Processo> loadChildren(Processo node) {
+        return node.getProcessosFilhos();
     }
 
     @Override
     public List<Processo> load(ProviderContext<SInstance> context) {
-        //@destacar
-        return repository.get(context.getFilterInstance());
+        return repository.get(null);
     }
-
 }
