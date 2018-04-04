@@ -16,6 +16,7 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.search;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -39,23 +40,23 @@ import javax.annotation.Nonnull;
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewPagination")
 public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite funcionario;
+    public STypeComposite processo;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        funcionario = this.addFieldComposite("funcionario");
-        funcionario.asAtr().label("Processo").displayString("${nome} - ${funcao}");
+        processo = this.addFieldComposite("processo");
+        processo.asAtr().label("Processo").displayString("${numeroProcesso} - ${descricao}");
 
-        final STypeString nome  = funcionario.addFieldString("nome");//NOSONAR
-        final STypeString funcao = funcionario.addFieldString("funcao");//NOSONAR
+        final STypeString numeroProcesso  = processo.addFieldString("numeroProcesso");//NOSONAR
+        final STypeString descricao = processo.addFieldString("descricao");//NOSONAR
 
-        funcionario.withView(new SViewSearchModal().title("Buscar Processos").withViewMode(ModalViewMode.TREE))
+        processo.withView(new SViewSearchModal().title("Buscar Processos").withViewMode(ModalViewMode.TREE))
                 .asAtrProvider()
                 //@destacar
                 .filteredProvider(new ProcessoProvider())
-                .converter((ValueToSICompositeConverter<Processo>) (newProc, p) -> {
-                    newProc.setValue(nome, p.getNumeroProcesso());
-                    newProc.setValue(funcao, p.getNumeroProcesso());
+                .converter((ValueToSICompositeConverter<Pair<String, String>>) (newProc, pair) -> {
+                    newProc.setValue(numeroProcesso, pair.getKey());
+                    newProc.setValue(descricao, pair.getValue());
                 });
     }
 }

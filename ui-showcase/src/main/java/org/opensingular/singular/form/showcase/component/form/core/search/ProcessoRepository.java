@@ -23,7 +23,9 @@ public class ProcessoRepository  {
         Processo vendas = new Processo(21L, "vendas");
         vendas.addChild(new Processo(221L, "comissões"));
         montreal.addChild(vendas);
-        montreal.addChild(new Processo(22L, "hotelaria"));
+        Processo hotelaria = new Processo(22L, "hotelaria");
+        hotelaria.addChild(new Processo(223L, "remanejamento"));
+        montreal.addChild(hotelaria);
 
         mirante.addChild(anvisa);
         mirante.addChild(montreal);
