@@ -6,7 +6,7 @@ import org.opensingular.server.commons.test.SingularSchemaExportTest;
 public class ExportSchemaTest extends SingularSchemaExportTest {
 
     @Override
-    public void generateScriptByDialect() {
+    public void exportScriptToFile() {
         generateScript();
     }
 }
