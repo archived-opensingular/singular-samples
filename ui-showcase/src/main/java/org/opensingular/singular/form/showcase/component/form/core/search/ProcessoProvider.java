@@ -12,11 +12,11 @@ public class ProcessoProvider implements TreeProvider<Processo> {
 
     @Override
     public List<Processo> loadChildren(Processo node) {
-        return node.getProcessosFilhos();
+        return node.getSubProcessos();
     }
 
     @Override
     public List<Processo> load(ProviderContext<SInstance> context) {
-        return repository.get(null);
+        return repository.list(null);
     }
 }

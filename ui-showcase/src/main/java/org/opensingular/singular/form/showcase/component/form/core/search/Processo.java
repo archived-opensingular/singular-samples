@@ -6,40 +6,40 @@ import java.util.List;
 
 public class Processo implements Serializable {
 
-    private Long numeroProcesso;
-    private String descricao;
-    private List<Processo> processosFilhos = new LinkedList<>();
+    private Long id;
+    private String nome;
+    private List<Processo> subProcessos = new LinkedList<>();
 
-    Processo(Long numeroProcesso, String descricao) {
-        this.numeroProcesso = numeroProcesso;
-        this.descricao = descricao;
+    public Processo(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
     }
 
-    public Long getNumeroProcesso() {
-        return numeroProcesso;
+    public Long getId() {
+        return id;
     }
 
-    public void setNumeroProcesso(Long numeroProcesso) {
-        this.numeroProcesso = numeroProcesso;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public List<Processo> getProcessosFilhos() {
-        return processosFilhos;
+    public List<Processo> getSubProcessos() {
+        return subProcessos;
     }
 
-    public void setProcessosFilhos(List<Processo> processosFilhos) {
-        this.processosFilhos = processosFilhos;
+    public void setSubProcessos(List<Processo> subProcesso) {
+        this.subProcessos = subProcesso;
     }
 
-    public void addFilho(Processo processo) {
-        processosFilhos.add(processo);
+    public void addSubProcesso(Processo processo) {
+        subProcessos.add(processo);
     }
 }

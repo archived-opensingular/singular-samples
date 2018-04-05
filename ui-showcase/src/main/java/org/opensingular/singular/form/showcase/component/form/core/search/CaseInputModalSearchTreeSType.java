@@ -45,22 +45,22 @@ public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
         processo = this.addFieldComposite("processo");
         processo.asAtr()
                 .label("Processo")
-                .displayString("${numeroProcesso} - ${descricao}")
+                .displayString("${id} - ${nome}")
                 .asAtrBootstrap()
                 .colPreference(6);
 
-        final STypeString numeroProcesso = processo.addFieldString("numeroProcesso");//NOSONAR
-        final STypeString descricao = processo.addFieldString("descricao");//NOSONAR
+        final STypeString id = processo.addFieldString("id");//NOSONAR
+        final STypeString nome = processo.addFieldString("nome");//NOSONAR
 
         processo.withView(new SViewTree()
                 .setTitle("Buscar Processos"))
                 .asAtrProvider()
-                .idFunction(Processo::getNumeroProcesso)
-                .displayFunction(Processo::getDescricao)
+                .idFunction(Processo::getId)
+                .displayFunction(Processo::getNome)
                 .treeProvider(new ProcessoProvider())
                 .converter((ValueToSICompositeConverter<Processo>) (newProc, processo) -> {
-                    newProc.setValue(numeroProcesso, processo.getNumeroProcesso());
-                    newProc.setValue(descricao, processo.getDescricao());
+                    newProc.setValue(id, processo.getId());
+                    newProc.setValue(nome, processo.getNome());
                 });
     }
 
