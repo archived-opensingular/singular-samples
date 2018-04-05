@@ -31,11 +31,11 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 import javax.annotation.Nonnull;
 
 /**
- * Permite a seleção a partir de uma busca no modo de tree
+l * Permite a seleção a partir de uma busca no modo de tree em mémoria
  */
-@CaseItem(componentName = "Search Select", subCaseName = "TreeView in memory Pagination", group = Group.INPUT,
+@CaseItem(componentName = "Search Select", subCaseName = "TreeView in Memory", group = Group.INPUT,
         resources = {@Resource(Processo.class), @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
-@SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewPagination")
+@SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewMemory")
 public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
 
     public STypeComposite<SIComposite> processo;
