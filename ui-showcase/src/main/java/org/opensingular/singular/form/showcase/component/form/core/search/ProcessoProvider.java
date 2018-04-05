@@ -17,6 +17,6 @@ public class ProcessoProvider implements TreeProvider<Processo> {
 
     @Override
     public List<Processo> load(ProviderContext<SInstance> context) {
-        return repository.list(null);
+        return repository.list(context);
     }
 }
