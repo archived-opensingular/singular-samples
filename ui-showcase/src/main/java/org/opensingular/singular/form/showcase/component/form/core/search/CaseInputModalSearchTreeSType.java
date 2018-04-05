@@ -49,12 +49,13 @@ public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
                 .asAtrBootstrap()
                 .colPreference(6);
 
-        final STypeString id = processo.addFieldString("id");//NOSONAR
-        final STypeString nome = processo.addFieldString("nome");//NOSONAR
+        final STypeString id = processo.addFieldString("id");
+        final STypeString nome = processo.addFieldString("nome");
 
         processo.withView(new SViewTree()
                 .setTitle("Buscar Processos"))
                 .asAtrProvider()
+                // @destacar
                 .idFunction(Processo::getId)
                 .displayFunction(Processo::getNome)
                 .treeProvider(new ProcessoProvider())
