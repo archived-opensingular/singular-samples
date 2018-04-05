@@ -1,6 +1,7 @@
 package org.opensingular.singular.form.showcase.component.form.core.search;
 
 import org.opensingular.form.SInstance;
+import org.opensingular.form.provider.ProviderContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,45 +12,68 @@ public class ProcessoRepository {
 
     static {
         PROCESSOS = new ArrayList<>();
-        Processo mirante = new Processo(1L, "Mirante Tecnologia");
-        Processo anvisa = new Processo(2L, "Anvisa");
-        Processo montreal = new Processo(3L, "Montreal");
 
-        Processo pei = new Processo(4L, "petição-importação");
-        pei.addFilho(new Processo(5L, "siscomex"));
-        anvisa.addFilho(new Processo(6L, "unigru"));
-        anvisa.addFilho(pei);
+        Processo systemd = new Processo(1L, "systemd");
 
-        Processo vendas = new Processo(7L, "vendas");
-        vendas.addFilho(new Processo(8L, "comissões"));
-        montreal.addFilho(vendas);
+        Processo network = new Processo(2L, "network-manager");
+        Processo accounts = new Processo(3L, "accounts-daemon");
+        network.addSubProcesso(accounts);
+        accounts.addSubProcesso(new Processo(4L, "daemon"));
+        systemd.addSubProcesso(network);
 
-        Processo hotelaria = new Processo(9L, "hotelaria");
-        hotelaria.addFilho(new Processo(10L, "remanejamento"));
-        montreal.addFilho(hotelaria);
+        Processo chromium = new Processo(5L, "chromium");
+        chromium.addSubProcesso(new Processo(6L, "chromium-sandbox"));
 
-        mirante.addFilho(anvisa);
-        mirante.addFilho(montreal);
+        systemd.addSubProcesso(chromium);
 
-        Processo singular = new Processo(11L, "Singular");
+        Processo lightdm = new Processo(7L, "ligthdm");
 
-        Processo antaq = new Processo(12L, "antaq");
-        antaq.addFilho(new Processo(13L, "outorga"));
-        antaq.addFilho(new Processo(14L, "travessia"));
+        Processo xorg = new Processo(8L, "Xorg");
+        Processo sh = new Processo(9L, "sh");
+        xorg.addSubProcesso(sh);
+        sh.addSubProcesso(new Processo(10L, "ssh-agent"));
 
-        Processo anvisaSingular = new Processo(15L, "anvisa-singular");
-        anvisaSingular.addFilho(new Processo(16L, "ggtox"));
-        anvisaSingular.addFilho(new Processo(17L, "ggmed"));
-        anvisaSingular.addFilho(new Processo(18L, "ggtin"));
+        lightdm.addSubProcesso(xorg);
 
-        singular.addFilho(antaq);
-        singular.addFilho(anvisaSingular);
+        Processo xfce = new Processo(11L, "xfce-session");
+        xfce.addSubProcesso(new Processo(12L, "thunar"));
+        xfce.addSubProcesso(new Processo(13L, "nm-applet"));
+        xfce.addSubProcesso(new Processo(14L, "thunderbird"));
 
-        PROCESSOS.add(mirante);
-        PROCESSOS.add(singular);
+        Processo panel = new Processo(15L, "xfce4-panel");
+        panel.addSubProcesso(new Processo(16L, "panel-10-pulses"));
+        panel.addSubProcesso(new Processo(17L, "panel-2-actions"));
+        panel.addSubProcesso(new Processo(18L, "panel-6-tray"));
+
+        xfce.addSubProcesso(panel);
+        lightdm.addSubProcesso(xfce);
+
+        systemd.addSubProcesso(lightdm);
+
+        Processo idea = new Processo(19L, "idea");
+        Processo java = new Processo(20L, "java");
+        java.addSubProcesso(new Processo(21L, "standalone"));
+        idea.addSubProcesso(java);
+
+        systemd.addSubProcesso(idea);
+
+        Processo journal = new Processo(22L, "xfsettingsd");
+        Processo appfinder = new Processo(23L, "xfce4-appfinder");
+        appfinder.addSubProcesso(new Processo(24L, "finder"));
+        journal.addSubProcesso(appfinder);
+        journal.addSubProcesso(new Processo(25L, "rambox"));
+
+        Processo logind = new Processo(25L, "systemd-logind");
+        Processo loginctl = new Processo(26L, "loginctl");
+        loginctl.addSubProcesso(new Processo(27L, "login-agent"));
+        logind.addSubProcesso(loginctl);
+
+        PROCESSOS.add(systemd);
+        PROCESSOS.add(journal);
+        PROCESSOS.add(logind);
     }
 
-    public List<Processo> get(SInstance filter) {
+    public List<Processo> list(ProviderContext<SInstance> context) {
         return PROCESSOS;
     }
 }
