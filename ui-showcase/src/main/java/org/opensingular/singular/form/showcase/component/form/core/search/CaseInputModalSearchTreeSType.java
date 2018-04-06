@@ -20,49 +20,32 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.converter.ValueToSICompositeConverter;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewTree;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.STypeProcesso;
 
 import javax.annotation.Nonnull;
 
 /**
-l * Permite a seleção a partir de uma busca no modo de tree em mémoria
+ * Permite a seleção a partir de uma busca no modo de tree em mémoria
  */
 @CaseItem(componentName = "Search Select", subCaseName = "TreeView in Memory", group = Group.INPUT,
-        resources = {@Resource(Processo.class), @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
+        resources = {@Resource(STypeProcesso.class), @Resource(Processo.class), @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewMemory")
 public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite<SIComposite> processo;
+    public STypeProcesso processo;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        processo = this.addFieldComposite("processo");
+        processo = this.addField("processo", STypeProcesso.class);
         processo.asAtr()
                 .label("Processo")
                 .displayString("${id} - ${nome}")
                 .asAtrBootstrap()
                 .colPreference(6);
-
-        final STypeString id = processo.addFieldString("id");
-        final STypeString nome = processo.addFieldString("nome");
-
-        processo.withView(new SViewTree()
-                .setTitle("Buscar Processos"))
-                .asAtrProvider()
-                // @destacar
-                .idFunction(Processo::getId)
-                .displayFunction(Processo::getNome)
-                .treeProvider(new ProcessoProvider())
-                .converter((ValueToSICompositeConverter<Processo>) (newProc, processo) -> {
-                    newProc.setValue(id, processo.getId());
-                    newProc.setValue(nome, processo.getNome());
-                });
     }
 
 
