@@ -34,7 +34,7 @@ import javax.annotation.Nonnull;
  * List by Master Detail
  */
 @CaseItem(componentName = "List by Master Detail", subCaseName = "Aninhado", group = Group.LAYOUT)
-@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultMasterDetail")
+@SInfoType(spackage = CaseLayoutPackage.class, name = "MasterDetailNested")
 public class CaseListByMasterDetailNestedSType extends STypeComposite<SIComposite> {
 
     public STypeList<STypeComposite<SIComposite>, SIComposite> experienciasProfissionais;

@@ -19,7 +19,7 @@
 package org.opensingular.requirementsamplemodule.extension;
 
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.opensingular.server.commons.wicket.view.extension.RequirementButtonExtension;
+import org.opensingular.requirement.commons.wicket.view.extension.RequirementButtonExtension;
 
 /**
  * A Example of the RequirementButtonExtension extension that says Hello World
@@ -32,7 +32,7 @@ public class HelloWorldRequirementButtonExtension implements RequirementButtonEx
     }
 
     @Override
-    public void onAction(ActionContext actionContext) {
+    public void onAction(RequirementButtonExtension.ButtonExtensionActionContext actionContext) {
         actionContext.getAjaxRequestTarget().appendJavaScript("alert('Hello World');");
     }
 }
