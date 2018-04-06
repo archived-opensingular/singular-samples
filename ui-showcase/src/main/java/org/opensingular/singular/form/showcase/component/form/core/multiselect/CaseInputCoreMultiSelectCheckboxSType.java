@@ -35,13 +35,28 @@ import javax.annotation.Nonnull;
 public class CaseInputCoreMultiSelectCheckboxSType extends STypeComposite<SIComposite> {
 
     public STypeList<STypeString, SIString> frutas;
+    public STypeList<STypeString, SIString> frutasInline;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         this.asAtr().label("Salada de Frutas");
 
         frutas = this.addFieldListOf("frutas", STypeString.class);
+        frutas.asAtr()
+                .label("Frutas Vertical")
+                .asAtrBootstrap()
+                .colPreference(6);
         frutas.selectionOf(String.class, new SMultiSelectionByCheckboxView())
+                .selfIdAndDisplay()
+                .simpleProviderOf("Amora", "Banana", "Maçã", "Laranja", "Manga", "Melão", "Morango");
+
+
+        frutasInline = this.addFieldListOf("frutasInline", STypeString.class);
+        frutasInline.asAtr()
+                .label("Frutas Horizontal")
+                .asAtrBootstrap()
+                .colPreference(6);
+        frutasInline.selectionOf(String.class, new SMultiSelectionByCheckboxView().inline(true))
                 .selfIdAndDisplay()
                 .simpleProviderOf("Amora", "Banana", "Maçã", "Laranja", "Manga", "Melão", "Morango");
     }
