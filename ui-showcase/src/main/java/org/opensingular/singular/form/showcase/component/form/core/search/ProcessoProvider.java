@@ -1,8 +1,8 @@
 package org.opensingular.singular.form.showcase.component.form.core.search;
 
-import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInstance;
-import org.opensingular.form.provider.*;
+import org.opensingular.form.provider.ProviderContext;
+import org.opensingular.form.provider.TreeProvider;
 
 import java.util.List;
 
