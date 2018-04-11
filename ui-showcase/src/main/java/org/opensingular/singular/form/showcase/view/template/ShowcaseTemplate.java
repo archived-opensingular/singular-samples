@@ -36,8 +36,8 @@ public abstract class ShowcaseTemplate extends SingularAdminTemplate {
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
-        response.render(CssHeaderItem.forUrl(commonResource("/plugins/syntaxHighlighter/theme.css")));
-        response.render(JavaScriptHeaderItem.forUrl(commonResource("/plugins/syntaxHighlighter/syntaxhighlighter.js")));
+        response.render(CssHeaderItem.forUrl(skinnableResource("/plugins/syntaxHighlighter/theme.css")));
+        response.render(JavaScriptHeaderItem.forUrl(skinnableResource("/plugins/syntaxHighlighter/syntaxhighlighter.js")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(ShowcaseTemplate.class, "ShowcaseTemplate.css")));
     }
 
