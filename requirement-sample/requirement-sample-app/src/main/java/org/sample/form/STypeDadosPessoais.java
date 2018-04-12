@@ -1,5 +1,7 @@
 package org.sample.form;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
@@ -9,6 +11,7 @@ import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIBoolean;
 import org.opensingular.form.type.core.STypeBoolean;
+import org.opensingular.form.type.core.STypeHTML;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.attachment.STypeAttachment;
 import org.opensingular.form.type.country.brazil.STypeAddress;
@@ -16,8 +19,6 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewListByForm;
-
-import javax.annotation.Nonnull;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
@@ -32,6 +33,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeAttachmentList                  documentacaoComprobatoria;
     public STypeList<STypeAddress, SIComposite> listEnderecos;
     public STypeBoolean                         brasileiro;
+    public STypeHTML                            richText;
 
 
     @Override
@@ -92,12 +94,16 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         listEnderecos.asAtrIndex().indexed(Boolean.TRUE);
 
 
+        richText = this.addField("richText", STypeHTML.class);
+        richText.asAtr().label("TESTE RICHT TEXT");
+
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(nomeCompleto)
                 .add(nomeMae)
                 .add(nomePai)
                 .add(telefone)
-                .add(documentos));
+                .add(documentos)
+                .add(richText));
 
     }
 }

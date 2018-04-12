@@ -19,15 +19,11 @@
 package org.opensingular.requirementsamplemodule.spring;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.opensingular.server.commons.spring.SingularDefaultPersistenceConfiguration;
+import org.opensingular.requirement.commons.spring.SingularDefaultPersistenceConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @EnableTransactionManagement(
         proxyTargetClass = true

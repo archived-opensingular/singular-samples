@@ -18,12 +18,13 @@
 
 package org.opensingular.requirementsamplemodule.config;
 
+import org.opensingular.requirement.studio.init.RequirementStudioAppInitializer;
 import org.opensingular.requirementsamplemodule.RequirementsampleModule;
 import org.opensingular.requirementsamplemodule.spring.RequirementSamplePersistenceConfiguration;
-import org.opensingular.server.commons.spring.SingularDefaultPersistenceConfiguration;
-import org.opensingular.server.studio.init.ServerStudioAppInitializer;
+import org.opensingular.requirement.commons.spring.SingularDefaultPersistenceConfiguration;
 
-public class RequirementSampleInitializer implements ServerStudioAppInitializer {
+
+public class RequirementSampleInitializer implements RequirementStudioAppInitializer {
     @Override
     public String moduleCod() {
         return RequirementsampleModule.REQUIREMENT_SAMPLE;
