@@ -120,9 +120,6 @@ public class ShowCaseTable {
                     resourceRef = ResourceRef.forClassWithExtension(resource.value(), resource.extension());
                 }
                 resourceRef.ifPresent(resourceRef1 -> caseBase.getAditionalSources().add(resourceRef1));
-                if (resourceRef.isPresent()) {
-                    caseBase.getAditionalSources().add(resourceRef.get());
-                }
             }
             group.addCase(caseBase);
         }
