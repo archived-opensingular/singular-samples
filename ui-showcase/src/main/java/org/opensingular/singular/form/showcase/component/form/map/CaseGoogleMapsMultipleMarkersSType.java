@@ -29,7 +29,7 @@ import javax.annotation.Nonnull;
 /**
  *
  */
-@CaseItem(componentName = "Google Maps com multiplos marcadores", group = Group.MAPS)
+//@CaseItem(componentName = "Google Maps com multiplos marcadores", group = Group.MAPS)
 @SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMapsMultipleMarkers")
 public class CaseGoogleMapsMultipleMarkersSType extends STypeComposite<SIComposite> {
 
