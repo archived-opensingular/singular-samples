@@ -16,28 +16,28 @@
 
 package org.opensingular.singular.form.showcase.component.form.map;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.util.STypeLatitudeLongitudeList;
+import org.opensingular.form.type.util.STypeLatitudeLongitudeMapper;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-
-import javax.annotation.Nonnull;
 
 /**
  *
  */
-//@CaseItem(componentName = "Google Maps com multiplos marcadores", group = Group.MAPS)
+@CaseItem(componentName = "Google Maps com multiplos marcadores", group = Group.MAPS)
 @SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMapsMultipleMarkers")
 public class CaseGoogleMapsMultipleMarkersSType extends STypeComposite<SIComposite> {
 
-    public STypeLatitudeLongitudeList coordenadas;
+    public STypeLatitudeLongitudeMapper coordenadas;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        coordenadas = this.addField("coordenadas", STypeLatitudeLongitudeList.class);
+        coordenadas = this.addField("coordenadas", STypeLatitudeLongitudeMapper.class);
         coordenadas
                 .asAtr().required();
     }
