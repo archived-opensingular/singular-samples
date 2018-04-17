@@ -37,19 +37,22 @@ import static org.apache.commons.lang3.StringUtils.*;
 public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SIComposite> {
 
     public STypeList<STypePessoa, SIComposite> pessoas;
-    public STypePessoa                         pessoa;
     public STypeOption<SIComposite>            pessoaSelecionada;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         pessoas = this.addFieldListOf("pessoas", STypePessoa.class);
-        pessoa = pessoas.getElementsType();
         pessoaSelecionada = addFieldOption("pessoaSelecionada", STypePessoa.class);
 
         pessoas.withView(new SViewListByTable())
-                .asAtr().label("Pessoas");
+                .asAtr()
+                .label("Pessoas");
 
-        pessoaSelecionada.withSelectionFromOptionProvider(pessoas, it -> defaultString(it.getFieldValue(pessoa.nome)))
-                .asAtr().label("Seleção");
+        STypePessoa pessoa = pessoas.getElementsType();
+        pessoaSelecionada
+                .withSelectionFromOptionProvider(pessoas, it -> defaultString(it.getFieldValue(pessoa.nome)))
+                .asAtr()
+                .label("Seleção")
+                .dependsOn(pessoas, pessoa.nome);
     }
 }
