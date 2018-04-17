@@ -35,11 +35,23 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeBoolean                         brasileiro;
     public STypeHTML                            richText;
 
+    public STypeString                          campo1;
+    public STypeString                          campo2;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         this.asAtr().label("Dados Pessoais");
         this.asAtrAnnotation().setAnnotated();
+
+        campo1 = addFieldString("campo1");
+        campo2 = addFieldString("campo2");
+        campo1.asAtr().label("CAMPO 1").asAtrBootstrap().colPreference(6);
+        campo2.asAtr().label("CAMPO 2").asAtrBootstrap().colPreference(6);
+
+        campo1.asAtr().dependsOn(campo2)
+                .enabled(t -> !t.findNearest(campo2).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
+        campo1.asAtrAnnotation().setAnnotated();
+        campo2.asAtrAnnotation().setAnnotated();
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
         nomeCompleto.asAtr().enabled(false);
@@ -47,6 +59,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         nomePai = addField("nomePai", STypeString.class);
         telefone = addField("telefone", STypeTelefoneNacional.class);
 
+        nomePai.asAtr().dependsOn(nomeCompleto);
         nomeCompleto.asAtr().label("Nome Completo").asAtrBootstrap().colPreference(6);
         nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(6);
         nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(6);
@@ -92,6 +105,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         richText.asAtr().label("TESTE RICHT TEXT");
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
+                .add(campo1).add(campo2)
                 .add(nomeCompleto)
                 .add(nomeMae)
                 .add(nomePai)
