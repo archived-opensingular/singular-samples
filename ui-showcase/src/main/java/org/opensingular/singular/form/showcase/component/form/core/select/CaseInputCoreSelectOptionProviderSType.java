@@ -16,35 +16,25 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.select;
 
-import static org.apache.commons.lang3.StringUtils.*;
-
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeOption;
-import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
-@CaseItem(componentName = "Select", subCaseName = "Provedor de Opções", group = Group.INPUT)
+import javax.annotation.Nonnull;
+
+import static org.apache.commons.lang3.StringUtils.*;
+
+@CaseItem(componentName = "Select", subCaseName = "Provedor de Opções", group = Group.INPUT, resources = {@Resource(STypePessoa.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectOptionProvider")
 public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SIComposite> {
-
-    @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectOptionProvider_STypePessoa")
-    public static class STypePessoa extends STypeComposite<SIComposite> {
-        public STypeString nome;
-        @Override
-        protected void onLoadType(TypeBuilder tb) {
-            nome = this.addFieldString("nome");
-            nome.asAtr().label("Nome");
-        }
-    }
 
     public STypeList<STypePessoa, SIComposite> pessoas;
     public STypePessoa                         pessoa;
@@ -57,9 +47,9 @@ public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SICom
         pessoaSelecionada = addFieldOption("pessoaSelecionada", STypePessoa.class);
 
         pessoas.withView(new SViewListByTable())
-            .asAtr().label("Pessoas");
+                .asAtr().label("Pessoas");
 
         pessoaSelecionada.withSelectionFromOptionProvider(pessoas, it -> defaultString(it.getFieldValue(pessoa.nome)))
-            .asAtr().label("Seleção");
+                .asAtr().label("Seleção");
     }
 }
