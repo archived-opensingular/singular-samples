@@ -18,20 +18,31 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.select;
 
-import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectOptionProvider_STypePessoa")
-public class STypePessoa extends STypeComposite<SIComposite> {
+public class STypePessoa extends STypeComposite<SIPessoa> {
     public STypeString nome;
+    public STypeDate   dataNascimento;
+
+    public STypePessoa() {
+        super(SIPessoa.class);
+    }
 
     @Override
     protected void onLoadType(TypeBuilder tb) {
         nome = this.addFieldString("nome");
+        dataNascimento = this.addFieldDate("dataNascimento");
+
         nome.asAtr().label("Nome");
+        dataNascimento.asAtr().label("Data de nascimento");
+
+        this.asAtr()
+            .displayString(ctx -> ((SIPessoa) ctx.instance()).getNome());
     }
 }
