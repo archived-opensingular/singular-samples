@@ -18,6 +18,7 @@ import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
+import org.opensingular.form.view.SViewByRichText;
 import org.opensingular.form.view.SViewListByForm;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
@@ -34,6 +35,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeList<STypeAddress, SIComposite> listEnderecos;
     public STypeBoolean                         brasileiro;
     public STypeHTML                            richText;
+    public STypeHTML                            richText2;
 
 
     @Override
@@ -87,9 +89,14 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         listEnderecos.asAtr().label("Endereços");
         listEnderecos.withView(SViewListByForm::new);
 
-
         richText = this.addField("richText", STypeHTML.class);
+        SViewByRichText sViewByRichText = new SViewByRichText();
+        sViewByRichText.setDisablePageLayout(true);
+        richText.withView(sViewByRichText);
         richText.asAtr().label("TESTE RICHT TEXT");
+
+        richText2 = this.addField("richText2", STypeHTML.class);
+        richText2.asAtr().label("TESTE RICHT TEXT 2");
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(nomeCompleto)
