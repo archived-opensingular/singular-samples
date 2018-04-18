@@ -52,27 +52,27 @@ public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SICom
         STypePessoa pessoa = pessoas.getElementsType();
 
         //@destacar:bloco
-        pessoaSelecionada.selectFrom(pessoas)
+        pessoaSelecionada.selectFromField(pessoas)
             .display(pessoa.nome);
         //@destacar:fim
 
         detalhes.withUpdateListener(ins -> ins.setValue(
-            ins.findNearest(pessoaSelecionada)
+            ins.root().find(pessoaSelecionada)
                 //@destacar:bloco
                 .flatMap(it -> it.findSourceInstance())
                 //@destacar:fim
-                .map(it -> DateFormat.getDateInstance().format(it.getDataNascimento()))
+                .map(it -> it.getDataNascimento())
+                .map(it -> DateFormat.getDateInstance().format(it))
                 .orElse("")));
 
         pessoas.withView(new SViewListByTable())
-            .asAtr()
-            .label("Pessoas");
+            .asAtr().label("Pessoas");
 
         pessoaSelecionada
             .asAtr().label("Seleção").dependsOn(pessoas, pessoa.nome)
             .asAtrBootstrap().colPreference(6);
         detalhes
-            .asAtr().label("Detalhes").enabled(false).dependsOn(pessoaSelecionada)
+            .asAtr().label("Detalhes").enabled(false).dependsOn(pessoaSelecionada, pessoa.dataNascimento)
             .asAtrBootstrap().colPreference(6);
     }
 }
