@@ -41,7 +41,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Dados Pessoais");
+        this.asAtr().label("Dados Pessoais do Teste do projeto Sample");
         this.asAtrAnnotation().setAnnotated();
 
         listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
