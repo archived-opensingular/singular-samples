@@ -41,7 +41,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Dados Pessoais do Teste do projeto Sample");
+        this.asAtr().label("Dados Pessoais");
         this.asAtrAnnotation().setAnnotated();
 
         listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
@@ -98,7 +98,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         richText = this.addField("richText", STypeHTML.class);
         richText.asAtr().label("TESTE RICHT TEXT");
 
-        this.withView(new SViewByBlock(), block -> block.newBlock()
+      withView(new SViewByBlock(), block -> block.newBlock()
                 .add(listaExemplo)
                 .add(nomeCompleto)
                 .add(nomeMae)
@@ -106,6 +106,5 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .add(telefone)
                 .add(documentos)
                 .add(richText));
-
     }
 }
