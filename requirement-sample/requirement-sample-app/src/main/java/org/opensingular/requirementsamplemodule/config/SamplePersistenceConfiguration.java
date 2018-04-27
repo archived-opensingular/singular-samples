@@ -18,19 +18,29 @@
 
 package org.opensingular.requirementsamplemodule.config;
 
-import org.opensingular.requirement.studio.init.RequirementStudioAppInitializer;
-import org.opensingular.requirementsamplemodule.RequirementsampleModule;
+import org.hibernate.dialect.Dialect;
+import org.hibernate.dialect.H2Dialect;
+import org.opensingular.app.commons.spring.persistence.database.SingularPersistenceConfiguration;
+
+import java.util.List;
+
+public class SamplePersistenceConfiguration implements SingularPersistenceConfiguration {
 
 
-public class RequirementSampleInitializer implements RequirementStudioAppInitializer {
     @Override
-    public String moduleCod() {
-        return RequirementsampleModule.REQUIREMENT_SAMPLE;
+    public void configureHibernatePackagesToScan(List<String> packagesToScan) {
+        packagesToScan.add("com.opensingular.form");
+
     }
 
     @Override
-    public String[] springPackagesToScan() {
-        return new String[]{"org.opensingular"};
+    public void configureInitSQLScripts(List<String> scripts) {
+        scripts.add("db/dml/import.sql");
+    }
+
+    @Override
+    public Class<? extends Dialect> getHibernateDialect() {
+        return H2Dialect.class;
     }
 
 
