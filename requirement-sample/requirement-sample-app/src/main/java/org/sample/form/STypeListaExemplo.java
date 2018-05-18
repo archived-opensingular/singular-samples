@@ -12,24 +12,30 @@ import org.opensingular.lib.commons.util.Loggable;
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
 public class STypeListaExemplo extends STypeComposite<SIComposite> implements Loggable {
 
-    public STypeString nome;
-    public STypeString  sobrenome;
-    public STypeString  nomeMae;
+    public STypeString nome2;
+    public STypeString  sobrenome2;
+    public STypeString  nomeMae2;
+    public STypeString  nomeGato2;
+    public STypeString  nomeDog2;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        nome = this.addFieldString("nome");
-        nome.asAtr().label("Nome");
+        nome2 = this.addFieldString("nome2");
+        nome2.asAtr().label("Nome");
+        nomeGato2 = this.addFieldString("nomeGato2");
+        nomeGato2.asAtr().label("Nome Gato");
+        nomeDog2 = this.addFieldString("nomeDog2");
+        nomeDog2.asAtr().label("Nome Dog");
 
-        nome.asAtrAnnotation().setAnnotated();
+        nome2.asAtrAnnotation().setAnnotated();
 
-        sobrenome = this.addFieldString("sobrenome");
-        sobrenome.asAtr().label("Sobrenome").enabled(false);
-        sobrenome.asAtrAnnotation().setAnnotated();
-        nomeMae = this.addFieldString("nomeMae");
-        nomeMae.asAtr().label("Nome Mãe");
+        sobrenome2 = this.addFieldString("sobrenome2");
+        sobrenome2.asAtr().label("Sobrenome");
+        sobrenome2.asAtrAnnotation().setAnnotated();
+        nomeMae2 = this.addFieldString("nomeMae2");
+        nomeMae2.asAtr().label("Nome Mãe");
 
-        nomeMae.asAtrAnnotation().setAnnotated();
+        nomeMae2.asAtrAnnotation().setAnnotated();
 
     }
 }
