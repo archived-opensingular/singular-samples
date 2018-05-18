@@ -24,6 +24,7 @@ import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.country.brazil.STypeCEP;
 import org.opensingular.form.type.country.brazil.STypeCPF;
+import org.opensingular.form.view.SViewBooleanSwitch;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.singular.form.showcase.component.CaseItem;
@@ -45,7 +46,7 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
     public STypeComposite<SIComposite> request;
     public STypeComposite<SIComposite> id;
     public STypeAttachmentList         anexoMultiplo;
-    public STypeCPF cpf;
+    public STypeCPF                    cpf;
 
     /*
      * Observe que as anotações só estão disponíveis quando devidamente configuradas no
@@ -77,6 +78,16 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
 
         request = this.addFieldComposite("request");
         request.asAtr().label("Dados do pedido");
+
+        request.addFieldBoolean("paraPresente")
+            .asAtr().label("Para presente")
+            .asAtrAnnotation().setAnnotated();
+
+        request.addFieldBoolean("entregaUrgente")
+            .withView(SViewBooleanSwitch::new)
+            .asAtr().label("Entrega urgente")
+            .asAtrAnnotation().setAnnotated();
+
         STypeList<STypeComposite<SIComposite>, SIComposite> itens = request.addFieldListOfComposite("itens", "item");
         itens.asAtr().label("Itens");
         itens.asAtrAnnotation().setAnnotated();
@@ -98,6 +109,6 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
         cpf = this.addField("cpf", STypeCPF.class);
         cpf.asAtrAnnotation().setAnnotated();
 
-
+        
     }
 }
