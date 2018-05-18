@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.opensingular</groupId>
         <artifactId>requirement-sample</artifactId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.8.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>requirement-sample-app</artifactId>
@@ -20,8 +20,9 @@
             <artifactId>singular-requirement-studio-app</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.opensingular</groupId>
-            <artifactId>singular-enterprise-connector</artifactId>
+            <groupId>org.opensingular</groupId>
+            <artifactId>singular-requirement-commons-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

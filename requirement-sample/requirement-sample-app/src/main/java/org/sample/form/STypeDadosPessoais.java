@@ -18,7 +18,9 @@ import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
+import org.opensingular.form.view.SViewByRichText;
 import org.opensingular.form.view.SViewListByForm;
+import org.opensingular.form.view.SViewListByMasterDetail;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
@@ -34,6 +36,12 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeList<STypeAddress, SIComposite> listEnderecos;
     public STypeBoolean                         brasileiro;
     public STypeHTML                            richText;
+    public STypeHTML                            richText2;
+
+    public STypeList<STypeListaExemplo, SIComposite> listaExemplo;
+
+    public STypeString                          campo1;
+    public STypeString                          campo2;
 
 
     @Override
@@ -41,12 +49,28 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         this.asAtr().label("Dados Pessoais");
         this.asAtrAnnotation().setAnnotated();
 
+        campo1 = addFieldString("campo1");
+        campo2 = addFieldString("campo2");
+        campo1.asAtr().label("CAMPO 1").asAtrBootstrap().colPreference(6);
+        campo2.asAtr().label("CAMPO 2").asAtrBootstrap().colPreference(6);
+
+        campo1.asAtr().dependsOn(campo2)
+                .enabled(t -> !t.findNearest(campo2).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
+        campo1.asAtrAnnotation().setAnnotated();
+        campo2.asAtrAnnotation().setAnnotated();
+
+        listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
+        listaExemplo.withView(SViewListByMasterDetail::new);
+        listaExemplo.asAtr().label("Lista Exemplo");
+//        listaExemplo.asAtrAnnotation().setAnnotated();
+
         nomeCompleto = addField("nomeCompleto", STypeString.class);
         nomeMae = addField("nomeMae", STypeString.class);
         nomeMae.asAtr().enabled(false);
         nomePai = addField("nomePai", STypeString.class);
         telefone = addField("telefone", STypeTelefoneNacional.class);
 
+        nomePai.asAtr().dependsOn(nomeCompleto);
         nomeCompleto.asAtr().label("Nome Completo").asAtrBootstrap().colPreference(6);
         nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(6);
         nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(6);
@@ -93,17 +117,22 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         listEnderecos.withView(SViewListByForm::new);
         listEnderecos.asAtrIndex().indexed(Boolean.TRUE);
 
-
         richText = this.addField("richText", STypeHTML.class);
+        SViewByRichText sViewByRichText = new SViewByRichText();
+        sViewByRichText.setDisablePageLayout(true);
+        richText.withView(sViewByRichText);
         richText.asAtr().label("TESTE RICHT TEXT");
 
+        richText2 = this.addField("richText2", STypeHTML.class);
+        richText2.asAtr().label("TESTE RICHT TEXT 2");
+
         this.withView(new SViewByBlock(), block -> block.newBlock()
+                .add(campo1).add(campo2).add(listaExemplo)
                 .add(nomeCompleto)
                 .add(nomeMae)
                 .add(nomePai)
                 .add(telefone)
                 .add(documentos)
                 .add(richText));
-
     }
 }
