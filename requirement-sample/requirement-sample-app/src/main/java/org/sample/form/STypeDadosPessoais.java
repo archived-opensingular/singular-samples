@@ -42,7 +42,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
     public STypeString                          campo1;
     public STypeString                          campo2;
-    public STypeList<STypeListaExemplo, SIComposite> listaExemplo;
 
 
     @Override
