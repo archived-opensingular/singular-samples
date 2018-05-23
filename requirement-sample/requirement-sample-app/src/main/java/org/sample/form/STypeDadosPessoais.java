@@ -18,7 +18,9 @@ import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
+import org.opensingular.form.view.SViewByRichText;
 import org.opensingular.form.view.SViewListByForm;
+import org.opensingular.form.view.SViewListByMasterDetail;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
@@ -34,12 +36,19 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeList<STypeAddress, SIComposite> listEnderecos;
     public STypeBoolean                         brasileiro;
     public STypeHTML                            richText;
+    public STypeHTML                            richText2;
+
+    public STypeList<STypeListaExemplo, SIComposite> listaExemplo;
 
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         this.asAtr().label("Dados Pessoais");
         this.asAtrAnnotation().setAnnotated();
+
+        listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
+        listaExemplo.withView(SViewListByMasterDetail::new);
+        listaExemplo.asAtr().label("Lista Exemplo");
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
         nomeCompleto.asAtr().enabled(false);
@@ -87,17 +96,22 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         listEnderecos.asAtr().label("Endereços");
         listEnderecos.withView(SViewListByForm::new);
 
-
         richText = this.addField("richText", STypeHTML.class);
+        SViewByRichText sViewByRichText = new SViewByRichText();
+        sViewByRichText.setDisablePageLayout(true);
+        richText.withView(sViewByRichText);
         richText.asAtr().label("TESTE RICHT TEXT");
 
+        richText2 = this.addField("richText2", STypeHTML.class);
+        richText2.asAtr().label("TESTE RICHT TEXT 2");
+
         this.withView(new SViewByBlock(), block -> block.newBlock()
+                .add(listaExemplo)
                 .add(nomeCompleto)
                 .add(nomeMae)
                 .add(nomePai)
                 .add(telefone)
                 .add(documentos)
                 .add(richText));
-
     }
 }
