@@ -40,22 +40,37 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
     public STypeList<STypeListaExemplo, SIComposite> listaExemplo;
 
+    public STypeString                          campo1;
+    public STypeString                          campo2;
+
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         this.asAtr().label("Dados Pessoais");
         this.asAtrAnnotation().setAnnotated();
 
+        campo1 = addFieldString("campo1");
+        campo2 = addFieldString("campo2");
+        campo1.asAtr().label("CAMPO 1").asAtrBootstrap().colPreference(6);
+        campo2.asAtr().label("CAMPO 2").asAtrBootstrap().colPreference(6);
+
+        campo1.asAtr().dependsOn(campo2)
+                .enabled(t -> !t.findNearest(campo2).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
+        campo1.asAtrAnnotation().setAnnotated();
+        campo2.asAtrAnnotation().setAnnotated();
+
         listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
         listaExemplo.withView(SViewListByMasterDetail::new);
         listaExemplo.asAtr().label("Lista Exemplo");
+//        listaExemplo.asAtrAnnotation().setAnnotated();
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
-        nomeCompleto.asAtr().enabled(false);
         nomeMae = addField("nomeMae", STypeString.class);
+        nomeMae.asAtr().enabled(false);
         nomePai = addField("nomePai", STypeString.class);
         telefone = addField("telefone", STypeTelefoneNacional.class);
 
+        nomePai.asAtr().dependsOn(nomeCompleto);
         nomeCompleto.asAtr().label("Nome Completo").asAtrBootstrap().colPreference(6);
         nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(6);
         nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(6);
@@ -68,16 +83,19 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentos = this.addFieldListOfAttachment("documentos", "documento");
         documentos.asAtr().label("Documentos");
         documentos.withMaximumSizeOf(10);
-        documentos.withMiniumSizeOf(1);
+        documentos.withMiniumSizeOf(0);
+        documentos.asAtr().required(false);
         documentos.asAtr().dependsOn(nomeCompleto);
-        documentos.asAtr().required(t -> !t.findNearest(nomeCompleto).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
+
 
         naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
         naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
+        naoTenhoFotoCachorro.asAtr().required(false);
         naoTenhoFotoCachorro.asAtr().enabled(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
         fotoDoCachorro.withView(SViewAttachmentImage::new);
+        fotoDoCachorro.asAtr().required(false);
         fotoDoCachorro.asAtr().label("Foto do cachorro");
         fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
         fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
@@ -86,6 +104,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentacaoComprobatoria.asAtr().label("Documentação comprobatória de que não possui cachorro");
         documentacaoComprobatoria.asAtr().dependsOn(naoTenhoFotoCachorro);
         documentacaoComprobatoria.getElementsType().asAtr().allowedFileTypes("pdf");
+        documentacaoComprobatoria.asAtr().required(false);
+        documentacaoComprobatoria.withMiniumSizeOf(0);
         documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         brasileiro = this.addFieldBoolean("brasileiro");
@@ -95,6 +115,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
         listEnderecos.asAtr().label("Endereços");
         listEnderecos.withView(SViewListByForm::new);
+        listEnderecos.asAtrIndex().indexed(Boolean.TRUE);
 
         richText = this.addField("richText", STypeHTML.class);
         SViewByRichText sViewByRichText = new SViewByRichText();
@@ -106,7 +127,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         richText2.asAtr().label("TESTE RICHT TEXT 2");
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
-                .add(listaExemplo)
+                .add(campo1).add(campo2).add(listaExemplo)
                 .add(nomeCompleto)
                 .add(nomeMae)
                 .add(nomePai)

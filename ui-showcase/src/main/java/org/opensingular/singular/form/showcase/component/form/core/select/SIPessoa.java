@@ -16,22 +16,17 @@
  *
  */
 
-package org.opensingular.requirementsamplemodule.config;
+package org.opensingular.singular.form.showcase.component.form.core.select;
 
-import org.opensingular.requirement.studio.init.RequirementStudioAppInitializer;
-import org.opensingular.requirementsamplemodule.RequirementsampleModule;
+import java.util.Date;
 
+import org.opensingular.form.SIComposite;
 
-public class RequirementSampleInitializer implements RequirementStudioAppInitializer {
-    @Override
-    public String moduleCod() {
-        return RequirementsampleModule.REQUIREMENT_SAMPLE;
+public class SIPessoa extends SIComposite {
+    public String getNome() {
+        return getField("nome").getValue(String.class);
     }
-
-    @Override
-    public String[] springPackagesToScan() {
-        return new String[]{"org.opensingular"};
+    public Date getDataNascimento() {
+        return getField("dataNascimento").getValue(Date.class);
     }
-
-
 }

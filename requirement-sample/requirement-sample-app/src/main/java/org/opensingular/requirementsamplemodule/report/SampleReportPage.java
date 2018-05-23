@@ -29,9 +29,6 @@ import javax.inject.Inject;
 @MountPath(value = "/reports")
 public class SampleReportPage extends ReportPage {
 
-    @Inject
-    private SimpleReport simpleReport;
-
     public SampleReportPage(PageParameters parameters) {
         super(parameters);
     }
@@ -40,7 +37,7 @@ public class SampleReportPage extends ReportPage {
     protected void configureMenu(ReportMenuBuilder menu) {
         menu
                 .addGroup(DefaultIcons.LINE_CHART, "Relatórios")
-                .addItem(Icon.of("fa fa-book"), "Simples", () -> simpleReport);
+                .addItem(Icon.of("fa fa-book"), "Simples", new SimpleReport() );
     }
 
 }
