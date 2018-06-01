@@ -18,30 +18,33 @@ import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
-import org.opensingular.form.view.SViewByRichText;
 import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.richtext.BtnRichText;
+import org.opensingular.form.view.richtext.CkEditorContext;
+import org.opensingular.form.view.richtext.SViewByRichText;
+import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
-    public STypeString                          nomeCompleto;
-    public STypeString                          nomeMae;
-    public STypeString                          nomePai;
-    public STypeTelefoneNacional                telefone;
-    public STypeAttachmentList                  documentos;
-    public STypeBoolean                         naoTenhoFotoCachorro;
-    public STypeAttachment                      fotoDoCachorro;
-    public STypeAttachmentList                  documentacaoComprobatoria;
+    public STypeString nomeCompleto;
+    public STypeString nomeMae;
+    public STypeString nomePai;
+    public STypeTelefoneNacional telefone;
+    public STypeAttachmentList documentos;
+    public STypeBoolean naoTenhoFotoCachorro;
+    public STypeAttachment fotoDoCachorro;
+    public STypeAttachmentList documentacaoComprobatoria;
     public STypeList<STypeAddress, SIComposite> listEnderecos;
-    public STypeBoolean                         brasileiro;
-    public STypeHTML                            richText;
-    public STypeHTML                            richText2;
+    public STypeBoolean brasileiro;
+    public STypeHTML richText;
+    public STypeHTML richText2;
 
     public STypeList<STypeListaExemplo, SIComposite> listaExemplo;
 
-    public STypeString                          campo1;
-    public STypeString                          campo2;
+    public STypeString campo1;
+    public STypeString campo2;
 
 
     @Override
@@ -123,8 +126,14 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         richText.withView(sViewByRichText);
         richText.asAtr().label("TESTE RICHT TEXT");
 
+
         richText2 = this.addField("richText2", STypeHTML.class);
         richText2.asAtr().label("TESTE RICHT TEXT 2");
+
+        SViewByRichTextNewTab sViewByRichText2 = new SViewByRichTextNewTab();
+        sViewByRichText2.addButton(createMockButton("selecionar"));
+        sViewByRichText2.addButton(createMockButton("apagar"));
+        richText2.withView(sViewByRichText2);
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(campo1).add(campo2).add(listaExemplo)
@@ -134,5 +143,19 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .add(telefone)
                 .add(documentos)
                 .add(richText));
+    }
+
+    private BtnRichText createMockButton(String id) {
+//        String is = null;
+//        if (this.getClass().getResource("/images/finish.gif") != null) {
+//            is = this.getClass().getResource("/images/finish.gif").getFile();
+//        }
+        String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
+        return new BtnRichText(id, id,linkIcon) {
+            @Override
+            public void getAction(CkEditorContext editorContext) {
+
+            }
+        };
     }
 }
