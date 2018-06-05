@@ -1,10 +1,12 @@
 package org.sample.form;
 
+import java.util.Optional;
 import javax.annotation.Nonnull;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
+import org.opensingular.form.SType;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
@@ -20,8 +22,8 @@ import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.form.view.richtext.BtnRichText;
-import org.opensingular.form.view.richtext.CkEditorContext;
+import org.opensingular.form.view.richtext.RichTextAction;
+import org.opensingular.form.view.richtext.RichTextContentContext;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
 
@@ -131,8 +133,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         richText2.asAtr().label("TESTE RICHT TEXT 2");
 
         SViewByRichTextNewTab sViewByRichText2 = new SViewByRichTextNewTab();
-        sViewByRichText2.addButton(createMockButton("selecionar"));
-        sViewByRichText2.addButton(createMockButton("apagar"));
+        sViewByRichText2.addAction(createMockButton("selecionar"));
+        sViewByRichText2.addAction(createMockButton("apagar"));
         richText2.withView(sViewByRichText2);
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
@@ -145,17 +147,42 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .add(richText));
     }
 
-    private BtnRichText createMockButton(String id) {
+    private RichTextAction createMockButton(String label) {
 //        String is = null;
 //        if (this.getClass().getResource("/images/finish.gif") != null) {
 //            is = this.getClass().getResource("/images/finish.gif").getFile();
 //        }
-        String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
-        return new BtnRichText(id, id,linkIcon) {
-            @Override
-            public void getAction(CkEditorContext editorContext) {
 
+
+        String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
+        return new RichTextAction<RichTextContentContext>() {
+            @Override
+            public String getLabel() {
+                return label;
             }
+
+            @Override
+            public String getIconUrl() {
+                return linkIcon;
+            }
+
+            @Override
+            public Optional<Class<? extends SType<?>>> getForm() {
+                return Optional.of(STypeListaExemplo.class);
+            }
+
+            @Override
+            public Class<? extends RichTextContentContext> getType() {
+                return RichTextContentContext.class;
+            }
+
+            @Override
+            public void onAction(RichTextContentContext richTextContext, Optional<SInstance> sInstance) {
+//                richTextActionContext.setReturnValue("teste");
+                richTextContext.getContent();
+                System.out.println("teste");
+            }
+
         };
     }
 }
