@@ -23,7 +23,7 @@ import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.view.richtext.RichTextAction;
-import org.opensingular.form.view.richtext.RichTextContentContext;
+import org.opensingular.form.view.richtext.RichTextInsertContext;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
 
@@ -155,7 +155,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
 
         String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
-        return new RichTextAction<RichTextContentContext>() {
+        return new RichTextAction<RichTextInsertContext>() {
             @Override
             public String getLabel() {
                 return label;
@@ -172,14 +172,13 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
             }
 
             @Override
-            public Class<? extends RichTextContentContext> getType() {
-                return RichTextContentContext.class;
+            public Class<? extends RichTextInsertContext> getType() {
+                return RichTextInsertContext.class;
             }
 
             @Override
-            public void onAction(RichTextContentContext richTextContext, Optional<SInstance> sInstance) {
-//                richTextActionContext.setReturnValue("teste");
-                richTextContext.getContent();
+            public void onAction(RichTextInsertContext richTextContext, Optional<SInstance> sInstance) {
+                richTextContext.setReturnValue("teste");
                 System.out.println("teste");
             }
 
