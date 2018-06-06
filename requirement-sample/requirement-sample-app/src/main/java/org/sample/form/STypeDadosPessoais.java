@@ -28,6 +28,7 @@ import org.opensingular.form.view.richtext.RichTextSelectionContext;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
 import org.opensingular.requirement.sei30.features.SILinkSEI;
+import org.opensingular.requirement.sei30.features.SIModeloSEI;
 import org.opensingular.requirement.sei30.features.SViewSEIRichText;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
@@ -149,7 +150,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         richText3.withView(SViewSEIRichText
                 .configLinkSEIAction(SILinkSEI::getProtocolo)
-                .configureModeloSeiAction(SILinkSEI::getProtocolo)
+                .configureModeloSeiAction(SIModeloSEI::getModelo)
                 .getConfiguration()
                 .setDoubleClickDisabledForCssClasses("")
                 .getView());
@@ -223,8 +224,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
             @Override
             public void onAction(RichTextSelectionContext richTextContext, Optional<SInstance> sInstance) {
-                System.out.println("\n " + richTextContext.getValue() );
-                richTextContext.setReturnValue(richTextContext.getValue().toUpperCase());
+                richTextContext.setReturnValue(richTextContext.getTextSelected().toUpperCase());
             }
 
         };
@@ -256,7 +256,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
             @Override
             public void onAction(RichTextContentContext richTextContext, Optional<SInstance> sInstance) {
-                richTextContext.setReturnValue(richTextContext.getValue() + " FIM.");
+                richTextContext.setReturnValue(richTextContext.getContent() + " FIM.");
             }
 
         };
