@@ -20,7 +20,6 @@ import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
-import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.view.richtext.RichTextAction;
 import org.opensingular.form.view.richtext.RichTextContentContext;
@@ -28,6 +27,8 @@ import org.opensingular.form.view.richtext.RichTextInsertContext;
 import org.opensingular.form.view.richtext.RichTextSelectionContext;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
+import org.opensingular.requirement.sei30.features.SILinkSei;
+import org.opensingular.requirement.sei30.features.SViewSeiRichText;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
@@ -122,7 +123,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
         listEnderecos.asAtr().label("Endereços");
-        listEnderecos.withView(SViewListByForm::new);
+        listEnderecos.withView(SViewListByMasterDetail::new);
         listEnderecos.asAtrIndex().indexed(Boolean.TRUE);
 
         richText = this.addField("richText", STypeHTML.class);
@@ -144,7 +145,15 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         sViewByRichText2.addAction(createMockSelectButton("selecionar"));
         sViewByRichText2.addAction(createMockContentButton("conteudo"));
         richText2.withView(sViewByRichText2);
-        richText3.withView(sViewByRichText2);
+
+
+        richText3.withView(SViewSeiRichText
+                .configLinkSeiAction(SILinkSei::getProtocolo)
+                .configureModeloSeiAction(SILinkSei::getProtocolo)
+                .getConfiguration()
+                .setDoubleClickDisabledForCssClasses("")
+                .getView());
+
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(campo1).add(campo2).add(listaExemplo)
@@ -214,8 +223,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
             @Override
             public void onAction(RichTextSelectionContext richTextContext, Optional<SInstance> sInstance) {
-                System.out.println("\n " + richTextContext.getTextSelected() );
-                richTextContext.setReturnValue(richTextContext.getTextSelected().toUpperCase());
+                System.out.println("\n " + richTextContext.getValue() );
+                richTextContext.setReturnValue(richTextContext.getValue().toUpperCase());
             }
 
         };
@@ -247,7 +256,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
             @Override
             public void onAction(RichTextContentContext richTextContext, Optional<SInstance> sInstance) {
-                richTextContext.setReturnValue(richTextContext.getContent() + " FIM.");
+                richTextContext.setReturnValue(richTextContext.getValue() + " FIM.");
             }
 
         };
