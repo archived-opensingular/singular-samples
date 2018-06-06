@@ -27,8 +27,8 @@ import org.opensingular.form.view.richtext.RichTextInsertContext;
 import org.opensingular.form.view.richtext.RichTextSelectionContext;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
-import org.opensingular.requirement.sei30.features.SILinkSei;
-import org.opensingular.requirement.sei30.features.SViewSeiRichText;
+import org.opensingular.requirement.sei30.features.SILinkSEI;
+import org.opensingular.requirement.sei30.features.SViewSEIRichText;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
@@ -147,9 +147,9 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         richText2.withView(sViewByRichText2);
 
 
-        richText3.withView(SViewSeiRichText
-                .configLinkSeiAction(SILinkSei::getProtocolo)
-                .configureModeloSeiAction(SILinkSei::getProtocolo)
+        richText3.withView(SViewSEIRichText
+                .configLinkSEIAction(SILinkSEI::getProtocolo)
+                .configureModeloSeiAction(SILinkSEI::getProtocolo)
                 .getConfiguration()
                 .setDoubleClickDisabledForCssClasses("")
                 .getView());
