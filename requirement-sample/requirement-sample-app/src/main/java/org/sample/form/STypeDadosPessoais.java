@@ -23,7 +23,9 @@ import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.view.richtext.RichTextAction;
+import org.opensingular.form.view.richtext.RichTextContentContext;
 import org.opensingular.form.view.richtext.RichTextInsertContext;
+import org.opensingular.form.view.richtext.RichTextSelectionContext;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
 
@@ -42,6 +44,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeBoolean brasileiro;
     public STypeHTML richText;
     public STypeHTML richText2;
+    public STypeHTML richText3;
 
     public STypeList<STypeListaExemplo, SIComposite> listaExemplo;
 
@@ -132,10 +135,16 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         richText2 = this.addField("richText2", STypeHTML.class);
         richText2.asAtr().label("TESTE RICHT TEXT 2");
 
+
+        richText3 = this.addField("richText3", STypeHTML.class);
+        richText3.asAtr().label("TESTE RICHT TEXT 3");
+
         SViewByRichTextNewTab sViewByRichText2 = new SViewByRichTextNewTab();
-        sViewByRichText2.addAction(createMockButton("selecionar"));
-        sViewByRichText2.addAction(createMockButton("apagar"));
+        sViewByRichText2.addAction(createMockInsertButton("Inserir"));
+        sViewByRichText2.addAction(createMockSelectButton("selecionar"));
+        sViewByRichText2.addAction(createMockContentButton("conteudo"));
         richText2.withView(sViewByRichText2);
+        richText3.withView(sViewByRichText2);
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(campo1).add(campo2).add(listaExemplo)
@@ -147,12 +156,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .add(richText));
     }
 
-    private RichTextAction createMockButton(String label) {
-//        String is = null;
-//        if (this.getClass().getResource("/images/finish.gif") != null) {
-//            is = this.getClass().getResource("/images/finish.gif").getFile();
-//        }
-
+    private RichTextAction createMockInsertButton(String label) {
 
         String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
         return new RichTextAction<RichTextInsertContext>() {
@@ -179,7 +183,71 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
             @Override
             public void onAction(RichTextInsertContext richTextContext, Optional<SInstance> sInstance) {
                 richTextContext.setReturnValue("teste");
-                System.out.println("teste");
+            }
+
+        };
+    }
+
+    private RichTextAction createMockSelectButton(String label) {
+
+        String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
+        return new RichTextAction<RichTextSelectionContext>() {
+            @Override
+            public String getLabel() {
+                return label;
+            }
+
+            @Override
+            public String getIconUrl() {
+                return linkIcon;
+            }
+
+            @Override
+            public Optional<Class<? extends SType<?>>> getForm() {
+                return Optional.of(STypeListaExemplo.class);
+            }
+
+            @Override
+            public Class<? extends RichTextSelectionContext> getType() {
+                return RichTextSelectionContext.class;
+            }
+
+            @Override
+            public void onAction(RichTextSelectionContext richTextContext, Optional<SInstance> sInstance) {
+                System.out.println("\n " + richTextContext.getTextSelected() );
+                richTextContext.setReturnValue(richTextContext.getTextSelected().toUpperCase());
+            }
+
+        };
+    }
+
+    private RichTextAction createMockContentButton(String label) {
+
+        String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
+        return new RichTextAction<RichTextContentContext>() {
+            @Override
+            public String getLabel() {
+                return label;
+            }
+
+            @Override
+            public String getIconUrl() {
+                return linkIcon;
+            }
+
+            @Override
+            public Optional<Class<? extends SType<?>>> getForm() {
+                return Optional.of(STypeListaExemplo.class);
+            }
+
+            @Override
+            public Class<? extends RichTextContentContext> getType() {
+                return RichTextContentContext.class;
+            }
+
+            @Override
+            public void onAction(RichTextContentContext richTextContext, Optional<SInstance> sInstance) {
+                richTextContext.setReturnValue(richTextContext.getContent() + " FIM.");
             }
 
         };
