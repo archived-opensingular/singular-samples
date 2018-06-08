@@ -53,7 +53,7 @@ public class CaseInputCorePortletRichTextSType extends STypeComposite<SIComposit
         viewByRichTextNewTab.addAction(new RichTextAction<RichTextSelectionContext>() {
             @Override
             public String getLabel() {
-                return "Upper Case selected text";
+                return "Uppercase selected text";
             }
 
             @Override
