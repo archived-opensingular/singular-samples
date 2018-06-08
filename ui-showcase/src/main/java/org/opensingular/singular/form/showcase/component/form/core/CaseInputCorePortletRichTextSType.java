@@ -16,13 +16,20 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
+import java.util.Optional;
 import javax.annotation.Nonnull;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
+import org.opensingular.form.SInstance;
+import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeHTML;
+import org.opensingular.form.view.richtext.RichTextAction;
+import org.opensingular.form.view.richtext.RichTextSelectionContext;
+import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
+import org.opensingular.lib.commons.ui.Icon;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
@@ -35,8 +42,40 @@ public class CaseInputCorePortletRichTextSType extends STypeComposite<SIComposit
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         parecer = this.addField("parecer", STypeHTML.class);
-        parecer
-                .asAtr()
+        parecer.asAtr()
                 .label("Parecer Técnico");
+        SViewByRichTextNewTab viewByRichTextNewTab = new SViewByRichTextNewTab();
+        addCapsLockSelectionButton(viewByRichTextNewTab);
+        parecer.withView(viewByRichTextNewTab);
+    }
+
+    private void addCapsLockSelectionButton(SViewByRichTextNewTab viewByRichTextNewTab) {
+        viewByRichTextNewTab.addAction(new RichTextAction<RichTextSelectionContext>() {
+            @Override
+            public String getLabel() {
+                return "Upper Case selected text";
+            }
+
+            @Override
+            public Icon getIcon() {
+                return (Icon) () -> "fa fa-arrow-up";
+            }
+
+            @Override
+            public Optional<Class<? extends SType<?>>> getForm() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Class getType() {
+                return RichTextSelectionContext.class;
+            }
+
+            @Override
+            public void onAction(RichTextSelectionContext richTextActionContext, Optional<SInstance> sInstance) {
+                richTextActionContext.setReturnValue(richTextActionContext.getTextSelected().toUpperCase());
+            }
+
+        });
     }
 }
