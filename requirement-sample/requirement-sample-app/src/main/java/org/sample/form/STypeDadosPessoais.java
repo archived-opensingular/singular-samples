@@ -27,6 +27,8 @@ import org.opensingular.form.view.richtext.RichTextInsertContext;
 import org.opensingular.form.view.richtext.RichTextSelectionContext;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
+import org.opensingular.lib.commons.ui.Icon;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.requirement.sei30.features.SILinkSEI;
 import org.opensingular.requirement.sei30.features.SIModeloSEI;
 import org.opensingular.requirement.sei30.features.SViewSEIRichText;
@@ -166,9 +168,9 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .add(richText));
     }
 
+
     private RichTextAction createMockInsertButton(String label) {
 
-        String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
         return new RichTextAction<RichTextInsertContext>() {
             @Override
             public String getLabel() {
@@ -176,8 +178,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
             }
 
             @Override
-            public String getIconUrl() {
-                return linkIcon;
+            public Icon getIcon() {
+                return DefaultIcons.ARCHIVE;
             }
 
             @Override
@@ -200,7 +202,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
     private RichTextAction createMockSelectButton(String label) {
 
-        String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
         return new RichTextAction<RichTextSelectionContext>() {
             @Override
             public String getLabel() {
@@ -208,8 +209,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
             }
 
             @Override
-            public String getIconUrl() {
-                return linkIcon;
+            public Icon getIcon() {
+                return DefaultIcons.USERS;
             }
 
             @Override
@@ -232,7 +233,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
     private RichTextAction createMockContentButton(String label) {
 
-        String linkIcon = "https://avatars1.githubusercontent.com/u/5500999?v=2&s=16";
         return new RichTextAction<RichTextContentContext>() {
             @Override
             public String getLabel() {
@@ -240,8 +240,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
             }
 
             @Override
-            public String getIconUrl() {
-                return linkIcon;
+            public Icon getIcon() {
+                return DefaultIcons.ROCKET;
             }
 
             @Override
