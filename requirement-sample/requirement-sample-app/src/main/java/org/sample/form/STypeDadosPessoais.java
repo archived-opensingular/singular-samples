@@ -152,7 +152,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         richText3.withView(SViewSEIRichText
                 .configProtocoloToIdSEIAction(SILinkSEI::getProtocolo)
-                .configureModeloSEIAction(SIModeloSEI::getModelo)
+                .configureModeloSEIAction(SIModeloSEI::getProtocoloModelo)
                 .getConfiguration()
                 .setDoubleClickDisabledForCssClasses("")
                 .getView());
