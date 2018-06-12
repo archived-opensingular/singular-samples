@@ -16,10 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
-import org.opensingular.form.SIComposite;
-import org.opensingular.form.SInfoType;
-import org.opensingular.form.STypeComposite;
-import org.opensingular.form.TypeBuilder;
+import org.apache.commons.lang3.time.DateUtils;
+import org.opensingular.form.*;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.form.view.SViewDate;
@@ -27,7 +25,9 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Componente para inserção de data
@@ -41,6 +41,7 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
     public STypeDate botaoLimpar;
     public STypeDate botaoHoje;
     public STypeDate hojeRealcado;
+    public STypeDate datasHabilitadas;
     public STypeTime hora;
 
     @Override
@@ -50,6 +51,7 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
         botaoLimpar = this.addFieldDate("botaoLimpar");
         botaoHoje = this.addFieldDate("botaoHoje");
         hojeRealcado = this.addFieldDate("hojeRealcado");
+        datasHabilitadas = this.addFieldDate("datasHabilitadas");
         hora = this.addField("hora", STypeTime.class);
 
         livre
@@ -76,7 +78,21 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
                 .asAtr()
                 .label("Data atual realçada");
 
+        datasHabilitadas
+                .withView(new SViewDate().setEnabledDatesFunction(this::tresDiasAntesDepoisAtual))
+                .asAtr()
+                .label("Data habilitadas (três dias antes e depois da data atual)");
+
         hora
                 .asAtr().label("Hora");
+    }
+
+    private List<Date> tresDiasAntesDepoisAtual(SInstance inst) {
+        Date hoje = new Date();
+        List<Date> datasHabilidatas = new ArrayList<>();
+        for (int range = -3; range <= 3; range++) {
+            datasHabilidatas.add(DateUtils.addDays(hoje, range));
+        }
+        return datasHabilidatas;
     }
 }
