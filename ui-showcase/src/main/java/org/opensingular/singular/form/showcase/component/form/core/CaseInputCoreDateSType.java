@@ -22,10 +22,12 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeTime;
+import org.opensingular.form.view.SViewDate;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
 import javax.annotation.Nonnull;
+import java.util.Date;
 
 /**
  * Componente para inserção de data
@@ -34,16 +36,47 @@ import javax.annotation.Nonnull;
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Date")
 public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
 
-    public STypeDate inicioDia;
-    public STypeTime inicioHora;
+    public STypeDate livre;
+    public STypeDate maiorIgualHoje;
+    public STypeDate botaoLimpar;
+    public STypeDate botaoHoje;
+    public STypeDate hojeRealcado;
+    public STypeTime hora;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        inicioDia = this.addFieldDate("inicioDia");
-        inicioDia
-                  .asAtr().label("Data Início");
-        inicioHora = this.addField("inicioHora", STypeTime.class);
-        inicioHora
-                .asAtr().label("Hora Início");
+        livre = this.addFieldDate("livre");
+        maiorIgualHoje = this.addFieldDate("maiorIgualHoje");
+        botaoLimpar = this.addFieldDate("botaoLimpar");
+        botaoHoje = this.addFieldDate("botaoHoje");
+        hojeRealcado = this.addFieldDate("hojeRealcado");
+        hora = this.addField("hora", STypeTime.class);
+
+        livre
+                .asAtr()
+                .label("Seleção Livre");
+
+        maiorIgualHoje
+                .withView(new SViewDate().setStartDate(new Date()))
+                .asAtr()
+                .label("Data igual ou maior que data atual");
+
+        botaoLimpar
+                .withView(new SViewDate().setClearBtn(true))
+                .asAtr()
+                .label("Botão de limpar");
+
+        botaoHoje
+                .withView(new SViewDate().setTodayBtn(true))
+                .asAtr()
+                .label("Botão que volta para o dia atual");
+
+        hojeRealcado
+                .withView(new SViewDate().setTodayHighlight(true))
+                .asAtr()
+                .label("Data atual realçada");
+
+        hora
+                .asAtr().label("Hora");
     }
 }
