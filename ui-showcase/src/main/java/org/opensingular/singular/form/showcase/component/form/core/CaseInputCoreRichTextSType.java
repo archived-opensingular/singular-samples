@@ -16,16 +16,16 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeHTML;
-import org.opensingular.form.view.SViewByRichText;
+import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-
-import javax.annotation.Nonnull;
 
 /**
  * Permite a formatação de texto utilizando HTML.
