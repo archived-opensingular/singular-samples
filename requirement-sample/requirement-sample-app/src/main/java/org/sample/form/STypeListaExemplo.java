@@ -8,6 +8,7 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.form.view.SViewCheckBoxLabelAbove;
 import org.opensingular.lib.commons.table.Column;
 import org.opensingular.lib.commons.util.Loggable;
@@ -21,6 +22,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
     public STypeString  nomeGato2;
     public STypeBoolean aceitaTermos2;
     public STypeBoolean teste;
+    public STypeTime time;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -45,11 +47,16 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         nomeMae2.asAtrAnnotation().setAnnotated();
 
         teste = this.addFieldBoolean("teste");
+
         SViewCheckBoxLabelAbove sView = new SViewCheckBoxLabelAbove();
         sView.setAlignCheckBox(Column.Alignment.CENTER);
         teste.withView(sView);
         teste.asAtr().label("Teste boolean").required(true);
 
+        time = this.addFieldTime("time");
+        time.asAtr().label("tempo");
+
+        nomeMae2.asAtr().dependsOn(time).visible(false);
 
 
     }
