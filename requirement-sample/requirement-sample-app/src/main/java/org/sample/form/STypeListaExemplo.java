@@ -56,7 +56,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
 
 
 
-        nomeGato2.asAtr().dependsOn(time).exists(false);
+//        nomeGato2.asAtr().dependsOn(time).exists(false);
 
 //        sobrenome2.asAtr().dependsOn(data).exists(false);
     }
