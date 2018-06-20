@@ -6,7 +6,10 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeDate;
+import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.lib.commons.util.Loggable;
 
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
@@ -17,6 +20,10 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
     public STypeString  nomeMae2;
     public STypeString  nomeGato2;
     public STypeString  nomeDog2;
+    public STypeDateTime dataHoraInicio;
+    public STypeDate data;
+    public STypeTime time;
+
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -37,5 +44,20 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
 
         nomeMae2.asAtrAnnotation().setAnnotated();
 
+        dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
+        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio");
+
+        data = this.addFieldDate("data");
+        data.asAtr().label("Data");
+        data.asAtr().required();
+
+        time = this.addFieldTime("time");
+        time.asAtr().label("time");
+
+
+
+        nomeGato2.asAtr().dependsOn(time).exists(false);
+
+//        sobrenome2.asAtr().dependsOn(data).exists(false);
     }
 }
