@@ -20,7 +20,9 @@ import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
+import org.opensingular.form.view.SViewCheckBoxLabelAbove;
 import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.richtext.RichTextAction;
 import org.opensingular.form.view.richtext.RichTextContentContext;
 import org.opensingular.form.view.richtext.RichTextInsertContext;
@@ -72,9 +74,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         campo2.asAtrAnnotation().setAnnotated();
 
         listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
-        listaExemplo.withView(SViewListByMasterDetail::new);
+        listaExemplo.withView(SViewListByTable::new);
         listaExemplo.asAtr().label("Lista Exemplo");
-//        listaExemplo.asAtrAnnotation().setAnnotated();
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
         nomeMae = addField("nomeMae", STypeString.class);
@@ -122,6 +123,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         brasileiro = this.addFieldBoolean("brasileiro");
         brasileiro.asAtr().label("Brasileiro");
+        brasileiro.withView(SViewCheckBoxLabelAbove::new);
         brasileiro.asAtr().enabled(true);
 
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);

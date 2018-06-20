@@ -6,7 +6,10 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.view.SViewCheckBoxLabelAbove;
+import org.opensingular.lib.commons.table.Column;
 import org.opensingular.lib.commons.util.Loggable;
 
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
@@ -16,7 +19,8 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
     public STypeString  sobrenome2;
     public STypeString  nomeMae2;
     public STypeString  nomeGato2;
-    public STypeString  nomeDog2;
+    public STypeBoolean aceitaTermos2;
+    public STypeBoolean teste;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -24,8 +28,11 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         nome2.asAtr().label("Nome");
         nomeGato2 = this.addFieldString("nomeGato2");
         nomeGato2.asAtr().label("Nome Gato");
-        nomeDog2 = this.addFieldString("nomeDog2");
-        nomeDog2.asAtr().label("Nome Dog");
+
+        aceitaTermos2 = this.addFieldBoolean("aceitaTermos2");
+        aceitaTermos2
+                .withRadioView("Aceito", "Rejeito")
+                .asAtr().label("Aceito os termos e condiÃ§Ãµes");
 
         nome2.asAtrAnnotation().setAnnotated();
 
@@ -36,6 +43,14 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         nomeMae2.asAtr().label("Nome Mãe");
 
         nomeMae2.asAtrAnnotation().setAnnotated();
+
+        teste = this.addFieldBoolean("teste");
+        SViewCheckBoxLabelAbove sView = new SViewCheckBoxLabelAbove();
+        sView.setAlignCheckBox(Column.Alignment.CENTER);
+        teste.withView(sView);
+        teste.asAtr().label("Teste boolean").required(true);
+
+
 
     }
 }
