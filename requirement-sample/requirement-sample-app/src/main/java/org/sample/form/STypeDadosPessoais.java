@@ -3,6 +3,7 @@ package org.sample.form;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 
+import org.apache.commons.lang3.StringUtils;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
@@ -194,7 +195,16 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
             @Override
             public void onAction(RichTextInsertContext richTextContext, Optional<SInstance> sInstance) {
-                richTextContext.setReturnValue("teste");
+                sInstance.ifPresent(s -> {
+                    STypeListaExemplo sTypeModal = (STypeListaExemplo) sInstance.get().getType();
+                    String value = s.getField(sTypeModal.nome2).getValue();
+                    if(StringUtils.isNotEmpty(value)){
+                        richTextContext.setReturnValue(value);
+                    } else {
+                        richTextContext.setReturnValue("");
+                        /*Por default se o valor returnValue for null então não é realizado nenhuma ação*/
+                    }
+                });
             }
 
         };
