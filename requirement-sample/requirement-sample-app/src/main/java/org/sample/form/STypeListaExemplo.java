@@ -1,11 +1,13 @@
 package org.sample.form;
 
+import java.util.Date;
 import javax.annotation.Nonnull;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.lib.commons.util.Loggable;
 
@@ -17,6 +19,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
     public STypeString  nomeMae2;
     public STypeString  nomeGato2;
     public STypeString  nomeDog2;
+    public STypeDate date;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -34,6 +37,14 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         sobrenome2.asAtrAnnotation().setAnnotated();
         nomeMae2 = this.addFieldString("nomeMae2");
         nomeMae2.asAtr().label("Nome Mãe");
+
+
+        date = this.addFieldDate("date");
+        date.asAtr().label("date").subtitle("min date").required();
+        date.maxDate(new Date());
+        Date dateNow = new Date();
+        date.minDate(dateNow);
+
 
         nomeMae2.asAtrAnnotation().setAnnotated();
 
