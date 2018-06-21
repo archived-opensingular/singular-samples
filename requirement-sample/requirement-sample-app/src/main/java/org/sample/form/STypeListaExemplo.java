@@ -39,7 +39,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         nome2.asAtrAnnotation().setAnnotated();
 
         sobrenome2 = this.addFieldString("sobrenome2");
-        sobrenome2.asAtr().label("Sobrenome");
+        sobrenome2.asAtr().label("Sobrenome").required(true);
         sobrenome2.asAtrAnnotation().setAnnotated();
         nomeMae2 = this.addFieldString("nomeMae2");
         nomeMae2.asAtr().label("Nome Mãe").required(true);

@@ -84,9 +84,9 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         telefone = addField("telefone", STypeTelefoneNacional.class);
 
         nomePai.asAtr().dependsOn(nomeCompleto);
-        nomeCompleto.asAtr().label("Nome Completo").subtitle("teste subtitle").asAtrBootstrap().colPreference(6);
-        nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(6);
-        nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(6);
+        nomeCompleto.asAtr().label("Nome Completo").subtitle("teste subtitle").asAtrBootstrap().colPreference(4).colMd(4);
+        nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(4).colMd(4);
+        nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(4).colMd(4);
         nomePai.asAtrIndex().indexed(Boolean.TRUE);
         telefone.asAtr().label("Telefone").asAtrBootstrap().colPreference(6);
         telefone.asAtrIndex().indexed(Boolean.TRUE);
