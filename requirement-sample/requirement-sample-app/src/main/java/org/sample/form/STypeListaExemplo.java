@@ -34,7 +34,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         aceitaTermos2 = this.addFieldBoolean("aceitaTermos2");
         aceitaTermos2
                 .withRadioView("Aceito", "Rejeito")
-                .asAtr().label("Aceito os termos e condiÃ§Ãµes");
+                .asAtr().label("Aceito os termos e condiçoes").required(true);;
 
         nome2.asAtrAnnotation().setAnnotated();
 
@@ -42,7 +42,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         sobrenome2.asAtr().label("Sobrenome");
         sobrenome2.asAtrAnnotation().setAnnotated();
         nomeMae2 = this.addFieldString("nomeMae2");
-        nomeMae2.asAtr().label("Nome Mãe");
+        nomeMae2.asAtr().label("Nome Mãe").required(true);
 
         nomeMae2.asAtrAnnotation().setAnnotated();
 

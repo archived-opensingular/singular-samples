@@ -84,7 +84,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         telefone = addField("telefone", STypeTelefoneNacional.class);
 
         nomePai.asAtr().dependsOn(nomeCompleto);
-        nomeCompleto.asAtr().label("Nome Completo").asAtrBootstrap().colPreference(6);
+        nomeCompleto.asAtr().label("Nome Completo").subtitle("teste subtitle").asAtrBootstrap().colPreference(6);
         nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(6);
         nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(6);
         nomePai.asAtrIndex().indexed(Boolean.TRUE);
@@ -102,14 +102,14 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
 
         naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
-        naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
+        naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro").subtitle("teste subtitle");
         naoTenhoFotoCachorro.asAtr().required(false);
         naoTenhoFotoCachorro.asAtr().enabled(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
         fotoDoCachorro.withView(SViewAttachmentImage::new);
         fotoDoCachorro.asAtr().required(false);
-        fotoDoCachorro.asAtr().label("Foto do cachorro");
+        fotoDoCachorro.asAtr().label("Foto do cachorro").subtitle("teste subtitle");;
         fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
         fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
@@ -122,7 +122,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         brasileiro = this.addFieldBoolean("brasileiro");
-        brasileiro.asAtr().label("Brasileiro");
+        brasileiro.asAtr().label("Brasileiro").subtitle("teste subtitle");
         brasileiro.withView(SViewCheckBoxLabelAbove::new);
         brasileiro.asAtr().enabled(true);
 
