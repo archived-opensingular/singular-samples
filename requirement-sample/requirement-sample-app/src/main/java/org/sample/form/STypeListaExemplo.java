@@ -10,7 +10,7 @@ import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.form.view.SViewCheckBoxLabelAbove;
-import org.opensingular.lib.commons.table.Alignment;
+import org.opensingular.lib.commons.ui.Alignment;
 import org.opensingular.lib.commons.util.Loggable;
 
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
