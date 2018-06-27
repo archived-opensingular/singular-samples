@@ -1,37 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.opensingular</groupId>
-        <artifactId>requirement-sample</artifactId>
+        <artifactId>singular-samples</artifactId>
         <version>1.8.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>requirement-sample-app</artifactId>
-    <name>[requerimento :: requirement-sample-app]</name>
+    <artifactId>singular-wicket-utils-samples</artifactId>
+    <name>[singular :: wicket-utils-samples]</name>
     <packaging>war</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.opensingular</groupId>
-            <artifactId>singular-requirement-studio-app</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.opensingular</groupId>
-            <artifactId>singular-requirement-commons-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.opensingular</groupId>
-            <artifactId>singular-enterprise-connector</artifactId>
-        </dependency>
-    </dependencies>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
-        <finalName>requirement-sample-app</finalName>
         <resources>
             <resource>
                 <filtering>true</filtering>
@@ -65,5 +51,16 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.opensingular</groupId>
+            <artifactId>singular-form-wicket</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.opensingular</groupId>
+            <artifactId>singular-support</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
