@@ -43,12 +43,15 @@ public class CaseInputCoreDateMinMaxSType extends STypeComposite<SIComposite> {
         dateInicio = this.addFieldDate("dateInicio");
         dateInicio.asAtr().label("Data").subtitle("Min: 01/05/2018. Max: 01/08/2018");
         dateInicio.asAtrBootstrap().colPreference(3);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        dateInicio.minDate(generateDate(sdf, "01/05/2018"));
-        dateInicio.maxDate(generateDate(sdf, "01/08/2018"));
+        //@destacar
+        dateInicio.minDate(generateDate("01/05/2018"));
+        //@destacar
+        dateInicio.maxDate(generateDate("01/08/2018"));
     }
 
-    private Date generateDate(SimpleDateFormat sdf, String date) {
+    private Date generateDate(String date) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
             return sdf.parse(date);
         } catch (ParseException e) {
