@@ -61,6 +61,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         this.asAtr().label("Dados Pessoais");
         this.asAtrAnnotation().setAnnotated();
 
+
         campo1 = addFieldString("campo1");
         campo2 = addFieldString("campo2");
         campo1.asAtr().label("CAMPO 1").asAtrBootstrap().colPreference(6);
@@ -166,6 +167,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .add(telefone)
                 .add(documentos)
                 .add(richText));
+
     }
 
 
