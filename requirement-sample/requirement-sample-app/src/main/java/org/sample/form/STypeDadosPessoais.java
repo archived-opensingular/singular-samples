@@ -18,9 +18,12 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.attachment.STypeAttachment;
 import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
+import org.opensingular.form.type.util.STypeLatitudeLongitudeGMaps;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
+import org.opensingular.form.view.SViewCheckBoxLabelAbove;
 import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.richtext.RichTextAction;
 import org.opensingular.form.view.richtext.RichTextContentContext;
 import org.opensingular.form.view.richtext.RichTextInsertContext;
@@ -54,12 +57,17 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
     public STypeString campo1;
     public STypeString campo2;
+    public STypeLatitudeLongitudeGMaps coordenada;
 
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         this.asAtr().label("Dados Pessoais");
         this.asAtrAnnotation().setAnnotated();
+
+        coordenada = this.addField("coordenada", STypeLatitudeLongitudeGMaps.class);
+        coordenada
+                .asAtr().subtitle("subtitle maps").label("Maps").required();
 
         campo1 = addFieldString("campo1");
         campo2 = addFieldString("campo2");
@@ -72,9 +80,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         campo2.asAtrAnnotation().setAnnotated();
 
         listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
-        listaExemplo.withView(SViewListByMasterDetail::new);
+        listaExemplo.withView(SViewListByTable::new);
         listaExemplo.asAtr().label("Lista Exemplo");
-//        listaExemplo.asAtrAnnotation().setAnnotated();
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
         nomeMae = addField("nomeMae", STypeString.class);
@@ -83,9 +90,9 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         telefone = addField("telefone", STypeTelefoneNacional.class);
 
         nomePai.asAtr().dependsOn(nomeCompleto);
-        nomeCompleto.asAtr().label("Nome Completo").asAtrBootstrap().colPreference(6);
-        nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(6);
-        nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(6);
+        nomeCompleto.asAtr().label("Nome Completo").subtitle("teste subtitle").asAtrBootstrap().colPreference(4).colMd(4);
+        nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(4).colMd(4);
+        nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(4).colMd(4);
         nomePai.asAtrIndex().indexed(Boolean.TRUE);
         telefone.asAtr().label("Telefone").asAtrBootstrap().colPreference(6);
         telefone.asAtrIndex().indexed(Boolean.TRUE);
@@ -101,14 +108,13 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
 
         naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
-        naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro");
+        naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro").subtitle("teste subtitle");
         naoTenhoFotoCachorro.asAtr().required(false);
-        naoTenhoFotoCachorro.asAtr().enabled(p -> p.findNearest(brasileiro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
         fotoDoCachorro.withView(SViewAttachmentImage::new);
         fotoDoCachorro.asAtr().required(false);
-        fotoDoCachorro.asAtr().label("Foto do cachorro");
+        fotoDoCachorro.asAtr().label("Foto do cachorro").subtitle("teste subtitle");;
         fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
         fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
@@ -121,7 +127,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         brasileiro = this.addFieldBoolean("brasileiro");
-        brasileiro.asAtr().label("Brasileiro");
+        brasileiro.asAtr().label("Brasileiro").subtitle("teste subtitle");
+        brasileiro.withView(SViewCheckBoxLabelAbove::new);
         brasileiro.asAtr().enabled(true);
 
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
@@ -165,6 +172,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .add(nomePai)
                 .add(telefone)
                 .add(documentos)
+                .add(coordenada)
                 .add(richText));
     }
 
