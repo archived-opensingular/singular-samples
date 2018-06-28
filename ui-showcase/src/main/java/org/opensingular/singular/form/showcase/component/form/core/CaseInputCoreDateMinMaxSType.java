@@ -32,7 +32,7 @@ import org.opensingular.singular.form.showcase.component.Group;
 /**
  * Componente para inserção de min e max data
  */
-@CaseItem(componentName = "Date", subCaseName = "MinMaxData", group = Group.INPUT)
+@CaseItem(componentName = "Date", subCaseName = "Min/Max Data", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "DateTime")
 public class CaseInputCoreDateMinMaxSType extends STypeComposite<SIComposite> {
 
