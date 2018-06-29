@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.search;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -28,8 +30,6 @@ import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
-import javax.annotation.Nonnull;
-
 /**
  * Permite a seleção a partir de uma busca filtrada, fazendo o controle de paginação de forma automatica.
  */
@@ -39,6 +39,7 @@ resources = {@Resource(Funcionario.class), @Resource(FuncionarioProvider.class),
 public class CaseInputModalSearchSType extends STypeComposite<SIComposite> {
 
     public STypeComposite funcionario;
+    public STypeComposite funcionarioClickedColumn;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -55,6 +56,25 @@ public class CaseInputModalSearchSType extends STypeComposite<SIComposite> {
                 .converter((ValueToSICompositeConverter<Funcionario>) (newFunc, func) -> {
                     newFunc.setValue(nome, func.getNome());
                     newFunc.setValue(funcao, func.getFuncao());
+                });
+
+
+        funcionarioClickedColumn = this.addFieldComposite("funcionarioClickedColumn");
+        funcionarioClickedColumn.asAtr().label("Funcionario")
+                .subtitle("Habilitado o clique nas colunas").displayString("${nome} - ${funcao}");
+
+        final STypeString nomeFuncionario  = funcionarioClickedColumn.addFieldString("nome");//NOSONAR
+        final STypeString funcaoFuncionario = funcionarioClickedColumn.addFieldString("funcao");//NOSONAR
+
+        funcionarioClickedColumn.withView(new SViewSearchModal()
+                //@destacar
+                .enableColumnClick(true)
+                .title("Buscar Profissionais"))
+                .asAtrProvider()
+                .filteredProvider(new FuncionarioProvider())
+                .converter((ValueToSICompositeConverter<Funcionario>) (newFunc, func) -> {
+                    newFunc.setValue(nomeFuncionario, func.getNome());
+                    newFunc.setValue(funcaoFuncionario, func.getFuncao());
                 });
     }
 }
