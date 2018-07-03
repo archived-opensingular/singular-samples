@@ -27,8 +27,11 @@
         <dependency>
             <groupId>org.opensingular</groupId>
             <artifactId>requirement-sei-30-features-lib</artifactId>
-            <version>1.8.0-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.opensingular</groupId>
+            <artifactId>singular-wkhtmltopdf-client</artifactId>
         </dependency>
     </dependencies>
 
