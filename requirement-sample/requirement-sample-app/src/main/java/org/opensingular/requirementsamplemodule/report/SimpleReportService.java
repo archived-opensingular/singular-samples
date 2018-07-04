@@ -19,7 +19,7 @@
 package org.opensingular.requirementsamplemodule.report;
 
 import org.opensingular.form.SIComposite;
-import org.opensingular.form.report.FormReportFilter;
+import org.opensingular.form.SInstance;
 import org.opensingular.requirementsamplemodule.report.filter.STypeSimpleReportFilter;
 
 import javax.inject.Named;
@@ -234,9 +234,9 @@ public class SimpleReportService {
         list.add(new SimpleDTO(count++,"Zimbábue","Harare","África"));
     }
 
-    public Iterable<? extends SimpleDTO> listSimpleData(FormReportFilter filter) {
-        STypeSimpleReportFilter filterType = (STypeSimpleReportFilter) filter.getInstance().getType();
-        SIComposite filtro = (SIComposite) filter.getInstance();
+    public Iterable<? extends SimpleDTO> listSimpleData(SInstance instance) {
+        STypeSimpleReportFilter filterType = (STypeSimpleReportFilter) instance.getType();
+        SIComposite filtro = (SIComposite) instance;
         String nomePais = filtro.getField(filterType.nomePais).getValue();
         String nomeCapital = filtro.getField(filterType.nomeCapital).getValue();
 
