@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -28,8 +30,6 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-
-import javax.annotation.Nonnull;
 
 /**
  * Campos básicos para uso nos formulários do singular

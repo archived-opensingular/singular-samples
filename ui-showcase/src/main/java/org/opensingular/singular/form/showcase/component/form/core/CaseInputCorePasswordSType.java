@@ -16,47 +16,41 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.annotation.Nonnull;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeDate;
+import org.opensingular.form.type.core.STypePassword;
+import org.opensingular.form.view.SViewPassword;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
 /**
- * Componente para inserção de min e max data
+ * Campos básicos para uso nos formulários do singular
  */
-@CaseItem(componentName = "Date", subCaseName = "Min/Max Data", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "MinMaxDateTime")
-public class CaseInputCoreDateMinMaxSType extends STypeComposite<SIComposite> {
 
-    public STypeDate dateInicio;
+@CaseItem(componentName = "Basic", subCaseName = "Password",  group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Password")
+public class CaseInputCorePasswordSType extends STypeComposite<SIComposite> {
+
+    public STypePassword senha;
+    public STypePassword senhaResetada;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        dateInicio = this.addFieldDate("dateInicio");
-        dateInicio.asAtr().label("Data").subtitle("Min: 01/05/2018. Max: 01/08/2018");
-        dateInicio.asAtrBootstrap().colPreference(3);
-        //@destacar
-        dateInicio.minDate(generateDate("01/05/2018"));
-        //@destacar
-        dateInicio.maxDate(generateDate("01/08/2018"));
-    }
 
-    private Date generateDate(String date) {
+        //Por default a senha é resetada a cada request
+        senhaResetada = this.addFieldPassword("senhaResetada");
+        senhaResetada
+                .asAtr().label("Senha Resetada").subtitle("Resetada após requisição");
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            return sdf.parse(date);
-        } catch (ParseException e) {
-            getLogger().error("Erro ao obter data", e);
-        }
-        return null;
+
+        senha = this.addFieldPassword("senha");
+        senha
+                .asAtr().label("Senha");
+        //Configurando view para não resetar a request após a requisição
+        senha.withView(new SViewPassword().setResetPassword(false));
     }
 }
