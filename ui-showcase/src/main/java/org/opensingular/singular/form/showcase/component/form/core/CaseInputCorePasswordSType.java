@@ -22,12 +22,8 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.type.country.brazil.STypeCEP;
-import org.opensingular.form.type.country.brazil.STypeCNPJ;
-import org.opensingular.form.type.country.brazil.STypeCPF;
-import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
-import org.opensingular.form.type.util.STypeEMail;
+import org.opensingular.form.type.core.STypePassword;
+import org.opensingular.form.view.SViewPassword;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
@@ -35,26 +31,26 @@ import org.opensingular.singular.form.showcase.component.Group;
  * Campos básicos para uso nos formulários do singular
  */
 
-@CaseItem(componentName = "Basic", subCaseName = "Default",  group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "Basic")
-public class CaseInputCoreBasicSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Basic", subCaseName = "Password",  group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Password")
+public class CaseInputCorePasswordSType extends STypeComposite<SIComposite> {
 
-    public STypeCNPJ cnpj;
-    public STypeCPF cpf;
-    public STypeCEP cep;
-    public STypeEMail email;
-    public STypeString descricao;
-    public STypeTelefoneNacional telefone;
+    public STypePassword senha;
+    public STypePassword senhaResetada;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        cnpj = this.addField("cnpj", STypeCNPJ.class);
-        cpf = this.addField("cpf", STypeCPF.class);
-        cep = this.addField("cep", STypeCEP.class);
-        email = this.addFieldEmail("email");
-        descricao = this.addFieldString("descricao");
-        descricao
-                .asAtr().label("Descrição");
-        telefone = this.addField("telefone", STypeTelefoneNacional.class);
+
+        //Por default a senha é resetada a cada request
+        senhaResetada = this.addFieldPassword("senhaResetada");
+        senhaResetada
+                .asAtr().label("Senha Resetada").subtitle("Resetada após requisição");
+
+
+        senha = this.addFieldPassword("senha");
+        senha
+                .asAtr().label("Senha");
+        //Configurando view para não resetar a request após a requisição
+        senha.withView(new SViewPassword().setResetPassword(false));
     }
 }
