@@ -61,14 +61,14 @@ public class CaseInputModalSearchSType extends STypeComposite<SIComposite> {
 
         funcionarioClickedColumn = this.addFieldComposite("funcionarioClickedColumn");
         funcionarioClickedColumn.asAtr().label("Funcionario")
-                .subtitle("Habilitado o clique nas colunas").displayString("${nome} - ${funcao}");
+                .subtitle("Habilitado o clique nas linhas").displayString("${nome} - ${funcao}");
 
         final STypeString nomeFuncionario  = funcionarioClickedColumn.addFieldString("nome");//NOSONAR
         final STypeString funcaoFuncionario = funcionarioClickedColumn.addFieldString("funcao");//NOSONAR
 
         funcionarioClickedColumn.withView(new SViewSearchModal()
                 //@destacar
-                .enableColumnClick(true)
+                .enableRowClick(true)
                 .title("Buscar Profissionais"))
                 .asAtrProvider()
                 .filteredProvider(new FuncionarioProvider())
