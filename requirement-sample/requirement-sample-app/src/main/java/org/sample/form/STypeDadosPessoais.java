@@ -23,7 +23,6 @@ import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewCheckBoxLabelAbove;
 import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.richtext.RichTextAction;
 import org.opensingular.form.view.richtext.RichTextContentContext;
 import org.opensingular.form.view.richtext.RichTextInsertContext;
@@ -80,7 +79,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         campo2.asAtrAnnotation().setAnnotated();
 
         listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
-        listaExemplo.withView(SViewListByTable::new);
+        listaExemplo.withView(SViewListByMasterDetail::new);
         listaExemplo.asAtr().label("Lista Exemplo");
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);

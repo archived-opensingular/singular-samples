@@ -10,6 +10,7 @@ import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.STypeTime;
+import org.opensingular.form.util.SingularPredicates;
 import org.opensingular.lib.commons.util.Loggable;
 
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
@@ -45,19 +46,20 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         nomeMae2.asAtrAnnotation().setAnnotated();
 
         dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
-        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio");
+        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio").required();
+
 
         data = this.addFieldDate("data");
         data.asAtr().label("Data");
         data.asAtr().required();
 
         time = this.addFieldTime("time");
-        time.asAtr().label("time");
+        time.asAtr().label("time").required();
 
 
+        nomeGato2.asAtr().dependsOn(time).exists(false);
 
-//        nomeGato2.asAtr().dependsOn(time).exists(false);
+        sobrenome2.asAtr().dependsOn(dataHoraInicio).exists(SingularPredicates.typeValueIsNull(dataHoraInicio));
 
-//        sobrenome2.asAtr().dependsOn(data).exists(false);
     }
 }
