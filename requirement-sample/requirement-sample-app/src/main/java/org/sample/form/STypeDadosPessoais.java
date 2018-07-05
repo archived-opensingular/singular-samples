@@ -149,17 +149,15 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         richText2 = this.addField("richText2", STypeHTML.class);
         richText2.asAtr().label("TESTE RICHT TEXT 2");
-
-
-        richText3 = this.addField("richText3", STypeHTML.class);
-        richText3.asAtr().label("TESTE RICHT TEXT 3");
-
         SViewByRichTextNewTab sViewByRichText2 = new SViewByRichTextNewTab();
         sViewByRichText2.addAction(createMockInsertButton("Inserir"));
         sViewByRichText2.addAction(createMockSelectButton("selecionar"));
         sViewByRichText2.addAction(createMockContentButton("conteudo"));
         richText2.withView(sViewByRichText2);
 
+
+        richText3 = this.addField("richText3", STypeHTML.class);
+        richText3.asAtr().label("TESTE RICHT TEXT 3");
 
         richText3.withView(SViewSEIRichText
                 .configProtocoloToIdSEIAction(SILinkSEI::getProtocolo)
