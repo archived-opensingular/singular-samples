@@ -136,6 +136,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
         listEnderecos.asAtr().label("Endereços");
+        listEnderecos.getElementsType().bairro.asAtr().required(true);
         listEnderecos.withView(SViewListByMasterDetail::new);
         listEnderecos.asAtrIndex().indexed(Boolean.TRUE);
 
