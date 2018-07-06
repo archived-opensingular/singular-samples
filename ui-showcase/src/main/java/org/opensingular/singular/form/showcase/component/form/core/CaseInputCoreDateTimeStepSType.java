@@ -18,16 +18,16 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDateTime;
-import org.opensingular.form.view.SViewDateTime;
+import org.opensingular.form.view.date.SViewDateTime;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-
-import javax.annotation.Nonnull;
 
 /**
  * Componente para inserção de data e hora com seletor configurado para avançar de 3 em 3 minutos
