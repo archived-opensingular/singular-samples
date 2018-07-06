@@ -73,7 +73,9 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         yearMonth = this.addField("yearMonth", STypeYearMonth.class);
         yearMonth.asAtr().label("yearMonth");
 
-        nomeGato2.asAtr().dependsOn(time).exists(false);
+        nomeGato2.asAtr().dependsOn(time).exists(SingularPredicates.typeValueIsNull(time));
+
+        nomeMae2.asAtr().dependsOn(data).exists(SingularPredicates.typeValueIsNull(data));
 
         sobrenome2.asAtr().dependsOn(dataHoraInicio).exists(SingularPredicates.typeValueIsNull(dataHoraInicio));
 
