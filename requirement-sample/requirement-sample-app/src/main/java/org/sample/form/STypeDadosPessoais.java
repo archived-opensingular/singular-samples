@@ -23,10 +23,10 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypeLatitudeLongitudeGMaps;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
-import org.opensingular.form.view.SViewCheckBoxLabelAbove;
+import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.form.view.SViewPassword;
 import org.opensingular.form.view.SViewListByTable;
+import org.opensingular.form.view.SViewPassword;
 import org.opensingular.form.view.richtext.RichTextAction;
 import org.opensingular.form.view.richtext.RichTextContentContext;
 import org.opensingular.form.view.richtext.RichTextInsertContext;
@@ -132,7 +132,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         brasileiro = this.addFieldBoolean("brasileiro");
         brasileiro.asAtr().label("Brasileiro").subtitle("teste subtitle");
-        brasileiro.withView(SViewCheckBoxLabelAbove::new);
+        brasileiro.withView(SViewCheckBox::new);
         brasileiro.asAtr().enabled(true);
 
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);

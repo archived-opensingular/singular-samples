@@ -7,11 +7,11 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeBoolean;
+import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.STypeTime;
-import org.opensingular.form.view.SViewCheckBoxLabelAbove;
+import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.lib.commons.ui.Alignment;
 import org.opensingular.lib.commons.util.Loggable;
 
@@ -59,7 +59,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
 
         teste = this.addFieldBoolean("teste");
 
-        SViewCheckBoxLabelAbove sView = new SViewCheckBoxLabelAbove();
+        SViewCheckBox sView = new SViewCheckBox();
         sView.setAlignCheckBox(Alignment.CENTER);
         teste.withView(sView);
         teste.asAtr().label("Teste boolean").required(true);

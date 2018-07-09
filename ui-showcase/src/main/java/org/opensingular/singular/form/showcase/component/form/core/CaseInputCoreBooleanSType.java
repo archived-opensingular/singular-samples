@@ -23,7 +23,7 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
-import org.opensingular.form.view.SViewCheckBoxLabelAbove;
+import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
@@ -56,7 +56,7 @@ public class CaseInputCoreBooleanSType extends STypeComposite<SIComposite> {
 
         receberNotificacoes
                 //@destacar
-                .withView(SViewCheckBoxLabelAbove::new)
+                .withView(SViewCheckBox::new)
                 .asAtr().label("Receber notificações").required(true);
 
         receberNotificacoes2 = this.addFieldBoolean("receberNotificacoes2");
