@@ -60,7 +60,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         teste = this.addFieldBoolean("teste");
 
         SViewCheckBox sView = new SViewCheckBox();
-        sView.setAlignCheckBox(Alignment.CENTER);
+        sView.setAlignLabelOfCheckBox(Alignment.CENTER);
         teste.withView(sView);
         teste.asAtr().label("Teste boolean").required(true);
 
