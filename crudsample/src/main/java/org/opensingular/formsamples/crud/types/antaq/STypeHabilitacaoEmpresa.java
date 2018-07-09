@@ -38,7 +38,7 @@ import org.opensingular.form.view.SViewByBlock;
 
 import static org.opensingular.form.util.SingularPredicates.allMatches;
 
-@SInfoType(spackage = AntaqPackage.class, newable = false, name = "HabilitacaoEmpresa")
+@SInfoType(spackage = AntaqPackage.class,  name = "HabilitacaoEmpresa")
 public class STypeHabilitacaoEmpresa extends STypeComposite<SIComposite> {
 
     public static final String              PDF = "pdf";
