@@ -85,7 +85,7 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
         datasHabilitadas
                 .withView(new SViewDate().setEnabledDatesFunction(this::tresDiasAntesDepoisAtual))
                 .asAtr()
-                .label("Data habilitadas (três dias antes e depois da data atual)");
+                .label("Data habilitadas").subtitle("três dias antes e depois da data atual");
 
         hora
                 .asAtr().label("Hora");
