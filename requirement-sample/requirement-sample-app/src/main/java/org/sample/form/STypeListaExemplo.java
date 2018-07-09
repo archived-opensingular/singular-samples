@@ -7,11 +7,13 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
+import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.form.util.SingularPredicates;
 import org.opensingular.form.view.date.SViewDate;
 import org.opensingular.form.view.date.SViewDateTime;
+import org.opensingular.form.view.date.SViewTime;
 import org.opensingular.lib.commons.util.Loggable;
 
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
@@ -22,7 +24,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
     public STypeString  nomeMae2;
     public STypeString  nomeGato2;
     public STypeString  nomeDog2;
-//    public STypeDateTime dataHoraInicio;
+    public STypeDateTime dataHoraInicio;
     public STypeDate data;
     public STypeTime time;
 //    public STypeYearMonth yearMonth;
@@ -47,13 +49,14 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
 
         nomeMae2.asAtrAnnotation().setAnnotated();
 
-//        dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
-//        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio").required();
+        dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
+        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio").required();
 
         SViewDateTime sViewDateTime = new SViewDateTime();
         sViewDateTime.setClearBtn(true);
-        sViewDateTime.setTodayBtn(true);
-//        dataHoraInicio.withView(sViewDateTime);
+        sViewDateTime.setTodayHighlight(true);
+        sViewDateTime.setMode24hs(false);
+        dataHoraInicio.withView(sViewDateTime);
 
 
         data = this.addFieldDate("data");
@@ -67,6 +70,10 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         data.withView(sViewDate);
 
         time = this.addFieldTime("time");
+        SViewTime sViewTime = new SViewTime();
+        sViewTime.setMinuteStep(20);
+        sViewTime.setMode24hs(true);
+        time.withView(sViewTime);
         time.asAtr().label("time").required();
 
 //        yearMonth = this.addField("yearMonth", STypeYearMonth.class);
