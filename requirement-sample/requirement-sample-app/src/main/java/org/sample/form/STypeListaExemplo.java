@@ -7,10 +7,8 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
-import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.STypeTime;
-import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.form.util.SingularPredicates;
 import org.opensingular.form.view.date.SViewDate;
 import org.opensingular.form.view.date.SViewDateTime;
@@ -24,10 +22,10 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
     public STypeString  nomeMae2;
     public STypeString  nomeGato2;
     public STypeString  nomeDog2;
-    public STypeDateTime dataHoraInicio;
+//    public STypeDateTime dataHoraInicio;
     public STypeDate data;
     public STypeTime time;
-    public STypeYearMonth yearMonth;
+//    public STypeYearMonth yearMonth;
 
 
     @Override
@@ -49,13 +47,13 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
 
         nomeMae2.asAtrAnnotation().setAnnotated();
 
-        dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
-        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio").required();
+//        dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
+//        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio").required();
 
         SViewDateTime sViewDateTime = new SViewDateTime();
         sViewDateTime.setClearBtn(true);
         sViewDateTime.setTodayBtn(true);
-        dataHoraInicio.withView(sViewDateTime);
+//        dataHoraInicio.withView(sViewDateTime);
 
 
         data = this.addFieldDate("data");
@@ -65,19 +63,20 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         SViewDate sViewDate = new SViewDate();
         sViewDate.setClearBtn(true);
         sViewDate.setTodayBtn(true);
+//        sViewDate.setAutoclose(false);
         data.withView(sViewDate);
 
         time = this.addFieldTime("time");
         time.asAtr().label("time").required();
 
-        yearMonth = this.addField("yearMonth", STypeYearMonth.class);
-        yearMonth.asAtr().label("yearMonth");
+//        yearMonth = this.addField("yearMonth", STypeYearMonth.class);
+//        yearMonth.asAtr().label("yearMonth");
 
         nomeGato2.asAtr().dependsOn(time).exists(SingularPredicates.typeValueIsNull(time));
 
         nomeMae2.asAtr().dependsOn(data).exists(SingularPredicates.typeValueIsNull(data));
 
-        sobrenome2.asAtr().dependsOn(dataHoraInicio).exists(SingularPredicates.typeValueIsNull(dataHoraInicio));
+//        sobrenome2.asAtr().dependsOn(dataHoraInicio).exists(SingularPredicates.typeValueIsNull(dataHoraInicio));
 
     }
 }
