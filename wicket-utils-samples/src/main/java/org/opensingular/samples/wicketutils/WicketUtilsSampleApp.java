@@ -27,7 +27,8 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminApp;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminTemplate;
 import org.opensingular.samples.wicketutils.ui.page.SampleHeader;
-import org.opensingular.samples.wicketutils.ui.page.simpleform.SimpleFormPage;
+import org.opensingular.samples.wicketutils.ui.page.modal.fragment.SimpleFragmentModalPage;
+import org.opensingular.samples.wicketutils.ui.page.modal.singularform.SFormModalPage;
 
 @org.springframework.stereotype.Component
 public class WicketUtilsSampleApp extends WebApplication implements SingularAdminApp {
@@ -43,12 +44,13 @@ public class WicketUtilsSampleApp extends WebApplication implements SingularAdmi
         getComponentInstantiationListeners().add(new SpringComponentInjector(this));
         getComponentInitializationListeners().add(comp -> comp.add(new OuputMarkupBehavior()));
         
-        mountPage("simpleForm", SimpleFormPage.class);
+        mountPage("simpleForm", SFormModalPage.class);
+        mountPage("simpleFragment", SimpleFragmentModalPage.class);
     }
 
     @Override
     public Class<? extends Page> getHomePage() {
-        return SimpleFormPage.class;
+        return SFormModalPage.class;
     }
 
     public static WicketUtilsSampleApp get() {

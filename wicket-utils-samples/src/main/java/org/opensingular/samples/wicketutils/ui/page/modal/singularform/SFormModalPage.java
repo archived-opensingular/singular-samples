@@ -16,24 +16,24 @@
  *
  */
 
-package org.opensingular.samples.wicketutils.ui.page.simpleform;
+package org.opensingular.samples.wicketutils.ui.page.modal.singularform;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.model.IModel;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.io.SFormXMLUtil;
 import org.opensingular.form.wicket.modal.OpenSingularFormModalEvent;
-import org.opensingular.form.wicket.modal.OpenSingularFormModalEvent.ActionCallback;
-import org.opensingular.form.wicket.modal.OpenSingularFormModalEvent.ConfigureCallback;
 import org.opensingular.form.wicket.panel.SFormModalEventListenerBehavior;
 import org.opensingular.lib.wicket.util.bootstrap.layout.BSContainer;
+import org.opensingular.lib.wicket.util.modal.OpenModalEvent.ConfigureCallback;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
 import org.opensingular.samples.wicketutils.types.simpleform.STSimpleForm;
 import org.springframework.web.util.JavaScriptUtils;
 
-public class SimpleFormPage extends SingularTemplate {
+public class SFormModalPage extends SingularTemplate {
 
-    public SimpleFormPage() {
+    public SFormModalPage() {
 
         BSContainer<?> modalItemsContainer = new BSContainer<>("modalItemsContainer");
         add(modalItemsContainer);//);
@@ -46,27 +46,28 @@ public class SimpleFormPage extends SingularTemplate {
             }
 
             private void openModal(AjaxRequestTarget target) {
-                new OpenSingularFormModalEvent<>(target, STSimpleForm.class, (ConfigureCallback<SIComposite>) md -> {
-                    md.addButton("Accept", ActionCallback.dti((d, t, i) -> {
-                        if (!i.hasNestedValidationErrors()) {
-                            onAccept(t, i);
+                new OpenSingularFormModalEvent<STSimpleForm, SIComposite>(target, STSimpleForm.class, (ConfigureCallback<SIComposite>) md -> {
+                    md.setTitle("Simple Form");
+                    md.addButton("Accept", (t, d, m) -> {
+                        if (!m.getObject().hasNestedValidationErrors()) {
+                            onAccept(t, m);
                             d.close(t);
                         }
-                    }));
-                    md.addButton("Accept and repeat", ActionCallback.dti((d, t, i) -> {
-                        if (!i.hasNestedValidationErrors()) {
-                            onAccept(t, i);
+                    });
+                    md.addButton("Accept and repeat", (t, d, m) -> {
+                        if (!m.getObject().hasNestedValidationErrors()) {
+                            onAccept(t, m);
                             d.close(t);
                             openModal(t);
                         }
-                    }));
+                    });
                     md.addCloseLink("Close");
                 }).bubble(this);
             }
         });
     }
 
-    private void onAccept(AjaxRequestTarget t, SIComposite i) {
-        t.appendJavaScript("alert('" + JavaScriptUtils.javaScriptEscape(SFormXMLUtil.toStringXML(i).orElse("-")) + "');");
+    private void onAccept(AjaxRequestTarget t, IModel<SIComposite> model) {
+        t.appendJavaScript("alert('" + JavaScriptUtils.javaScriptEscape(SFormXMLUtil.toStringXML(model.getObject()).orElse("-")) + "');");
     }
 }
