@@ -31,10 +31,10 @@ import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.opensingular.form.wicket.panel.SFormModalEventListenerBehavior;
 import org.opensingular.lib.commons.lambda.IFunction;
 import org.opensingular.lib.wicket.util.bootstrap.layout.BSContainer;
 import org.opensingular.lib.wicket.util.modal.BSModalBorder.ButtonStyle;
+import org.opensingular.lib.wicket.util.modal.BSModalEventListenerBehavior;
 import org.opensingular.lib.wicket.util.modal.OpenModalEvent;
 import org.opensingular.lib.wicket.util.modal.OpenModalEvent.ConfigureCallback;
 import org.opensingular.lib.wicket.util.modal.OpenModalEvent.ModalDelegate;
@@ -46,7 +46,7 @@ public class SimpleFragmentModalPage extends SingularTemplate {
 
         BSContainer<?> modalItemsContainer = new BSContainer<>("modalItemsContainer");
         add(modalItemsContainer);//);
-        add(new SFormModalEventListenerBehavior(modalItemsContainer));
+        add(new BSModalEventListenerBehavior(modalItemsContainer));
 
         add(new AjaxLink<Void>("simpleFormLink") {
             @Override
