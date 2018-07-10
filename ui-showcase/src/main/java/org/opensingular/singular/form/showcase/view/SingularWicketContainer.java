@@ -116,11 +116,6 @@ public interface SingularWicketContainer<CONTAINER extends MarkupContainer, T> {
         return new Label(wicketId, getMessage(messagesId));
     }
 
-    //    @SuppressWarnings("unchecked")
-    //    default BaseAuthenticatedSession getSigaSession() {
-    //        return (BaseAuthenticatedSession) ((CONTAINER) this).getSession();
-    //    }
-
     @SuppressWarnings("unchecked")
     default void alert(AjaxRequestTarget target, Serializable message) {
         CONTAINER self = (CONTAINER) this;

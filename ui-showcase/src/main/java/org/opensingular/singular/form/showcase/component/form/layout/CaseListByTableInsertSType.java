@@ -16,38 +16,36 @@
  *
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
-
-import javax.annotation.Nonnull;
+package org.opensingular.singular.form.showcase.component.form.layout;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeDateTime;
-import org.opensingular.form.view.SViewDateTime;
+import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+
+import javax.annotation.Nonnull;
 
 /**
- * Componente para inserção de data e hora com seletor configurado para avançar de 3 em 3 minutos
+ * List by Table with Insert Option
  */
-@CaseItem(componentName = "Date", subCaseName = "Data e Hora de 3 em 3 minutos", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "DateTimeHour")
-public class CaseInputCoreDateTimeStepSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "List by Table", subCaseName = "Line Insert", group = Group.LAYOUT, resources = {@Resource(STypeCertificacao.class)})
+@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTable")
+public class CaseListByTableInsertSType extends STypeComposite<SIComposite> {
 
-    public STypeDateTime inicio;
+    public STypeList<STypeCertificacao, SIComposite> certificacoes;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        inicio = this.addFieldDateTime("inicio");
+        certificacoes = this.addFieldListOf("certificacoes", STypeCertificacao.class);
 
-        inicio
+        certificacoes
+                .withView(new SViewListByTable().enabledInsert())
                 .asAtr()
-                .label("Início")
-                .asAtrBootstrap()
-                .colPreference(3);
-        //@destacar
-        inicio.withView(() -> new SViewDateTime().setMinuteStep(3));
+                .label("Certificações");
     }
 }

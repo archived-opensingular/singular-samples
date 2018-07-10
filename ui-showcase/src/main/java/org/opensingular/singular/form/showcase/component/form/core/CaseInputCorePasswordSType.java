@@ -22,26 +22,35 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeHTML;
-import org.opensingular.form.view.richtext.SViewByRichText;
+import org.opensingular.form.type.core.STypePassword;
+import org.opensingular.form.view.SViewPassword;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
 /**
- * Permite a formatação de texto utilizando HTML.
+ * Campos básicos para uso nos formulários do singular
  */
-@CaseItem(componentName = "HTML", subCaseName = "Editor Rico", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "RichText")
-public class CaseInputCoreRichTextSType extends STypeComposite<SIComposite> {
 
-    public STypeHTML parecer;
+@CaseItem(componentName = "Basic", subCaseName = "Password",  group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Password")
+public class CaseInputCorePasswordSType extends STypeComposite<SIComposite> {
+
+    public STypePassword senha;
+    public STypePassword senhaResetada;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        parecer = this.addField("parecer", STypeHTML.class);
-        parecer.withView(SViewByRichText::new);
-        parecer
-                .asAtr()
-                .label("Parecer Técnico");
+
+        //Por default a senha é resetada a cada request
+        senhaResetada = this.addFieldPassword("senhaResetada");
+        senhaResetada
+                .asAtr().label("Senha Resetada").subtitle("Resetada após requisição");
+
+
+        senha = this.addFieldPassword("senha");
+        senha
+                .asAtr().label("Senha");
+        //Configurando view para não resetar a request após a requisição
+        senha.withView(new SViewPassword().setResetPassword(false));
     }
 }

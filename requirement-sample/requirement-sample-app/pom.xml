@@ -21,8 +21,12 @@
         </dependency>
         <dependency>
             <groupId>org.opensingular</groupId>
-            <artifactId>singular-requirement-commons-test</artifactId>
-            <scope>test</scope>
+            <artifactId>requirement-sei-30-features-lib</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.opensingular</groupId>
+            <artifactId>singular-wkhtmltopdf-client</artifactId>
         </dependency>
     </dependencies>
 
