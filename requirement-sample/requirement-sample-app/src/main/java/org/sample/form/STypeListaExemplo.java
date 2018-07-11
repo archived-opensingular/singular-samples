@@ -27,8 +27,6 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
     public STypeDateTime dataHoraInicio;
     public STypeDate data;
     public STypeTime time;
-//    public STypeYearMonth yearMonth;
-
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -66,7 +64,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         SViewDate sViewDate = new SViewDate();
         sViewDate.setClearBtn(true);
         sViewDate.setTodayBtn(true);
-//        sViewDate.setAutoclose(false);
+
         data.withView(sViewDate);
 
         time = this.addFieldTime("time");
@@ -76,14 +74,8 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         time.withView(sViewTime);
         time.asAtr().label("time").required();
 
-//        yearMonth = this.addField("yearMonth", STypeYearMonth.class);
-//        yearMonth.asAtr().label("yearMonth");
-
         nomeGato2.asAtr().dependsOn(time).exists(SingularPredicates.typeValueIsNull(time));
 
         nomeMae2.asAtr().dependsOn(data).exists(SingularPredicates.typeValueIsNull(data));
-
-//        sobrenome2.asAtr().dependsOn(dataHoraInicio).exists(SingularPredicates.typeValueIsNull(dataHoraInicio));
-
     }
 }
