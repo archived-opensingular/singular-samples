@@ -1,7 +1,7 @@
 package org.opensingular.requirementsamplemodule;
 
-import org.opensingular.server.commons.test.SingularSchemaExportTest;
 
+import org.opensingular.requirement.module.test.SingularSchemaExportTest;
 
 public class ExportSchemaTest extends SingularSchemaExportTest {
 

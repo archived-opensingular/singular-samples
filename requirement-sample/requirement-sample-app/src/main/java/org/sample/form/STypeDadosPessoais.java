@@ -14,7 +14,6 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIBoolean;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeHTML;
-import org.opensingular.form.type.core.STypePassword;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.attachment.STypeAttachment;
 import org.opensingular.form.type.country.brazil.STypeAddress;
@@ -24,8 +23,6 @@ import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewCheckBoxLabelAbove;
 import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.form.view.SViewPassword;
-import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.richtext.RichTextAction;
 import org.opensingular.form.view.richtext.RichTextContentContext;
 import org.opensingular.form.view.richtext.RichTextInsertContext;
@@ -58,7 +55,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeList<STypeListaExemplo, SIComposite> listaExemplo;
 
     public STypeString campo1;
-    public STypePassword campo2;
+    public STypeString campo2;
     public STypeLatitudeLongitudeGMaps coordenada;
 
 
@@ -72,18 +69,17 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .asAtr().subtitle("subtitle maps").label("Maps").required();
 
         campo1 = addFieldString("campo1");
-        campo2 = addFieldPassword("campo2");
+        campo2 = addFieldString("campo2");
         campo1.asAtr().label("CAMPO 1").asAtrBootstrap().colPreference(6);
         campo2.asAtr().label("CAMPO 2").asAtrBootstrap().colPreference(6);
-        campo2.withValueAttributeTrim(false);
-        campo2.withView(new SViewPassword().setResetPassword(false));
-        campo1.withValueAttributeTrim(true);
 
+        campo1.asAtr().dependsOn(campo2)
+                .enabled(t -> !t.findNearest(campo2).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
         campo1.asAtrAnnotation().setAnnotated();
         campo2.asAtrAnnotation().setAnnotated();
 
         listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
-        listaExemplo.withView(SViewListByTable::new);
+        listaExemplo.withView(SViewListByMasterDetail::new);
         listaExemplo.asAtr().label("Lista Exemplo");
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);

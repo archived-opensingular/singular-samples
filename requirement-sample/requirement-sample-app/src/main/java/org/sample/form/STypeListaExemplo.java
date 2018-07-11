@@ -10,6 +10,10 @@ import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.STypeTime;
+import org.opensingular.form.util.SingularPredicates;
+import org.opensingular.form.view.date.SViewDate;
+import org.opensingular.form.view.date.SViewDateTime;
+import org.opensingular.form.view.date.SViewTime;
 import org.opensingular.lib.commons.util.Loggable;
 
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
@@ -23,6 +27,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
     public STypeDateTime dataHoraInicio;
     public STypeDate data;
     public STypeTime time;
+//    public STypeYearMonth yearMonth;
 
 
     @Override
@@ -45,19 +50,40 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         nomeMae2.asAtrAnnotation().setAnnotated();
 
         dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
-        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio");
+        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio").required();
+
+        SViewDateTime sViewDateTime = new SViewDateTime();
+        sViewDateTime.setClearBtn(true);
+        sViewDateTime.setTodayHighlight(true);
+        sViewDateTime.setMode24hs(false);
+        dataHoraInicio.withView(sViewDateTime);
+
 
         data = this.addFieldDate("data");
         data.asAtr().label("Data");
         data.asAtr().required();
 
+        SViewDate sViewDate = new SViewDate();
+        sViewDate.setClearBtn(true);
+        sViewDate.setTodayBtn(true);
+//        sViewDate.setAutoclose(false);
+        data.withView(sViewDate);
+
         time = this.addFieldTime("time");
-        time.asAtr().label("time");
+        SViewTime sViewTime = new SViewTime();
+        sViewTime.setMinuteStep(20);
+        sViewTime.setMode24hs(true);
+        time.withView(sViewTime);
+        time.asAtr().label("time").required();
 
+//        yearMonth = this.addField("yearMonth", STypeYearMonth.class);
+//        yearMonth.asAtr().label("yearMonth");
 
+        nomeGato2.asAtr().dependsOn(time).exists(SingularPredicates.typeValueIsNull(time));
 
-//        nomeGato2.asAtr().dependsOn(time).exists(false);
+        nomeMae2.asAtr().dependsOn(data).exists(SingularPredicates.typeValueIsNull(data));
 
-//        sobrenome2.asAtr().dependsOn(data).exists(false);
+//        sobrenome2.asAtr().dependsOn(dataHoraInicio).exists(SingularPredicates.typeValueIsNull(dataHoraInicio));
+
     }
 }
