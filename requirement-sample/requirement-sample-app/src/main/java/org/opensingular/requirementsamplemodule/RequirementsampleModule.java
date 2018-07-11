@@ -18,9 +18,7 @@
 
 package org.opensingular.requirementsamplemodule;
 
-import org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow;
-import org.sample.form.RequirementsampleForm;
-import org.opensingular.requirement.module.SingularRequirement;
+import org.opensingular.requirement.module.FormFlowSingularRequirement;
 import org.opensingular.requirement.module.RequirementConfiguration;
 import org.opensingular.requirement.module.SingularModule;
 import org.opensingular.requirement.module.SingularRequirement;
