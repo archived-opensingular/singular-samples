@@ -30,13 +30,14 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.form.view.date.SViewDate;
+import org.opensingular.form.view.date.SViewTime;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
 /**
- * Componente para inserção de data
+ * Componentes personalizados para inserção de data
  */
-@CaseItem(componentName = "Date", subCaseName = "Simples", group = Group.INPUT)
+@CaseItem(componentName = "Date", subCaseName = "Personalizados", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Date")
 public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
 
@@ -46,7 +47,9 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
     public STypeDate botaoHoje;
     public STypeDate hojeRealcado;
     public STypeDate datasHabilitadas;
+    public STypeDate datasSemPicker;
     public STypeTime hora;
+    public STypeTime horaSemPicker;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -56,7 +59,9 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
         botaoHoje = this.addFieldDate("botaoHoje");
         hojeRealcado = this.addFieldDate("hojeRealcado");
         datasHabilitadas = this.addFieldDate("datasHabilitadas");
+        datasSemPicker = this.addFieldDate("datasSemPicker");
         hora = this.addField("hora", STypeTime.class);
+        horaSemPicker = this.addFieldTime("horaSemPicker");
 
         livre
                 .asAtr()
@@ -89,6 +94,21 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
 
         hora
                 .asAtr().label("Hora");
+
+        horaSemPicker
+                .withView(new SViewTime().hideModalTimePicker(Boolean.TRUE))
+                .asAtr().label("Hora máscara simples")
+                .asAtrBootstrap()
+                .colMd(3);
+
+        datasSemPicker
+                .withView(new SViewDate().hideModalDatePicker(Boolean.TRUE))
+                .asAtr()
+                .label("Data máscara simples")
+                .asAtrBootstrap()
+                .colMd(3);
+
+
     }
 
     private List<Date> tresDiasAntesDepoisAtual(SInstance inst) {
