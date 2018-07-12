@@ -11,9 +11,7 @@ import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.form.util.SingularPredicates;
-import org.opensingular.form.view.date.SViewDate;
 import org.opensingular.form.view.date.SViewDateTime;
-import org.opensingular.form.view.date.SViewTime;
 import org.opensingular.lib.commons.util.Loggable;
 
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
@@ -48,30 +46,23 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         nomeMae2.asAtrAnnotation().setAnnotated();
 
         dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
-        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio").required();
+        dataHoraInicio.asAtr().label("Data/Hora Início").required();
 
         SViewDateTime sViewDateTime = new SViewDateTime();
         sViewDateTime.setClearBtn(true);
         sViewDateTime.setTodayHighlight(true);
         sViewDateTime.setMode24hs(false);
+        sViewDateTime.hideModalTimePicker(true);
+        sViewDateTime.hideModalDatePicker(true);
         dataHoraInicio.withView(sViewDateTime);
 
 
         data = this.addFieldDate("data");
         data.asAtr().label("Data");
-        data.asAtr().required();
 
-        SViewDate sViewDate = new SViewDate();
-        sViewDate.setClearBtn(true);
-        sViewDate.setTodayBtn(true);
-
-        data.withView(sViewDate);
 
         time = this.addFieldTime("time");
-        SViewTime sViewTime = new SViewTime();
-        sViewTime.setMinuteStep(20);
-        sViewTime.setMode24hs(true);
-        time.withView(sViewTime);
+
         time.asAtr().label("time").required();
 
         nomeGato2.asAtr().dependsOn(time).exists(SingularPredicates.typeValueIsNull(time));
