@@ -6,10 +6,14 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeBoolean;
+import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.STypeTime;
+import org.opensingular.form.view.SViewCheckBox;
+import org.opensingular.lib.commons.ui.Alignment;
 import org.opensingular.form.util.SingularPredicates;
 import org.opensingular.form.view.date.SViewDate;
 import org.opensingular.form.view.date.SViewDateTime;
@@ -60,6 +64,9 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         data = this.addFieldDate("data");
         data.asAtr().label("Data");
         data.asAtr().required();
+
+        SViewCheckBox sView = new SViewCheckBox();
+        sView.setAlignLabelOfCheckBox(Alignment.CENTER);
 
         SViewDate sViewDate = new SViewDate();
         sViewDate.setClearBtn(true);
