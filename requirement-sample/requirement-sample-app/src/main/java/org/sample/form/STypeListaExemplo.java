@@ -67,8 +67,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
 
         SViewCheckBox sView = new SViewCheckBox();
         sView.setAlignLabelOfCheckBox(Alignment.CENTER);
-        teste.withView(sView);
-        teste.asAtr().label("Teste boolean").required(true);
+
         SViewDate sViewDate = new SViewDate();
         sViewDate.setClearBtn(true);
         sViewDate.setTodayBtn(true);
