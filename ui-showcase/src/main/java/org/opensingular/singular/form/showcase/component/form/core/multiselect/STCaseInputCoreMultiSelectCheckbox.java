@@ -16,35 +16,53 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.multiselect;
 
-import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.generic.STGenericComposite;
+import org.opensingular.form.view.SMultiSelectionByCheckboxView;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
 
-/**
- * Permite a seleção múltipla no formato de um combo. É funcional para listas curtas.
- */
-@CaseItem(componentName = "Multi Select", subCaseName = "Combo", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "Combo")
-public class CaseInputCoreMultiSelectComboSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Multi Select", subCaseName = "Checkbox", group = Group.INPUT,
+        resources = @Resource(SICaseInputCoreMultiSelectCheckbox.class))
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Checkbox")
+public class STCaseInputCoreMultiSelectCheckbox extends STGenericComposite<SICaseInputCoreMultiSelectCheckbox> {
 
     public STypeList<STypeString, SIString> frutas;
+    public STypeList<STypeString, SIString> frutasInline;
+
+    public STCaseInputCoreMultiSelectCheckbox() {
+        super(SICaseInputCoreMultiSelectCheckbox.class);
+    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Salada de Frutas");
-
         frutas = this.addFieldListOf("frutas", STypeString.class);
-        frutas.selectionOf(String.class)
+        frutasInline = this.addFieldListOf("frutasInline", STypeString.class);
+
+        frutas.asAtr()
+                .label("Frutas Vertical")
+                .asAtrBootstrap()
+                .colPreference(6);
+        frutas.selectionOf(String.class, new SMultiSelectionByCheckboxView())
                 .selfIdAndDisplay()
                 .simpleProviderOf("Amora", "Banana", "Maçã", "Laranja", "Manga", "Melão", "Morango");
+
+        frutasInline.asAtr()
+                .label("Frutas Horizontal")
+                .asAtrBootstrap()
+                .colPreference(6);
+        frutasInline.selectionOf(String.class, new SMultiSelectionByCheckboxView().inline(true))
+                .selfIdAndDisplay()
+                .simpleProviderOf("Amora", "Banana", "Maçã", "Laranja", "Manga", "Melão", "Morango");
+
+        this.asAtr().label("Salada de Frutas");
     }
 }
