@@ -10,14 +10,17 @@ import org.opensingular.form.view.SViewTab;
 public class RequirementsampleForm extends STypeComposite<SIComposite> {
 
     public STypeDadosPessoais dadosPessoais;
+    public STypeListaComponentes componentes;
 
     @Override
     protected void onLoadType(TypeBuilder tb) {
         this.asAtrIndex().indexed(Boolean.TRUE);
         dadosPessoais = addField("dadosPessoais", STypeDadosPessoais.class);
+        componentes = addField("componentes", STypeListaComponentes.class);
         dadosPessoais.asAtrIndex().indexed(Boolean.TRUE);
         SViewTab sViewTab = new SViewTab();
         sViewTab.addTab(dadosPessoais);
+        sViewTab.addTab(componentes);
         this.withView(sViewTab);
         this.asAtr().label("Formulário de Requerimento").displayString("Requerimento de ${dadosPessoais.nomeCompleto!}");
     }
