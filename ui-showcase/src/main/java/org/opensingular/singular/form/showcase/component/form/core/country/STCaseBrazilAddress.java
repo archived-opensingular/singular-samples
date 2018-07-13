@@ -22,23 +22,32 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.country.brazil.STypeBankAccount;
+import org.opensingular.form.type.country.brazil.STypeAddress;
+import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
- * Campos de conta bancária- Brasil
+ * Campos de endereço - Brasil
  */
 
-@CaseItem(componentName = "Brazil", subCaseName = "Conta", group = Group.COUNTRY)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "Conta")
-public class CaseBrazilAccountSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Brazil", subCaseName = "Endereço", group = Group.COUNTRY,
+        resources = @Resource(SICaseBrazilAddress.class))
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Endereco")
+public class STCaseBrazilAddress extends STGenericComposite<SICaseBrazilAddress> {
 
-    public STypeBankAccount contaBancaria;
+    public STypeAddress endereco;
+
+    public STCaseBrazilAddress() {
+        super(SICaseBrazilAddress.class);
+    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        contaBancaria = this.addField("contaBancaria", STypeBankAccount.class);
+        endereco = this.addField("endereco", STypeAddress.class);
+
+        this.asAtr().label("Dados Cadastrais:");
     }
 }

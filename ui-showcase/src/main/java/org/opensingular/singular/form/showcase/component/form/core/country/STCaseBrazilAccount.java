@@ -22,32 +22,30 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.country.brazil.STypeCEP;
-import org.opensingular.form.type.country.brazil.STypeCNPJ;
-import org.opensingular.form.type.country.brazil.STypeCPF;
-import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
+import org.opensingular.form.type.country.brazil.STypeBankAccount;
+import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
- * Campos básicos regionais - Brasil
+ * Campos de conta bancária- Brasil
  */
 
-@CaseItem(componentName = "Brazil", subCaseName = "Default", group = Group.COUNTRY)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "Default")
-public class CaseBrazilBasicSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Brazil", subCaseName = "Conta", group = Group.COUNTRY,
+        resources = @Resource(SICaseBrazilAccount.class))
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Conta")
+public class STCaseBrazilAccount extends STGenericComposite<SICaseBrazilAccount> {
 
-    public STypeCNPJ cnpj;
-    public STypeCPF cpf;
-    public STypeCEP cep;
-    public STypeTelefoneNacional telefone;
+    public STypeBankAccount contaBancaria;
+
+    public STCaseBrazilAccount() {
+        super(SICaseBrazilAccount.class);
+    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        cnpj = this.addField("cnpj", STypeCNPJ.class);
-        cpf = this.addField("cpf", STypeCPF.class);
-        cep = this.addField("cep", STypeCEP.class);
-        telefone = this.addField("telefone", STypeTelefoneNacional.class);
+        contaBancaria = this.addField("contaBancaria", STypeBankAccount.class);
     }
 }

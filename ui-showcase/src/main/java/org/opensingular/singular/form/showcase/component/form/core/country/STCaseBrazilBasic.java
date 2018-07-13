@@ -22,24 +22,39 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.country.brazil.STypeAddress;
+import org.opensingular.form.type.country.brazil.STypeCEP;
+import org.opensingular.form.type.country.brazil.STypeCNPJ;
+import org.opensingular.form.type.country.brazil.STypeCPF;
+import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
+import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
- * Campos de endereço - Brasil
+ * Campos básicos regionais - Brasil
  */
 
-@CaseItem(componentName = "Brazil", subCaseName = "Endereço", group = Group.COUNTRY)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "Endereco")
-public class CaseBrazilAddressSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Brazil", subCaseName = "Default", group = Group.COUNTRY,
+        resources = @Resource(SICaseBrazilBasic.class))
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Default")
+public class STCaseBrazilBasic extends STGenericComposite<SICaseBrazilBasic> {
 
-    public STypeAddress endereco;
+    public STypeCNPJ cnpj;
+    public STypeCPF cpf;
+    public STypeCEP cep;
+    public STypeTelefoneNacional telefone;
+
+    public STCaseBrazilBasic() {
+        super(SICaseBrazilBasic.class);
+    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Dados Cadastrais:").asAtrBootstrap();
-        endereco = this.addField("endereco", STypeAddress.class);
+        cnpj = this.addField("cnpj", STypeCNPJ.class);
+        cpf = this.addField("cpf", STypeCPF.class);
+        cep = this.addField("cep", STypeCEP.class);
+        telefone = this.addField("telefone", STypeTelefoneNacional.class);
     }
 }
