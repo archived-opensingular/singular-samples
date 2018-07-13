@@ -20,7 +20,7 @@ package org.opensingular.requirementsamplemodule;
 
 import org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow;
 import org.sample.form.RequirementsampleForm;
-import org.opensingular.requirement.module.SingularRequirement;
+import org.opensingular.requirement.module.RequirementDefinition;
 import org.opensingular.requirement.module.RequirementConfiguration;
 import org.opensingular.requirement.module.SingularModule;
 import org.opensingular.requirement.module.WorkspaceConfiguration;
@@ -32,8 +32,8 @@ import org.opensingular.requirement.module.workspace.DefaultOngoingbox;
 
 public class RequirementsampleModule implements SingularModule {
 
-    public static final String REQUIREMENT_SAMPLE = "SAMPLE";
-    private             SingularRequirement requirementsample = new FormFlowSingularRequirement("Requirementsample", RequirementsampleForm.class, RequirementSampleFlow.class);
+    public static final String                REQUIREMENT_SAMPLE = "SAMPLE";
+    private             RequirementDefinition requirementsample  = new FormFlowSingularRequirement("Requirementsample", RequirementsampleForm.class, RequirementSampleFlow.class);
 
     @Override
     public String abbreviation() {
