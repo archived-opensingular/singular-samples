@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.opensingular.singular.form.showcase.component.form.core.search;
+package org.opensingular.singular.form.showcase.component.form.core.search.form;
 
 import org.opensingular.form.SInstance;
 import org.opensingular.form.provider.ProviderContext;

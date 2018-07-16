@@ -13,25 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.opensingular.singular.form.showcase.component.form.core.search;
+package org.opensingular.singular.form.showcase.component.form.core.search.form;
 
-import org.opensingular.form.SInstance;
-import org.opensingular.form.provider.ProviderContext;
-import org.opensingular.form.provider.TreeProvider;
-
+import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
-public class ProcessoProvider implements TreeProvider<Processo> {
+public class Processo implements Serializable {
 
-    private static final ProcessoRepository repository = new ProcessoRepository();
+    private Long id;
+    private String nome;
+    private List<Processo> subProcessos = new LinkedList<>();
 
-    @Override
-    public List<Processo> loadChildren(Processo node) {
-        return node.getSubProcessos();
+    public Processo(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
     }
 
-    @Override
-    public List<Processo> load(ProviderContext<SInstance> context) {
-        return repository.list(context);
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public List<Processo> getSubProcessos() {
+        return subProcessos;
+    }
+
+    public void addSubProcesso(Processo processo) {
+        subProcessos.add(processo);
     }
 }

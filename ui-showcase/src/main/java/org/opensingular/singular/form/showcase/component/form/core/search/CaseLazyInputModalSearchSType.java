@@ -20,13 +20,18 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.converter.ValueToSICompositeConverter;
-import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.converter.SInstanceConverter;
 import org.opensingular.form.view.SViewSearchModal;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.Funcionario;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.FuncionarioRepository;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.LazyFuncionarioProvider;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.SIFuncionario;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.SIFuncionarioConverter;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.STFuncionario;
 
 import javax.annotation.Nonnull;
 
@@ -34,27 +39,22 @@ import javax.annotation.Nonnull;
  * Permite a seleção a partir de uma busca filtrada, sendo necessario fazer o controle de paginação manualmente
  */
 @CaseItem(componentName = "Search Select", subCaseName = "Lazy Pagination", group = Group.INPUT,
-resources = {@Resource(Funcionario.class), @Resource(LazyFuncionarioProvider.class), @Resource(FuncionarioRepository.class)})
+resources = {@Resource(Funcionario.class), @Resource(STFuncionario.class), @Resource(SIFuncionario.class),
+        @Resource(LazyFuncionarioProvider.class), @Resource(FuncionarioRepository.class), @Resource(SIFuncionarioConverter.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "LazyPagination")
 public class CaseLazyInputModalSearchSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite funcionario;
+    public STFuncionario funcionario;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        funcionario = this.addFieldComposite("funcionario");
+        funcionario = this.addField("funcionario", STFuncionario.class);
+
         funcionario.asAtr().label("Funcionario").displayString("${nome} - ${funcao}");
-
-        final STypeString nome   = funcionario.addFieldString("nome");//NOSONAR
-        final STypeString funcao = funcionario.addFieldString("funcao");//NOSONAR
-
         funcionario.withView(new SViewSearchModal().title("Buscar Profissionais"))
                 .asAtrProvider()
                 //@destacar
                 .filteredProvider(new LazyFuncionarioProvider())
-                .converter((ValueToSICompositeConverter<Funcionario>) (newFunc, func) -> {
-                    newFunc.setValue(nome, func.getNome());
-                    newFunc.setValue(funcao, func.getFuncao());
-                });
+                .converter(new SIFuncionarioConverter());
     }
 }

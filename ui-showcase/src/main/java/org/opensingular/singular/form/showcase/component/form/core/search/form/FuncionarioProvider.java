@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core.search;
+package org.opensingular.singular.form.showcase.component.form.core.search.form;
 
 
 import java.util.List;

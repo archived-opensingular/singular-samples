@@ -13,36 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.opensingular.singular.form.showcase.component.form.core.search;
+
+package org.opensingular.singular.form.showcase.component.form.core.search.form;
 
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
 
-public class Processo implements Serializable {
+public class Funcionario implements Serializable {
 
-    private Long id;
     private String nome;
-    private List<Processo> subProcessos = new LinkedList<>();
+    private String funcao;
+    private Integer idade;
 
-    public Processo(Long id, String nome) {
-        this.id = id;
+    public Funcionario(String nome, String funcao, Integer idade) {
         this.nome = nome;
-    }
-
-    public Long getId() {
-        return id;
+        this.funcao = funcao;
+        this.idade = idade;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public List<Processo> getSubProcessos() {
-        return subProcessos;
+    public String getFuncao() {
+        return funcao;
     }
 
-    public void addSubProcesso(Processo processo) {
-        subProcessos.add(processo);
+    public Integer getIdade() {
+        return idade;
     }
 }

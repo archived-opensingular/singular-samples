@@ -13,32 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.opensingular.singular.form.showcase.component.form.core.search.form;
 
-package org.opensingular.singular.form.showcase.component.form.core.search;
+import org.opensingular.form.SInstance;
+import org.opensingular.form.provider.ProviderContext;
+import org.opensingular.form.provider.TreeProvider;
 
-import java.io.Serializable;
+import java.util.List;
 
-class Funcionario implements Serializable {
+public class ProcessoProvider implements TreeProvider<Processo> {
 
-    private String nome;
-    private String funcao;
-    private Integer idade;
+    private static final ProcessoRepository repository = new ProcessoRepository();
 
-    Funcionario(String nome, String funcao, Integer idade) {
-        this.nome = nome;
-        this.funcao = funcao;
-        this.idade = idade;
+    @Override
+    public List<Processo> loadChildren(Processo node) {
+        return node.getSubProcessos();
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getFuncao() {
-        return funcao;
-    }
-
-    public Integer getIdade() {
-        return idade;
+    @Override
+    public List<Processo> load(ProviderContext<SInstance> context) {
+        return repository.list(context);
     }
 }
