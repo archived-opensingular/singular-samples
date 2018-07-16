@@ -16,72 +16,67 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.multiselect;
 
-import java.io.Serializable;
-
-import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.SPackage;
-import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.SInstanceConverter;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.util.transformer.Value;
+import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
+import java.io.Serializable;
 
 /**
- * Para usar um tipo composto na seleção, este deve ser do tipo MTipoSelectItem. <br/>
+ * Para usar um tipo composto na seleção, este deve extender o STypeComposite. <br/>
  * É permitido se mudar quais campos serão utilizados como chave e valor.
  */
-@CaseItem(componentName = "Multi Select", subCaseName = "Tipo Composto", group = Group.INPUT)
+@CaseItem(componentName = "Multi Select", subCaseName = "Tipo Composto", group = Group.INPUT,
+        resources = {@Resource(SICaseInputCoreMultiSelectComposite.class), @Resource(STComponenteQuimico.class),
+                @Resource(SIComponenteQuimico.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TipoComposto")
-public class CaseInputCoreMultiSelectCompositeSType extends STypeComposite<SIComposite> {
+public class STCaseInputCoreMultiSelectComposite extends STGenericComposite<SICaseInputCoreMultiSelectComposite> {
 
-    public STypeList<STypeComposite<SIComposite>, SIComposite> componentesQuimicos;
+    public STypeList<STComponenteQuimico, SIComponenteQuimico> componentesQuimicos;
+
+    public STCaseInputCoreMultiSelectComposite() {
+        super(SICaseInputCoreMultiSelectComposite.class);
+    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        componentesQuimicos = this.addFieldListOfComposite("componentesQuimicos", "componenteQuimico");
-        final STypeComposite<SIComposite>                         componenteQuimico   = componentesQuimicos.getElementsType();
-
-        final STypeString nome           = componenteQuimico.addFieldString("nome");
-        final STypeString formulaQuimica = componenteQuimico.addFieldString("formulaQuimica");
+        componentesQuimicos = this.addFieldListOf("componentesQuimicos", STComponenteQuimico.class);
 
         componentesQuimicos.selectionOf(ComponenteQuimico.class)
                 .id(ComponenteQuimico::getNome)
                 .display("${formulaQuimica} - ${nome}")
-                .converter(new SInstanceConverter<ComponenteQuimico, SIComposite>() {
-                    @Override
-                    public void fillInstance(SIComposite ins, ComponenteQuimico obj) {
-                        ins.setValue(nome, obj.getNome());
-                        ins.setValue(formulaQuimica, obj.getFormulaQuimica());
-                    }
-
-                    @Override
-                    public ComponenteQuimico toObject(SIComposite ins) {
-                        return new ComponenteQuimico(Value.of(ins, formulaQuimica), Value.of(ins, nome));
-                    }
-                })
+                .converter(new SIComponenteQuimicoConverter())
                 .simpleProviderOf(
                         new ComponenteQuimico("Água", "h2o"),
                         new ComponenteQuimico("Água Oxigenada", "h2o2"),
                         new ComponenteQuimico("Gás Oxigênio", "o2"),
                         new ComponenteQuimico("Açúcar", "C12H22O11")
                 );
+    }
 
+    private class SIComponenteQuimicoConverter implements SInstanceConverter<ComponenteQuimico, SIComponenteQuimico>{
+        @Override
+        public void fillInstance(SIComponenteQuimico ins, ComponenteQuimico obj) {
+            ins.nome().setValue(obj.getNome());
+            ins.formulaQuimica().setValue(obj.getFormulaQuimica());
+        }
+
+        @Override
+        public ComponenteQuimico toObject(SIComponenteQuimico ins) {
+            return new ComponenteQuimico(ins.formulaQuimica().getValue(), ins.nome().getValue());
+        }
     }
 
     public static class ComponenteQuimico implements Serializable {
         private String nome;
         private String formulaQuimica;
-
-        public ComponenteQuimico() {
-        }
 
         public ComponenteQuimico(String formulaQuimica, String nome) {
             this.formulaQuimica = formulaQuimica;

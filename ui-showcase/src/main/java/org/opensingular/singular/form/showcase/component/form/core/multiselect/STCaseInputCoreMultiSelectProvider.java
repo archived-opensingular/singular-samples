@@ -16,12 +16,19 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.multiselect;
 
-import org.opensingular.form.*;
+import org.opensingular.form.SIComposite;
+import org.opensingular.form.SInfoType;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
+import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.form.view.SMultiSelectionByPicklistView;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.view.page.form.crud.services.MFileIdsOptionsProvider;
 
 import javax.annotation.Nonnull;
 
@@ -29,11 +36,16 @@ import javax.annotation.Nonnull;
  * É permitido alterar o provedor de dados de forma que estes sejam carregados de forma dinâmica ou de outras fontes de informação.
  */
 //@formatter:off
-@CaseItem(componentName = "Multi Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT)
+@CaseItem(componentName = "Multi Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT,
+        resources = {@Resource(SICaseInputCoreMultiSelectProvider.class), @Resource(MFileIdsOptionsProvider.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "ProvedorDinamico")
-public class CaseInputCoreMultiSelectProviderSType extends STypeComposite<SIComposite> {
+public class STCaseInputCoreMultiSelectProvider extends STGenericComposite<SICaseInputCoreMultiSelectProvider> {
 
     public STypeList<STypeComposite<SIComposite>, SIComposite> arquivos;
+
+    public STCaseInputCoreMultiSelectProvider() {
+        super(SICaseInputCoreMultiSelectProvider.class);
+    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -46,12 +58,13 @@ public class CaseInputCoreMultiSelectProviderSType extends STypeComposite<SIComp
         final STypeComposite<SIComposite> arquivo = arquivos.getElementsType();
         final STypeString                fileName = arquivo.addFieldString("fileName");
 
-        arquivos.asAtr().label("Seleção de Arquivos Persistidos");
+        arquivos.withView(SMultiSelectionByPicklistView::new)
+                .asAtr().label("Seleção de Arquivos Persistidos");
 
         arquivos.selection()
                 .id(fileName)
                 .display(fileName)
+                //@destacar
                 .simpleProvider("filesChoiceProvider");
-        arquivos.withView(SMultiSelectionByPicklistView::new);
     }
 }
