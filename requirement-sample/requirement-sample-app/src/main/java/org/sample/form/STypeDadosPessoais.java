@@ -3,6 +3,7 @@ package org.sample.form;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 
+import org.apache.commons.lang3.StringUtils;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
@@ -21,9 +22,10 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypeLatitudeLongitudeGMaps;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
-import org.opensingular.form.view.SViewCheckBoxLabelAbove;
+import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.view.SViewListByTable;
+import org.opensingular.form.view.SViewPassword;
 import org.opensingular.form.view.richtext.RichTextAction;
 import org.opensingular.form.view.richtext.RichTextContentContext;
 import org.opensingular.form.view.richtext.RichTextInsertContext;
@@ -80,7 +82,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         campo2.asAtrAnnotation().setAnnotated();
 
         listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
-        listaExemplo.withView(SViewListByTable::new);
+        listaExemplo.withView(SViewListByMasterDetail::new);
         listaExemplo.asAtr().label("Lista Exemplo");
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
@@ -128,7 +130,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         brasileiro = this.addFieldBoolean("brasileiro");
         brasileiro.asAtr().label("Brasileiro").subtitle("teste subtitle");
-        brasileiro.withView(SViewCheckBoxLabelAbove::new);
+        brasileiro.withView(SViewCheckBox::new);
         brasileiro.asAtr().enabled(true);
 
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
@@ -202,7 +204,16 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
             @Override
             public void onAction(RichTextInsertContext richTextContext, Optional<SInstance> sInstance) {
-                richTextContext.setReturnValue("teste");
+                sInstance.ifPresent(s -> {
+                    STypeListaExemplo sTypeModal = (STypeListaExemplo) sInstance.get().getType();
+                    String value = s.getField(sTypeModal.nome2).getValue();
+                    if(StringUtils.isNotEmpty(value)){
+                        richTextContext.setReturnValue(value);
+                    } else {
+                        richTextContext.setReturnValue("");
+                        /*Por default se o valor returnValue for null então não é realizado nenhuma ação*/
+                    }
+                });
             }
 
         };
