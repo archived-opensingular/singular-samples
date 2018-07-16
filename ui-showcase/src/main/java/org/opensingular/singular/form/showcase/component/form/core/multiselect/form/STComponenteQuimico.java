@@ -1,4 +1,4 @@
-package org.opensingular.singular.form.showcase.component.form.core.multiselect;
+package org.opensingular.singular.form.showcase.component.form.core.multiselect.form;
 
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.TypeBuilder;

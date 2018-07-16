@@ -25,6 +25,8 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.multiselect.form.SIComponenteQuimico;
+import org.opensingular.singular.form.showcase.component.form.core.multiselect.form.STComponenteQuimico;
 
 import javax.annotation.Nonnull;
 import java.io.Serializable;
