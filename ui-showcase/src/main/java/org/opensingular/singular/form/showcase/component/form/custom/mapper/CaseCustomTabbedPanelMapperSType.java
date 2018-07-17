@@ -44,7 +44,8 @@ import java.util.List;
  * Custom String Mapper
  */
 @CaseItem(componentName = "Custom Mapper", subCaseName = "Tabbed Panel", group = Group.CUSTOM, resources = {
-    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html")})
+    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html"),
+        @Resource(STypeContainerString.class), @Resource(STypeContainerInteger.class), @Resource(STypeContainerBoolean.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "TabbedPanel")
 public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite> {
 
@@ -54,20 +55,13 @@ public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         mainComposite = this.addFieldComposite("mainComposite");
 
-        STypeComposite<SIComposite> tab1 = mainComposite.addFieldComposite("tab1");
+        STypeContainerString  tab1 = mainComposite.addField("tab1", STypeContainerString.class);
+        STypeContainerInteger tab2 = mainComposite.addField("tab2", STypeContainerInteger.class);
+        STypeContainerBoolean tab3 = mainComposite.addField("tab3", STypeContainerBoolean.class);
+
         tab1.asAtr().label("Aba 1");
-        tab1.addFieldString("texto1").asAtr().label("Texto 1");
-        tab1.addFieldString("texto2").asAtr().label("Texto 2");
-
-        STypeComposite<SIComposite> tab2 = mainComposite.addFieldComposite("tab2");
         tab2.asAtr().label("Aba 2");
-        tab2.addFieldBoolean("bool1").asAtr().label("Boolean 1");
-        tab2.addFieldBoolean("bool2").asAtr().label("Boolean 2");
-
-        STypeComposite<SIComposite> tab3 = mainComposite.addFieldComposite("tab3");
         tab3.asAtr().label("Aba 3");
-        tab3.addFieldInteger("int1").asAtr().label("Inteiro 1");
-        tab3.addFieldInteger("int2").asAtr().label("Inteiro 2");
 
         //@destacar
         mainComposite.setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, CustomTabMapper::new);
