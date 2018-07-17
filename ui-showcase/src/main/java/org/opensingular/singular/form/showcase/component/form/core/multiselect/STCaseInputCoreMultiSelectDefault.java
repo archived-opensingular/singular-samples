@@ -16,15 +16,15 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.multiselect;
 
+import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
+import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
@@ -32,16 +32,11 @@ import javax.annotation.Nonnull;
 /**
  * Se a view não for definida, então define o componente dependendo da quantidade de dados.
  */
-@CaseItem(componentName = "Multi Select", subCaseName = "Default", group = Group.INPUT,
-        resources = @Resource(SICaseInputCoreMultiSelectDefault.class))
+@CaseItem(componentName = "Multi Select", subCaseName = "Default", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "MultiSelectDefault")
-public class STCaseInputCoreMultiSelectDefault extends STGenericComposite<SICaseInputCoreMultiSelectDefault> {
+public class STCaseInputCoreMultiSelectDefault extends STypeComposite<SIComposite> {
 
     public STypeList<STypeString, SIString> frutas;
-
-    public STCaseInputCoreMultiSelectDefault() {
-        super(SICaseInputCoreMultiSelectDefault.class);
-    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {

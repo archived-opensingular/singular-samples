@@ -42,9 +42,7 @@ public class CaseInputCoreYearMonthSType extends STypeComposite<SIComposite> {
         inicio = this.addField("inicio", STypeYearMonth.class);
 
         inicio
-                .as(AtrBasic.class)
-                .label("Data Início")
-                .asAtrBootstrap()
-                .colPreference(2);
+                .asAtr().label("Data Início")
+                .asAtrBootstrap().colPreference(2);
     }
 }

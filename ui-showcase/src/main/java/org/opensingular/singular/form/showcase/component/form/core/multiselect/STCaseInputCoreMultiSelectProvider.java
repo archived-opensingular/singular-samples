@@ -22,7 +22,6 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.form.view.SMultiSelectionByPicklistView;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
@@ -37,15 +36,11 @@ import javax.annotation.Nonnull;
  */
 //@formatter:off
 @CaseItem(componentName = "Multi Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT,
-        resources = {@Resource(SICaseInputCoreMultiSelectProvider.class), @Resource(MFileIdsOptionsProvider.class)})
+        resources = @Resource(MFileIdsOptionsProvider.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "ProvedorDinamico")
-public class STCaseInputCoreMultiSelectProvider extends STGenericComposite<SICaseInputCoreMultiSelectProvider> {
+public class STCaseInputCoreMultiSelectProvider extends STypeComposite<SIComposite> {
 
     public STypeList<STypeComposite<SIComposite>, SIComposite> arquivos;
-
-    public STCaseInputCoreMultiSelectProvider() {
-        super(SICaseInputCoreMultiSelectProvider.class);
-    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {

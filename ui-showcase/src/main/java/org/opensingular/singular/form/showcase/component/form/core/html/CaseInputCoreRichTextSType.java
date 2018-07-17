@@ -41,9 +41,7 @@ public class CaseInputCoreRichTextSType extends STypeComposite<SIComposite> {
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         parecer = this.addField("parecer", STypeHTML.class);
 
-        parecer.withView(SViewByRichText::new);
-        parecer
-                .asAtr()
-                .label("Parecer Técnico");
+        parecer.withView(SViewByRichText::new)
+               .asAtr().label("Parecer Técnico");
     }
 }

@@ -16,11 +16,12 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.multiselect;
 
+import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
+import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.SInstanceConverter;
-import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -36,16 +37,11 @@ import java.io.Serializable;
  * É permitido se mudar quais campos serão utilizados como chave e valor.
  */
 @CaseItem(componentName = "Multi Select", subCaseName = "Tipo Composto", group = Group.INPUT,
-        resources = {@Resource(SICaseInputCoreMultiSelectComposite.class), @Resource(STComponenteQuimico.class),
-                @Resource(SIComponenteQuimico.class)})
+        resources = {@Resource(STComponenteQuimico.class), @Resource(SIComponenteQuimico.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TipoComposto")
-public class STCaseInputCoreMultiSelectComposite extends STGenericComposite<SICaseInputCoreMultiSelectComposite> {
+public class STCaseInputCoreMultiSelectComposite extends STypeComposite<SIComposite> {
 
     public STypeList<STComponenteQuimico, SIComponenteQuimico> componentesQuimicos;
-
-    public STCaseInputCoreMultiSelectComposite() {
-        super(SICaseInputCoreMultiSelectComposite.class);
-    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -63,7 +59,7 @@ public class STCaseInputCoreMultiSelectComposite extends STGenericComposite<SICa
                 );
     }
 
-    private class SIComponenteQuimicoConverter implements SInstanceConverter<ComponenteQuimico, SIComponenteQuimico>{
+    private class SIComponenteQuimicoConverter implements SInstanceConverter<ComponenteQuimico, SIComponenteQuimico> {
         @Override
         public void fillInstance(SIComponenteQuimico ins, ComponenteQuimico obj) {
             ins.nome().setValue(obj.getNome());
