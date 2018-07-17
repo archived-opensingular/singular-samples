@@ -49,7 +49,6 @@ public class CaseImporterSType extends STypeComposite<SIComposite> {
         idade = this.addFieldInteger("idade");
         email = this.addFieldEmail("email");
         descricao = this.addFieldString("descricao");
-
     }
 
 }

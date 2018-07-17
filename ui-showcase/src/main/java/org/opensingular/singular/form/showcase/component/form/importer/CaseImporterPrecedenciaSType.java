@@ -46,17 +46,14 @@ public class CaseImporterPrecedenciaSType extends STypeComposite<SIComposite> {
     
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        
         nome = this.addFieldString("nome");
-        nome.asAtr().label("Nome (este label não será mostrado, o que tem precedência é o do xml)");
-        
         idade = this.addFieldInteger("idade");
-        idade.asAtr().label("idade (este label não será mostrado, o que tem precedência é o do xml)");
-        
         email = this.addFieldEmail("email");
-        email.asAtr().label("email (este label não será mostrado, o que tem precedência é o do xml)");
-        
         descricao = this.addFieldString("descricao");
+
+        nome.asAtr().label("Nome (este label não será mostrado, o que tem precedência é o do xml)");
+        idade.asAtr().label("idade (este label não será mostrado, o que tem precedência é o do xml)");
+        email.asAtr().label("email (este label não será mostrado, o que tem precedência é o do xml)");
         descricao.asAtr().label("descrição (este label não será mostrado, o que tem precedência é o do xml)");
     }
   
