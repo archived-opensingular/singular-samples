@@ -16,17 +16,19 @@
  *
  */
 
-package org.opensingular.singular.form.showcase.component.form.core.select;
+package org.opensingular.singular.form.showcase.component.form.core.select.form;
 
-import java.util.Date;
+import org.opensingular.form.type.core.SIDate;
+import org.opensingular.form.type.core.SIString;
+import org.opensingular.form.type.generic.SIGenericComposite;
 
-import org.opensingular.form.SIComposite;
+public class SIPessoa extends SIGenericComposite<STypePessoa> {
 
-public class SIPessoa extends SIComposite {
-    public String getNome() {
-        return getField("nome").getValue(String.class);
+    public SIString getNome() {
+        return getField(getType().nome);
     }
-    public Date getDataNascimento() {
-        return getField("dataNascimento").getValue(Date.class);
+
+    public SIDate getDataNascimento() {
+        return getField(getType().dataNascimento);
     }
 }

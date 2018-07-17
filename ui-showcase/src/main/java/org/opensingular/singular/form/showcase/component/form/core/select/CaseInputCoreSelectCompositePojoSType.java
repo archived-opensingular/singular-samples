@@ -26,6 +26,8 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.select.form.IngredienteQuimico;
+import org.opensingular.singular.form.showcase.component.form.core.select.form.IngredienteQuimicoFilteredProvider;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.SIIngredienteQuimico;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.STIngredienteQuimico;
 

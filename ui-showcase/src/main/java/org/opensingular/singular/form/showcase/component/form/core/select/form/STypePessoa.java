@@ -16,17 +16,18 @@
  *
  */
 
-package org.opensingular.singular.form.showcase.component.form.core.select;
+package org.opensingular.singular.form.showcase.component.form.core.select.form;
 
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectOptionProvider_STypePessoa")
-public class STypePessoa extends STypeComposite<SIPessoa> {
+public class STypePessoa extends STGenericComposite<SIPessoa> {
     public STypeString nome;
     public STypeDate   dataNascimento;
 
@@ -43,6 +44,6 @@ public class STypePessoa extends STypeComposite<SIPessoa> {
         dataNascimento.asAtr().label("Data de nascimento");
 
         this.asAtr()
-            .displayString(ctx -> ((SIPessoa) ctx.instance()).getNome());
+            .displayString(ctx -> ((SIPessoa) ctx.instance()).getNome().getValue());
     }
 }

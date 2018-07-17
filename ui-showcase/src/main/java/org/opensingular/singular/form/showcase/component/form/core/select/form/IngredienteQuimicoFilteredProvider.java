@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core.select;
+package org.opensingular.singular.form.showcase.component.form.core.select.form;
 
 import org.opensingular.form.provider.SimpleProvider;
-import org.opensingular.singular.form.showcase.component.form.core.select.form.SIIngredienteQuimico;
 
 import java.util.Arrays;
 import java.util.List;

@@ -46,17 +46,14 @@ public class CaseInputCoreSelectProviderSType extends STypeComposite<SIComposite
          * Neste caso será utilizado o serviço de nome filesChoiceProvider
          * cadastrado através do Document.bindLocalService
          */
-        arquivo  = this.addFieldComposite("arquivo");
-
+        arquivo = this.addFieldComposite("arquivo");
         final STypeString fileName = arquivo.addFieldString("fileName");
 
         arquivo.asAtr().label("Seleção de Arquivos Persistidos");
-
         arquivo.selection()
                 .id(fileName)
                 .display(fileName)
                 .simpleProvider("filesChoiceProvider");
-
     }
 
 }

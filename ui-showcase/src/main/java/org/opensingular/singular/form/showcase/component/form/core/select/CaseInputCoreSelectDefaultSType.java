@@ -34,27 +34,32 @@ import javax.annotation.Nonnull;
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectDefault")
 public class CaseInputCoreSelectDefaultSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite<?> testForm;
+    public STypeString selecaoComTresOpcoes;
+    public STypeString selecaoComTresOpcoesRequired;
+    public STypeString selecaoComDezOpcoes;
+
+    public STypeString favoriteFruit;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        testForm = this.addFieldComposite("testForm");
+        selecaoComTresOpcoes = this.addFieldString("selecaoComTresOpcoes");
+        selecaoComTresOpcoesRequired = this.addFieldString("selecaoComTresOpcoesRequired");
+        selecaoComDezOpcoes = this.addFieldString("selecaoComDezOpcoes");
+        favoriteFruit = this.addFieldString("favoriteFruit");
 
-        addSelection(testForm, 3, true);
-        addSelection(testForm, 3, false);
-        addSelection(testForm, 10, false);
+        selecaoComTresOpcoes.selectionOf(createOptions(3));
+        selecaoComTresOpcoes.asAtr().required()
+                .label("Seleção de 3");
 
-        final STypeString favoriteFruit = testForm.addFieldString("favoriteFruit");
+        selecaoComTresOpcoesRequired.selectionOf(createOptions(3));
+        selecaoComTresOpcoesRequired.asAtr().label("Seleção de 3");
+
+        selecaoComDezOpcoes.selectionOf(createOptions(10));
+        selecaoComDezOpcoes.asAtr().label("Seleção de 10");
+
         favoriteFruit.withSelectView();
         favoriteFruit.asAtr().label("Fruta Favorita");
         favoriteFruit.selectionOf("Maçã", "Laranja", "Banana", "Goiaba");
-    }
-
-    private static void addSelection(STypeComposite<?> tipoMyForm, int sizeOptions, boolean required) {
-        STypeString tipoSelection = tipoMyForm.addFieldString("opcoes" + sizeOptions + required);
-        tipoSelection.selectionOf(createOptions(sizeOptions));
-        tipoSelection.asAtr().required(required);
-        tipoSelection.asAtr().label("Seleção de " + sizeOptions);
     }
 
     private static String[] createOptions(int sizeOptions) {
