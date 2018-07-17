@@ -16,7 +16,7 @@
  *
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.date;
 
 import javax.annotation.Nonnull;
 
@@ -28,6 +28,7 @@ import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.view.date.SViewDateTime;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Componente para inserção de data e hora com seletor configurado para avançar de 3 em 3 minutos
@@ -43,11 +44,9 @@ public class CaseInputCoreDateTimeStepSType extends STypeComposite<SIComposite> 
         inicio = this.addFieldDateTime("inicio");
 
         inicio
-                .asAtr()
-                .label("Início")
-                .asAtrBootstrap()
-                .colPreference(3);
         //@destacar
-        inicio.withView(() -> new SViewDateTime().setMinuteStep(3));
+                .withView(() -> new SViewDateTime().setMinuteStep(3))
+                .asAtr().label("Início")
+                .asAtrBootstrap().colPreference(3);
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.basic;
 
 import javax.annotation.Nonnull;
 
@@ -30,6 +30,7 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Campos básicos para uso nos formulários do singular
@@ -53,8 +54,8 @@ public class CaseInputCoreBasicSType extends STypeComposite<SIComposite> {
         cep = this.addField("cep", STypeCEP.class);
         email = this.addFieldEmail("email");
         descricao = this.addFieldString("descricao");
-        descricao
-                .asAtr().label("Descrição");
         telefone = this.addField("telefone", STypeTelefoneNacional.class);
+
+        descricao.asAtr().label("Descrição");
     }
 }

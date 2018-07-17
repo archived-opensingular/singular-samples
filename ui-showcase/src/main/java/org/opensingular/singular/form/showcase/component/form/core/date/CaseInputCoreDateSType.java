@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.date;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +32,7 @@ import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.form.view.date.SViewDate;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Componente para inserção de data

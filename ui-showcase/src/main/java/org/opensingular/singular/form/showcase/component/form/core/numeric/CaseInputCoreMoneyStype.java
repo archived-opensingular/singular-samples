@@ -14,40 +14,40 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.numeric;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeDecimal;
+import org.opensingular.form.type.core.STypeMonetary;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
 
 /**
- * Campo para inserção de dados decimais.
+ * Campo para inserção de dados monetários.
  */
-@CaseItem(componentName = "Numeric", subCaseName = "Decimal", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "Decimal")
-public class CaseInputCoreDecimalSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Numeric", subCaseName = "Monetário", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Money")
+public class CaseInputCoreMoneyStype extends STypeComposite<SIComposite> {
 
-    public STypeDecimal decimalPadrao;
-    public STypeDecimal decimalLongo;
+    public STypeMonetary monetario;
+    public STypeMonetary monetarioLongo;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        decimalPadrao = this.addFieldDecimal("decimalPadrao");
-        decimalPadrao
-                .asAtr().label("Número decimal default")
-                .required();
+        monetario = this.addFieldMonetary("monetario");
+        monetarioLongo = this.addFieldMonetary("monetarioLongo");
 
-        decimalLongo = this.addFieldDecimal("decimalLongo");
-        decimalLongo
-                .asAtr().label("Decimal com 15 inteiros e 10 dígitos")
-                .required()
+        monetario
+                .asAtr().label("Monetário default");
+
+        monetarioLongo
+                .asAtr().label("Monetário com 15 inteiros e 3 decimais")
                 .integerMaxLength(15)
-                .fractionalMaxLength(10);
+                .fractionalMaxLength(3);
     }
 }

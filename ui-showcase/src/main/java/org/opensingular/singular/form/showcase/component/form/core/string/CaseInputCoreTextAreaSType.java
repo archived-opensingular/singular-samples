@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.string;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -23,6 +23,7 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
 
@@ -41,18 +42,19 @@ public class CaseInputCoreTextAreaSType extends STypeComposite<SIComposite> {
     //@formatter:off
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         observacao1 = this.addFieldString("observacao1");
+        observacao2 = this.addFieldString("observacao2");
+        observacao3 = this.addFieldString("observacao3");
+
         observacao1
                 .withTextAreaView()
                 .asAtr().label("Observação (default)");
 
-        observacao2 = this.addFieldString("observacao2");
         observacao2
             .withTextAreaView(view->view.setLines(2))
             .asAtr()
             .label("Observação (2 linhas e 500 de limite)")
             .maxLength(500);
 
-        observacao3 = this.addFieldString("observacao3");
         observacao3
                 .withTextAreaView(view->view.setLines(10))
                 .asAtr()

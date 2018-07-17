@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.basic;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -23,6 +23,7 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
 
@@ -49,31 +50,32 @@ public class CaseInputCoreBasicMaskSType extends STypeComposite<SIComposite> {
         //    * : alphanumeric
 
         mask1 = this.addFieldString("mask1");
+        mask2 = this.addFieldString("mask2");
+        mask3 = this.addFieldString("mask3");
+        mask4 = this.addFieldString("mask4");
+        mask5 = this.addFieldString("mask5");
+        mask6 = this.addFieldString("mask6");
+
         mask1.asAtr().label("Número Mask (9999-9999-99)");
         //@destacar
         mask1.asAtr().basicMask("9999-9999-99");
 
-        mask2 = this.addFieldString("mask2");
         mask2.asAtr().label("Mix (aaa-9999)");
         //@destacar
         mask2.asAtr().basicMask("aaa-9999");
 
-        mask3 = this.addFieldString("mask3");
         mask3.asAtr().label("Número opcional (9999-9999[9])");
         //@destacar
         mask3.asAtr().basicMask("9999-9999[9]");
 
-        mask4 = this.addFieldString("mask4");
         mask4.asAtr().label("Dinâmica 1 (aa-9{4})");
         //@destacar
         mask4.asAtr().basicMask("aa-9{4}");
 
-        mask5 = this.addFieldString("mask5");
         mask5.asAtr().label("Dinâmica 2 (aa-9{1,4})");
         //@destacar
         mask5.asAtr().basicMask("aa-9{1,4}");
 
-        mask6 = this.addFieldString("mask6");
         mask6.asAtr().label("Alfanumérico (9999-****])");
         //@destacar
         mask6.asAtr().basicMask("9999-****");

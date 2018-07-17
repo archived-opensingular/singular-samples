@@ -14,37 +14,42 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.numeric;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.core.STypeDecimal;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
 
 /**
- * Campo de texto simples
+ * Campo para inserção de dados decimais.
  */
-@CaseItem(componentName = "String", subCaseName = "Simples", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "String")
-public class CaseInputCoreStringSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Numeric", subCaseName = "Decimal", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Decimal")
+public class CaseInputCoreDecimalSType extends STypeComposite<SIComposite> {
 
-    public STypeString nomeCompleto;
-    public STypeString endereco;
+    public STypeDecimal decimalPadrao;
+    public STypeDecimal decimalLongo;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        nomeCompleto = this.addFieldString("nomeCompleto");
-        nomeCompleto
-                .asAtr().label("Nome Completo").maxLength(100);
+        decimalPadrao = this.addFieldDecimal("decimalPadrao");
+        decimalLongo = this.addFieldDecimal("decimalLongo");
 
-        endereco = this.addFieldString("endereco");
-        endereco
-                .asAtr().label("Endereço").maxLength(250);
+        decimalPadrao
+                .asAtr().label("Número decimal default")
+                .required();
 
+        decimalLongo
+                .asAtr().label("Decimal com 15 inteiros e 10 dígitos")
+                .required()
+                .integerMaxLength(15)
+                .fractionalMaxLength(10);
     }
 }

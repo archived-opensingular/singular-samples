@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.basic;
 
 import javax.annotation.Nonnull;
 
@@ -27,6 +27,7 @@ import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.lib.commons.ui.Alignment;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Campo para inserção de dados booleanos.
@@ -44,27 +45,26 @@ public class CaseInputCoreBooleanSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         aceitaTermos = this.addFieldBoolean("aceitaTermos");
+        aceitaTermos2 = this.addFieldBoolean("aceitaTermos2");
+        receberNotificacoes = this.addFieldBoolean("receberNotificacoes");
+        receberNotificacoes2 = this.addFieldBoolean("receberNotificacoes2");
+
         aceitaTermos
             .asAtr().label("Aceito os termos e condições").required(true);
 
-        aceitaTermos2 = this.addFieldBoolean("aceitaTermos2");
         aceitaTermos2
                 //@destacar
                 .withRadioView("Aceito", "Rejeito")
                 .asAtr().label("Aceito os termos e condições");
-
-        receberNotificacoes = this.addFieldBoolean("receberNotificacoes");
 
         receberNotificacoes
                 //@destacar
                 .withView(new SViewCheckBox().setAlignLabelOfCheckBox(Alignment.LEFT))
                 .asAtr().label("Receber notificações").required(true);
 
-        receberNotificacoes2 = this.addFieldBoolean("receberNotificacoes2");
         receberNotificacoes2
             //@destacar
             .withRadioView()
             .asAtr().label("Receber notificações");
-
     }
 }

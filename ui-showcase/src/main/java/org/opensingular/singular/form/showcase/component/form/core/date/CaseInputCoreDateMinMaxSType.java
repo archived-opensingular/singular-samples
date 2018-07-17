@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +28,7 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Componente para inserção de min e max data
@@ -41,8 +42,10 @@ public class CaseInputCoreDateMinMaxSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         dateInicio = this.addFieldDate("dateInicio");
-        dateInicio.asAtr().label("Data").subtitle("Min: 01/05/2018. Max: 01/08/2018");
-        dateInicio.asAtrBootstrap().colPreference(3);
+
+        dateInicio
+                .asAtr().label("Data").subtitle("Min: 01/05/2018. Max: 01/08/2018")
+                .asAtrBootstrap().colPreference(3);
         //@destacar
         dateInicio.minDate(generateDate("01/05/2018"));
         //@destacar

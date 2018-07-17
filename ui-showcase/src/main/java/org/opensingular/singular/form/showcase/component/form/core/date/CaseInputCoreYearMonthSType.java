@@ -14,31 +14,37 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.date;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeInteger;
+import org.opensingular.form.type.basic.AtrBasic;
+import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
 
 /**
- * Campo para edição de dados inteiro
+ * Componente para inserção de mês e ano.
  */
-@CaseItem(componentName = "Numeric", subCaseName = "Integer", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "Integer")
-public class CaseInputCoreIntegerStype extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Date", subCaseName = "Mês/Ano", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "YearMonth")
+public class CaseInputCoreYearMonthSType extends STypeComposite<SIComposite> {
 
-    public STypeInteger qtd;
+    public STypeYearMonth inicio;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        qtd = this.addFieldInteger("qtd");
-        qtd.asAtr().label("Quantidade");
+        inicio = this.addField("inicio", STypeYearMonth.class);
 
+        inicio
+                .as(AtrBasic.class)
+                .label("Data Início")
+                .asAtrBootstrap()
+                .colPreference(2);
     }
 }

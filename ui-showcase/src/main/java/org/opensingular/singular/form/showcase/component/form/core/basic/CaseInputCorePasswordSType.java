@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.basic;
 
 import javax.annotation.Nonnull;
 
@@ -26,6 +26,7 @@ import org.opensingular.form.type.core.STypePassword;
 import org.opensingular.form.view.SViewPassword;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Campos básicos para uso nos formulários do singular
@@ -40,17 +41,15 @@ public class CaseInputCorePasswordSType extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-
         //Por default a senha é resetada a cada request
         senhaResetada = this.addFieldPassword("senhaResetada");
+        senha = this.addFieldPassword("senha");
+
         senhaResetada
                 .asAtr().label("Senha Resetada").subtitle("Resetada após requisição");
 
-
-        senha = this.addFieldPassword("senha");
-        senha
-                .asAtr().label("Senha");
         //Configurando view para não resetar a request após a requisição
-        senha.withView(new SViewPassword().setResetPassword(false));
+        senha.withView(new SViewPassword().setResetPassword(false))
+                .asAtr().label("Senha");
     }
 }

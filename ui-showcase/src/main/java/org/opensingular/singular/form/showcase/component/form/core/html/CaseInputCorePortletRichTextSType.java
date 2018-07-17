@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.html;
 
 import java.util.Optional;
 import javax.annotation.Nonnull;
@@ -32,6 +32,7 @@ import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
 import org.opensingular.lib.commons.ui.Icon;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 @CaseItem(componentName = "HTML", subCaseName = "Editor Rico em Nova Aba", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "PortletRichText")
@@ -42,8 +43,9 @@ public class CaseInputCorePortletRichTextSType extends STypeComposite<SIComposit
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         parecer = this.addField("parecer", STypeHTML.class);
-        parecer.asAtr()
-                .label("Parecer Técnico");
+
+        parecer.asAtr().label("Parecer Técnico");
+
         SViewByRichTextNewTab viewByRichTextNewTab = new SViewByRichTextNewTab();
         addCapsLockSelectionButton(viewByRichTextNewTab);
         parecer.withView(viewByRichTextNewTab);

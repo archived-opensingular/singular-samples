@@ -14,38 +14,36 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.html;
+
+import javax.annotation.Nonnull;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeMonetary;
+import org.opensingular.form.type.core.STypeHTML;
+import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-
-import javax.annotation.Nonnull;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
- * Campo para inserção de dados monetários.
+ * Permite a formatação de texto utilizando HTML.
  */
-@CaseItem(componentName = "Numeric", subCaseName = "Monetário", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "Money")
-public class CaseInputCoreMoneyStype extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "HTML", subCaseName = "Editor Rico", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "RichText")
+public class CaseInputCoreRichTextSType extends STypeComposite<SIComposite> {
 
-    public STypeMonetary monetario;
-    public STypeMonetary monetarioLongo;
+    public STypeHTML parecer;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        monetario = this.addFieldMonetary("monetario");
-        monetario
-                .asAtr().label("Monetário default");
+        parecer = this.addField("parecer", STypeHTML.class);
 
-        monetarioLongo = this.addFieldMonetary("monetarioLongo");
-        monetarioLongo
-                .asAtr().label("Monetário com 15 inteiros e 3 decimais")
-                .integerMaxLength(15)
-                .fractionalMaxLength(3);
+        parecer.withView(SViewByRichText::new);
+        parecer
+                .asAtr()
+                .label("Parecer Técnico");
     }
 }

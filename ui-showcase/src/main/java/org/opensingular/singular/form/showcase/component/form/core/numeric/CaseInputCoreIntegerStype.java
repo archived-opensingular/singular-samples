@@ -14,32 +14,32 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core;
+package org.opensingular.singular.form.showcase.component.form.core.numeric;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeDateTime;
+import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
 
 /**
- * Componente para inserção de data e hora.
+ * Campo para edição de dados inteiro
  */
-@CaseItem(componentName = "Date", subCaseName = "Data e Hora", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "DateTime")
-public class CaseInputCoreDateTimeSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Numeric", subCaseName = "Integer", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Integer")
+public class CaseInputCoreIntegerStype extends STypeComposite<SIComposite> {
 
-    public STypeDateTime inicio;
+    public STypeInteger qtd;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        inicio = this.addFieldDateTime("inicio");
+        qtd = this.addFieldInteger("qtd");
 
-        inicio.asAtr().label("Início");
-        inicio.asAtrBootstrap().colPreference(3);
+        qtd.asAtr().label("Quantidade");
     }
 }
