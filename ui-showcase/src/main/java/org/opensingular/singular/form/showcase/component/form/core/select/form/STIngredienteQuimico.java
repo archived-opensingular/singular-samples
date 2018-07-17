@@ -11,20 +11,20 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 import javax.annotation.Nonnull;
 
 @SInfoType(spackage = CaseInputCorePackage.class)
-public class STIngredienteQuimico extends STGenericComposite<SIPlanet> {
+public class STIngredienteQuimico extends STGenericComposite<SIIngredienteQuimico> {
 
-    public STypeString name;
-    public STypeInteger position;
-    public STypeDecimal diameter;
+    public STypeString nome;
+    public STypeString formulaQuimica;
 
     public STIngredienteQuimico() {
-        super(SIPlanet.class);
+        super(SIIngredienteQuimico.class);
     }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        name     = this.addFieldString("name");
-        position = this.addFieldInteger("position");
-        diameter = this.addFieldDecimal("diameter");
+        formulaQuimica = this.addFieldString("formulaQuimica");
+        nome = this.addFieldString("nome");
+
+        this.asAtr().label("Ingrediente Quimico");
     }
 }
