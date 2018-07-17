@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.custom;
+package org.opensingular.singular.form.showcase.component.form.custom.mapper;
 
 import org.apache.wicket.extensions.ajax.markup.html.tabs.AjaxTabbedPanel;
 import org.apache.wicket.extensions.markup.html.tabs.ITab;
@@ -34,6 +34,7 @@ import org.opensingular.lib.wicket.util.model.IReadOnlyModel;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;

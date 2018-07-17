@@ -14,36 +14,39 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.custom;
+package org.opensingular.singular.form.showcase.component.form.custom.mapper;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
 
 import javax.annotation.Nonnull;
 
 /**
- * Custom String Mapper
+ * Custom Range Mapper
  */
-@CaseItem(componentName = "Custom Mapper", subCaseName = "Material Design Input", group = Group.CUSTOM,
-resources = @Resource(MaterialDesignInputMapper.class))
-@SInfoType(spackage = CaseCustomPackage.class, name = "MaterialDesignInput")
-public class CaseCustomStringMapperStype extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Custom Mapper", subCaseName = "Range Slider", group = Group.CUSTOM,
+resources = {@Resource(RangeSliderMapper.class), @Resource(value = RangeSliderMapper.class, extension = "js"),
+        @Resource(value = STFaixaIdade.class), @Resource(value = SIFaixaIdade.class)})
+@SInfoType(spackage = CaseCustomPackage.class, name = "RangeSlider")
+public class CaseCustomRangeMapperSType extends STypeComposite<SIComposite> {
 
-    public STypeString nomeCompleto;
+    public STFaixaIdade faixaIdade;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        nomeCompleto = this.addFieldString("nomeCompleto");
-        nomeCompleto
-                //@destacar
-                .setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, MaterialDesignInputMapper::new)
-                .asAtr().label("Nome Completo");
+        faixaIdade = this.addField("faixaIdade", STFaixaIdade.class);
+
+        faixaIdade.asAtr().label("Faixa de Idade");
+        //@destacar:bloco
+        faixaIdade.setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER,
+                () -> new RangeSliderMapper(faixaIdade.valorInicial, faixaIdade.valorFinal));
+        //@destacar:fim
     }
 }

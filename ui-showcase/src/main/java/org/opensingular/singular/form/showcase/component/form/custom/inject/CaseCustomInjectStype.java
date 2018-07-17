@@ -16,7 +16,7 @@
  *
  */
 
-package org.opensingular.singular.form.showcase.component.form.custom;
+package org.opensingular.singular.form.showcase.component.form.custom.inject;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
@@ -29,6 +29,7 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
 
 /**
  * É possivel passar dados para o formulario a partir de Injeção de Beans.
@@ -46,9 +47,10 @@ public class CaseCustomInjectStype extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Escolha uma fruta");
-
         injectOptions = this.addFieldString("injectOptions");
+
         injectOptions.selectionOf(customInjectService.fruitsOptions());
+
+        this.asAtr().label("Escolha uma fruta");
     }
 }

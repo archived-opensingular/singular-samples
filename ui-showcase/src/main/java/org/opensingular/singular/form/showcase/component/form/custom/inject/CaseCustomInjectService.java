@@ -16,7 +16,7 @@
  *
  */
 
-package org.opensingular.singular.form.showcase.component.form.custom;
+package org.opensingular.singular.form.showcase.component.form.custom.inject;
 
 import org.springframework.stereotype.Service;
 

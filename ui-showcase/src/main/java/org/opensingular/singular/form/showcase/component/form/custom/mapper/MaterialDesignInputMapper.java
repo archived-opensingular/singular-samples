@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.custom;
+package org.opensingular.singular.form.showcase.component.form.custom.mapper;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.behavior.AttributeAppender;

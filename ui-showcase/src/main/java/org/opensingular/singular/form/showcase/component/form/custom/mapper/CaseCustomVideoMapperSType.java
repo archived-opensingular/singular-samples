@@ -14,38 +14,42 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.custom;
+package org.opensingular.singular.form.showcase.component.form.custom.mapper;
 
+import org.apache.wicket.validation.validator.UrlValidator;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeInteger;
+import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.wicket.IWicketComponentMapper;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
 
 import javax.annotation.Nonnull;
 
 /**
- * Custom Range Mapper
+ * Custom String Mapper
  */
-@CaseItem(componentName = "Custom Mapper", subCaseName = "Range Slider", group = Group.CUSTOM,
-resources = {@Resource(RangeSliderMapper.class), @Resource(value = RangeSliderMapper.class, extension = "js")})
-@SInfoType(spackage = CaseCustomPackage.class, name = "RangeSlider")
-public class CaseCustomRangeMapperSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Custom Mapper", subCaseName = "Vídeo", group = Group.CUSTOM, resources = @Resource(VideoMapper.class))
+@SInfoType(spackage = CaseCustomPackage.class, name = "Video")
+public class CaseCustomVideoMapperSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite<SIComposite> faixaIdade;
+    public STypeString video;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        faixaIdade = this.addFieldComposite("faixaIdade");
-        STypeInteger valorInicial = faixaIdade.addFieldInteger("de");
-        STypeInteger valorFinal = faixaIdade.addFieldInteger("a");
-
-        faixaIdade.asAtr().label("Faixa de Idade");
-        //@destacar
-        faixaIdade.setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, () -> new RangeSliderMapper(valorInicial, valorFinal));
+        video = this.addFieldString("video");
+        video
+            .addInstanceValidator(v -> {
+                if (!new UrlValidator().isValid(v.getInstance().getValue())) {
+                    v.error("URL inválida");
+                }
+            })
+            //@destacar
+            .setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, VideoMapper::new)
+            .asAtr().label("Vídeo").required(true);
     }
 }
