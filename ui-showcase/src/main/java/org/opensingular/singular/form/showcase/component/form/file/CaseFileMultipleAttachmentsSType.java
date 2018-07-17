@@ -40,15 +40,12 @@ public class CaseFileMultipleAttachmentsSType extends STypeComposite<SIComposite
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        layoutsRotulagem = this
-            .addFieldListOfAttachment("layoutsRotulagem", "layout");
+        layoutsRotulagem = this.addFieldListOfAttachment("layoutsRotulagem", "layout");
 
         layoutsRotulagem
-            .withMiniumSizeOf(1)
-            .withMaximumSizeOf(4);
-
-        layoutsRotulagem.asAtr()
-            .label("Layouts Rotulagem");
+                .withMiniumSizeOf(1)
+                .withMaximumSizeOf(4)
+                .asAtr().label("Layouts Rotulagem");
 
         layoutsRotulagem.getElementsType().asAtr()
             .allowedFileTypes("image/png", "image/jpeg", "pdf", "zip");

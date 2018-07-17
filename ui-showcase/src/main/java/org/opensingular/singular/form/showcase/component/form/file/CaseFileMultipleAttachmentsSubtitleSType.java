@@ -40,18 +40,14 @@ public class CaseFileMultipleAttachmentsSubtitleSType extends STypeComposite<SIC
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        layoutsRotulagem = this
-            .addFieldListOfAttachment("layoutsRotulagem", "layout");
+        layoutsRotulagem = this.addFieldListOfAttachment("layoutsRotulagem", "layout");
 
         layoutsRotulagem
-            .withMiniumSizeOf(1)
-            .withMaximumSizeOf(4);
-
-        layoutsRotulagem.asAtr()
-            .label("Layouts Rotulagem")
-            //@destacar
-            .subtitle("Informar apenas os layouts de embalagem em uso");
-
+                .withMiniumSizeOf(1)
+                .withMaximumSizeOf(4)
+                .asAtr().label("Layouts Rotulagem")
+                //@destacar
+                .subtitle("Informar apenas os layouts de embalagem em uso");
 
         layoutsRotulagem.getElementsType().asAtr()
             .allowedFileTypes("image/png", "image/jpeg", "pdf", "zip");
