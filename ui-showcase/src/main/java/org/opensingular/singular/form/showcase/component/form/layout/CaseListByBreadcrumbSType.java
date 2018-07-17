@@ -40,46 +40,24 @@ public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
 
     public STypeString nome;
     public STypeInteger idade;
-    public STypeList<STypeComposite<SIComposite>, SIComposite> experienciasProfissionais;
+    public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = this.addFieldString("nome", true);
+        idade = this.addFieldInteger("idade", true);
+        experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
+
         nome.asAtr().label("Nome");
 
-        idade = this.addFieldInteger("idade", true);
         idade.asAtr().label("Idade");
 
-        experienciasProfissionais = this.addFieldListOfComposite("experienciasProfissionais", "experiencia");
+        experienciasProfissionais.getElementsType().withView(SViewByBlock::new);
 
-        STypeComposite<?>                                   experiencia         = experienciasProfissionais.getElementsType();
-        STypeYearMonth                                      dtInicioExperiencia = experiencia.addField("inicio", STypeYearMonth.class, true);
-        STypeYearMonth                                      dtFimExperiencia    = experiencia.addField("fim", STypeYearMonth.class);
-        STypeString                                         empresa             = experiencia.addFieldString("empresa", true);
-        STypeString                                         cargo               = experiencia.addFieldString("cargo", true);
-        STypeString                                         atividades          = experiencia.addFieldString("atividades");
-
-        experiencia.withView(SViewByBlock::new);
-        {
-            //@destacar:bloco
-            experienciasProfissionais
+        //@destacar:bloco
+        experienciasProfissionais
                     .withView(SViewBreadcrumb::new)
-            //@destacar:fim
                     .asAtr().label("Experiências profissionais");
-            dtInicioExperiencia
-                    .asAtr().label("Data inicial")
-                    .asAtrBootstrap().colPreference(2);
-            dtFimExperiencia
-                    .asAtr().label("Data final")
-                    .asAtrBootstrap().colPreference(2);
-            empresa
-                    .asAtr().label("Empresa")
-                    .asAtrBootstrap().colPreference(8);
-            cargo
-                    .asAtr().label("Cargo");
-            atividades
-                    .withTextAreaView()
-                    .asAtr().label("Atividades Desenvolvidas");
-        }
+        //@destacar:fim
     }
 }

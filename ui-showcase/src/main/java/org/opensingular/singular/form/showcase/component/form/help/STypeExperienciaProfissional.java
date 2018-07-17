@@ -9,7 +9,7 @@ import org.opensingular.form.type.util.STypeYearMonth;
 
 import javax.annotation.Nonnull;
 
-@SInfoType(spackage = CaseHelpPackage.class, name = "HelpWithXML")
+@SInfoType(spackage = CaseHelpPackage.class)
 public class STypeExperienciaProfissional extends STypeComposite<SIComposite> {
 
     public STypeYearMonth dtInicioExperiencia;

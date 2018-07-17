@@ -42,18 +42,22 @@ public class CaseFineTunningGridSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = this.addFieldString("nome");
+        idade = this.addFieldInteger("idade");
+        email = this.addFieldEmail("email");
+
         nome
                 .asAtr().label("Nome")
+                //@destacar
                 .asAtrBootstrap().colLg(7).colMd(8).colSm(9).colXs(12);
 
-        idade = this.addFieldInteger("idade");
         idade
                 .asAtr().label("Idade")
+                //@destacar
                 .asAtrBootstrap().colLg(3).colMd(4).colSm(3).colXs(6);
 
-        email = this.addFieldEmail("email");
         email
                 .asAtr().label("E-mail")
+                //@destacar
                 .asAtrBootstrap().colLg(10).colMd(12).colSm(12).colXs(12);
     }
 }
