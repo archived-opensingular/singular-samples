@@ -67,22 +67,18 @@ public class CaseInteractionDependsOnOptionsSType extends STypeComposite<SICompo
         + "gird,betrothed,prospective,advert,peremptory,rudiment,deduce,halting,ignominy,ideology,pallid,chagrin,obtrude")
             .split(",");
 
-    public STypeString       letter;
-    public STypeString       word;
+    public STypeString letter;
+    public STypeString word;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         letter = this.addFieldString("letter");
         word = this.addFieldString("word");
 
-        letter.asAtr()
-            .label("Letter");
+        letter.asAtr().label("Letter");
         letter.selectionOf("a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(","));
 
-        word.asAtr()
-            .label("Word")
-            .dependsOn(letter);
-
+        word.asAtr().label("Word").dependsOn(letter);
         word.selectionOf(String.class).selfIdAndDisplay()
                 .simpleProvider((ins)-> {
                     Optional<String> filter = ins.findNearestValue(letter);
@@ -91,7 +87,6 @@ public class CaseInteractionDependsOnOptionsSType extends STypeComposite<SICompo
                                 .filter((x) -> x.startsWith(f))
                                 .collect(Collectors.toList());
                     }).orElse(newArrayList());
-
                 });
     }
 }

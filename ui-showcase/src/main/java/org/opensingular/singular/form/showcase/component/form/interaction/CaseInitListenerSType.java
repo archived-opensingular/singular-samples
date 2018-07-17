@@ -23,58 +23,43 @@ import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeInteger;
-import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.interaction.form.SIItem;
+import org.opensingular.singular.form.showcase.component.form.interaction.form.STItem;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * Listener que é executado ao criar uma nova instância de um tipo
  */
-@CaseItem(componentName = "Listeners", subCaseName = "Init Listener", group = Group.INTERACTION)
+@CaseItem(componentName = "Listeners", subCaseName = "Init Listener", group = Group.INTERACTION,
+        resources = {@Resource(STItem.class), @Resource(SIItem.class)})
 @SInfoType(spackage = CaseInteractionPackage.class, name = "InitListener")
 public class CaseInitListenerSType extends STypeComposite<SIComposite> {
 
-    public STypeList<STypeComposite<SIComposite>, SIComposite> itens;
-    public STypeString                                         nome;
+    public STypeList<STItem, SIItem> itens;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        itens = this.addFieldListOfComposite("itens", "itenm");
-        itens.asAtr().label("Itens");
+        itens = this.addFieldListOf("itens", STItem.class);
+
         itens.withView(new SViewListByForm().disableDelete().disableNew());
-
-        final STypeComposite<SIComposite> item = itens.getElementsType();
-        nome = item.addFieldString("nome");
-        nome
-            .asAtr().label("Nome").enabled(false)
-            .asAtrBootstrap().colPreference(3);
-
-        final STypeInteger quantidade = item.addFieldInteger("quantidade");
-        quantidade
-                .asAtr().label("Quantidade")
-                .asAtrBootstrap().colPreference(2);
+        itens.asAtr().label("Itens");
 
         //@destacar
         this.withInitListener(this::initForm);
-
     }
 
     private void initForm(SInstance instance) {
-        for (String n : Arrays.asList("Mauro", "Laura")) {
-            final Optional<SIList<SIComposite>> itensList = instance.findNearest(itens);
-            itensList.ifPresent(il -> initItem(il, n));
-        }
-    }
+        final SIList<SIItem> itensList = instance.findNearestOrException(itens);
 
-    private void initItem(SIList<SIComposite> list, String nomeItem) {
-        final SIComposite item = list.addNew();
-        item.findNearest(nome)
-                .ifPresent(n -> n.setValue(nomeItem));
+        for (String nomeItem : Arrays.asList("Mauro", "Laura")) {
+            SIItem siItem = itensList.addNew();
+            siItem.nome().setValue(nomeItem);
+        }
     }
 }

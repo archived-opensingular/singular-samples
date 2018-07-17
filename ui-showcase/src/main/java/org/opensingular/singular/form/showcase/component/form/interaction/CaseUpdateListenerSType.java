@@ -40,18 +40,21 @@ public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Endereço");
-
         cep = this.addFieldString("cep");
-        cep.asAtr().maxLength(8).label("CEP (Use os valores 70863520 ou 70070120)");
-
         logradouro = this.addFieldString("logradouro");
+
+        cep
+                .asAtr().maxLength(8)
+                .label("CEP (Use os valores 70863520 ou 70070120)");
+
         logradouro
                 .asAtr().enabled(false)
                 .label("Logradouro")
                 .dependsOn(cep);
         //@destacar
         logradouro.withUpdateListener(this::pesquisarLogradouro);
+
+        this.asAtr().label("Endereço");
     }
 
     private void pesquisarLogradouro(SIString instance) {

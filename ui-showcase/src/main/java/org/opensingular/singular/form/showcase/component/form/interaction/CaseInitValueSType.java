@@ -45,29 +45,28 @@ public class CaseInitValueSType extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Valores Iniciais");
-
         nome = this.addFieldString("nome");
+        idade = this.addFieldInteger("idade");
+        date = this.addFieldDate("date");
+        genero = addFieldBoolean("genero");
+
         nome.asAtr().label("Nome");
       //@destacar
         nome.setInitialValue("João Da Silva");
 
-        idade = this.addFieldInteger("idade");
         idade.asAtr().label("Idade");
       //@destacar
         idade.setInitialValue(32);
-        
-        date = this.addFieldDate("date");
+
         date.asAtr().label("Data");
         //@destacar
         date.setInitialValue(new Date());
-        
-        genero = addFieldBoolean("genero");
+
         genero.withRadioView("Masculino", "Feminino");
         //@destacar
         genero.setInitialValue(Boolean.TRUE);
-        
+
+        this.asAtr().label("Valores Iniciais");
     }
 
-   
 }

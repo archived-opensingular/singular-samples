@@ -21,43 +21,34 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
-import org.opensingular.form.type.core.STypeDate;
-import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.interaction.form.STypeRecord;
 
 import javax.annotation.Nonnull;
 
 /**
  * Interação usando exists
  */
-@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Exists", group = Group.INTERACTION)
+@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Exists", group = Group.INTERACTION,
+        resources = @Resource(STypeRecord.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "Exists")
 public class CaseInteractionExistsSType extends STypeComposite<SIComposite> {
 
     public STypeBoolean exists;
-    public STypeComposite<SIComposite> record;
-    public STypeString recordText;
-    public STypeDate recordDate;
+    public STypeRecord record;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         exists = this.addFieldBoolean("exists");
 
-        record = this.addFieldComposite("record");
-        recordText = record.addFieldString("text");
-        recordDate = record.addFieldDate("date");
+        record = this.addField("record", STypeRecord.class);
 
         exists.asAtr().label("Exists");
 
         record
-                .asAtr().exists(ins -> ins.findNearestValue(exists, Boolean.class).orElse(Boolean.FALSE))
-                .asAtr().dependsOn(exists);
-
-        recordText.asAtr().label("Text")
-                .asAtrBootstrap().colPreference(3);
-
-        recordDate.asAtr().label("Date")
-                .asAtrBootstrap().colPreference(2);
+                .asAtr().dependsOn(exists)
+                .exists(ins -> ins.findNearestValue(exists, Boolean.class).orElse(Boolean.FALSE));
     }
 }
