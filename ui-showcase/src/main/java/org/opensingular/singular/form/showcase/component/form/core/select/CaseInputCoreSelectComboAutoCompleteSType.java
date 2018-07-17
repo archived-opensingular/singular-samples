@@ -31,6 +31,7 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Auto-completar
@@ -81,8 +82,17 @@ public class CaseInputCoreSelectComboAutoCompleteSType extends STypeComposite<SI
                 });
         //@destacar:fim
 
+        myPlanet.withInitListener(si -> {
+            si.setValue(name, "Mercury");
+            si.setValue(position, 1);
+            si.setValue(diameter, 1);
+        });
+
         myPlanet.withView(SViewAutoComplete::new)
-                .asAtr().label("Planeta de Origem");
+                .asAtr()
+                .dependsOn(myHero)
+                .enabled(si -> si.findNearestValue(myHero).isPresent())
+                .label("Planeta de Origem");
 
         // Auto Complete com opções dinâmicas baseadas nos valores informados.
         email = this.addFieldString("email");

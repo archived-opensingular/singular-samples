@@ -16,15 +16,17 @@
 
 package org.opensingular.singular.form.showcase.component.form.core;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
+import org.opensingular.form.view.SViewCheckBox;
+import org.opensingular.lib.commons.ui.Alignment;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-
-import javax.annotation.Nonnull;
 
 /**
  * Campo para inserção de dados booleanos.
@@ -36,6 +38,7 @@ public class CaseInputCoreBooleanSType extends STypeComposite<SIComposite> {
 
     public STypeBoolean aceitaTermos;
     public STypeBoolean receberNotificacoes;
+    public STypeBoolean receberNotificacoes2;
     public STypeBoolean aceitaTermos2;
 
     @Override
@@ -44,16 +47,24 @@ public class CaseInputCoreBooleanSType extends STypeComposite<SIComposite> {
         aceitaTermos
             .asAtr().label("Aceito os termos e condições").required(true);
 
+        aceitaTermos2 = this.addFieldBoolean("aceitaTermos2");
+        aceitaTermos2
+                //@destacar
+                .withRadioView("Aceito", "Rejeito")
+                .asAtr().label("Aceito os termos e condições");
+
         receberNotificacoes = this.addFieldBoolean("receberNotificacoes");
+
         receberNotificacoes
+                //@destacar
+                .withView(new SViewCheckBox().setAlignLabelOfCheckBox(Alignment.LEFT))
+                .asAtr().label("Receber notificações").required(true);
+
+        receberNotificacoes2 = this.addFieldBoolean("receberNotificacoes2");
+        receberNotificacoes2
             //@destacar
             .withRadioView()
             .asAtr().label("Receber notificações");
 
-        aceitaTermos2 = this.addFieldBoolean("aceitaTermos2");
-        aceitaTermos2
-            //@destacar
-            .withRadioView("Aceito", "Rejeito")
-            .asAtr().label("Aceito os termos e condições");
     }
 }

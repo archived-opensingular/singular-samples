@@ -6,7 +6,18 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeBoolean;
+import org.opensingular.form.type.core.STypeDate;
+import org.opensingular.form.type.core.STypeDate;
+import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.type.core.STypeTime;
+import org.opensingular.form.view.SViewCheckBox;
+import org.opensingular.lib.commons.ui.Alignment;
+import org.opensingular.form.util.SingularPredicates;
+import org.opensingular.form.view.date.SViewDate;
+import org.opensingular.form.view.date.SViewDateTime;
+import org.opensingular.form.view.date.SViewTime;
 import org.opensingular.lib.commons.util.Loggable;
 
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
@@ -17,6 +28,9 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
     public STypeString  nomeMae2;
     public STypeString  nomeGato2;
     public STypeString  nomeDog2;
+    public STypeDateTime dataHoraInicio;
+    public STypeDate data;
+    public STypeTime time;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -37,5 +51,38 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
 
         nomeMae2.asAtrAnnotation().setAnnotated();
 
+        dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
+        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio").required();
+
+        SViewDateTime sViewDateTime = new SViewDateTime();
+        sViewDateTime.setClearBtn(true);
+        sViewDateTime.setTodayHighlight(true);
+        sViewDateTime.setMode24hs(false);
+        dataHoraInicio.withView(sViewDateTime);
+
+
+        data = this.addFieldDate("data");
+        data.asAtr().label("Data");
+        data.asAtr().required();
+
+        SViewCheckBox sView = new SViewCheckBox();
+        sView.setAlignLabelOfCheckBox(Alignment.CENTER);
+
+        SViewDate sViewDate = new SViewDate();
+        sViewDate.setClearBtn(true);
+        sViewDate.setTodayBtn(true);
+
+        data.withView(sViewDate);
+
+        time = this.addFieldTime("time");
+        SViewTime sViewTime = new SViewTime();
+        sViewTime.setMinuteStep(20);
+        sViewTime.setMode24hs(true);
+        time.withView(sViewTime);
+        time.asAtr().label("time").required();
+
+        nomeGato2.asAtr().dependsOn(time).exists(SingularPredicates.typeValueIsNull(time));
+
+        nomeMae2.asAtr().dependsOn(data).exists(SingularPredicates.typeValueIsNull(data));
     }
 }

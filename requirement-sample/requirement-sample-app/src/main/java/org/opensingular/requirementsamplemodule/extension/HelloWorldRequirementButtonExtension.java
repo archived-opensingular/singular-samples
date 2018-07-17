@@ -19,7 +19,7 @@
 package org.opensingular.requirementsamplemodule.extension;
 
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.opensingular.requirement.commons.wicket.view.extension.RequirementButtonExtension;
+import org.opensingular.requirement.module.wicket.view.extension.RequirementButtonExtension;
 
 /**
  * A Example of the RequirementButtonExtension extension that says Hello World
