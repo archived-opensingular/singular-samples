@@ -33,15 +33,15 @@ import javax.annotation.Nonnull;
  */
 @CaseItem(componentName = "Custom Mapper", subCaseName = "Range Slider", group = Group.CUSTOM,
 resources = {@Resource(RangeSliderMapper.class), @Resource(value = RangeSliderMapper.class, extension = "js"),
-        @Resource(value = STFaixaIdade.class), @Resource(value = SIFaixaIdade.class)})
+        @Resource(value = STypeFaixaIdade.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "RangeSlider")
 public class CaseCustomRangeMapperSType extends STypeComposite<SIComposite> {
 
-    public STFaixaIdade faixaIdade;
+    public STypeFaixaIdade faixaIdade;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        faixaIdade = this.addField("faixaIdade", STFaixaIdade.class);
+        faixaIdade = this.addField("faixaIdade", STypeFaixaIdade.class);
 
         faixaIdade.asAtr().label("Faixa de Idade");
         //@destacar:bloco
