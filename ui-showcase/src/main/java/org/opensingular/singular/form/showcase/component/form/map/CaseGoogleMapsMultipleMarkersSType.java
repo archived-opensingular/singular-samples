@@ -27,7 +27,7 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 
 /**
- * Componente com multiplos pontos.
+ * Componente com multiplos marcadores e que aceita arquivo KML.
  */
 @CaseItem(componentName = "Google Maps com multiplos marcadores", group = Group.MAPS)
 @SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMapsMultipleMarkers")
