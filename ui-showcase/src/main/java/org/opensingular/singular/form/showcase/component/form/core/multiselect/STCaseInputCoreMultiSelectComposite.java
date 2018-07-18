@@ -36,8 +36,8 @@ import java.io.Serializable;
  * Para usar um tipo composto na seleção, este deve extender o STypeComposite. <br/>
  * É permitido se mudar quais campos serão utilizados como chave e valor.
  */
-@CaseItem(componentName = "Multi Select", subCaseName = "Tipo Composto", group = Group.INPUT,
-        resources = {@Resource(STComponenteQuimico.class), @Resource(SIComponenteQuimico.class)})
+/*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Tipo Composto", group = Group.INPUT,
+/*hidden*/        resources = {@Resource(STComponenteQuimico.class), @Resource(SIComponenteQuimico.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TipoComposto")
 public class STCaseInputCoreMultiSelectComposite extends STypeComposite<SIComposite> {
 
