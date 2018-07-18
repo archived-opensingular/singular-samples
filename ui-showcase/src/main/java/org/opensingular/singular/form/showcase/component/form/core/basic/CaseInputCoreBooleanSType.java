@@ -50,7 +50,7 @@ public class CaseInputCoreBooleanSType extends STypeComposite<SIComposite> {
         receberNotificacoes2 = this.addFieldBoolean("receberNotificacoes2");
 
         aceitaTermos
-            .asAtr().label("Aceito os termos e condições").required(true);
+                .asAtr().label("Aceito os termos e condições").required(true);
 
         aceitaTermos2
                 //@destacar
@@ -62,9 +62,8 @@ public class CaseInputCoreBooleanSType extends STypeComposite<SIComposite> {
                 .withView(new SViewCheckBox().setAlignLabelOfCheckBox(Alignment.LEFT))
                 .asAtr().label("Receber notificações").required(true);
 
-        receberNotificacoes2
-            //@destacar
-            .withRadioView()
-            .asAtr().label("Receber notificações");
+        //@destacar
+        receberNotificacoes2.withRadioView()
+                .asAtr().label("Receber notificações");
     }
 }

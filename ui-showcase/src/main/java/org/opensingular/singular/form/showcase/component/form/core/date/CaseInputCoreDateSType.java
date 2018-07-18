@@ -60,36 +60,29 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
         hora = this.addField("hora", STypeTime.class);
 
         livre
-                .asAtr()
-                .label("Seleção Livre");
+                .asAtr().label("Seleção Livre");
 
         maiorIgualHoje
                 .withView(new SViewDate().setStartDate(new Date()))
-                .asAtr()
-                .label("Data igual ou maior que data atual");
+                .asAtr().label("Data igual ou maior que data atual");
 
         botaoLimpar
                 .withView(new SViewDate().setClearBtn(true))
-                .asAtr()
-                .label("Botão de limpar");
+                .asAtr().label("Botão de limpar");
 
         botaoHoje
                 .withView(new SViewDate().setTodayBtn(true))
-                .asAtr()
-                .label("Botão que volta para o dia atual");
+                .asAtr().label("Botão que volta para o dia atual");
 
         hojeRealcado
                 .withView(new SViewDate().setTodayHighlight(true))
-                .asAtr()
-                .label("Data atual realçada");
+                .asAtr().label("Data atual realçada");
 
         datasHabilitadas
                 .withView(new SViewDate().setEnabledDatesFunction(this::tresDiasAntesDepoisAtual))
-                .asAtr()
-                .label("Data habilitadas").subtitle("três dias antes e depois da data atual");
+                .asAtr().label("Data habilitadas").subtitle("três dias antes e depois da data atual");
 
-        hora
-                .asAtr().label("Hora");
+        hora.asAtr().label("Hora");
     }
 
     private List<Date> tresDiasAntesDepoisAtual(SInstance inst) {

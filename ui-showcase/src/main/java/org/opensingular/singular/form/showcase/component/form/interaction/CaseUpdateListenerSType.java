@@ -48,11 +48,11 @@ public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
                 .label("CEP (Use os valores 70863520 ou 70070120)");
 
         logradouro
-                .asAtr().enabled(false)
-                .label("Logradouro")
+                //@destacar
+                .withUpdateListener(this::pesquisarLogradouro)
+                .asAtr().enabled(false).label("Logradouro")
+                //@destacar
                 .dependsOn(cep);
-        //@destacar
-        logradouro.withUpdateListener(this::pesquisarLogradouro);
 
         this.asAtr().label("Endereço");
     }

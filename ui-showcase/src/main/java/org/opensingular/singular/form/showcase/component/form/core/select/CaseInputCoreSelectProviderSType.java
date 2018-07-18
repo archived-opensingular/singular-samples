@@ -25,6 +25,7 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.multiselect.form.STypeArquivo;
 import org.opensingular.singular.form.showcase.view.page.form.crud.services.MFileIdsOptionsProvider;
 
 import javax.annotation.Nonnull;
@@ -34,11 +35,11 @@ import javax.annotation.Nonnull;
  */
 //@formatter:off
 @CaseItem(componentName = "Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT,
-            resources = @Resource(MFileIdsOptionsProvider.class))
+            resources = {@Resource(MFileIdsOptionsProvider.class), @Resource(STypeArquivo.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectProvider")
 public class CaseInputCoreSelectProviderSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite<SIComposite> arquivo;
+    public STypeArquivo arquivo;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -46,13 +47,12 @@ public class CaseInputCoreSelectProviderSType extends STypeComposite<SIComposite
          * Neste caso será utilizado o serviço de nome filesChoiceProvider
          * cadastrado através do Document.bindLocalService
          */
-        arquivo = this.addFieldComposite("arquivo");
-        final STypeString fileName = arquivo.addFieldString("fileName");
+        arquivo = this.addField("arquivo", STypeArquivo.class);
 
         arquivo.asAtr().label("Seleção de Arquivos Persistidos");
         arquivo.selection()
-                .id(fileName)
-                .display(fileName)
+                .id(arquivo.fileName)
+                .display(arquivo.fileName)
                 .simpleProvider("filesChoiceProvider");
     }
 

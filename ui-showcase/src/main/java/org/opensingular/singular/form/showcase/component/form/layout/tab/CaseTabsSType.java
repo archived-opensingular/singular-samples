@@ -33,6 +33,7 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaList;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeInformacaoPessoal;
 
@@ -45,15 +46,14 @@ import org.opensingular.singular.form.showcase.component.form.layout.stypes.STyp
 public class CaseTabsSType extends STypeComposite<SIComposite> {
 
     public STypeInformacaoPessoal tab1;
-    public STypeComposite<SIComposite> tab2;
+    public STypeExperienciaList tab2;
 
     public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         tab1 = addField("tab1", STypeInformacaoPessoal.class);
-        tab2 = addFieldComposite("tab2");
-        experienciasProfissionais = tab2.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
+        tab2 = addField("tab2", STypeExperienciaList.class);
 
         //@destacar:bloco
         SViewTab tabbed = new SViewTab();

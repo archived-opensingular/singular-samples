@@ -58,14 +58,15 @@ public class CaseInputModalSearchSType extends STypeComposite<SIComposite> {
                 .filteredProvider(new FuncionarioProvider())
                 .converter(new SIFuncionarioConverter());
 
-        funcionarioClickedColumn.asAtr().label("Funcionario")
-                .subtitle("Habilitado o clique nas linhas").displayString("${nome} - ${funcao}");
-        funcionarioClickedColumn.withView(new SViewSearchModal()
+        SViewSearchModal funcionarioClickedColumnView = new SViewSearchModal()
                 //@destacar
                 .enableRowClick(true)
-                .title("Buscar Profissionais"))
-                .asAtrProvider()
-                .filteredProvider(new FuncionarioProvider())
+                .title("Buscar Profissionais");
+        funcionarioClickedColumn.withView(funcionarioClickedColumnView)
+                .asAtrProvider().filteredProvider(new FuncionarioProvider())
                 .converter(new SIFuncionarioConverter());
+
+        funcionarioClickedColumn.asAtr().label("Funcionario")
+                .subtitle("Habilitado o clique nas linhas").displayString("${nome} - ${funcao}");
     }
 }

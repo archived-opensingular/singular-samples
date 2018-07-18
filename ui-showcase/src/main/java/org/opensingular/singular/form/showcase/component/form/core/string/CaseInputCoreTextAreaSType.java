@@ -51,14 +51,12 @@ public class CaseInputCoreTextAreaSType extends STypeComposite<SIComposite> {
 
         observacao2
             .withTextAreaView(view->view.setLines(2))
-            .asAtr()
-            .label("Observação (2 linhas e 500 de limite)")
+            .asAtr().label("Observação (2 linhas e 500 de limite)")
             .maxLength(500);
 
         observacao3
                 .withTextAreaView(view->view.setLines(10))
-                .asAtr()
-                .label("Observação (10 linhas e 5000 de limite)")
+                .asAtr().label("Observação (10 linhas e 5000 de limite)")
                 .maxLength(5000);
     }
 }

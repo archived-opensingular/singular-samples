@@ -44,24 +44,16 @@ import java.util.List;
  * Custom String Mapper
  */
 @CaseItem(componentName = "Custom Mapper", subCaseName = "Tabbed Panel", group = Group.CUSTOM, resources = {
-    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html"),
+    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html"),@Resource(STypeContainer.class),
         @Resource(STypeContainerString.class), @Resource(STypeContainerInteger.class), @Resource(STypeContainerBoolean.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "TabbedPanel")
 public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite<SIComposite> mainComposite;
+    public STypeContainer mainComposite;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        mainComposite = this.addFieldComposite("mainComposite");
-
-        STypeContainerString  tab1 = mainComposite.addField("tab1", STypeContainerString.class);
-        STypeContainerInteger tab2 = mainComposite.addField("tab2", STypeContainerInteger.class);
-        STypeContainerBoolean tab3 = mainComposite.addField("tab3", STypeContainerBoolean.class);
-
-        tab1.asAtr().label("Aba 1");
-        tab2.asAtr().label("Aba 2");
-        tab3.asAtr().label("Aba 3");
+        mainComposite = this.addField("mainComposite", STypeContainer.class);
 
         //@destacar
         mainComposite.setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, CustomTabMapper::new);

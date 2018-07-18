@@ -42,7 +42,6 @@ public class CaseInteractionExistsSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         exists = this.addFieldBoolean("exists");
-
         record = this.addField("record", STypeRecord.class);
 
         exists.asAtr().label("Exists");

@@ -27,6 +27,7 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.multiselect.form.STypeArquivo;
 import org.opensingular.singular.form.showcase.view.page.form.crud.services.MFileIdsOptionsProvider;
 
 import javax.annotation.Nonnull;
@@ -36,29 +37,28 @@ import javax.annotation.Nonnull;
  */
 //@formatter:off
 @CaseItem(componentName = "Multi Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT,
-        resources = @Resource(MFileIdsOptionsProvider.class))
+        resources = {@Resource(MFileIdsOptionsProvider.class), @Resource(STypeArquivo.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "ProvedorDinamico")
 public class STCaseInputCoreMultiSelectProvider extends STypeComposite<SIComposite> {
 
-    public STypeList<STypeComposite<SIComposite>, SIComposite> arquivos;
+    public STypeList<STypeArquivo, SIComposite> arquivos;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        arquivos = this.addFieldListOfComposite("arquivos", "arquivo");
+        arquivos = this.addFieldListOf("arquivos", STypeArquivo.class);
 
         /*
          * Neste caso será utilizado o serviço de nome filesChoiceProvider
          * cadastrado através do Document.bindLocalService
          */
-        final STypeComposite<SIComposite> arquivo = arquivos.getElementsType();
-        final STypeString                fileName = arquivo.addFieldString("fileName");
 
         arquivos.withView(SMultiSelectionByPicklistView::new)
                 .asAtr().label("Seleção de Arquivos Persistidos");
 
+        STypeArquivo stArquivo = arquivos.getElementsType();
         arquivos.selection()
-                .id(fileName)
-                .display(fileName)
+                .id(stArquivo.fileName)
+                .display(stArquivo.fileName)
                 //@destacar
                 .simpleProvider("filesChoiceProvider");
     }

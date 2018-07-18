@@ -57,9 +57,10 @@ public class CaseInputCoreSelectDefaultSType extends STypeComposite<SIComposite>
         selecaoComDezOpcoes.selectionOf(createOptions(10));
         selecaoComDezOpcoes.asAtr().label("Seleção de 10");
 
-        favoriteFruit.withSelectView();
-        favoriteFruit.asAtr().label("Fruta Favorita");
         favoriteFruit.selectionOf("Maçã", "Laranja", "Banana", "Goiaba");
+        favoriteFruit
+                .withSelectView()
+                .asAtr().label("Fruta Favorita");
     }
 
     private static String[] createOptions(int sizeOptions) {

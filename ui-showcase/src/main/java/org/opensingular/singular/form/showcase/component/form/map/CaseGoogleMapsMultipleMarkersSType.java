@@ -38,6 +38,7 @@ public class CaseGoogleMapsMultipleMarkersSType extends STypeComposite<SIComposi
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         coordenadas = this.addField("coordenadas", STypeLatitudeLongitudeList.class);
+
         coordenadas
                 .asAtr().required();
     }

@@ -46,10 +46,11 @@ public class CaseInputCoreDateMinMaxSType extends STypeComposite<SIComposite> {
         dateInicio
                 .asAtr().label("Data").subtitle("Min: 01/05/2018. Max: 01/08/2018")
                 .asAtrBootstrap().colPreference(3);
-        //@destacar
-        dateInicio.minDate(generateDate("01/05/2018"));
-        //@destacar
-        dateInicio.maxDate(generateDate("01/08/2018"));
+        //@destacar:bloco
+        dateInicio
+                .minDate(generateDate("01/05/2018"))
+                .maxDate(generateDate("01/08/2018"));
+        //@destacar:fim
     }
 
     private Date generateDate(String date) {

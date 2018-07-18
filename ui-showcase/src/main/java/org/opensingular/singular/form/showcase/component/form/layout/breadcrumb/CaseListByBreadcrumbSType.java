@@ -55,7 +55,6 @@ public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
         idade.asAtr().label("Idade");
 
         experienciasProfissionais.getElementsType().withView(SViewByBlock::new);
-
         experienciasProfissionais
         //@destacar
                     .withView(SViewBreadcrumb::new)

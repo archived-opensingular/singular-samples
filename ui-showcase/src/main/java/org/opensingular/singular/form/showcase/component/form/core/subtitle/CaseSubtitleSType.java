@@ -14,35 +14,37 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.core.html;
-
-import javax.annotation.Nonnull;
+package org.opensingular.singular.form.showcase.component.form.core.subtitle;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeHTML;
-import org.opensingular.form.view.richtext.SViewByRichText;
+import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
-/**
- * Permite a formatação de texto utilizando HTML.
- */
-@CaseItem(componentName = "HTML", subCaseName = "Editor Rico", group = Group.INPUT)
-@SInfoType(spackage = CaseInputCorePackage.class, name = "RichText")
-public class CaseInputCoreRichTextSType extends STypeComposite<SIComposite> {
+import javax.annotation.Nonnull;
 
-    public STypeHTML parecer;
+/**
+ * Subtitle - Exemplo de como utilizar nos agrupadores (StypeComposite) e fields.
+ */
+@CaseItem(componentName = "Subtitle", group = Group.INPUT)
+@SInfoType(spackage = CaseInputCorePackage.class, name = "Subtitle")
+public class CaseSubtitleSType extends STypeComposite<SIComposite> {
+
+    public STypeDadosPessoais dadosPessoais;
+    public STypeDadosProfissionais dadosProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        parecer = this.addField("parecer", STypeHTML.class);
 
-        //@destacar
-        parecer.withView(SViewByRichText::new)
-               .asAtr().label("Parecer Técnico");
+        dadosPessoais = this.addField("dadosPessoais", STypeDadosPessoais.class);
+        dadosProfissionais = this.addField("dadosProfissionais", STypeDadosProfissionais.class);
+
+        this.withView(new SViewByBlock(), v ->
+                v.newBlock("Ficha de Cadastro").add(dadosPessoais)
+                 .newBlock("Ficha de Cadastro").add(dadosProfissionais));
     }
 }

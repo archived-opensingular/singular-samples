@@ -47,11 +47,8 @@ public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         processo = this.addField("processo", STProcesso.class);
 
-        processo.asAtr()
-                .label("Processo")
-                .displayString("${id} - ${nome}")
-                .asAtrBootstrap()
-                .colPreference(6);
+        processo.asAtr().label("Processo").displayString("${id} - ${nome}")
+                .asAtrBootstrap().colPreference(6);
     }
 
 }

@@ -45,18 +45,14 @@ public class STCaseInputCoreMultiSelectCheckbox extends STypeComposite<SIComposi
         frutas = this.addFieldListOf("frutas", STypeString.class);
         frutasInline = this.addFieldListOf("frutasInline", STypeString.class);
 
-        frutas.asAtr()
-                .label("Frutas Vertical")
-                .asAtrBootstrap()
-                .colPreference(6);
+        frutas.asAtr().label("Frutas Vertical")
+                .asAtrBootstrap().colPreference(6);
         frutas.selectionOf(String.class, new SMultiSelectionByCheckboxView())
                 .selfIdAndDisplay()
                 .simpleProviderOf("Amora", "Banana", "Maçã", "Laranja", "Manga", "Melão", "Morango");
 
-        frutasInline.asAtr()
-                .label("Frutas Horizontal")
-                .asAtrBootstrap()
-                .colPreference(6);
+        frutasInline.asAtr().label("Frutas Horizontal")
+                .asAtrBootstrap().colPreference(6);
         frutasInline.selectionOf(String.class, new SMultiSelectionByCheckboxView().inline(true))
                 .selfIdAndDisplay()
                 .simpleProviderOf("Amora", "Banana", "Maçã", "Laranja", "Manga", "Melão", "Morango");
