@@ -31,66 +31,29 @@ import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.view.SViewTab;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeInformacaoPessoal;
 
 /**
  * Tabs
  */
-@CaseItem(componentName = "Tabs", group = Group.LAYOUT)
+@CaseItem(componentName = "Tabs", group = Group.LAYOUT, resources = {@Resource(STypeInformacaoPessoal.class),
+        @Resource(STypeExperienciaProfissional.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTabs")
 public class CaseTabsSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite<SIComposite> tab1;
+    public STypeInformacaoPessoal tab1;
     public STypeComposite<SIComposite> tab2;
-    public STypeString nome;
-    public STypeInteger idade;
-    public STypeEMail email;
-    public STypeList<STypeComposite<SIComposite>, SIComposite> experienciasProfissionais;
+
+    public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        
-        tab1 = addFieldComposite("tab1");
-        nome = tab1.addFieldString("nome");
-        nome
-                .asAtr().label("Nome");
-
-        idade = tab1.addFieldInteger("idade");
-        idade
-                .asAtr().label("Idade");
-
-        email = tab1.addFieldEmail("email");
-        email
-                .asAtr().label("E-mail");
-
+        tab1 = addField("tab1", STypeInformacaoPessoal.class);
         tab2 = addFieldComposite("tab2");
-        experienciasProfissionais = tab2.addFieldListOfComposite("experienciasProfissionais", "experiencia");
-
-        STypeComposite<?>                                   experiencia         = experienciasProfissionais.getElementsType();
-        STypeYearMonth                                      dtInicioExperiencia = experiencia.addField("inicio", STypeYearMonth.class, true);
-        STypeYearMonth                                      dtFimExperiencia    = experiencia.addField("fim", STypeYearMonth.class);
-        STypeString                                         empresa             = experiencia.addFieldString("empresa", true);
-        STypeString                                         cargo               = experiencia.addFieldString("cargo", true);
-        STypeString atividades = experiencia.addFieldString("atividades");
-
-        {
-            experienciasProfissionais.withView(SViewListByMasterDetail::new)
-                    .asAtr().label("Experiências profissionais");
-            dtInicioExperiencia
-                    .asAtr().label("Data inicial")
-                    .asAtrBootstrap().colPreference(2);
-            dtFimExperiencia
-                    .asAtr().label("Data final")
-                    .asAtrBootstrap().colPreference(2);
-            empresa
-                    .asAtr().label("Empresa")
-                    .asAtrBootstrap().colPreference(8);
-            cargo
-                    .asAtr().label("Cargo");
-            atividades
-                    .withTextAreaView()
-                    .asAtr().label("Atividades Desenvolvidas");
-        }
+        experienciasProfissionais = tab2.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
         //@destacar:bloco
         SViewTab tabbed = new SViewTab();

@@ -16,53 +16,38 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout.breadcrumb;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewBreadcrumb;
-import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeComponente;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeSubComponente;
+
+import javax.annotation.Nonnull;
 
 /**
  * Breadcrumb
  */
-@CaseItem(componentName = "Breadcrumb", subCaseName = "Complexo", group = Group.LAYOUT)
+@CaseItem(componentName = "Breadcrumb", subCaseName = "Complexo", group = Group.LAYOUT, resources = {@Resource(STypeComponente.class),
+        @Resource(STypeSubComponente.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "Complexo")
 public class CaseComplexListByBreadcrumbSType extends STypeComposite<SIComposite> {
 
-    public STypeList<STypeComposite<SIComposite>, SIComposite> componentes;
+    public STypeList<STypeComponente, SIComposite> componentes;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        componentes = this.addFieldListOfComposite("componentes", "componente");
-        STypeComposite<SIComposite> componente  = componentes.getElementsType();
-        componente.asAtr().label("Componente");
+        componentes = this.addFieldListOf("componentes", STypeComponente.class);
 
-        componente.addFieldString("nome")
-                  .asAtr().label("Nome");
-        componente.withView(SViewByBlock::new);
-        
-        // TODO
-        STypeList<STypeComposite<SIComposite>, SIComposite> testes = componente.addFieldListOfComposite("testes", "teste");
-        testes.withView(SViewBreadcrumb::new)
-              .asAtr().label("Testes de componente");
-
-        STypeComposite<SIComposite> teste = testes.getElementsType();
-        teste.asAtr().label("Teste de Componentes");
-
-        teste.addFieldString("nome") 
-                .asAtr().label("Nome");
-        teste.withView(SViewByBlock::new);
-        
         componentes
+                //@destacar
                 .withView(SViewBreadcrumb::new)
                 .asAtr().label("Componentes");
-
     }
 }

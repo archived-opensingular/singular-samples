@@ -52,7 +52,6 @@ public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
         experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
         nome.asAtr().label("Nome");
-
         idade.asAtr().label("Idade");
 
         experienciasProfissionais.getElementsType().withView(SViewByBlock::new);
