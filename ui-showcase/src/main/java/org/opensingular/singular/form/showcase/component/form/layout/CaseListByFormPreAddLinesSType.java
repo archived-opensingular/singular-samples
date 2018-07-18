@@ -24,62 +24,33 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissional;
 
 import javax.annotation.Nonnull;
 
 /**
  * List by Form
  */
-@CaseItem(componentName = "List by Form", subCaseName = "Número de linhas iniciais", group = Group.LAYOUT)
+@CaseItem(componentName = "List by Form", subCaseName = "Número de linhas iniciais", group = Group.LAYOUT,
+        resources = @Resource(STypeExperienciaProfissional.class))
 @SInfoType(spackage = CaseLayoutPackage.class, name = "InitialNumberOfLines")
 public class CaseListByFormPreAddLinesSType extends STypeComposite<SIComposite> {
 
-    public STypeList<STypeComposite<SIComposite>, SIComposite> experienciasProfissionais;
+    public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        experienciasProfissionais = this.addFieldListOfComposite("experienciasProfissionais", "experiencia");
+        experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
-        STypeComposite<?>                                   experiencia         = experienciasProfissionais.getElementsType();
-        STypeYearMonth                                      dtInicioExperiencia = experiencia.addField("inicio", STypeYearMonth.class, true);
-        STypeYearMonth                                      dtFimExperiencia    = experiencia.addField("fim", STypeYearMonth.class);
-        STypeString                                         empresa             = experiencia.addFieldString("empresa", true);
-        STypeString                                         cargo               = experiencia.addFieldString("cargo", true);
-
-        STypeString atividades = experiencia.addFieldString("atividades");
-
-        {
-            experienciasProfissionais
-                    .withMiniumSizeOf(1)
-                    .withMaximumSizeOf(3)
-                    //@destacar:bloco
-                    .withView(() -> new SViewListByForm().setInitialNumberOfLines(2))
-                     //@destacar:fim
-                    .asAtr()
-                    .label("Experiências profissionais");
-            experiencia
-                    .asAtr()
-                    .displayString("${cargo!} na empresa ${empresa!}")
-                    .dependsOn(cargo, empresa);
-            dtInicioExperiencia
-                    .asAtr().label("Data inicial")
-                    .asAtrBootstrap().colPreference(2);
-            dtFimExperiencia
-                    .asAtr().label("Data final")
-                    .asAtrBootstrap().colPreference(2);
-            empresa
-                    .asAtr().label("Empresa")
-                    .asAtrBootstrap().colPreference(8);
-            cargo
-                    .asAtr().label("Cargo");
-            atividades
-                    .withTextAreaView()
-                    .asAtr().label("Atividades Desenvolvidas");
-        }
+        experienciasProfissionais
+                .withMiniumSizeOf(1)
+                .withMaximumSizeOf(3)
+                //@destacar
+                .withView(() -> new SViewListByForm().setInitialNumberOfLines(2))
+                .asAtr().label("Experiências profissionais");
     }
 }

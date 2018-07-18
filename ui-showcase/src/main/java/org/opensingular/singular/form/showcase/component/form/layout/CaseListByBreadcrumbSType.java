@@ -25,16 +25,18 @@ import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.form.view.SViewBreadcrumb;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissional;
 
 /**
  * Breadcrumb
  */
-@CaseItem(componentName = "Breadcrumb", subCaseName = "Simples", group = Group.LAYOUT)
+@CaseItem(componentName = "Breadcrumb", subCaseName = "Simples", group = Group.LAYOUT,
+        resources = @Resource(STypeExperienciaProfissional.class))
 @SInfoType(spackage = CaseLayoutPackage.class, name = "Simples")
 public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
 
@@ -54,10 +56,9 @@ public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
 
         experienciasProfissionais.getElementsType().withView(SViewByBlock::new);
 
-        //@destacar:bloco
         experienciasProfissionais
+        //@destacar
                     .withView(SViewBreadcrumb::new)
                     .asAtr().label("Experiências profissionais");
-        //@destacar:fim
     }
 }

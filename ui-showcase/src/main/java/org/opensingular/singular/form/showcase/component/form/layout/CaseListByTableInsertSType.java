@@ -27,6 +27,7 @@ import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.layout.form.STypeCertificacao;
 
 import javax.annotation.Nonnull;
 

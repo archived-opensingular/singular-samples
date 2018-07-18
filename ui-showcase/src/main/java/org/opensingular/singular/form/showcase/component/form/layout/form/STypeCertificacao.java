@@ -16,7 +16,7 @@
  *
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.form;
 
 
 import org.opensingular.form.SIComposite;
@@ -26,6 +26,7 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeYearMonth;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
 

@@ -21,97 +21,35 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeInteger;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.layout.form.STypeCargo;
+import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissionalWithCargos;
+import org.opensingular.singular.form.showcase.component.form.layout.form.STypePet;
 
 import javax.annotation.Nonnull;
 
 /**
  * List by Master Detail
  */
-@CaseItem(componentName = "List by Master Detail", subCaseName = "Aninhado", group = Group.LAYOUT)
+@CaseItem(componentName = "List by Master Detail", subCaseName = "Aninhado", group = Group.LAYOUT,
+        resources = {@Resource(STypeExperienciaProfissionalWithCargos.class), @Resource(STypeCargo.class),
+                @Resource(STypePet.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "MasterDetailNested")
 public class CaseListByMasterDetailNestedSType extends STypeComposite<SIComposite> {
 
-    public STypeList<STypeComposite<SIComposite>, SIComposite> experienciasProfissionais;
+    public STypeList<STypeExperienciaProfissionalWithCargos, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        experienciasProfissionais = this.addFieldListOfComposite("experienciasProfissionais", "experiencia");
+        experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissionalWithCargos.class);
 
-        STypeComposite<?>                                   experiencia         = experienciasProfissionais.getElementsType();
-        STypeYearMonth                                      dtInicioExperiencia = experiencia.addField("inicio", STypeYearMonth.class, true);
-        STypeYearMonth                                      dtFimExperiencia    = experiencia.addField("fim", STypeYearMonth.class);
-        STypeString                                         empresa             = experiencia.addFieldString("empresa", true);
-        STypeString                                         atividades          = experiencia.addFieldString("atividades");
-
-        STypeList<STypeComposite<SIComposite>, SIComposite> cargos = experiencia.addFieldListOfComposite("cargos", "cargo");
-        STypeComposite<?> cargo = cargos.getElementsType();
-        STypeString nome = cargo.addFieldString("nome", true);
-        STypeYearMonth dtInicioCargo = cargo.addField("inicio", STypeYearMonth.class, true);
-        STypeYearMonth dtFimCargo = cargo.addField("fim", STypeYearMonth.class);
-
-
-        STypeList<STypeComposite<SIComposite>, SIComposite> pets = cargo.addFieldListOfComposite("pets", "pet");
-        STypeComposite<?> pet = pets.getElementsType();
-        STypeString nomeDoPet = pet.addFieldString("nome", true);
-        STypeString tipoDoPet = pet.addFieldString("tipo", true);
-        tipoDoPet.selectionOf("Gatinho", "Cachorrinho", "Papagaio");
-        STypeInteger idadePet = pet.addFieldInteger("idade");
-
-        {
-            //@destacar:bloco
-            experienciasProfissionais
-                    .withView(SViewListByMasterDetail::new)
-                    .asAtr().label("Experiências profissionais");
-            //@destacar:fim
-            dtInicioExperiencia
-                    .asAtr().label("Data inicial")
-                    .asAtrBootstrap().colPreference(2);
-            dtFimExperiencia
-                    .asAtr().label("Data final")
-                    .asAtrBootstrap().colPreference(2);
-            empresa
-                    .asAtr().label("Empresa")
-                    .asAtrBootstrap().colPreference(8);
-            //@destacar:bloco
-            cargos
-                    .withView(SViewListByMasterDetail::new)
-                    .asAtr().label("Cargos na empresa");
-            dtInicioCargo
-                    .asAtr().label("Data inicial")
-                    .asAtrBootstrap().colPreference(4);
-            dtFimCargo
-                    .asAtr().label("Data final")
-                    .asAtrBootstrap().colPreference(4);
-            nome
-                    .asAtr().label("Nome")
-                    .asAtrBootstrap().colPreference(4);
-            pets
-                    .withView(new SViewListByMasterDetail()
-                            .col(nomeDoPet)
-                            .col(tipoDoPet))
-                    .asAtr()
-                    .label("Animais de estimação no trabalho");
-            nomeDoPet
-                    .asAtr().label("Nome")
-                    .asAtrBootstrap().colPreference(4);
-            tipoDoPet
-                    .withSelectView()
-                    .asAtr().label("Tipo")
-                    .asAtrBootstrap().colPreference(4);
-            idadePet
-                    .asAtr().label("Idade")
-                    .asAtrBootstrap().colPreference(4);
-            //@destacar:fim
-            atividades
-                    .withTextAreaView()
-                    .asAtr().label("Atividades Desenvolvidas");
-        }
-
+        //@destacar:bloco
+        experienciasProfissionais
+                .withView(SViewListByMasterDetail::new)
+                .asAtr().label("Experiências profissionais");
+        //@destacar:fim
     }
 }

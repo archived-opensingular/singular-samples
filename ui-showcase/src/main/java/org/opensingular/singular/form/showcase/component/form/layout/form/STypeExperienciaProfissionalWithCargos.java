@@ -16,67 +16,60 @@
  *
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.form;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeYearMonth;
+import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
 
 @SInfoType(spackage = CaseLayoutPackage.class)
-public class STypeExperienciaProfissional extends STypeComposite<SIComposite> {
+public class STypeExperienciaProfissionalWithCargos extends STypeComposite<SIComposite> {
 
     public STypeYearMonth inicio;
     public STypeYearMonth fim;
     public STypeString    empresa;
-    public STypeString    cargo;
     public STypeString    atividades;
+    public STypeList<STypeCargo, SIComposite> cargos;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         inicio = addField("inicio", STypeYearMonth.class, true);
         fim = addField("fim", STypeYearMonth.class);
         empresa = addFieldString("empresa", true);
-        cargo = addFieldString("cargo", true);
         atividades = addFieldString("atividades");
+        cargos = this.addFieldListOf("cargos", STypeCargo.class);
 
         inicio
-                .asAtr()
-                .label("Data inicial")
-                .asAtrBootstrap()
-                .colPreference(3);
+                .asAtr().label("Data inicial")
+                .asAtrBootstrap().colPreference(3);
 
         fim
-                .asAtr()
-                .label("Data final")
-                .asAtrBootstrap()
-                .colPreference(3);
+                .asAtr().label("Data final")
+                .asAtrBootstrap().colPreference(3);
 
         empresa
-                .asAtr()
-                .label("Empresa")
-                .asAtrBootstrap()
-                .newRow()
-                .colPreference(6);
-
-        cargo
-                .asAtr()
-                .label("Cargo")
-                .asAtrBootstrap()
-                .colPreference(6);
+                .asAtr().label("Empresa")
+                .asAtrBootstrap().newRow().colPreference(6);
 
         atividades
                 .withTextAreaView()
-                .asAtrBootstrap()
-                .colPreference(12)
-                .asAtr()
-                .label("Atividades Desenvolvidas");
+                .asAtr().label("Atividades Desenvolvidas")
+                .asAtrBootstrap().colPreference(12);
 
-        this.asAtr()
-                .label("Experiências profissionais");
+        //@destacar:bloco
+        cargos
+                .withView(SViewListByMasterDetail::new)
+                .asAtr().label("Cargos na empresa");
+        //@destacar:fim
+
+        this.asAtr().label("Experiências profissionais");
     }
 }

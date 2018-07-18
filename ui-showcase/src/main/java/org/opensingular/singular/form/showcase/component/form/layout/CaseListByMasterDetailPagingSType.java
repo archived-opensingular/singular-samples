@@ -28,6 +28,7 @@ import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissional;
 
 import javax.annotation.Nonnull;
 import java.util.Date;
@@ -44,10 +45,11 @@ public class CaseListByMasterDetailPagingSType extends STypeComposite<SIComposit
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
-        //@destacar:bloco
-        experienciasProfissionais.withView(new SViewListByMasterDetail());
-        //@destacar:fim
-        experienciasProfissionais.withInitListener(this::fillWithBlankValues);
+
+        experienciasProfissionais
+                //@destacar
+                .withView(new SViewListByMasterDetail())
+                .withInitListener(this::fillWithBlankValues);
     }
 
     private void fillWithBlankValues(SIList<SIComposite> list) {
