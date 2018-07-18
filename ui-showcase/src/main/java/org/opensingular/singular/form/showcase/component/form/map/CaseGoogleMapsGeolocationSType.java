@@ -42,9 +42,10 @@ public class CaseGoogleMapsGeolocationSType extends STypeComposite<SIComposite> 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         coordenada = this.addField("coordenada", STypeLatitudeLongitudeGMaps.class);
-        //@destacar
-        coordenada.withView(new SViewCurrentLocation().disableUserLocationSelection());
+
         coordenada
+        //@destacar
+                .withView(new SViewCurrentLocation().disableUserLocationSelection())
                 .asAtr().required();
     }
 }

@@ -38,7 +38,7 @@ public class CaseGoogleMapsSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         coordenada = this.addField("coordenada", STypeLatitudeLongitudeGMaps.class);
-        coordenada
-                .asAtr().required();
+
+        coordenada.asAtr().required();
     }
 }
