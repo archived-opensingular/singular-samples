@@ -16,18 +16,10 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout.tab;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeInteger;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.type.util.STypeEMail;
-import org.opensingular.form.type.util.STypeYearMonth;
-import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.view.SViewTab;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
@@ -37,18 +29,18 @@ import org.opensingular.singular.form.showcase.component.form.layout.stypes.STyp
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeInformacaoPessoal;
 
+import javax.annotation.Nonnull;
+
 /**
  * Tabs
  */
 @CaseItem(componentName = "Tabs", group = Group.LAYOUT, resources = {@Resource(STypeInformacaoPessoal.class),
-        @Resource(STypeExperienciaProfissional.class)})
+        @Resource(STypeExperienciaProfissional.class), @Resource(STypeExperienciaList.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTabs")
 public class CaseTabsSType extends STypeComposite<SIComposite> {
 
     public STypeInformacaoPessoal tab1;
     public STypeExperienciaList tab2;
-
-    public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
