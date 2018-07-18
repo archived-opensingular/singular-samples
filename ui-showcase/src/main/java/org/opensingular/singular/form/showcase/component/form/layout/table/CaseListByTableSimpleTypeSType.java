@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.table;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -26,6 +26,7 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
 
@@ -42,10 +43,10 @@ public class CaseListByTableSimpleTypeSType extends STypeComposite<SIComposite> 
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nomes = this.addFieldListOf("nomes", STypeString.class);
 
-        nomes.withView(SViewListByTable::new);
-        nomes.withMiniumSizeOf(2);
-        nomes.asAtrBootstrap().colPreference(6);
-        nomes.asAtr().label("Nomes");
+        nomes
+                .withView(SViewListByTable::new)
+                .asAtr().label("Nomes")
+                .asAtrBootstrap().colPreference(6);
 
         nomes.getElementsType().asAtr().required();
     }

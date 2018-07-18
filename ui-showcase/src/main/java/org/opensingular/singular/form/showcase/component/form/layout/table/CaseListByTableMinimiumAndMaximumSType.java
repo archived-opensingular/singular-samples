@@ -14,41 +14,40 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.table;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
-import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissional;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeCertificacao;
 
 import javax.annotation.Nonnull;
 
 /**
- * List by Master Detail
+ * List by Table
  */
-@CaseItem(componentName = "List by Master Detail", subCaseName = "Tamanho mínimo e máximo", group = Group.LAYOUT,
-        resources = @Resource(STypeExperienciaProfissional.class))
-@SInfoType(spackage = CaseLayoutPackage.class, name = "MinMaxSizeMasterDetail")
-public class CaseListByMasterDetailMiniumAndMaximumSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "List by Table", subCaseName = "Tamanho mínimo e máximo", group = Group.LAYOUT)
+@SInfoType(spackage = CaseLayoutPackage.class, name = "MinMaxSizeTable")
+public class CaseListByTableMinimiumAndMaximumSType extends STypeComposite<SIComposite> {
 
-    public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
+    public STypeList<STypeCertificacao, SIComposite> certificacoes;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
+        certificacoes = this.addFieldListOf("certificacoes", STypeCertificacao.class);
 
-        experienciasProfissionais
+        certificacoes
                 //@destacar:bloco
-                .withMiniumSizeOf(1)
+                .withMiniumSizeOf(2)
                 .withMaximumSizeOf(3)
                 //@destacar:fim
-                .withView(SViewListByMasterDetail::new)
-                .asAtr().label("Experiências profissionais");
+                .withView(SViewListByTable::new)
+                .asAtr().label("Certificações");
     }
 }

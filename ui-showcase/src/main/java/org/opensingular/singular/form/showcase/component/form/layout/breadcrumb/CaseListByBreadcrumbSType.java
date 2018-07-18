@@ -14,38 +14,52 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.breadcrumb;
+
+import javax.annotation.Nonnull;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.view.SViewListByForm;
+import org.opensingular.form.type.core.STypeInteger;
+import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.view.SViewBreadcrumb;
+import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
-import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissional;
-
-import javax.annotation.Nonnull;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
 
 /**
- * List by Form
+ * Breadcrumb
  */
-@CaseItem(componentName = "List by Form", subCaseName = "Default", group = Group.LAYOUT,
+@CaseItem(componentName = "Breadcrumb", subCaseName = "Simples", group = Group.LAYOUT,
         resources = @Resource(STypeExperienciaProfissional.class))
-@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultListForm")
-public class CaseListByFormDefaultSType extends STypeComposite<SIComposite> {
+@SInfoType(spackage = CaseLayoutPackage.class, name = "Simples")
+public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
 
+    public STypeString nome;
+    public STypeInteger idade;
     public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
+        nome = this.addFieldString("nome", true);
+        idade = this.addFieldInteger("idade", true);
         experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
+        nome.asAtr().label("Nome");
+
+        idade.asAtr().label("Idade");
+
+        experienciasProfissionais.getElementsType().withView(SViewByBlock::new);
+
         experienciasProfissionais
-                //@destacar
-                .withView(new SViewListByForm())
-                .asAtr().label("Experiências profissionais");
+        //@destacar
+                    .withView(SViewBreadcrumb::new)
+                    .asAtr().label("Experiências profissionais");
     }
 }

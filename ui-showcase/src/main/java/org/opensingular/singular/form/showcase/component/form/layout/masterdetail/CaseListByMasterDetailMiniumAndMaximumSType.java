@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.masterdetail;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -25,31 +25,31 @@ import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
-import org.opensingular.singular.form.showcase.component.form.layout.form.STypeCargo;
-import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissionalWithCargos;
-import org.opensingular.singular.form.showcase.component.form.layout.form.STypePet;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
 
 import javax.annotation.Nonnull;
 
 /**
  * List by Master Detail
  */
-@CaseItem(componentName = "List by Master Detail", subCaseName = "Aninhado", group = Group.LAYOUT,
-        resources = {@Resource(STypeExperienciaProfissionalWithCargos.class), @Resource(STypeCargo.class),
-                @Resource(STypePet.class)})
-@SInfoType(spackage = CaseLayoutPackage.class, name = "MasterDetailNested")
-public class CaseListByMasterDetailNestedSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "List by Master Detail", subCaseName = "Tamanho mínimo e máximo", group = Group.LAYOUT,
+        resources = @Resource(STypeExperienciaProfissional.class))
+@SInfoType(spackage = CaseLayoutPackage.class, name = "MinMaxSizeMasterDetail")
+public class CaseListByMasterDetailMiniumAndMaximumSType extends STypeComposite<SIComposite> {
 
-    public STypeList<STypeExperienciaProfissionalWithCargos, SIComposite> experienciasProfissionais;
+    public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissionalWithCargos.class);
+        experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
-        //@destacar:bloco
         experienciasProfissionais
+                //@destacar:bloco
+                .withMiniumSizeOf(1)
+                .withMaximumSizeOf(3)
+                //@destacar:fim
                 .withView(SViewListByMasterDetail::new)
                 .asAtr().label("Experiências profissionais");
-        //@destacar:fim
     }
 }

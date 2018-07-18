@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.masterdetail;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -25,30 +25,32 @@ import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
-import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissional;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeCargo;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissionalWithCargos;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypePet;
 
 import javax.annotation.Nonnull;
 
 /**
  * List by Master Detail
  */
-@CaseItem(componentName = "List by Master Detail", subCaseName = "Desabilitar Botões", group = Group.LAYOUT,
-        resources = @Resource(STypeExperienciaProfissional.class))
-@SInfoType(spackage = CaseLayoutPackage.class, name = "DisableButtonMasterDetail")
-public class CaseListByMasterDetailButtonsSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "List by Master Detail", subCaseName = "Aninhado", group = Group.LAYOUT,
+        resources = {@Resource(STypeExperienciaProfissionalWithCargos.class), @Resource(STypeCargo.class),
+                @Resource(STypePet.class)})
+@SInfoType(spackage = CaseLayoutPackage.class, name = "MasterDetailNested")
+public class CaseListByMasterDetailNestedSType extends STypeComposite<SIComposite> {
 
-    public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
+    public STypeList<STypeExperienciaProfissionalWithCargos, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
+        experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissionalWithCargos.class);
 
         //@destacar:bloco
-        experienciasProfissionais.withView(new SViewListByMasterDetail()
-                //.disableNew() // o botão de adicionar pode ser desabilitado também.
-                .disableDelete()
-                .disableEdit())
-                //@destacar:fim
+        experienciasProfissionais
+                .withView(SViewListByMasterDetail::new)
                 .asAtr().label("Experiências profissionais");
+        //@destacar:fim
     }
 }

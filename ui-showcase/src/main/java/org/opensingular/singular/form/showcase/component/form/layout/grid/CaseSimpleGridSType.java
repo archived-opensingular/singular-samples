@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.grid;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -25,15 +25,20 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
 
+
 /**
- * Permite a configuração do inicio de uma nova linha, possibilitando melhor controle do layout.
+ * Configura automaticamente o tamanho das colunas do bootstrap para telas menores,
+ * multiplicando pelo fator de 2, 3 e 4 para colunas md (médium), sm (small) e xs (extra small),
+ * mantendo o máximo de 12.
+ * Por exemplo, ao configurar o tamanho para 3, o tamanho md será 6, sm 12 e xs 12.
  */
-@CaseItem(componentName = "Grid", subCaseName = "Row Control", group = Group.LAYOUT)
-@SInfoType(spackage = CaseLayoutPackage.class, name = "RowControl")
-public class CaseRowControlGridSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Grid", subCaseName = "Default", group = Group.LAYOUT)
+@SInfoType(spackage = CaseLayoutPackage.class, name = "Simple")
+public class CaseSimpleGridSType extends STypeComposite<SIComposite> {
 
     public STypeString nome;
     public STypeInteger idade;
@@ -42,19 +47,22 @@ public class CaseRowControlGridSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = this.addFieldString("nome");
+        idade = this.addFieldInteger("idade");
+        email = this.addFieldEmail("email");
+
         nome
                 .asAtr().label("Nome")
-                .asAtrBootstrap().colPreference(4);
+                //@destacar
+                .asAtrBootstrap().colPreference(6);
 
-        idade = this.addFieldInteger("idade");
         idade
                 .asAtr().label("Idade")
-                .asAtrBootstrap().colPreference(1);
+                //@destacar
+                .asAtrBootstrap().colPreference(2);
 
-        email = this.addFieldEmail("email");
         email
                 .asAtr().label("E-mail")
-                .asAtrBootstrap().newRow()
-                .asAtrBootstrap().colPreference(5);
+                //@destacar
+                .asAtrBootstrap().colPreference(8);
     }
 }

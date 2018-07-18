@@ -14,51 +14,42 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
-
-import javax.annotation.Nonnull;
+package org.opensingular.singular.form.showcase.component.form.layout.masterdetail;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeInteger;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewBreadcrumb;
-import org.opensingular.form.view.SViewByBlock;
+import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
-import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissional;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
+
+import javax.annotation.Nonnull;
 
 /**
- * Breadcrumb
+ * List by Master Detail
  */
-@CaseItem(componentName = "Breadcrumb", subCaseName = "Simples", group = Group.LAYOUT,
+@CaseItem(componentName = "List by Master Detail", subCaseName = "Desabilitar Botões", group = Group.LAYOUT,
         resources = @Resource(STypeExperienciaProfissional.class))
-@SInfoType(spackage = CaseLayoutPackage.class, name = "Simples")
-public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
+@SInfoType(spackage = CaseLayoutPackage.class, name = "DisableButtonMasterDetail")
+public class CaseListByMasterDetailButtonsSType extends STypeComposite<SIComposite> {
 
-    public STypeString nome;
-    public STypeInteger idade;
     public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        nome = this.addFieldString("nome", true);
-        idade = this.addFieldInteger("idade", true);
         experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
-        nome.asAtr().label("Nome");
-
-        idade.asAtr().label("Idade");
-
-        experienciasProfissionais.getElementsType().withView(SViewByBlock::new);
-
-        experienciasProfissionais
-        //@destacar
-                    .withView(SViewBreadcrumb::new)
-                    .asAtr().label("Experiências profissionais");
+        //@destacar:bloco
+        experienciasProfissionais.withView(new SViewListByMasterDetail()
+                //.disableNew() // o botão de adicionar pode ser desabilitado também.
+                .disableDelete()
+                .disableEdit())
+                //@destacar:fim
+                .asAtr().label("Experiências profissionais");
     }
 }

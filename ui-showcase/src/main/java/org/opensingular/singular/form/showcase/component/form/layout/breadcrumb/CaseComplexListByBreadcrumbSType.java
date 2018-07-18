@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.breadcrumb;
 
 import javax.annotation.Nonnull;
 
@@ -27,6 +27,7 @@ import org.opensingular.form.view.SViewBreadcrumb;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 /**
  * Breadcrumb
@@ -47,7 +48,7 @@ public class CaseComplexListByBreadcrumbSType extends STypeComposite<SIComposite
                   .asAtr().label("Nome");
         componente.withView(SViewByBlock::new);
         
-        
+        // TODO
         STypeList<STypeComposite<SIComposite>, SIComposite> testes = componente.addFieldListOfComposite("testes", "teste");
         testes.withView(SViewBreadcrumb::new)
               .asAtr().label("Testes de componente");

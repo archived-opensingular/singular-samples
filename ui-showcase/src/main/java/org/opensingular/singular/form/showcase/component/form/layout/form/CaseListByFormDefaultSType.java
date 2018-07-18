@@ -14,28 +14,29 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.form;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
-import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissional;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
 
 import javax.annotation.Nonnull;
 
 /**
- * List by Master Detail
+ * List by Form
  */
-@CaseItem(componentName = "List by Master Detail", subCaseName = "Configurar Colunas", group = Group.LAYOUT,
+@CaseItem(componentName = "List by Form", subCaseName = "Default", group = Group.LAYOUT,
         resources = @Resource(STypeExperienciaProfissional.class))
-@SInfoType(spackage = CaseLayoutPackage.class, name = "ConfigColMasterDetail")
-public class CaseListByMasterDetailColumnsSType extends STypeComposite<SIComposite> {
+@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultListForm")
+public class CaseListByFormDefaultSType extends STypeComposite<SIComposite> {
 
     public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
@@ -43,16 +44,9 @@ public class CaseListByMasterDetailColumnsSType extends STypeComposite<SIComposi
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
-        STypeExperienciaProfissional stExperienciaProfissional = experienciasProfissionais.getElementsType();
-        //@destacar:bloco
-        SViewListByMasterDetail experienciaView = new SViewListByMasterDetail()
-                .col(stExperienciaProfissional.empresa, "Empresa em que trabalhou") // Desta forma, será utilizado rótulo personalizado para esta coluna.
-                .col(stExperienciaProfissional.inicio) //Nos demais, a coluna terá o mesmo rótulo do tipo que a define.
-                .col(stExperienciaProfissional.fim)
-                .label("Informar Experiência Anterior");
-
-        experienciasProfissionais.withView(experienciaView)
-                //@destacar:fim
+        experienciasProfissionais
+                //@destacar
+                .withView(new SViewListByForm())
                 .asAtr().label("Experiências profissionais");
     }
 }

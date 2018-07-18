@@ -14,38 +14,38 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.layout;
+package org.opensingular.singular.form.showcase.component.form.layout.table;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
-import org.opensingular.singular.form.showcase.component.form.layout.form.STypeExperienciaProfissional;
+import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeCertificacao;
 
 import javax.annotation.Nonnull;
 
 /**
- * List by Master Detail
+ * List by Table
  */
-@CaseItem(componentName = "List by Master Detail", subCaseName = "Default", group = Group.LAYOUT,
-        resources = @Resource(STypeExperienciaProfissional.class))
-@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultMasterDetail")
-public class CaseListByMasterDetailDefaultSType extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "List by Table", subCaseName = "Default", group = Group.LAYOUT, resources = {@Resource(STypeCertificacao.class)})
+@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTable")
+public class CaseListByTableDefaultSType extends STypeComposite<SIComposite> {
 
-    public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
+    public STypeList<STypeCertificacao, SIComposite> certificacoes;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
+        certificacoes = this.addFieldListOf("certificacoes", STypeCertificacao.class);
 
-        experienciasProfissionais
+        certificacoes
                 //@destacar
-                .withView(SViewListByMasterDetail::new)
-                .asAtr().label("Experiências profissionais").itemLabel("Experiência Profissional");
+                .withView(SViewListByTable::new)
+                .asAtr().label("Certificações");
     }
 }
