@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.view.page;
 
+import javax.inject.Inject;
+
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
@@ -32,8 +34,6 @@ import org.opensingular.singular.form.showcase.view.page.form.FormItemCasePanel;
 import org.opensingular.singular.form.showcase.view.page.studio.StudioItemCasePanel;
 import org.opensingular.singular.form.showcase.view.template.ShowcaseTemplate;
 import org.wicketstuff.annotation.mount.MountPath;
-
-import javax.inject.Inject;
 
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
@@ -75,16 +75,16 @@ public class ComponentPage extends ShowcaseTemplate {
                     name = c.getComponentName();
                 }
                 if (ShowCaseType.FORM == showCaseItem.getShowCaseType()) {
-                    bsTabPanel.addTab(name, new FormItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseForm) c)));
+                    bsTabPanel.addTab(name, c.getSubCaseName(), new FormItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseForm) c)));
                 } else if (ShowCaseType.STUDIO == showCaseItem.getShowCaseType()) {
-                    bsTabPanel.addTab(name, new StudioItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseStudio) c)));
+                    bsTabPanel.addTab(name, c.getSubCaseName(), new StudioItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseStudio) c)));
                 }
             });
             casesContainer.add(bsTabPanel);
 
         } else if (!showCaseItem.getCases().isEmpty()) {
             if (ShowCaseType.STUDIO == showCaseItem.getShowCaseType()) {
-                   casesContainer.add(new StudioItemCasePanel("cases", $m.ofValue((CaseBaseStudio) showCaseItem.getCases().get(0))));
+                casesContainer.add(new StudioItemCasePanel("cases", $m.ofValue((CaseBaseStudio) showCaseItem.getCases().get(0))));
             } else {
                 casesContainer.add(new FormItemCasePanel("cases", $m.ofValue((CaseBaseForm) showCaseItem.getCases().get(0))));
             }
