@@ -25,6 +25,7 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeEMail;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
@@ -32,7 +33,8 @@ import javax.annotation.Nonnull;
 /**
  * Permite a configuração fina do tamanho das colunas, sendo possível especificar o tamanho para telas de qualquer tamanho.
  */
-/*hidden*/@CaseItem(componentName = "Grid", subCaseName = "Fine Tunning", group = Group.LAYOUT)
+/*hidden*/@CaseItem(componentName = "Grid", subCaseName = "Fine Tunning", group = Group.LAYOUT,
+/*hidden*/        resources = @Resource(CaseLayoutPackage.class))
 @SInfoType(spackage = CaseLayoutPackage.class, name = "FineTuning")
 public class CaseFineTunningGridSType extends STypeComposite<SIComposite> {
 

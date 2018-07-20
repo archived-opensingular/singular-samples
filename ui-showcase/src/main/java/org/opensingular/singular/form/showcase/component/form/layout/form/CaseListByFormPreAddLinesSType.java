@@ -37,7 +37,7 @@ import javax.annotation.Nonnull;
  * List by Form
  */
 /*hidden*/@CaseItem(componentName = "List by Form", subCaseName = "Número de linhas iniciais", group = Group.LAYOUT,
-/*hidden*/        resources = @Resource(STypeExperienciaProfissional.class))
+/*hidden*/        resources = {@Resource(STypeExperienciaProfissional.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "InitialNumberOfLines")
 public class CaseListByFormPreAddLinesSType extends STypeComposite<SIComposite> {
 

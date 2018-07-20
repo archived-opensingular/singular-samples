@@ -35,7 +35,7 @@ import javax.annotation.Nonnull;
  * Breadcrumb
  */
 /*hidden*/@CaseItem(componentName = "Breadcrumb", subCaseName = "Complexo", group = Group.LAYOUT, resources = {@Resource(STypeComponente.class),
-/*hidden*/        @Resource(STypeSubComponente.class)})
+/*hidden*/        @Resource(STypeSubComponente.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "Complexo")
 public class CaseComplexListByBreadcrumbSType extends STypeComposite<SIComposite> {
 

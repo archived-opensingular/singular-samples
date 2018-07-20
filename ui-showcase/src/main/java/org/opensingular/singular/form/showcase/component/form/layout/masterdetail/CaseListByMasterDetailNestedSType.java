@@ -36,7 +36,8 @@ import javax.annotation.Nonnull;
  * List by Master Detail
  */
 /*hidden*/@CaseItem(componentName = "List by Master Detail", subCaseName = "Aninhado", group = Group.LAYOUT,
-/*hidden*/        resources = {@Resource(STypeExperienciaProfissionalWithCargos.class), @Resource(STypeCargo.class), @Resource(STypePet.class)})
+/*hidden*/        resources = {@Resource(STypeExperienciaProfissionalWithCargos.class), @Resource(STypeCargo.class),
+/*hidden*/        @Resource(STypePet.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "MasterDetailNested")
 public class CaseListByMasterDetailNestedSType extends STypeComposite<SIComposite> {
 

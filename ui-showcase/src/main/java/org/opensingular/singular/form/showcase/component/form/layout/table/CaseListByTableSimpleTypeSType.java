@@ -26,6 +26,7 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByTable;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
@@ -33,7 +34,8 @@ import javax.annotation.Nonnull;
 /**
  * List by Table
  */
-/*hidden*/@CaseItem(componentName = "List by Table", subCaseName = "Simple Type", group = Group.LAYOUT)
+/*hidden*/@CaseItem(componentName = "List by Table", subCaseName = "Simple Type", group = Group.LAYOUT,
+/*hidden*/        resources = @Resource(CaseLayoutPackage.class))
 @SInfoType(spackage = CaseLayoutPackage.class, name = "SimpleTypeTable")
 public class CaseListByTableSimpleTypeSType extends STypeComposite<SIComposite> {
 

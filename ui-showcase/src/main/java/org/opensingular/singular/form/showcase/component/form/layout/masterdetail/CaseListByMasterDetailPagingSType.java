@@ -38,7 +38,7 @@ import java.util.Date;
  * List by Master Detail
  */
 /*hidden*/@CaseItem(componentName = "List by Master Detail", subCaseName = "Paginado", group = Group.LAYOUT,
-/*hidden*/        resources = @Resource(STypeExperienciaProfissional.class))
+/*hidden*/        resources = {@Resource(STypeExperienciaProfissional.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "MasterDetailPaging")
 public class CaseListByMasterDetailPagingSType extends STypeComposite<SIComposite> {
 

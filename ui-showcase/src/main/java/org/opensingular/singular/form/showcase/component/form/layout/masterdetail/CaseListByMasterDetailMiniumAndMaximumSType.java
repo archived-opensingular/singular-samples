@@ -34,7 +34,7 @@ import javax.annotation.Nonnull;
  * List by Master Detail
  */
 /*hidden*/@CaseItem(componentName = "List by Master Detail", subCaseName = "Tamanho mínimo e máximo", group = Group.LAYOUT,
-/*hidden*/        resources = @Resource(STypeExperienciaProfissional.class))
+/*hidden*/        resources = {@Resource(STypeExperienciaProfissional.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "MinMaxSizeMasterDetail")
 public class CaseListByMasterDetailMiniumAndMaximumSType extends STypeComposite<SIComposite> {
 

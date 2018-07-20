@@ -35,7 +35,7 @@ import javax.annotation.Nonnull;
  * Tabs
  */
 /*hidden*/@CaseItem(componentName = "Tabs", group = Group.LAYOUT, resources = {@Resource(STypeInformacaoPessoal.class),
-/*hidden*/        @Resource(STypeExperienciaProfissional.class), @Resource(STypeExperienciaList.class)})
+/*hidden*/        @Resource(STypeExperienciaProfissional.class), @Resource(STypeExperienciaList.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTabs")
 public class CaseTabsSType extends STypeComposite<SIComposite> {
 

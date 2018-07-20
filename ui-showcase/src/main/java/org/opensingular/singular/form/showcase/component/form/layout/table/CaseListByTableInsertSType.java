@@ -35,7 +35,8 @@ import javax.annotation.Nonnull;
 /**
  * List by Table with Insert Option
  */
-/*hidden*/@CaseItem(componentName = "List by Table", subCaseName = "Line Insert", group = Group.LAYOUT, resources = {@Resource(STypeCertificacao.class)})
+/*hidden*/@CaseItem(componentName = "List by Table", subCaseName = "Line Insert", group = Group.LAYOUT,
+/*hidden*/        resources = {@Resource(STypeCertificacao.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTable")
 public class CaseListByTableInsertSType extends STypeComposite<SIComposite> {
 

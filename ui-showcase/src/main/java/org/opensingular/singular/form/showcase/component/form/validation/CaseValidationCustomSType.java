@@ -25,13 +25,14 @@ import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.validation.InstanceValidatable;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Validação customizada, no exemplo verifica se o campo é menor que 1000
  */
-/*hidden*/@CaseItem(componentName = "Custom", group = Group.VALIDATION)
+/*hidden*/@CaseItem(componentName = "Custom", group = Group.VALIDATION, resources = @Resource(CaseValidationPackage.class))
 @SInfoType(spackage = CaseValidationPackage.class, name = "Custom")
 public class CaseValidationCustomSType extends STypeComposite<SIComposite> {
 

@@ -23,13 +23,14 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.util.STypeLatitudeLongitudeGMaps;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Para adicionar um marcador basta clicar no posição do mapa.
  */
-/*hidden*/@CaseItem(componentName = "Google Maps", group = Group.MAPS)
+/*hidden*/@CaseItem(componentName = "Google Maps", group = Group.MAPS, resources = @Resource(CaseMapsPackage.class))
 @SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMaps")
 public class CaseGoogleMapsSType extends STypeComposite<SIComposite> {
 

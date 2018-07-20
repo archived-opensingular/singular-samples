@@ -34,7 +34,7 @@ import javax.annotation.Nonnull;
  * List by Master Detail
  */
 /*hidden*/@CaseItem(componentName = "List by Master Detail", subCaseName = "Configurar Colunas", group = Group.LAYOUT,
-/*hidden*/        resources = @Resource(STypeExperienciaProfissional.class))
+/*hidden*/        resources = {@Resource(STypeExperienciaProfissional.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "ConfigColMasterDetail")
 public class CaseListByMasterDetailColumnsSType extends STypeComposite<SIComposite> {
 
