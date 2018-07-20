@@ -30,8 +30,8 @@ import org.opensingular.form.view.richtext.RichTextAction;
 import org.opensingular.form.view.richtext.RichTextSelectionContext;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
 import org.opensingular.lib.commons.ui.Icon;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
