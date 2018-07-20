@@ -26,6 +26,7 @@ import org.opensingular.form.type.core.STypeMonetary;
 import org.opensingular.form.view.SViewListByMasterDetail;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.interaction.form.STypeFuncionario;
 
 import javax.annotation.Nonnull;
@@ -34,7 +35,8 @@ import java.math.BigDecimal;
 /**
  * Listener que atualiza valores de itens de um mestre-detalhe.
  */
-/*hidden*/@CaseItem(componentName = "Listeners", subCaseName = "Master/detail", group = Group.INTERACTION)
+/*hidden*/@CaseItem(componentName = "Listeners", subCaseName = "Master/detail", group = Group.INTERACTION,
+/*hidden*/        resources = @Resource(CaseInteractionPackage.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "MasterDetail")
 public class CaseUpdateListenerMasterDetailSType extends STypeComposite<SIComposite> {
 

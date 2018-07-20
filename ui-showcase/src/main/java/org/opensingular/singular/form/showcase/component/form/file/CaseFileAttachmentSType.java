@@ -31,7 +31,8 @@ import javax.annotation.Nonnull;
 /**
  * Campo para anexar arquivos
  */
-/*hidden*/@CaseItem(componentName = "Attachment", group = Group.FILE, resources = @Resource(PageWithAttachment.class))
+/*hidden*/@CaseItem(componentName = "Attachment", group = Group.FILE,
+/*hidden*/        resources = {@Resource(PageWithAttachment.class), @Resource(CaseFilePackage.class)})
 @SInfoType(spackage = CaseFilePackage.class, name = "Attachment")
 public class CaseFileAttachmentSType extends STypeComposite<SIComposite> {
 

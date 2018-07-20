@@ -45,7 +45,7 @@ import java.util.List;
  */
 /*hidden*/@CaseItem(componentName = "Custom Mapper", subCaseName = "Tabbed Panel", group = Group.CUSTOM, resources = {
 /*hidden*/    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html"),@Resource(STypeContainer.class),
-/*hidden*/        @Resource(STypeContainerString.class), @Resource(STypeContainerInteger.class), @Resource(STypeContainerBoolean.class)})
+/*hidden*/        @Resource(STypeContainerString.class), @Resource(STypeContainerInteger.class), @Resource(STypeContainerBoolean.class), @Resource(CaseCustomPackage.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "TabbedPanel")
 public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite> {
 

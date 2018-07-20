@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
  * Interação usando exists
  */
 /*hidden*/@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Exists", group = Group.INTERACTION,
-/*hidden*/        resources = @Resource(STypeRecord.class))
+/*hidden*/        resources = {@Resource(STypeRecord.class), @Resource(CaseInteractionPackage.class)})
 @SInfoType(spackage = CaseInteractionPackage.class, name = "Exists")
 public class CaseInteractionExistsSType extends STypeComposite<SIComposite> {
 

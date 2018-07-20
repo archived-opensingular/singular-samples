@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
 /**
  * Campo para anexar vários arquivos
  */
-/*hidden*/@CaseItem(componentName = "Multiple Attachments", group = Group.FILE, subCaseName = "Subtitle")
+/*hidden*/@CaseItem(componentName = "Multiple Attachments", group = Group.FILE, subCaseName = "Subtitle", resources = @Resource(CaseFilePackage.class))
 @SInfoType(spackage = CaseFilePackage.class, name = "MultipleAttachmentsSubtitle")
 public class CaseFileMultipleAttachmentsSubtitleSType extends STypeComposite<SIComposite> {
 

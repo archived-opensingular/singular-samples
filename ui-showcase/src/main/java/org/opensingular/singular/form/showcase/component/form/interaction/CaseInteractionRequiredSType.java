@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
  * Torna os campos obrigatórios dinamicamente.
  */
 /*hidden*/@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Required", group = Group.INTERACTION,
-/*hidden*/        resources = @Resource(STypeRecord.class))
+/*hidden*/        resources = {@Resource(STypeRecord.class), @Resource(CaseInteractionPackage.class)})
 @SInfoType(spackage = CaseInteractionPackage.class, name = "Required")
 public class CaseInteractionRequiredSType extends STypeComposite<SIComposite> {
 

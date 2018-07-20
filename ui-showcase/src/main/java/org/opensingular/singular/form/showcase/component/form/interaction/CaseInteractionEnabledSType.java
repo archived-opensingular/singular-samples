@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
  * Habilita os componentes dinamicamente.
  */
 /*hidden*/@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Enabled", group = Group.INTERACTION,
-/*hidden*/        resources = @Resource(STypeRecord.class))
+/*hidden*/        resources = {@Resource(STypeRecord.class), @Resource(CaseInteractionPackage.class)})
 @SInfoType(spackage = CaseInteractionPackage.class, name = "Enabled")
 public class CaseInteractionEnabledSType extends STypeComposite<SIComposite> {
 

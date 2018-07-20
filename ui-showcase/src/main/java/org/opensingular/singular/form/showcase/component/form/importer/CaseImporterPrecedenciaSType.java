@@ -33,7 +33,8 @@ import org.opensingular.form.type.util.STypeEMail;
  * Importador de atributos através de arquivos XML. <br/>
  * Utilizando a precedencia, onde o xml tem maior prioridade entre os demais.
  */
-/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Precedência", group = Group.IMPORTER, resources = @Resource(value = CaseImporterPrecedenciaSType.class, extension = "xml") )
+/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Precedência", group = Group.IMPORTER,
+/*hidden*/        resources = {@Resource(value = CaseImporterPrecedenciaSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLPrecedencia")
 public class CaseImporterPrecedenciaSType extends STypeComposite<SIComposite> {
 

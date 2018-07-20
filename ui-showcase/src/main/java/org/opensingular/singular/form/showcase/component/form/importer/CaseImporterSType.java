@@ -33,7 +33,8 @@ import org.opensingular.form.type.util.STypeEMail;
  * Importador de atributos através de arquivos XML.<br/>
  * Exemplo básico de importação. 
  */
-/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Default", group = Group.IMPORTER, resources = @Resource(value = CaseImporterSType.class, extension = "xml"))
+/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Default", group = Group.IMPORTER,
+/*hidden*/        resources = {@Resource(value = CaseImporterSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLDefault")
 public class CaseImporterSType extends STypeComposite<SIComposite> {
 

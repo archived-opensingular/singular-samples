@@ -33,8 +33,8 @@ import javax.annotation.Nonnull;
  * Importador de atributos através de arquivos XML. <br/>
  * Este é um exemplo mais complexo que os demais, pois existe uma hierarquia de fields no form.
  */
-/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Complex", group = Group.IMPORTER,
-/*hidden*/        resources = {@Resource(value = CaseImporterComplexSType.class, extension = "xml"), @Resource(STypeEndereco.class)})
+/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Complex", group = Group.IMPORTER, resources = {@Resource(STypeEndereco.class),
+/*hidden*/        @Resource(value = CaseImporterComplexSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLComplex")
 public class CaseImporterComplexSType extends STypeComposite<SIComposite> {
 

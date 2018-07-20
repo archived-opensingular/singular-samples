@@ -34,7 +34,8 @@ import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomP
 /**
  * É possivel passar dados para o formulario a partir de Injeção de Beans.
  */
-/*hidden*/@CaseItem(componentName = "Inject",subCaseName = "Default", group = Group.CUSTOM, resources = @Resource(value = CaseCustomInjectService.class))
+/*hidden*/@CaseItem(componentName = "Inject",subCaseName = "Default", group = Group.CUSTOM,
+/*hidden*/        resources = {@Resource(value = CaseCustomInjectService.class), @Resource(value = CaseCustomPackage.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "CaseInject")
 public class CaseCustomInjectStype extends STypeComposite<SIComposite> {
 

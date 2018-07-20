@@ -35,7 +35,7 @@ import javax.annotation.Nonnull;
  */
 /*hidden*/@CaseItem(componentName = "Annotation", group = Group.CUSTOM, annotation = AnnotationMode.EDIT,
 /*hidden*/        resources = {@Resource(PageWithAnnotation.class), @Resource(STypeCliente.class), @Resource(STypeEndereco.class),
-/*hidden*/                @Resource(STypeRequest.class), @Resource(STypeId.class)})
+/*hidden*/                @Resource(STypeRequest.class), @Resource(STypeId.class), @Resource(CaseCustomPackage.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "Annotation")
 public class CaseAnnotationSType extends STypeComposite<SIComposite> {
 
