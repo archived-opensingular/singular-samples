@@ -32,12 +32,13 @@ import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
 import org.opensingular.lib.commons.ui.Icon;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Permite a formatação de texto utilizando HTML, mostrando o editor em uma nova aba
  */
-/*hidden*/@CaseItem(componentName = "HTML", subCaseName = "Editor Rico em Nova Aba", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "HTML", subCaseName = "Editor Rico em Nova Aba", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "PortletRichText")
 public class CaseInputCorePortletRichTextSType extends STypeComposite<SIComposite> {
 

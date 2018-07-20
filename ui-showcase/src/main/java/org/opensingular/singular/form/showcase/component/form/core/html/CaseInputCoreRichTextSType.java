@@ -26,12 +26,13 @@ import org.opensingular.form.type.core.STypeHTML;
 import org.opensingular.form.view.richtext.SViewByRichText;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Permite a formatação de texto utilizando HTML.
  */
-/*hidden*/@CaseItem(componentName = "HTML", subCaseName = "Editor Rico", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "HTML", subCaseName = "Editor Rico", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "RichText")
 public class CaseInputCoreRichTextSType extends STypeComposite<SIComposite> {
 

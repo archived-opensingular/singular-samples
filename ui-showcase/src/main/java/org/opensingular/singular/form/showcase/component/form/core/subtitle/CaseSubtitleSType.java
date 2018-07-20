@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
  * Subtitle - Exemplo de como utilizar nos agrupadores (StypeComposite) e fields.
  */
 /*hidden*/@CaseItem(componentName = "Subtitle", group = Group.INPUT, resources = {@Resource(STypeDadosPessoais.class),
-/*hidden*/        @Resource(STypeDadosProfissionais.class)})
+/*hidden*/        @Resource(STypeDadosProfissionais.class), @Resource(CaseInputCorePackage.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Subtitle")
 public class CaseSubtitleSType extends STypeComposite<SIComposite> {
 

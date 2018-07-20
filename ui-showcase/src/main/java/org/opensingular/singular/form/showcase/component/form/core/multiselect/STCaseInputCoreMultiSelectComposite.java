@@ -37,7 +37,7 @@ import java.io.Serializable;
  * É permitido se mudar quais campos serão utilizados como chave e valor.
  */
 /*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Tipo Composto", group = Group.INPUT,
-/*hidden*/        resources = {@Resource(STComponenteQuimico.class), @Resource(SIComponenteQuimico.class)})
+/*hidden*/        resources = {@Resource(STComponenteQuimico.class), @Resource(SIComponenteQuimico.class), @Resource(CaseInputCorePackage.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TipoComposto")
 public class STCaseInputCoreMultiSelectComposite extends STypeComposite<SIComposite> {
 

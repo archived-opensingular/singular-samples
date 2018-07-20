@@ -35,7 +35,7 @@ import javax.annotation.Nonnull;
  * Permite a seleção a partir de uma busca no modo de tree em mémoria
  */
 /*hidden*/@CaseItem(componentName = "Search Select", subCaseName = "TreeView in Memory", group = Group.INPUT,
-/*hidden*/        resources = {@Resource(STProcesso.class), @Resource(Processo.class),
+/*hidden*/        resources = {@Resource(STProcesso.class), @Resource(Processo.class), @Resource(CaseInputCorePackage.class),
 /*hidden*/                @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewMemory")
 public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {

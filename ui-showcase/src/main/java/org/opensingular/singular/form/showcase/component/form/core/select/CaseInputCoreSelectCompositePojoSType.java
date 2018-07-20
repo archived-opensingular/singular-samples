@@ -34,7 +34,7 @@ import org.opensingular.singular.form.showcase.component.form.core.select.form.S
  * É possivel utilizar objetos serializaveis para realizar a seleção, porem neste caso, é necessario informar o conversor.
  */
 /*hidden*/@CaseItem(componentName = "Select", subCaseName = "Tipo composto com objetos serializaveis.", group = Group.INPUT,
-/*hidden*/        resources = {@Resource(IngredienteQuimico.class), @Resource(STIngredienteQuimico.class),
+/*hidden*/        resources = {@Resource(IngredienteQuimico.class), @Resource(STIngredienteQuimico.class),@Resource(CaseInputCorePackage.class),
 /*hidden*/        @Resource(IngredienteQuimicoFilteredProvider.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectCompositePojo")
 public class CaseInputCoreSelectCompositePojoSType extends STypeComposite<SIComposite> {

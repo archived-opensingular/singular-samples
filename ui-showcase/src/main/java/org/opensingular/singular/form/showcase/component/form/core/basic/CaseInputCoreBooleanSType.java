@@ -27,13 +27,14 @@ import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.lib.commons.ui.Alignment;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Campo para inserção de dados booleanos.
  */
 //@formatter:off
-/*hidden*/@CaseItem(componentName = "Boolean", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Boolean", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Boolean")
 public class CaseInputCoreBooleanSType extends STypeComposite<SIComposite> {
 

@@ -28,12 +28,13 @@ import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.view.date.SViewDateTime;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Componente para inserção de data e hora com seletor configurado para avançar de 3 em 3 minutos
  */
-/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Data e Hora de 3 em 3 minutos", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Data e Hora de 3 em 3 minutos", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "DateTimeHour")
 public class CaseInputCoreDateTimeStepSType extends STypeComposite<SIComposite> {
 

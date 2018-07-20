@@ -23,6 +23,7 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeMonetary;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
@@ -30,7 +31,7 @@ import javax.annotation.Nonnull;
 /**
  * Campo para inserção de dados monetários.
  */
-/*hidden*/@CaseItem(componentName = "Numeric", subCaseName = "Monetário", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Numeric", subCaseName = "Monetário", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Money")
 public class CaseInputCoreMoneyStype extends STypeComposite<SIComposite> {
 

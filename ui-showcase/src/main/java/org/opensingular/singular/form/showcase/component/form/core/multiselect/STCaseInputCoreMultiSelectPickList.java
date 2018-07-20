@@ -27,6 +27,7 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SMultiSelectionByPicklistView;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
@@ -34,7 +35,7 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção múltipla no formato de uma pick list.
  */
-/*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Pick List", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Pick List", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "PickList")
 public class STCaseInputCoreMultiSelectPickList extends STypeComposite<SIComposite> {
 

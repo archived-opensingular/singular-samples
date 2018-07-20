@@ -28,12 +28,13 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Componente para inserção de min e max data
  */
-/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Min/Max Data", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Min/Max Data", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "MinMaxDateTime")
 public class CaseInputCoreDateMinMaxSType extends STypeComposite<SIComposite> {
 

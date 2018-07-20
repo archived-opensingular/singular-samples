@@ -26,12 +26,13 @@ import org.opensingular.form.type.core.STypePassword;
 import org.opensingular.form.view.SViewPassword;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Campos básicos para uso nos formulários do singular
  */
-/*hidden*/@CaseItem(componentName = "Basic", subCaseName = "Password",  group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Basic", subCaseName = "Password",  group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Password")
 public class CaseInputCorePasswordSType extends STypeComposite<SIComposite> {
 

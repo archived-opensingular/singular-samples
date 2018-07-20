@@ -24,6 +24,7 @@ import org.opensingular.form.type.basic.AtrBasic;
 import org.opensingular.form.type.util.STypeYearMonth;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
@@ -31,7 +32,7 @@ import javax.annotation.Nonnull;
 /**
  * Componente para inserção de mês e ano.
  */
-/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Mês/Ano", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Mês/Ano", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "YearMonth")
 public class CaseInputCoreYearMonthSType extends STypeComposite<SIComposite> {
 

@@ -37,7 +37,7 @@ import javax.annotation.Nonnull;
  */
 //@formatter:off
 /*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT,
-/*hidden*/        resources = {@Resource(MFileIdsOptionsProvider.class), @Resource(STypeArquivo.class)})
+/*hidden*/        resources = {@Resource(MFileIdsOptionsProvider.class), @Resource(STypeArquivo.class), @Resource(CaseInputCorePackage.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "ProvedorDinamico")
 public class STCaseInputCoreMultiSelectProvider extends STypeComposite<SIComposite> {
 

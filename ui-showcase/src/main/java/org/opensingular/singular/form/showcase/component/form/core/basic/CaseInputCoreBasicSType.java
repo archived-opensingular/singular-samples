@@ -30,12 +30,13 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypeEMail;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Campos básicos para uso nos formulários do singular
  */
-/*hidden*/@CaseItem(componentName = "Basic", subCaseName = "Default",  group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Basic", subCaseName = "Default",  group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Basic")
 public class CaseInputCoreBasicSType extends STypeComposite<SIComposite> {
 

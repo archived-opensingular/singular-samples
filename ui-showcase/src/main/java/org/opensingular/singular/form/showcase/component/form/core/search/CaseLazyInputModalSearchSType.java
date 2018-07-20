@@ -39,7 +39,7 @@ import javax.annotation.Nonnull;
  * Permite a seleção a partir de uma busca filtrada, sendo necessario fazer o controle de paginação manualmente
  */
 /*hidden*/@CaseItem(componentName = "Search Select", subCaseName = "Lazy Pagination", group = Group.INPUT,
-/*hidden*/resources = {@Resource(Funcionario.class), @Resource(STFuncionario.class), @Resource(SIFuncionario.class),
+/*hidden*/resources = {@Resource(Funcionario.class), @Resource(STFuncionario.class), @Resource(SIFuncionario.class), @Resource(CaseInputCorePackage.class),
 /*hidden*/        @Resource(LazyFuncionarioProvider.class), @Resource(FuncionarioRepository.class), @Resource(SIFuncionarioConverter.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "LazyPagination")
 public class CaseLazyInputModalSearchSType extends STypeComposite<SIComposite> {

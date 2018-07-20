@@ -23,6 +23,7 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
@@ -30,7 +31,7 @@ import javax.annotation.Nonnull;
 /**
  * Campos básicos para uso nos formulários do singular
  */
-/*hidden*/@CaseItem(componentName = "Basic", subCaseName = "Mask", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Basic", subCaseName = "Mask", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "BasicMask")
 public class CaseInputCoreBasicMaskSType extends STypeComposite<SIComposite> {
 

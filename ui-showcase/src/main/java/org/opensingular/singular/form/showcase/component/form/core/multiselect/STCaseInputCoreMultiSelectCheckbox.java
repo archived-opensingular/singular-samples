@@ -26,6 +26,7 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SMultiSelectionByCheckboxView;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
@@ -33,7 +34,7 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção múltipla utilizando checkbox
  */
-/*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Checkbox", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Checkbox", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Checkbox")
 public class STCaseInputCoreMultiSelectCheckbox extends STypeComposite<SIComposite> {
 

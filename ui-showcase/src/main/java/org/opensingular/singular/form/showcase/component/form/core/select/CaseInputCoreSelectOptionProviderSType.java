@@ -38,7 +38,7 @@ import org.opensingular.singular.form.showcase.component.form.core.select.form.S
 import org.opensingular.singular.form.showcase.component.form.core.select.form.STypePessoa;
 
 /*hidden*/@CaseItem(componentName = "Select", subCaseName = "Seleção de dados do próprio formulário", group = Group.INPUT,
-/*hidden*/        resources = { @Resource(STypePessoa.class), @Resource(SIPessoa.class) })
+/*hidden*/        resources = { @Resource(STypePessoa.class), @Resource(SIPessoa.class), @Resource(CaseInputCorePackage.class) })
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectOptionProvider")
 public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SIComposite> {
 

@@ -23,6 +23,7 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.provider.SSimpleProviderListBuilder;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.STIngredienteQuimico;
 
@@ -31,7 +32,7 @@ import javax.annotation.Nonnull;
 /**
  * Pemite a seleção de valores compostos de varios tipos diferentes.
  */
-/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Tipo Composto", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Tipo Composto", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectComposite")
 public class CaseInputCoreSelectCompositeSType extends STypeComposite<SIComposite> {
 
