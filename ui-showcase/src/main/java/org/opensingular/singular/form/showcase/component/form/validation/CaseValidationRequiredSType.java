@@ -29,7 +29,7 @@ import javax.annotation.Nonnull;
 /**
  * Demonstração de validação de campo obrigatório.
  */
-@CaseItem(componentName = "Required", group = Group.VALIDATION)
+/*hidden*/@CaseItem(componentName = "Required", group = Group.VALIDATION)
 @SInfoType(spackage = CaseValidationPackage.class, name = "Required")
 public class CaseValidationRequiredSType extends STypeComposite<SIComposite> {
 

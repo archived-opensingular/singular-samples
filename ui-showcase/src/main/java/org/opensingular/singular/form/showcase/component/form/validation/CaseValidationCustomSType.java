@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 /**
  * Validação customizada, no exemplo verifica se o campo é menor que 1000
  */
-@CaseItem(componentName = "Custom", group = Group.VALIDATION)
+/*hidden*/@CaseItem(componentName = "Custom", group = Group.VALIDATION)
 @SInfoType(spackage = CaseValidationPackage.class, name = "Custom")
 public class CaseValidationCustomSType extends STypeComposite<SIComposite> {
 

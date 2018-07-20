@@ -29,7 +29,7 @@ import javax.annotation.Nonnull;
 /**
  * Para adicionar um marcador basta clicar no posição do mapa.
  */
-@CaseItem(componentName = "Google Maps", group = Group.MAPS)
+/*hidden*/@CaseItem(componentName = "Google Maps", group = Group.MAPS)
 @SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMaps")
 public class CaseGoogleMapsSType extends STypeComposite<SIComposite> {
 

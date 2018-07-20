@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Between Fields
  */
-@CaseItem(componentName = "Between Fields", group = Group.VALIDATION)
+/*hidden*/@CaseItem(componentName = "Between Fields", group = Group.VALIDATION)
 @SInfoType(spackage = CaseValidationPackage.class, name = "BetweenFields")
 public class CaseValidationBetweenFieldsSType extends STypeComposite<SIComposite> {
 
