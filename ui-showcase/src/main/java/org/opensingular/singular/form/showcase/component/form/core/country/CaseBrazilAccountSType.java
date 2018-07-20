@@ -30,8 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Campos de conta bancária- Brasil
  */
-
-@CaseItem(componentName = "Brazil", subCaseName = "Conta", group = Group.COUNTRY)
+/*hidden*/@CaseItem(componentName = "Brazil", subCaseName = "Conta", group = Group.COUNTRY)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Conta")
 public class CaseBrazilAccountSType extends STypeComposite<SIComposite> {
 

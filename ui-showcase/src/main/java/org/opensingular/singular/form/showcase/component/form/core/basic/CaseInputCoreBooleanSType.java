@@ -33,7 +33,7 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
  * Campo para inserção de dados booleanos.
  */
 //@formatter:off
-@CaseItem(componentName = "Boolean", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Boolean", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Boolean")
 public class CaseInputCoreBooleanSType extends STypeComposite<SIComposite> {
 

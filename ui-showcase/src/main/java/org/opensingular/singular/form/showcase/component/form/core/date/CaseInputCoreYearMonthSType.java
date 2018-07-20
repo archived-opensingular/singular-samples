@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 /**
  * Componente para inserção de mês e ano.
  */
-@CaseItem(componentName = "Date", subCaseName = "Mês/Ano", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Mês/Ano", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "YearMonth")
 public class CaseInputCoreYearMonthSType extends STypeComposite<SIComposite> {
 

@@ -35,8 +35,7 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 /**
  * Campos básicos para uso nos formulários do singular
  */
-
-@CaseItem(componentName = "Basic", subCaseName = "Default",  group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Basic", subCaseName = "Default",  group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Basic")
 public class CaseInputCoreBasicSType extends STypeComposite<SIComposite> {
 

@@ -31,7 +31,7 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 /**
  * Permite a formatação de texto utilizando HTML.
  */
-@CaseItem(componentName = "HTML", subCaseName = "Editor Rico", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "HTML", subCaseName = "Editor Rico", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "RichText")
 public class CaseInputCoreRichTextSType extends STypeComposite<SIComposite> {
 

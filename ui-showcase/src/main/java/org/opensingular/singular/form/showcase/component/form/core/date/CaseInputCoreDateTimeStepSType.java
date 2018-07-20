@@ -33,7 +33,7 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 /**
  * Componente para inserção de data e hora com seletor configurado para avançar de 3 em 3 minutos
  */
-@CaseItem(componentName = "Date", subCaseName = "Data e Hora de 3 em 3 minutos", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Data e Hora de 3 em 3 minutos", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "DateTimeHour")
 public class CaseInputCoreDateTimeStepSType extends STypeComposite<SIComposite> {
 

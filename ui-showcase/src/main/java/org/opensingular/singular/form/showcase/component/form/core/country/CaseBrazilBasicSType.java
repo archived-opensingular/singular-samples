@@ -33,8 +33,7 @@ import javax.annotation.Nonnull;
 /**
  * Campos básicos regionais - Brasil
  */
-
-@CaseItem(componentName = "Brazil", subCaseName = "Default", group = Group.COUNTRY)
+/*hidden*/@CaseItem(componentName = "Brazil", subCaseName = "Default", group = Group.COUNTRY)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Default")
 public class CaseBrazilBasicSType extends STypeComposite<SIComposite> {
 

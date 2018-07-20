@@ -30,8 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Campos de endereço - Brasil
  */
-
-@CaseItem(componentName = "Brazil", subCaseName = "Endereço", group = Group.COUNTRY)
+/*hidden*/@CaseItem(componentName = "Brazil", subCaseName = "Endereço", group = Group.COUNTRY)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Endereco")
 public class CaseBrazilAddressSType extends STypeComposite<SIComposite> {
 

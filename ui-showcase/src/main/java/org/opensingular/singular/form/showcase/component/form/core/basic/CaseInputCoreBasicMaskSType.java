@@ -30,8 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Campos básicos para uso nos formulários do singular
  */
-
-@CaseItem(componentName = "Basic", subCaseName = "Mask", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Basic", subCaseName = "Mask", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "BasicMask")
 public class CaseInputCoreBasicMaskSType extends STypeComposite<SIComposite> {
 

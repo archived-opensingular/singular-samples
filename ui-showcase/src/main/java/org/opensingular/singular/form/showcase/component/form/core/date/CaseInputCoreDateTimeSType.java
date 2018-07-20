@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Componente para inserção de data e hora.
  */
-@CaseItem(componentName = "Date", subCaseName = "Data e Hora", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Data e Hora", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "DateTime")
 public class CaseInputCoreDateTimeSType extends STypeComposite<SIComposite> {
 

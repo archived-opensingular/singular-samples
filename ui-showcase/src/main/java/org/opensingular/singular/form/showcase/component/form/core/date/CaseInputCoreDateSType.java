@@ -37,7 +37,7 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 /**
  * Componente para inserção de data
  */
-@CaseItem(componentName = "Date", subCaseName = "Simples", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Simples", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Date")
 public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
 

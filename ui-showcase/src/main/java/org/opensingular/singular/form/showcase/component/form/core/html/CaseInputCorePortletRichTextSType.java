@@ -34,7 +34,10 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
-@CaseItem(componentName = "HTML", subCaseName = "Editor Rico em Nova Aba", group = Group.INPUT)
+/**
+ * Permite a formatação de texto utilizando HTML, mostrando o editor em uma nova aba
+ */
+/*hidden*/@CaseItem(componentName = "HTML", subCaseName = "Editor Rico em Nova Aba", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "PortletRichText")
 public class CaseInputCorePortletRichTextSType extends STypeComposite<SIComposite> {
 
