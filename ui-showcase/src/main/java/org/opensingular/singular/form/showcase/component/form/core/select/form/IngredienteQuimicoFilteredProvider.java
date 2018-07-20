@@ -16,12 +16,13 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.select.form;
 
+import org.opensingular.form.SIComposite;
 import org.opensingular.form.provider.SimpleProvider;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class IngredienteQuimicoFilteredProvider implements SimpleProvider<IngredienteQuimico, SIIngredienteQuimico> {
+public class IngredienteQuimicoFilteredProvider implements SimpleProvider<IngredienteQuimico, SIComposite> {
 
     private final List<IngredienteQuimico> ingredientes =
             Arrays.asList(
@@ -31,7 +32,7 @@ public class IngredienteQuimicoFilteredProvider implements SimpleProvider<Ingred
                     new IngredienteQuimico("Açúcar", "C12H22O11"));
 
     @Override
-    public List<IngredienteQuimico> load(SIIngredienteQuimico ins) {
+    public List<IngredienteQuimico> load(SIComposite ins) {
         return ingredientes;
     }
 

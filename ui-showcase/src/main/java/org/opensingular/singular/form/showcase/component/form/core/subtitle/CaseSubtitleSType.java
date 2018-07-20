@@ -23,6 +23,7 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
@@ -30,7 +31,8 @@ import javax.annotation.Nonnull;
 /**
  * Subtitle - Exemplo de como utilizar nos agrupadores (StypeComposite) e fields.
  */
-@CaseItem(componentName = "Subtitle", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Subtitle", group = Group.INPUT, resources = {@Resource(STypeDadosPessoais.class),
+/*hidden*/        @Resource(STypeDadosProfissionais.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Subtitle")
 public class CaseSubtitleSType extends STypeComposite<SIComposite> {
 

@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 /**
  * Seleção de itens por Combo e Radio
  */
-@CaseItem(componentName = "Select", subCaseName = "Combo e Radio", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Combo e Radio", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "ComboRadio")
 public class CaseInputCoreSelectComboRadioSType extends STypeComposite<SIComposite> {
 

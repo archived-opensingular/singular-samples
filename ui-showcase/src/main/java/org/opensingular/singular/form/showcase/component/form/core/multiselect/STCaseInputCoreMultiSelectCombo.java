@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção múltipla no formato de um combo. É funcional para listas curtas.
  */
-@CaseItem(componentName = "Multi Select", subCaseName = "Combo", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Combo", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Combo")
 public class STCaseInputCoreMultiSelectCombo extends STypeComposite<SIComposite> {
 

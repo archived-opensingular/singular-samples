@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 /**
  * Pemite a seleção de valores compostos de varios tipos diferentes.
  */
-@CaseItem(componentName = "Select", subCaseName = "Tipo Composto", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Tipo Composto", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectComposite")
 public class CaseInputCoreSelectCompositeSType extends STypeComposite<SIComposite> {
 

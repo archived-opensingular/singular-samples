@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Campo para inserção de dados monetários.
  */
-@CaseItem(componentName = "Numeric", subCaseName = "Monetário", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Numeric", subCaseName = "Monetário", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Money")
 public class CaseInputCoreMoneyStype extends STypeComposite<SIComposite> {
 

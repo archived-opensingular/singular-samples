@@ -27,7 +27,6 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 import org.opensingular.singular.form.showcase.component.form.core.search.form.Processo;
 import org.opensingular.singular.form.showcase.component.form.core.search.form.ProcessoProvider;
 import org.opensingular.singular.form.showcase.component.form.core.search.form.ProcessoRepository;
-import org.opensingular.singular.form.showcase.component.form.core.search.form.SIProcesso;
 import org.opensingular.singular.form.showcase.component.form.core.search.form.STProcesso;
 
 import javax.annotation.Nonnull;
@@ -35,9 +34,9 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção a partir de uma busca no modo de tree em mémoria
  */
-@CaseItem(componentName = "Search Select", subCaseName = "TreeView in Memory", group = Group.INPUT,
-        resources = {@Resource(STProcesso.class), @Resource(SIProcesso.class), @Resource(Processo.class),
-                @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
+/*hidden*/@CaseItem(componentName = "Search Select", subCaseName = "TreeView in Memory", group = Group.INPUT,
+/*hidden*/        resources = {@Resource(STProcesso.class), @Resource(Processo.class),
+/*hidden*/                @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewMemory")
 public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
 

@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Campo para inserção de dados decimais.
  */
-@CaseItem(componentName = "Numeric", subCaseName = "Decimal", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Numeric", subCaseName = "Decimal", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Decimal")
 public class CaseInputCoreDecimalSType extends STypeComposite<SIComposite> {
 

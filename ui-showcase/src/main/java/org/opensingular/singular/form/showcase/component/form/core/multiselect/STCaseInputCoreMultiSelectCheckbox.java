@@ -33,7 +33,7 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção múltipla utilizando checkbox
  */
-@CaseItem(componentName = "Multi Select", subCaseName = "Checkbox", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Checkbox", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Checkbox")
 public class STCaseInputCoreMultiSelectCheckbox extends STypeComposite<SIComposite> {
 

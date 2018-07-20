@@ -1,6 +1,8 @@
 package org.opensingular.singular.form.showcase.component.form.core.select.form;
 
+import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
+import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDecimal;
 import org.opensingular.form.type.core.STypeInteger;
@@ -11,14 +13,10 @@ import org.opensingular.singular.form.showcase.component.form.core.CaseInputCore
 import javax.annotation.Nonnull;
 
 @SInfoType(spackage = CaseInputCorePackage.class)
-public class STIngredienteQuimico extends STGenericComposite<SIIngredienteQuimico> {
+public class STIngredienteQuimico extends STypeComposite<SIComposite> {
 
     public STypeString nome;
     public STypeString formulaQuimica;
-
-    public STIngredienteQuimico() {
-        super(SIIngredienteQuimico.class);
-    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {

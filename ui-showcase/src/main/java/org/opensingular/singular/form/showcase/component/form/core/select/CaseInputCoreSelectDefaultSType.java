@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Se a view não for definida, então define o componente dependendo da quantidade de dados e da obrigatoriedade.
  */
-@CaseItem(componentName = "Select", subCaseName = "Default", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Default", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectDefault")
 public class CaseInputCoreSelectDefaultSType extends STypeComposite<SIComposite> {
 

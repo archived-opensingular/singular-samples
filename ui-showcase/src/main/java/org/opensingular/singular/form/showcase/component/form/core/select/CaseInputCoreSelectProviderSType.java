@@ -34,8 +34,8 @@ import javax.annotation.Nonnull;
  * É permitido alterar o provedor de dados de forma que estes sejam carregados de forma dinâmica ou de outras fontes de informação.
  */
 //@formatter:off
-@CaseItem(componentName = "Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT,
-            resources = {@Resource(MFileIdsOptionsProvider.class), @Resource(STypeArquivo.class)})
+/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT,
+/*hidden*/            resources = {@Resource(MFileIdsOptionsProvider.class), @Resource(STypeArquivo.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectProvider")
 public class CaseInputCoreSelectProviderSType extends STypeComposite<SIComposite> {
 

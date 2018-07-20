@@ -15,25 +15,22 @@
  */
 package org.opensingular.singular.form.showcase.component.form.core.search.form;
 
+import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
+import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.ValueToSICompositeConverter;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.type.generic.STGenericComposite;
 import org.opensingular.form.view.SViewTree;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
 
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Processo")
-public class STProcesso extends STGenericComposite<SIProcesso> {
+public class STProcesso extends STypeComposite<SIComposite> {
 
     public STypeString id;
     public STypeString nome;
-
-    public STProcesso() {
-        super(SIProcesso.class);
-    }
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {

@@ -37,9 +37,9 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção a partir de uma busca filtrada, fazendo o controle de paginação de forma automatica.
  */
-@CaseItem(componentName = "Search Select", subCaseName = "In Memory Pagination", group = Group.INPUT,
-resources = {@Resource(Funcionario.class), @Resource(STFuncionario.class), @Resource(SIFuncionario.class),
-        @Resource(FuncionarioProvider.class), @Resource(FuncionarioRepository.class), @Resource(SIFuncionarioConverter.class)})
+/*hidden*/@CaseItem(componentName = "Search Select", subCaseName = "In Memory Pagination", group = Group.INPUT,
+/*hidden*/resources = {@Resource(Funcionario.class), @Resource(STFuncionario.class), @Resource(SIFuncionario.class),
+/*hidden*/        @Resource(FuncionarioProvider.class), @Resource(FuncionarioRepository.class), @Resource(SIFuncionarioConverter.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "InMemoryPagination")
 public class CaseInputModalSearchSType extends STypeComposite<SIComposite> {
 

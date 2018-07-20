@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Campo de texto simples
  */
-@CaseItem(componentName = "String", subCaseName = "Simples", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "String", subCaseName = "Simples", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "String")
 public class CaseInputCoreStringSType extends STypeComposite<SIComposite> {
 

@@ -37,7 +37,7 @@ import java.util.List;
 /**
  * Auto-completar
  */
-@CaseItem(componentName = "Select", subCaseName = "Auto-completar", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Auto-completar", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "ComboAutoComplete")
 public class CaseInputCoreSelectComboAutoCompleteSType extends STypeComposite<SIComposite> {
 

@@ -34,7 +34,7 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção múltipla no formato de uma pick list.
  */
-@CaseItem(componentName = "Multi Select", subCaseName = "Pick List", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Pick List", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "PickList")
 public class STCaseInputCoreMultiSelectPickList extends STypeComposite<SIComposite> {
 

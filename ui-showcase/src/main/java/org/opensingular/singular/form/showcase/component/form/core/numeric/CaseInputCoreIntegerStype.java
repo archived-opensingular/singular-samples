@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Campo para edição de dados inteiro
  */
-@CaseItem(componentName = "Numeric", subCaseName = "Integer", group = Group.INPUT)
+/*hidden*/@CaseItem(componentName = "Numeric", subCaseName = "Integer", group = Group.INPUT)
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Integer")
 public class CaseInputCoreIntegerStype extends STypeComposite<SIComposite> {
 
