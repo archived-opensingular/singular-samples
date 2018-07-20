@@ -33,9 +33,9 @@ import javax.annotation.Nonnull;
 /**
  * Anotações e comentários associados a elementos de um form
  */
-@CaseItem(componentName = "Annotation", group = Group.CUSTOM, annotation = AnnotationMode.EDIT,
-        resources = {@Resource(PageWithAnnotation.class), @Resource(STypeCliente.class), @Resource(STypeEndereco.class),
-                @Resource(STypeRequest.class), @Resource(STypeId.class)})
+/*hidden*/@CaseItem(componentName = "Annotation", group = Group.CUSTOM, annotation = AnnotationMode.EDIT,
+/*hidden*/        resources = {@Resource(PageWithAnnotation.class), @Resource(STypeCliente.class), @Resource(STypeEndereco.class),
+/*hidden*/                @Resource(STypeRequest.class), @Resource(STypeId.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "Annotation")
 public class CaseAnnotationSType extends STypeComposite<SIComposite> {
 

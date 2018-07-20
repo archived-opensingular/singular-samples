@@ -33,8 +33,7 @@ import org.opensingular.singular.form.showcase.component.Resource;
  * Importador de atributos através de arquivos XML. <br/>
  * Utilizando a precedencia, onde o xml tem maior prioridade entre os demais.
  */
-
-@CaseItem(componentName = "ImporterXML", subCaseName = "Precedência", group = Group.IMPORTER, resources = @Resource(value = CaseImporterPrecedenciaSType.class, extension = "xml") )
+/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Precedência", group = Group.IMPORTER, resources = @Resource(value = CaseImporterPrecedenciaSType.class, extension = "xml") )
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLPrecedencia")
 public class CaseImporterPrecedenciaSType extends STypeComposite<SIComposite> {
 
@@ -42,8 +41,7 @@ public class CaseImporterPrecedenciaSType extends STypeComposite<SIComposite> {
     public STypeInteger idade;
     public STypeEMail email;
     public STypeString descricao;
-    
-    
+
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = this.addFieldString("nome");

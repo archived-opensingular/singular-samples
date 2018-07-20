@@ -32,8 +32,8 @@ import javax.annotation.Nonnull;
 /**
  * Custom String Mapper
  */
-@CaseItem(componentName = "Custom Mapper", subCaseName = "Material Design Input", group = Group.CUSTOM,
-resources = @Resource(MaterialDesignInputMapper.class))
+/*hidden*/@CaseItem(componentName = "Custom Mapper", subCaseName = "Material Design Input", group = Group.CUSTOM,
+/*hidden*/        resources = @Resource(MaterialDesignInputMapper.class))
 @SInfoType(spackage = CaseCustomPackage.class, name = "MaterialDesignInput")
 public class CaseCustomStringMapperStype extends STypeComposite<SIComposite> {
 

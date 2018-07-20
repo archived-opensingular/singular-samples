@@ -33,7 +33,7 @@ import javax.annotation.Nonnull;
 /**
  * Custom String Mapper
  */
-@CaseItem(componentName = "Custom Mapper", subCaseName = "Vídeo", group = Group.CUSTOM, resources = @Resource(VideoMapper.class))
+/*hidden*/@CaseItem(componentName = "Custom Mapper", subCaseName = "Vídeo", group = Group.CUSTOM, resources = @Resource(VideoMapper.class))
 @SInfoType(spackage = CaseCustomPackage.class, name = "Video")
 public class CaseCustomVideoMapperSType extends STypeComposite<SIComposite> {
 

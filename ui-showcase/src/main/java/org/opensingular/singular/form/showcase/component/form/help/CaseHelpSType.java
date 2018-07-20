@@ -33,7 +33,7 @@ import javax.annotation.Nonnull;
 /**
  * Help
  */
-@CaseItem(componentName = "Help", subCaseName = "Help", group = Group.HELP, resources = @Resource(STypeExperienciaProfissional.class))
+/*hidden*/@CaseItem(componentName = "Help", subCaseName = "Help", group = Group.HELP, resources = @Resource(STypeExperienciaProfissional.class))
 @SInfoType(spackage = CaseHelpPackage.class, name = "Help")
 public class CaseHelpSType extends STypeComposite<SIComposite> {
 

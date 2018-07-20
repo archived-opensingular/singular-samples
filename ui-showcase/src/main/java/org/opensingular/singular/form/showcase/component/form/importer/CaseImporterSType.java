@@ -33,8 +33,7 @@ import org.opensingular.singular.form.showcase.component.Resource;
  * Importador de atributos através de arquivos XML.<br/>
  * Exemplo básico de importação. 
  */
-
-@CaseItem(componentName = "ImporterXML", subCaseName = "Default", group = Group.IMPORTER, resources = @Resource(value = CaseImporterSType.class, extension = "xml"))
+/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Default", group = Group.IMPORTER, resources = @Resource(value = CaseImporterSType.class, extension = "xml"))
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLDefault")
 public class CaseImporterSType extends STypeComposite<SIComposite> {
 

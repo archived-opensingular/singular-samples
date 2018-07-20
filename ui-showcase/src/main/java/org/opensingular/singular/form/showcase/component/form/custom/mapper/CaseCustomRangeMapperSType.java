@@ -31,9 +31,9 @@ import javax.annotation.Nonnull;
 /**
  * Custom Range Mapper
  */
-@CaseItem(componentName = "Custom Mapper", subCaseName = "Range Slider", group = Group.CUSTOM,
-resources = {@Resource(RangeSliderMapper.class), @Resource(value = RangeSliderMapper.class, extension = "js"),
-        @Resource(value = STypeFaixaIdade.class)})
+/*hidden*/@CaseItem(componentName = "Custom Mapper", subCaseName = "Range Slider", group = Group.CUSTOM,
+/*hidden*/resources = {@Resource(RangeSliderMapper.class), @Resource(value = RangeSliderMapper.class, extension = "js"),
+/*hidden*/        @Resource(value = STypeFaixaIdade.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "RangeSlider")
 public class CaseCustomRangeMapperSType extends STypeComposite<SIComposite> {
 

@@ -43,9 +43,9 @@ import java.util.List;
 /**
  * Custom String Mapper
  */
-@CaseItem(componentName = "Custom Mapper", subCaseName = "Tabbed Panel", group = Group.CUSTOM, resources = {
-    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html"),@Resource(STypeContainer.class),
-        @Resource(STypeContainerString.class), @Resource(STypeContainerInteger.class), @Resource(STypeContainerBoolean.class)})
+/*hidden*/@CaseItem(componentName = "Custom Mapper", subCaseName = "Tabbed Panel", group = Group.CUSTOM, resources = {
+/*hidden*/    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html"),@Resource(STypeContainer.class),
+/*hidden*/        @Resource(STypeContainerString.class), @Resource(STypeContainerInteger.class), @Resource(STypeContainerBoolean.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "TabbedPanel")
 public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite> {
 

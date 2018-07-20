@@ -31,8 +31,8 @@ import javax.annotation.Nonnull;
 /**
  * É possivel colocar as informações do help em um arquivo XML
  */
-@CaseItem(componentName = "Help", subCaseName = "Help with XML", group = Group.HELP,
-        resources = {@Resource(value = CaseHelpWithXMLSType.class, extension = "xml"), @Resource(STypeExperiencia.class)})
+/*hidden*/@CaseItem(componentName = "Help", subCaseName = "Help with XML", group = Group.HELP,
+/*hidden*/        resources = {@Resource(value = CaseHelpWithXMLSType.class, extension = "xml"), @Resource(STypeExperiencia.class)})
 @SInfoType(spackage = CaseHelpPackage.class, name = "HelpWithXML")
 public class CaseHelpWithXMLSType extends STypeComposite<SIComposite> {
     public STypeList<STypeExperiencia, SIComposite> experienciasProfissionais;
