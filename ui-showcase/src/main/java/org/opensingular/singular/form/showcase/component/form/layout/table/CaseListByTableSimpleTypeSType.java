@@ -33,7 +33,7 @@ import javax.annotation.Nonnull;
 /**
  * List by Table
  */
-@CaseItem(componentName = "List by Table", subCaseName = "Simple Type", group = Group.LAYOUT)
+/*hidden*/@CaseItem(componentName = "List by Table", subCaseName = "Simple Type", group = Group.LAYOUT)
 @SInfoType(spackage = CaseLayoutPackage.class, name = "SimpleTypeTable")
 public class CaseListByTableSimpleTypeSType extends STypeComposite<SIComposite> {
 

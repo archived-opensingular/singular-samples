@@ -36,8 +36,8 @@ import java.util.Arrays;
 /**
  * Listener que é executado ao criar uma nova instância de um tipo
  */
-@CaseItem(componentName = "Listeners", subCaseName = "Init Listener", group = Group.INTERACTION,
-        resources = {@Resource(STItem.class), @Resource(SIItem.class)})
+/*hidden*/@CaseItem(componentName = "Listeners", subCaseName = "Init Listener", group = Group.INTERACTION,
+/*hidden*/        resources = {@Resource(STItem.class), @Resource(SIItem.class)})
 @SInfoType(spackage = CaseInteractionPackage.class, name = "InitListener")
 public class CaseInitListenerSType extends STypeComposite<SIComposite> {
 

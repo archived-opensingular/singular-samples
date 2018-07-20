@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
 /**
  * Permite a configuração do inicio de uma nova linha, possibilitando melhor controle do layout.
  */
-@CaseItem(componentName = "Grid", subCaseName = "Row Control", group = Group.LAYOUT)
+/*hidden*/@CaseItem(componentName = "Grid", subCaseName = "Row Control", group = Group.LAYOUT)
 @SInfoType(spackage = CaseLayoutPackage.class, name = "RowControl")
 public class CaseRowControlGridSType extends STypeComposite<SIComposite> {
 

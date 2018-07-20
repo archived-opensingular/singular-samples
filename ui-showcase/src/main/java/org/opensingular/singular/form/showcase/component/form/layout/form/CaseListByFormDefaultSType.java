@@ -33,8 +33,8 @@ import javax.annotation.Nonnull;
 /**
  * List by Form
  */
-@CaseItem(componentName = "List by Form", subCaseName = "Default", group = Group.LAYOUT,
-        resources = @Resource(STypeExperienciaProfissional.class))
+/*hidden*/@CaseItem(componentName = "List by Form", subCaseName = "Default", group = Group.LAYOUT,
+/*hidden*/        resources = @Resource(STypeExperienciaProfissional.class))
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultListForm")
 public class CaseListByFormDefaultSType extends STypeComposite<SIComposite> {
 

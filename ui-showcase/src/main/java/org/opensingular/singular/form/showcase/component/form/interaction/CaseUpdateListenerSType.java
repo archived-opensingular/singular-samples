@@ -31,7 +31,7 @@ import java.util.Optional;
 /**
  * Listener que é executado quando um dependsOn é executado
  */
-@CaseItem(componentName = "Listeners", subCaseName = "Update listener", group = Group.INTERACTION)
+/*hidden*/@CaseItem(componentName = "Listeners", subCaseName = "Update listener", group = Group.INTERACTION)
 @SInfoType(spackage = CaseInteractionPackage.class, name = "UpdateListener")
 public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
 
@@ -45,7 +45,7 @@ public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
 
         cep
                 .asAtr().maxLength(8)
-                .label("CEP (Use os valores 70863520 ou 70070120)");
+                .label("CEP (Use os valores 70863520 ou 70070120 ou 70750543)");
 
         logradouro
                 //@destacar
@@ -64,6 +64,8 @@ public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
                 instance.setValue("CLN 211 Bloco 'B' Subsolo");
             } else if ("70070120".equalsIgnoreCase(c.getValue())) {
                 instance.setValue("SBS - Qd. 02 - Bl. Q - Centro Empresarial João Carlos Saad 12° andar");
+            } else if("70750543".equalsIgnoreCase(c.getValue())){
+                instance.setValue("SEPN 511 - Edifício Bittar III 4º andar");
             } else {
                 instance.setValue("Não encontrado");
             }

@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
 /**
  * Permite a configuração fina do tamanho das colunas, sendo possível especificar o tamanho para telas de qualquer tamanho.
  */
-@CaseItem(componentName = "Grid", subCaseName = "Fine Tunning", group = Group.LAYOUT)
+/*hidden*/@CaseItem(componentName = "Grid", subCaseName = "Fine Tunning", group = Group.LAYOUT)
 @SInfoType(spackage = CaseLayoutPackage.class, name = "FineTuning")
 public class CaseFineTunningGridSType extends STypeComposite<SIComposite> {
 

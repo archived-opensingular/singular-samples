@@ -34,7 +34,7 @@ import java.math.BigDecimal;
 /**
  * Listener que atualiza valores de itens de um mestre-detalhe.
  */
-@CaseItem(componentName = "Listeners", subCaseName = "Master/detail", group = Group.INTERACTION)
+/*hidden*/@CaseItem(componentName = "Listeners", subCaseName = "Master/detail", group = Group.INTERACTION)
 @SInfoType(spackage = CaseInteractionPackage.class, name = "MasterDetail")
 public class CaseUpdateListenerMasterDetailSType extends STypeComposite<SIComposite> {
 

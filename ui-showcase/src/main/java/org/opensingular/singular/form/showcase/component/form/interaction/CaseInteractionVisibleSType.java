@@ -31,8 +31,8 @@ import javax.annotation.Nonnull;
 /**
  * Exibe campos visíveis dinamicamente.
  */
-@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Visible", group = Group.INTERACTION,
-        resources = @Resource(STypeRecord.class))
+/*hidden*/@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Visible", group = Group.INTERACTION,
+/*hidden*/        resources = @Resource(STypeRecord.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "Visible")
 public class CaseInteractionVisibleSType extends STypeComposite<SIComposite> {
 

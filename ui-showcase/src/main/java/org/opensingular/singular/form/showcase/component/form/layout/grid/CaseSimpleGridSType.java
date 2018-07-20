@@ -36,7 +36,7 @@ import javax.annotation.Nonnull;
  * mantendo o máximo de 12.
  * Por exemplo, ao configurar o tamanho para 3, o tamanho md será 6, sm 12 e xs 12.
  */
-@CaseItem(componentName = "Grid", subCaseName = "Default", group = Group.LAYOUT)
+/*hidden*/@CaseItem(componentName = "Grid", subCaseName = "Default", group = Group.LAYOUT)
 @SInfoType(spackage = CaseLayoutPackage.class, name = "Simple")
 public class CaseSimpleGridSType extends STypeComposite<SIComposite> {
 

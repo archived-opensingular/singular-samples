@@ -34,7 +34,7 @@ import org.opensingular.singular.form.showcase.component.Group;
 /**
  * Valores iniciais para os componentes do formulário.
  */
-@CaseItem(componentName = "InitValue", subCaseName = "Init Value", group = Group.INTERACTION)
+/*hidden*/@CaseItem(componentName = "InitValue", subCaseName = "Init Value", group = Group.INTERACTION)
 @SInfoType(spackage = CaseInteractionPackage.class, name = "InitValue")
 public class CaseInitValueSType extends STypeComposite<SIComposite> {
 

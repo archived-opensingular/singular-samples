@@ -36,8 +36,8 @@ import org.opensingular.singular.form.showcase.component.form.layout.stypes.STyp
 /**
  * Breadcrumb
  */
-@CaseItem(componentName = "Breadcrumb", subCaseName = "Simples", group = Group.LAYOUT,
-        resources = @Resource(STypeExperienciaProfissional.class))
+/*hidden*/@CaseItem(componentName = "Breadcrumb", subCaseName = "Simples", group = Group.LAYOUT,
+/*hidden*/        resources = @Resource(STypeExperienciaProfissional.class))
 @SInfoType(spackage = CaseLayoutPackage.class, name = "Simples")
 public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
 

@@ -34,7 +34,7 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * Combos interdependentes
  */
-@CaseItem(componentName = "Combos interdependentes", group = Group.INTERACTION)
+/*hidden*/@CaseItem(componentName = "Combos interdependentes", group = Group.INTERACTION)
 @SInfoType(spackage = CaseInteractionPackage.class, name = "DependsOnOptions")
 public class CaseInteractionDependsOnOptionsSType extends STypeComposite<SIComposite> {
 

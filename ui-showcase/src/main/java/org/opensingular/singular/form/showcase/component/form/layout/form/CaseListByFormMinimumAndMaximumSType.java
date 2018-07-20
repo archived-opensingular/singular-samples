@@ -34,8 +34,8 @@ import javax.annotation.Nonnull;
 /**
  * List by Form
  */
-@CaseItem(componentName = "List by Form", subCaseName = "Tamanho mínimo e máximo", group = Group.LAYOUT,
-        resources = @Resource(STypeExperienciaProfissional.class))
+/*hidden*/@CaseItem(componentName = "List by Form", subCaseName = "Tamanho mínimo e máximo", group = Group.LAYOUT,
+/*hidden*/        resources = @Resource(STypeExperienciaProfissional.class))
 @SInfoType(spackage = CaseLayoutPackage.class, name = "MinMaxSizeListForm")
 public class CaseListByFormMinimumAndMaximumSType extends STypeComposite<SIComposite> {
 
