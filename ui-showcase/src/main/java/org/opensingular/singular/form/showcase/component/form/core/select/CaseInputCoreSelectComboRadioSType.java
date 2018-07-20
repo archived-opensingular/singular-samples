@@ -24,7 +24,7 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewSelectionByRadio;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;

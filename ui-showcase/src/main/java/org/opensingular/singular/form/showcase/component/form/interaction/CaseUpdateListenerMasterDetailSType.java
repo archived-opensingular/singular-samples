@@ -26,7 +26,7 @@ import org.opensingular.form.type.core.STypeMonetary;
 import org.opensingular.form.view.SViewListByMasterDetail;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.interaction.form.STypeFuncionario;
 
 import javax.annotation.Nonnull;
