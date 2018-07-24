@@ -18,22 +18,25 @@
 
 package org.opensingular.requirementsamplemodule;
 
+import org.opensingular.requirement.module.FormFlowSingularRequirement;
+import org.opensingular.requirement.module.RequirementConfiguration;
+import org.opensingular.requirement.module.SingularRequirement;
 import org.opensingular.requirement.module.config.DefaultContexts;
-import org.opensingular.requirement.module.workspace.*;
-import org.opensingular.requirement.studio.init.RequirementStudioAppInitializer;
+import org.opensingular.requirement.module.workspace.DefaultDonebox;
+import org.opensingular.requirement.module.workspace.DefaultDraftbox;
+import org.opensingular.requirement.module.workspace.DefaultInbox;
+import org.opensingular.requirement.module.workspace.DefaultOngoingbox;
+import org.opensingular.requirement.module.workspace.WorkspaceRegistry;
 import org.opensingular.requirement.studio.init.StudioSingularModule;
 import org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow;
+import org.sample.form.EngenheiroForm;
 import org.sample.form.RequirementsampleForm;
-import org.opensingular.requirement.module.SingularRequirement;
-import org.opensingular.requirement.module.RequirementConfiguration;
-import org.opensingular.requirement.module.SingularModule;
-import org.opensingular.requirement.module.WorkspaceConfiguration;
-import org.opensingular.requirement.module.FormFlowSingularRequirement;
 
 public class RequirementsampleModule implements StudioSingularModule {
 
     public static final String REQUIREMENT_SAMPLE = "SAMPLE";
-    private SingularRequirement requirementsample = new FormFlowSingularRequirement("Requirementsample", RequirementsampleForm.class, RequirementSampleFlow.class);
+    private SingularRequirement formDadoPessoais = new FormFlowSingularRequirement("Formulario dados pessoais", RequirementsampleForm.class, RequirementSampleFlow.class);
+    private             SingularRequirement formEngenheiro = new FormFlowSingularRequirement("Formulario Engenheiro", EngenheiroForm.class, RequirementSampleFlow.class);
 
     @Override
     public String abbreviation() {
@@ -48,14 +51,15 @@ public class RequirementsampleModule implements StudioSingularModule {
     @Override
     public void requirements(RequirementConfiguration config) {
         config
-                .addRequirement(requirementsample);
+                .addRequirement(formDadoPessoais)
+                .addRequirement(formEngenheiro);
     }
 
     @Override
     public void workspace(WorkspaceRegistry workspaceRegistry) {
         workspaceRegistry
                 .add(DefaultContexts.RequirementContext.class)
-                .addBox(new DefaultDraftbox()).newFor(requirementsample)
+                .addBox(new DefaultDraftbox()).newFor(formDadoPessoais).newFor(formEngenheiro)
                 .addBox(new DefaultOngoingbox());
 
         workspaceRegistry
