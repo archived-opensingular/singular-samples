@@ -18,19 +18,19 @@
 
 package org.opensingular.requirementsamplemodule;
 
-import org.opensingular.requirement.module.FormFlowSingularRequirement;
-import org.opensingular.requirement.module.RequirementConfiguration;
-import org.opensingular.requirement.module.SingularRequirement;
+import org.opensingular.requirement.module.RequirementRegistry;
+import org.opensingular.requirement.module.WorkspaceConfiguration;
 import org.opensingular.requirement.module.config.DefaultContexts;
-import org.opensingular.requirement.module.workspace.*;
+import org.opensingular.requirement.module.workspace.DefaultDonebox;
+import org.opensingular.requirement.module.workspace.DefaultDraftbox;
+import org.opensingular.requirement.module.workspace.DefaultInbox;
+import org.opensingular.requirement.module.workspace.DefaultOngoingbox;
+import org.opensingular.requirement.module.workspace.WorkspaceRegistry;
 import org.opensingular.requirement.studio.init.StudioSingularModule;
-import org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow;
-import org.sample.form.RequirementsampleForm;
 
 public class RequirementsampleModule implements StudioSingularModule {
 
     public static final String REQUIREMENT_SAMPLE = "SAMPLE";
-    private SingularRequirement requirementsample = new FormFlowSingularRequirement("Requirementsample", RequirementsampleForm.class, RequirementSampleFlow.class);
 
     @Override
     public String abbreviation() {
@@ -43,22 +43,33 @@ public class RequirementsampleModule implements StudioSingularModule {
     }
 
     @Override
-    public void requirements(RequirementConfiguration config) {
-        config
-                .addRequirement(requirementsample);
+    public void requirements(RequirementRegistry requirementRegistry) {
+        requirementRegistry.add(SampleRequirement.class);
     }
 
     @Override
     public void workspace(WorkspaceRegistry workspaceRegistry) {
         workspaceRegistry
-                .add(DefaultContexts.RequirementContext.class)
-                .addBox(DefaultDraftbox.class).newFor(requirementsample)
-                .addBox(DefaultOngoingbox.class);
+                .add(RequirementSampleModuleRequirementContext.class)
+                .add(RequirementSampleWorklistContext.class);
+    }
 
-        workspaceRegistry
-                .add(DefaultContexts.WorklistContext.class)
-                .addBox(DefaultInbox.class)
-                .addBox(DefaultDonebox.class);
+    public static class RequirementSampleWorklistContext extends DefaultContexts.WorklistContext {
+        @Override
+        public void setup(WorkspaceConfiguration workspaceConfiguration) {
+            workspaceConfiguration
+                    .addBox(DefaultInbox.class)
+                    .addBox(DefaultDonebox.class);
+        }
+    }
+
+    public static class RequirementSampleModuleRequirementContext extends DefaultContexts.RequirementContext {
+        @Override
+        public void setup(WorkspaceConfiguration workspaceConfiguration) {
+            workspaceConfiguration
+                    .addBox(DefaultDraftbox.class).newFor(SampleRequirement.class)
+                    .addBox(DefaultOngoingbox.class);
+        }
     }
 
 }
