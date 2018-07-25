@@ -18,7 +18,6 @@
 
 package org.opensingular.requirementsamplemodule;
 
-import org.opensingular.requirement.module.RequirementDefinition;
 import org.opensingular.requirement.module.RequirementRegistry;
 import org.opensingular.requirement.module.WorkspaceConfiguration;
 import org.opensingular.requirement.module.config.DefaultContexts;
@@ -28,9 +27,6 @@ import org.opensingular.requirement.module.workspace.DefaultInbox;
 import org.opensingular.requirement.module.workspace.DefaultOngoingbox;
 import org.opensingular.requirement.module.workspace.WorkspaceRegistry;
 import org.opensingular.requirement.studio.init.StudioSingularModule;
-import org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow;
-import org.sample.form.EngenheiroForm;
-import org.sample.form.RequirementsampleForm;
 
 public class RequirementsampleModule implements StudioSingularModule {
 
