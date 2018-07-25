@@ -21,7 +21,7 @@ package org.opensingular.requirementsamplemodule.config;
 import java.util.List;
 
 import org.hibernate.dialect.Dialect;
-import org.hibernate.dialect.H2Dialect;
+import org.hibernate.dialect.SQLServerDialect;
 import org.opensingular.app.commons.spring.persistence.database.PackageScanConfiguration;
 import org.opensingular.app.commons.spring.persistence.database.SingularPersistenceConfiguration;
 
@@ -40,7 +40,7 @@ public class SamplePersistenceConfiguration implements SingularPersistenceConfig
 
     @Override
     public Class<? extends Dialect> getHibernateDialect() {
-        return H2Dialect.class;
+        return SQLServerDialect.class;
     }
 
 
