@@ -16,8 +16,6 @@
 
 package org.opensingular.singular.form.showcase.view.page;
 
-import javax.inject.Inject;
-
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
@@ -34,6 +32,8 @@ import org.opensingular.singular.form.showcase.view.page.form.FormItemCasePanel;
 import org.opensingular.singular.form.showcase.view.page.studio.StudioItemCasePanel;
 import org.opensingular.singular.form.showcase.view.template.ShowcaseTemplate;
 import org.wicketstuff.annotation.mount.MountPath;
+
+import javax.inject.Inject;
 
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
@@ -65,6 +65,9 @@ public class ComponentPage extends ShowcaseTemplate {
 
         WebMarkupContainer casesContainer = new WebMarkupContainer("casesContainer");
 
+        if (caseUrlIsWrong()) {
+            return casesContainer;
+        }
         if (showCaseItem.getCases().size() > 1) {
 
             BSTabPanel bsTabPanel = new BSTabPanel("cases");
@@ -91,6 +94,13 @@ public class ComponentPage extends ShowcaseTemplate {
         }
 
         return casesContainer;
+    }
+
+    private boolean caseUrlIsWrong() {
+        if (showCaseItem == null || showCaseItem.getCases() == null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
