@@ -35,7 +35,7 @@ import org.opensingular.singular.form.showcase.component.Group;
 /**
  * Tabs
  */
-@CaseItem(componentName = "Tabs", group = Group.LAYOUT)
+@CaseItem(componentName = "Tabs", group = Group.LAYOUT, subCaseName = "Default")
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTabs")
 public class CaseTabsSType extends STypeComposite<SIComposite> {
 
