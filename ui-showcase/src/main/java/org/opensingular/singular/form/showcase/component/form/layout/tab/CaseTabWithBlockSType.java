@@ -20,7 +20,6 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.view.SViewTab;
 /*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
 /*hidden*/import org.opensingular.singular.form.showcase.component.Group;
@@ -30,27 +29,26 @@ import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutP
 import javax.annotation.Nonnull;
 
 /**
- * O tamanho da aba pode ser configurado utilizando o método navColPreference,
- * esse tamanho será aplicado para todas as resoluções.
+ * A SViewTab pode ser utilizada em conjunto com a SViewByBlock
  */
-/*hidden*/@CaseItem(componentName = "Tabs", subCaseName = "Tamanho da aba", group = Group.LAYOUT,
-/*hidden*/        resources = {@Resource(CaseLayoutPackage.class), @Resource(STypeInformacoesProfissionais.class)})
+/*hidden*/@CaseItem(componentName = "Tabs", subCaseName = "Composição de View", group = Group.LAYOUT, resources = {@Resource(CaseLayoutPackage.class),
+/*hidden*/        @Resource(STypeInformacoesProfissionais.class), @Resource(STypeInformacoesPessoais.class)})
 @SInfoType(spackage = CaseLayoutPackage.class)
-public class CaseTabEditSizeSType extends STypeComposite<SIComposite> {
+public class CaseTabWithBlockSType extends STypeComposite<SIComposite> {
 
-    public STypeInformacoesProfissionais informacoes;
-    public STypeAddress endereco;
+    public STypeInformacoesPessoais infoPessoal;
+    public STypeInformacoesProfissionais infoProfissional;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        informacoes = this.addField("informacoes", STypeInformacoesProfissionais.class);
-        endereco = this.addField("endereco", STypeAddress.class);
+        infoPessoal = this.addField("infoPessoal", STypeInformacoesPessoais.class);
+        infoProfissional = this.addField("infoProfissional", STypeInformacoesProfissionais.class);
 
-        SViewTab tabbed = new SViewTab();
-        tabbed.addTab(informacoes,"Informações profissionais");
-        tabbed.addTab(endereco,"Endereço da empresa");
-        //@destacar
-        tabbed.navColPreference(2);
-        this.withView(tabbed);
+        //@destacar:bloco
+        this.withView(new SViewTab(), tabView->{
+            tabView.addTab(infoPessoal,"Informações pessoais");
+            tabView.addTab(infoProfissional,"Informações profissionais");
+        });
+        //@destacar:fim
     }
 }

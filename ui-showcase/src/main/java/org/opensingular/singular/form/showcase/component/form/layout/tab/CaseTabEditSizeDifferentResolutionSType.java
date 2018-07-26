@@ -30,13 +30,12 @@ import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutP
 import javax.annotation.Nonnull;
 
 /**
- * O tamanho da aba pode ser configurado utilizando o método navColPreference,
- * esse tamanho será aplicado para todas as resoluções.
+ * O tamanho da aba pode ser configurado especificamente para cada resolução.
  */
-/*hidden*/@CaseItem(componentName = "Tabs", subCaseName = "Tamanho da aba", group = Group.LAYOUT,
+/*hidden*/@CaseItem(componentName = "Tabs", subCaseName = "Tamanho da aba em diferentes resoluções", group = Group.LAYOUT,
 /*hidden*/        resources = {@Resource(CaseLayoutPackage.class), @Resource(STypeInformacoesProfissionais.class)})
 @SInfoType(spackage = CaseLayoutPackage.class)
-public class CaseTabEditSizeSType extends STypeComposite<SIComposite> {
+public class CaseTabEditSizeDifferentResolutionSType extends STypeComposite<SIComposite> {
 
     public STypeInformacoesProfissionais informacoes;
     public STypeAddress endereco;
@@ -49,8 +48,12 @@ public class CaseTabEditSizeSType extends STypeComposite<SIComposite> {
         SViewTab tabbed = new SViewTab();
         tabbed.addTab(informacoes,"Informações profissionais");
         tabbed.addTab(endereco,"Endereço da empresa");
-        //@destacar
-        tabbed.navColPreference(2);
+        //@destacar:bloco
+        tabbed.navColLg(2);
+        tabbed.navColMd(3);
+        tabbed.navColXs(4);
+        tabbed.navColSm(5);
+        //@destacar:fim
         this.withView(tabbed);
     }
 }
