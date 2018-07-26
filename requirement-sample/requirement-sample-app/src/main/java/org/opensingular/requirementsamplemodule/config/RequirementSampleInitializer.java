@@ -19,15 +19,8 @@
 package org.opensingular.requirementsamplemodule.config;
 
 import org.opensingular.requirement.studio.init.RequirementStudioAppInitializer;
-import org.opensingular.requirementsamplemodule.RequirementsampleModule;
-
 
 public class RequirementSampleInitializer extends RequirementStudioAppInitializer {
-    @Override
-    public String moduleCod() {
-        return RequirementsampleModule.REQUIREMENT_SAMPLE;
-    }
-
     @Override
     public String[] springPackagesToScan() {
         return new String[]{"org.opensingular"};
