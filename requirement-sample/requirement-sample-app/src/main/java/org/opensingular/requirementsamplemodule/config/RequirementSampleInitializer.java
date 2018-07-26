@@ -22,7 +22,7 @@ import org.opensingular.requirement.studio.init.RequirementStudioAppInitializer;
 
 public class RequirementSampleInitializer extends RequirementStudioAppInitializer {
     @Override
-    public String[] springPackagesToScan() {
+    public String[] getSpringPackagesToScan() {
         return new String[]{"org.opensingular"};
     }
 }
