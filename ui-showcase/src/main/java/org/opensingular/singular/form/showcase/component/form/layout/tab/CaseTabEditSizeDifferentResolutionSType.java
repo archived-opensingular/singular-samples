@@ -22,12 +22,16 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.view.SViewTab;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
+
+/*hidden*/
+/*hidden*/
+/*hidden*/
 
 /**
  * O tamanho da aba pode ser configurado especificamente para cada resolução.
@@ -51,8 +55,8 @@ public class CaseTabEditSizeDifferentResolutionSType extends STypeComposite<SICo
         //@destacar:bloco
         tabbed.navColLg(2);
         tabbed.navColMd(3);
-        tabbed.navColXs(4);
-        tabbed.navColSm(5);
+        tabbed.navColSm(4);
+        tabbed.navColXs(5);
         //@destacar:fim
         this.withView(tabbed);
     }
