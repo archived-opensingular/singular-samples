@@ -22,8 +22,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
@@ -31,7 +32,8 @@ import java.util.Optional;
 /**
  * Listener que é executado quando um dependsOn é executado
  */
-@CaseItem(componentName = "Listeners", subCaseName = "Update listener", group = Group.INTERACTION)
+/*hidden*/@CaseItem(componentName = "Listeners", subCaseName = "Update listener", group = Group.INTERACTION,
+/*hidden*/        resources = @Resource(CaseInteractionPackage.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "UpdateListener")
 public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
 
@@ -40,18 +42,21 @@ public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Endereço");
-
         cep = this.addFieldString("cep");
-        cep.asAtr().maxLength(8).label("CEP (Use os valores 70863520 ou 70070120)");
-
         logradouro = this.addFieldString("logradouro");
+
+        cep
+                .asAtr().maxLength(8)
+                .label("CEP (Use os valores 70863520 ou 70070120 ou 70750543)");
+
         logradouro
-                .asAtr().enabled(false)
-                .label("Logradouro")
+                //@destacar
+                .withUpdateListener(this::pesquisarLogradouro)
+                .asAtr().enabled(false).label("Logradouro")
+                //@destacar
                 .dependsOn(cep);
-        //@destacar
-        logradouro.withUpdateListener(this::pesquisarLogradouro);
+
+        this.asAtr().label("Endereço");
     }
 
     private void pesquisarLogradouro(SIString instance) {
@@ -61,6 +66,8 @@ public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
                 instance.setValue("CLN 211 Bloco 'B' Subsolo");
             } else if ("70070120".equalsIgnoreCase(c.getValue())) {
                 instance.setValue("SBS - Qd. 02 - Bl. Q - Centro Empresarial João Carlos Saad 12° andar");
+            } else if("70750543".equalsIgnoreCase(c.getValue())){
+                instance.setValue("SEPN 511 - Edifício Bittar III 4º andar");
             } else {
                 instance.setValue("Não encontrado");
             }
