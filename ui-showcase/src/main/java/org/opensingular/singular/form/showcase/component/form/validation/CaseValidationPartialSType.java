@@ -16,25 +16,23 @@
 
 package org.opensingular.singular.form.showcase.component.form.validation;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * É possível validar somente uma parte do formulário, no exemplo a seguir somente o campo "Obrigatório 1" será validado ao acionar a validação parcial.
  */
-@CaseItem(componentName = "Partial", group = Group.VALIDATION,
-    resources = @Resource(PartialValidationButton.class), customizer = CaseValidationPartialCustomizer.class)
+/*hidden*/@CaseItem(componentName = "Partial", group = Group.VALIDATION,
+/*hidden*/        resources = {@Resource(PartialValidationButton.class), @Resource(CaseValidationPackage.class)}, customizer = CaseValidationPartialCustomizer.class)
 @SInfoType(spackage = CaseValidationPackage.class, name = "Partial")
 public class CaseValidationPartialSType extends STypeComposite<SIComposite> {
 
@@ -44,21 +42,12 @@ public class CaseValidationPartialSType extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        //@destacar
         obrigatorio1 = this.addFieldString("obrigatorio1");
-        obrigatorio1
-                .asAtr().label("Obrigatorio 1")
-                .asAtr().required();
-
         obrigatorio2 = this.addFieldInteger("obrigatorio2");
-        obrigatorio2
-                .asAtr().label("Obrigatorio 2")
-                .asAtr().required();
-
         obrigatorio3 = this.addFieldString("obrigatorio3");
-        obrigatorio3
-                .asAtr().label("Obrigatorio 3")
-                .asAtr().required();
 
+        obrigatorio1.asAtr().required().label("Obrigatorio 1");
+        obrigatorio2.asAtr().required().label("Obrigatorio 2");
+        obrigatorio3.asAtr().required().label("Obrigatorio 3");
     }
 }

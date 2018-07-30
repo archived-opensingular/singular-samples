@@ -20,33 +20,34 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
-import org.opensingular.singular.form.showcase.component.form.core.search.form.STypeProcesso;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.Processo;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.ProcessoProvider;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.ProcessoRepository;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.STProcesso;
 
 import javax.annotation.Nonnull;
 
 /**
  * Permite a seleção a partir de uma busca no modo de tree em mémoria
  */
-@CaseItem(componentName = "Search Select", subCaseName = "TreeView in Memory", group = Group.INPUT,
-        resources = {@Resource(STypeProcesso.class), @Resource(Processo.class), @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
+/*hidden*/@CaseItem(componentName = "Search Select", subCaseName = "TreeView in Memory", group = Group.INPUT,
+/*hidden*/        resources = {@Resource(STProcesso.class), @Resource(Processo.class), @Resource(CaseInputCorePackage.class),
+/*hidden*/                @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewMemory")
 public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
 
-    public STypeProcesso processo;
+    public STProcesso processo;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        processo = this.addField("processo", STypeProcesso.class);
-        processo.asAtr()
-                .label("Processo")
-                .displayString("${id} - ${nome}")
-                .asAtrBootstrap()
-                .colPreference(6);
-    }
+        processo = this.addField("processo", STProcesso.class);
 
+        processo.asAtr().label("Processo").displayString("${id} - ${nome}")
+                .asAtrBootstrap().colPreference(6);
+    }
 
 }
