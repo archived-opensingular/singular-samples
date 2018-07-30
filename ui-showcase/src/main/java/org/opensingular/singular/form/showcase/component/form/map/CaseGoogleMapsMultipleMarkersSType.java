@@ -21,8 +21,8 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.util.STypeLatitudeLongitudeList;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
 
 import javax.annotation.Nonnull;
 
@@ -38,6 +38,7 @@ public class CaseGoogleMapsMultipleMarkersSType extends STypeComposite<SIComposi
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         coordenadas = this.addField("coordenadas", STypeLatitudeLongitudeList.class);
+
         coordenadas
                 .asAtr().required();
     }

@@ -25,16 +25,16 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeEMail;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 
 /**
  * Importador de atributos através de arquivos XML.<br/>
  * Exemplo básico de importação. 
  */
-
-@CaseItem(componentName = "ImporterXML", subCaseName = "Default", group = Group.IMPORTER, resources = @Resource(value = CaseImporterSType.class, extension = "xml"))
+/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Default", group = Group.IMPORTER,
+/*hidden*/        resources = {@Resource(value = CaseImporterSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLDefault")
 public class CaseImporterSType extends STypeComposite<SIComposite> {
 
@@ -49,7 +49,6 @@ public class CaseImporterSType extends STypeComposite<SIComposite> {
         idade = this.addFieldInteger("idade");
         email = this.addFieldEmail("email");
         descricao = this.addFieldString("descricao");
-
     }
 
 }

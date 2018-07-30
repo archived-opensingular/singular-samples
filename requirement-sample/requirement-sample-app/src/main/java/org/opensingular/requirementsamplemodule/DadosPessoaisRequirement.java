@@ -28,12 +28,13 @@ import org.sample.form.RequirementsampleForm;
 public class DadosPessoaisRequirement extends RequirementDefinition<RequirementInstance> {
 
     public DadosPessoaisRequirement() {
-        super("Requirementsample");
+        super("Requirementsample", RequirementInstance.class);
     }
 
     @Override
     public RequirementDefinitionConfiguration configure(RequirementConfigurationBuilder conf) {
-        return conf.name("Formulario dados pessoais")
+        return conf
+                .name("Formulario dados pessoais")
                 .mainForm(RequirementsampleForm.class)
                 .flowDefintion(RequirementSampleFlow.class)
                 .build();

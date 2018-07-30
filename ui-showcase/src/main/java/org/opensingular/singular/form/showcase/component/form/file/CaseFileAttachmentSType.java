@@ -22,16 +22,17 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.basic.AtrBootstrap;
 import org.opensingular.form.type.core.attachment.STypeAttachment;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Campo para anexar arquivos
  */
-@CaseItem(componentName = "Attachment", group = Group.FILE, resources = @Resource(PageWithAttachment.class))
+/*hidden*/@CaseItem(componentName = "Attachment", group = Group.FILE,
+/*hidden*/        resources = {@Resource(PageWithAttachment.class), @Resource(CaseFilePackage.class)})
 @SInfoType(spackage = CaseFilePackage.class, name = "Attachment")
 public class CaseFileAttachmentSType extends STypeComposite<SIComposite> {
 
@@ -41,12 +42,15 @@ public class CaseFileAttachmentSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         anexo = this.addField("anexo", STypeAttachment.class);
-        anexo.asAtr().label("Anexo");
-        anexo.asAtr().required(true);
-        anexo.as(AtrBootstrap.class).colPreference(6);
-
         foto = this.addField("foto", STypeAttachment.class);
-        foto.asAtr().label("Foto").required(false).allowedFileTypes("jpg", "image/png");
-        foto.as(AtrBootstrap.class).colPreference(6);
+
+        anexo
+                .asAtr().label("Anexo").required(true)
+                .asAtrBootstrap().colPreference(6);
+
+        foto
+                .asAtr().label("Foto").required(false)
+                .allowedFileTypes("jpg", "image/png")
+                .asAtrBootstrap().colPreference(6);
     }
 }

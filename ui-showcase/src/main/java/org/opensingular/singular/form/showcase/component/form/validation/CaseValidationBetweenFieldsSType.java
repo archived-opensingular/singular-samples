@@ -16,22 +16,22 @@
 
 package org.opensingular.singular.form.showcase.component.form.validation;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.form.validation.InstanceValidatable;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Between Fields
  */
-@CaseItem(componentName = "Between Fields", group = Group.VALIDATION)
+/*hidden*/@CaseItem(componentName = "Between Fields", group = Group.VALIDATION, resources = @Resource(CaseValidationPackage.class))
 @SInfoType(spackage = CaseValidationPackage.class, name = "BetweenFields")
 public class CaseValidationBetweenFieldsSType extends STypeComposite<SIComposite> {
 
@@ -41,22 +41,23 @@ public class CaseValidationBetweenFieldsSType extends STypeComposite<SIComposite
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         valorInicial = this.addFieldInteger("valorInicial");
-        valorInicial.asAtr().label("Valor Inicial");
-        valorInicial.asAtr().required();
-
         valorFinal = this.addFieldInteger("valorFinal");
-        valorFinal.asAtr().label("Valor Final");
-        valorFinal.asAtr().required();
 
-        this.addInstanceValidator(validatable -> {
-            SIComposite myForm = validatable.getInstance();
+        valorInicial.asAtr().required().label("Valor Inicial");
+        valorFinal.asAtr().required().label("Valor Final");
 
-            int mivFinal = myForm.findNearest(valorFinal).get().getInteger();
-            int mivInicial = myForm.findNearest(valorInicial).get().getInteger();
+        //@destacar
+        this.addInstanceValidator(this::verificaMenorMaior);
+    }
 
-            if (mivFinal <= mivInicial) {
-                validatable.error("O valor do campo final deve ser maior que o valor do campo inicial");
-            }
-        });
+    private void verificaMenorMaior(InstanceValidatable<SIComposite> validator) {
+        SIComposite myForm = validator.getInstance();
+
+        int mivFinal = myForm.findNearestOrException(valorFinal).getInteger();
+        int mivInicial = myForm.findNearestOrException(valorInicial).getInteger();
+
+        if (mivFinal <= mivInicial) {
+            validator.error("O valor do campo final deve ser maior que o valor do campo inicial");
+        }
     }
 }
