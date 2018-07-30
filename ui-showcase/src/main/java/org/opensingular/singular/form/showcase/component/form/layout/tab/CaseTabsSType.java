@@ -21,9 +21,9 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewTab;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaList;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
@@ -31,10 +31,14 @@ import org.opensingular.singular.form.showcase.component.form.layout.stypes.STyp
 
 import javax.annotation.Nonnull;
 
+/*hidden*/
+/*hidden*/
+/*hidden*/
+
 /**
  * Tabs
  */
-/*hidden*/@CaseItem(componentName = "Tabs", group = Group.LAYOUT, resources = {@Resource(STypeInformacaoPessoal.class),
+/*hidden*/@CaseItem(componentName = "Tabs", subCaseName ="Default", group = Group.LAYOUT, resources = {@Resource(STypeInformacaoPessoal.class),
 /*hidden*/        @Resource(STypeExperienciaProfissional.class), @Resource(STypeExperienciaList.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTabs")
 public class CaseTabsSType extends STypeComposite<SIComposite> {
