@@ -59,7 +59,7 @@ public class STCaseInputCoreMultiSelectComposite extends STypeComposite<SICompos
                 );
     }
 
-    private class SIComponenteQuimicoConverter implements SInstanceConverter<ComponenteQuimico, SIComponenteQuimico> {
+    private static class SIComponenteQuimicoConverter implements SInstanceConverter<ComponenteQuimico, SIComponenteQuimico> {
         @Override
         public void fillInstance(SIComponenteQuimico ins, ComponenteQuimico obj) {
             ins.nome().setValue(obj.getNome());
