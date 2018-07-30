@@ -65,6 +65,9 @@ public class ComponentPage extends ShowcaseTemplate {
 
         WebMarkupContainer casesContainer = new WebMarkupContainer("casesContainer");
 
+        if (caseUrlIsWrong()) {
+            return casesContainer;
+        }
         if (showCaseItem.getCases().size() > 1) {
 
             BSTabPanel bsTabPanel = new BSTabPanel("cases");
@@ -75,22 +78,29 @@ public class ComponentPage extends ShowcaseTemplate {
                     name = c.getComponentName();
                 }
                 if (ShowCaseType.FORM == showCaseItem.getShowCaseType()) {
-                    bsTabPanel.addTab(name, new FormItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseForm) c)));
+                    bsTabPanel.addTab(name, c.getSubCaseName(), new FormItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseForm) c)));
                 } else if (ShowCaseType.STUDIO == showCaseItem.getShowCaseType()) {
-                    bsTabPanel.addTab(name, new StudioItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseStudio) c)));
+                    bsTabPanel.addTab(name, c.getSubCaseName(), new StudioItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseStudio) c)));
                 }
             });
             casesContainer.add(bsTabPanel);
 
         } else if (!showCaseItem.getCases().isEmpty()) {
             if (ShowCaseType.STUDIO == showCaseItem.getShowCaseType()) {
-                   casesContainer.add(new StudioItemCasePanel("cases", $m.ofValue((CaseBaseStudio) showCaseItem.getCases().get(0))));
+                casesContainer.add(new StudioItemCasePanel("cases", $m.ofValue((CaseBaseStudio) showCaseItem.getCases().get(0))));
             } else {
                 casesContainer.add(new FormItemCasePanel("cases", $m.ofValue((CaseBaseForm) showCaseItem.getCases().get(0))));
             }
         }
 
         return casesContainer;
+    }
+
+    private boolean caseUrlIsWrong() {
+        if (showCaseItem == null || showCaseItem.getCases() == null) {
+            return true;
+        }
+        return false;
     }
 
     @Override

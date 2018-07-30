@@ -21,11 +21,13 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.SIBigDecimal;
 import org.opensingular.form.type.core.STypeMonetary;
-import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.interaction.form.STypeFuncionario;
 
 import javax.annotation.Nonnull;
 import java.math.BigDecimal;
@@ -33,43 +35,43 @@ import java.math.BigDecimal;
 /**
  * Listener que atualiza valores de itens de um mestre-detalhe.
  */
-@CaseItem(componentName = "Listeners", subCaseName = "Master/detail", group = Group.INTERACTION)
+/*hidden*/@CaseItem(componentName = "Listeners", subCaseName = "Master/detail", group = Group.INTERACTION,
+/*hidden*/        resources = @Resource(CaseInteractionPackage.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "MasterDetail")
 public class CaseUpdateListenerMasterDetailSType extends STypeComposite<SIComposite> {
 
     public STypeMonetary salarioMaximo;
-    public STypeList<STypeComposite<SIComposite>, SIComposite> funcionarios;
+    public STypeList<STypeFuncionario, SIComposite> funcionarios;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         salarioMaximo = this.addFieldMonetary("salarioMaximo");
+        funcionarios = this.addFieldListOf("funcionarios", STypeFuncionario.class);
 
-        funcionarios = this.addFieldListOfComposite("funcionarios", "funcionario");
-        STypeComposite<?> funcionario = funcionarios.getElementsType();
-        STypeString nome = funcionario.addFieldString("nome", true);
-        STypeMonetary salario = funcionario.addFieldMonetary("salario");
+        salarioMaximo.asAtr().label("Teto salarial");
 
-        {
-            salarioMaximo.asAtr().label("Teto salarial");
+        STypeFuncionario stFuncionario = funcionarios.getElementsType();
 
-            funcionarios
-                .withView(new SViewListByMasterDetail()
-                    .col(nome)
-                    .col(salario))
+        SViewListByMasterDetail funcionariosView = new SViewListByMasterDetail()
+                .col(stFuncionario.nome)
+                .col(stFuncionario.salario);
+
+        funcionarios
+                .withView(funcionariosView)
                 .asAtr().label("Experiências profissionais");
-            nome
-                .asAtr().label("Nome")
-                .asAtrBootstrap().colPreference(8);
-            salario
-                .withUpdateListener(iSalario -> iSalario.findNearest(salarioMaximo)
-                    .ifPresent(iSalarioMaximo -> {
-                        BigDecimal vs = iSalario.getValue();
-                        BigDecimal vsm = iSalarioMaximo.getValue();
-                        if ((vs != null) && (vsm != null) && (vs.compareTo(vsm) > 0))
-                            iSalario.setValue(iSalarioMaximo.getValue());
-                    }))
-                .asAtr().label("Salário")
-                .dependsOn(salarioMaximo);
+
+        stFuncionario.salario
+                .withUpdateListener(this::updateSalario)
+                .asAtr().dependsOn(salarioMaximo);
+    }
+
+    private void updateSalario(SIBigDecimal siSalario) {
+        SIBigDecimal siSalarioMaximo = siSalario.findNearestOrException(salarioMaximo);
+
+        BigDecimal vs = siSalario.getValue();
+        BigDecimal vsm = siSalarioMaximo.getValue();
+        if ((vs != null) && (vsm != null) && (vs.compareTo(vsm) > 0)) {
+            siSalario.setValue(siSalarioMaximo.getValue());
         }
     }
 }
