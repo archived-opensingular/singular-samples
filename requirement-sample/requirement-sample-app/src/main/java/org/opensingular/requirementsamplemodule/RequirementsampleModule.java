@@ -19,8 +19,8 @@
 package org.opensingular.requirementsamplemodule;
 
 import org.opensingular.requirement.module.RequirementRegistry;
-import org.opensingular.requirement.module.WorkspaceConfiguration;
 import org.opensingular.requirement.module.config.DefaultContexts;
+import org.opensingular.requirement.module.config.workspace.Workspace;
 import org.opensingular.requirement.module.workspace.DefaultDonebox;
 import org.opensingular.requirement.module.workspace.DefaultDraftbox;
 import org.opensingular.requirement.module.workspace.DefaultInbox;
@@ -58,8 +58,8 @@ public class RequirementsampleModule implements StudioSingularModule {
 
     public static class RequirementSampleWorklistContext extends DefaultContexts.WorklistContext {
         @Override
-        public void setup(WorkspaceConfiguration workspaceConfiguration) {
-            workspaceConfiguration
+        public void configure(Workspace workspace) {
+            workspace
                     .addBox(DefaultInbox.class)
                     .addBox(DefaultDonebox.class);
         }
@@ -67,8 +67,8 @@ public class RequirementsampleModule implements StudioSingularModule {
 
     public static class RequirementSampleModuleRequirementContext extends DefaultContexts.RequirementContext {
         @Override
-        public void setup(WorkspaceConfiguration workspaceConfiguration) {
-            workspaceConfiguration
+        public void configure(Workspace workspace) {
+            workspace
                     .addBox(DefaultDraftbox.class).newFor(DadosPessoaisRequirement.class, EngRequirement.class)
                     .addBox(DefaultOngoingbox.class);
         }
