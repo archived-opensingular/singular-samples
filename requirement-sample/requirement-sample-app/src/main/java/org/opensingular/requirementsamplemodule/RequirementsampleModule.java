@@ -69,7 +69,9 @@ public class RequirementsampleModule implements StudioSingularModule {
         @Override
         public void configure(Workspace workspace) {
             workspace
-                    .addBox(DefaultDraftbox.class).newFor(DadosPessoaisRequirement.class, EngRequirement.class)
+                    .addBox(DefaultDraftbox.class, box -> box
+                            .newFor(DadosPessoaisRequirement.class)
+                            .newFor(EngRequirement.class))
                     .addBox(DefaultOngoingbox.class);
         }
     }
