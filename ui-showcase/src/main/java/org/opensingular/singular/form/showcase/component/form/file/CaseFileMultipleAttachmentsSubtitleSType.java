@@ -23,16 +23,16 @@ import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Campo para anexar vários arquivos
  */
-@CaseItem(componentName = "Multiple Attachments", group = Group.FILE, subCaseName = "Subtitle")
+/*hidden*/@CaseItem(componentName = "Multiple Attachments", group = Group.FILE, subCaseName = "Subtitle", resources = @Resource(CaseFilePackage.class))
 @SInfoType(spackage = CaseFilePackage.class, name = "MultipleAttachmentsSubtitle")
 public class CaseFileMultipleAttachmentsSubtitleSType extends STypeComposite<SIComposite> {
 
@@ -40,18 +40,14 @@ public class CaseFileMultipleAttachmentsSubtitleSType extends STypeComposite<SIC
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        layoutsRotulagem = this
-            .addFieldListOfAttachment("layoutsRotulagem", "layout");
+        layoutsRotulagem = this.addFieldListOfAttachment("layoutsRotulagem", "layout");
 
         layoutsRotulagem
-            .withMiniumSizeOf(1)
-            .withMaximumSizeOf(4);
-
-        layoutsRotulagem.asAtr()
-            .label("Layouts Rotulagem")
-            //@destacar
-            .subtitle("Informar apenas os layouts de embalagem em uso");
-
+                .withMiniumSizeOf(1)
+                .withMaximumSizeOf(4)
+                .asAtr().label("Layouts Rotulagem")
+                //@destacar
+                .subtitle("Informar apenas os layouts de embalagem em uso");
 
         layoutsRotulagem.getElementsType().asAtr()
             .allowedFileTypes("image/png", "image/jpeg", "pdf", "zip");

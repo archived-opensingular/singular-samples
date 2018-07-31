@@ -23,6 +23,7 @@ import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSessio
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.head.filter.JavaScriptFilteredIntoFooterHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.pages.AccessDeniedPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
@@ -33,14 +34,12 @@ import org.opensingular.lib.commons.base.SingularProperties;
 import org.opensingular.lib.support.spring.util.ApplicationContextProvider;
 import org.opensingular.lib.wicket.util.application.SingularAnnotatedMountScanner;
 import org.opensingular.lib.wicket.util.application.SkinnableApplication;
-import org.opensingular.lib.wicket.util.page.error.Error403Page;
 import org.opensingular.lib.wicket.util.template.SingularTemplate;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminApp;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminTemplate;
 import org.opensingular.singular.form.showcase.view.page.form.ListPage;
 import org.opensingular.singular.form.showcase.view.template.ShowcaseFooter;
 import org.opensingular.singular.form.showcase.view.template.ShowcaseHeader;
-import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
@@ -66,7 +65,7 @@ public class ShowcaseApplication extends AuthenticatedWebApplication implements 
         getRequestCycleSettings().setTimeout(Duration.minutes(5));
         Locale.setDefault(new Locale("pt", "BR"));
 
-        getApplicationSettings().setAccessDeniedPage(Error403Page.class);
+        getApplicationSettings().setAccessDeniedPage(AccessDeniedPage.class);
         // in case you change this value, don't forget to check the configuration
         // for your application server. It must allow it.
         getApplicationSettings().setDefaultMaximumUploadSize(Bytes.megabytes(10));
