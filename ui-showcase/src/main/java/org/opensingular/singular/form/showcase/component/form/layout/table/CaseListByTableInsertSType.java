@@ -24,9 +24,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewListByTable;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeCertificacao;
 
@@ -35,8 +35,8 @@ import javax.annotation.Nonnull;
 /**
  * List by Table with Insert Option
  */
-/*hidden*/@CaseItem(componentName = "List by Table", subCaseName = "Line Insert", group = Group.LAYOUT,
-/*hidden*/        resources = {@Resource(STypeCertificacao.class), @Resource(CaseLayoutPackage.class)})
+@CaseItem(componentName = "List by Table", subCaseName = "Line Insert", group = Group.LAYOUT,
+        resources = {@Resource(STypeCertificacao.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTable")
 public class CaseListByTableInsertSType extends STypeComposite<SIComposite> {
 

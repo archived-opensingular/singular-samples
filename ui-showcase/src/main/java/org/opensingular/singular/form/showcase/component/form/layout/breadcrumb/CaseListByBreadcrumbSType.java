@@ -16,8 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout.breadcrumb;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -27,17 +25,19 @@ import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewBreadcrumb;
 import org.opensingular.form.view.SViewByBlock;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
+
+import javax.annotation.Nonnull;
 
 /**
  * Breadcrumb
  */
-/*hidden*/@CaseItem(componentName = "Breadcrumb", subCaseName = "Simples", group = Group.LAYOUT,
-/*hidden*/        resources = {@Resource(STypeExperienciaProfissional.class), @Resource(CaseLayoutPackage.class)})
+@CaseItem(componentName = "Breadcrumb", subCaseName = "Simples", group = Group.LAYOUT,
+        resources = {@Resource(STypeExperienciaProfissional.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "Simples")
 public class CaseListByBreadcrumbSType extends STypeComposite<SIComposite> {
 

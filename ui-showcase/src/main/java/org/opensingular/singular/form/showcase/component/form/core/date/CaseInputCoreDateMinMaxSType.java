@@ -16,25 +16,25 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.date;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Componente para inserção de min e max data
  */
-/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Min/Max Data", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
+@CaseItem(componentName = "Date", subCaseName = "Min/Max Data", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "MinMaxDateTime")
 public class CaseInputCoreDateMinMaxSType extends STypeComposite<SIComposite> {
 

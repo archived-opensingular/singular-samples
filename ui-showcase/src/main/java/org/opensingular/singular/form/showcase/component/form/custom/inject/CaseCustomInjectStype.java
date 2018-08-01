@@ -18,24 +18,24 @@
 
 package org.opensingular.singular.form.showcase.component.form.custom.inject;
 
-import javax.annotation.Nonnull;
-import javax.inject.Inject;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
+
+import javax.annotation.Nonnull;
+import javax.inject.Inject;
 
 /**
  * É possivel passar dados para o formulario a partir de Injeção de Beans.
  */
-/*hidden*/@CaseItem(componentName = "Inject",subCaseName = "Default", group = Group.CUSTOM,
-/*hidden*/        resources = {@Resource(value = CaseCustomInjectService.class), @Resource(value = CaseCustomPackage.class)})
+@CaseItem(componentName = "Inject",subCaseName = "Default", group = Group.CUSTOM,
+        resources = {@Resource(value = CaseCustomInjectService.class), @Resource(value = CaseCustomPackage.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "CaseInject")
 public class CaseCustomInjectStype extends STypeComposite<SIComposite> {
 

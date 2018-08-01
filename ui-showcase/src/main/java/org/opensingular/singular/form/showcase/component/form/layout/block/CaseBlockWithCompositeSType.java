@@ -9,9 +9,9 @@ import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.type.country.brazil.STypeCPF;
 import org.opensingular.form.view.SViewByBlock;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 /**
  * Podemos utilizar um STypeComposite como bloco de agrupamento
  */
-/*hidden*/@CaseItem(componentName = "Block", subCaseName = "Composite", group = Group.LAYOUT, resources = @Resource(CaseLayoutPackage.class))
+@CaseItem(componentName = "Block", subCaseName = "Composite", group = Group.LAYOUT, resources = @Resource(CaseLayoutPackage.class))
 @SInfoType(spackage = CaseLayoutPackage.class)
 public class CaseBlockWithCompositeSType extends STypeComposite<SIComposite> {
 

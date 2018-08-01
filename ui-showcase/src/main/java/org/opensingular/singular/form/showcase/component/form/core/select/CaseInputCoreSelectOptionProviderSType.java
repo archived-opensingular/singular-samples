@@ -16,29 +16,27 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.select;
 
-import java.text.DateFormat;
-
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.SIDate;
 import org.opensingular.form.type.core.SIFieldRef;
 import org.opensingular.form.type.core.STypeFieldRef;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByTable;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.SIPessoa;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.STypePessoa;
 
-/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Seleção de dados do próprio formulário", group = Group.INPUT,
-/*hidden*/        resources = { @Resource(STypePessoa.class), @Resource(SIPessoa.class), @Resource(CaseInputCorePackage.class) })
+import javax.annotation.Nonnull;
+import java.text.DateFormat;
+
+@CaseItem(componentName = "Select", subCaseName = "Seleção de dados do próprio formulário", group = Group.INPUT,
+        resources = { @Resource(STypePessoa.class), @Resource(SIPessoa.class), @Resource(CaseInputCorePackage.class) })
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectOptionProvider")
 public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SIComposite> {
 

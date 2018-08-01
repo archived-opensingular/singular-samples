@@ -16,11 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.date;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.annotation.Nonnull;
-
 import org.apache.commons.lang3.time.DateUtils;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -30,15 +25,20 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.form.view.date.SViewDate;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Componente para inserção de data
  */
-/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Simples", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
+@CaseItem(componentName = "Date", subCaseName = "Simples", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Date")
 public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
 
