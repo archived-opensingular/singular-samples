@@ -16,8 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component.form.importer;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -25,16 +23,18 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeEMail;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+
+import javax.annotation.Nonnull;
 
 /**
  * Importador de atributos através de arquivos XML. <br/>
  * Este é um exemplo mais complexo que os demais, pois existe uma hierarquia de fields no form.
  */
-
-@CaseItem(componentName = "ImporterXML", subCaseName = "Complex", group = Group.IMPORTER, resources = @Resource(value = CaseImporterComplexSType.class, extension = "xml"))
+/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Complex", group = Group.IMPORTER, resources = {@Resource(STypeEndereco.class),
+/*hidden*/        @Resource(value = CaseImporterComplexSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLComplex")
 public class CaseImporterComplexSType extends STypeComposite<SIComposite> {
 
@@ -43,28 +43,16 @@ public class CaseImporterComplexSType extends STypeComposite<SIComposite> {
     public STypeEMail email;
     public STypeString descricao;
 
-    public STypeComposite<SIComposite> endereco;
-    public STypeString rua;
-    public STypeInteger numero;
-    public STypeString bairro;
-    public STypeString cidade;
-    
-    
-    
+    public STypeEndereco endereco;
+
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = this.addFieldString("nome");
         idade = this.addFieldInteger("idade");
         email = this.addFieldEmail("email");
         descricao = this.addFieldString("descricao");
-                
-        endereco = this.addFieldComposite("endereco");
-        rua = endereco.addFieldString("rua");
-        numero = endereco.addFieldInteger("numero");
-        bairro = endereco.addFieldString("bairro");
-        cidade = endereco.addFieldString("cidade");
-        
 
+        endereco = this.addField("endereco", STypeEndereco.class);
     }
 
 }

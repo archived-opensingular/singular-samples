@@ -2,6 +2,7 @@ package org.sample.form;
 
 import javax.annotation.Nonnull;
 
+import org.apache.commons.lang3.StringUtils;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeAttachmentList;
@@ -15,6 +16,20 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.richtext.RichTextAction;
+import org.opensingular.form.view.richtext.RichTextContentContext;
+import org.opensingular.form.view.richtext.RichTextInsertContext;
+import org.opensingular.form.view.richtext.RichTextSelectionContext;
+import org.opensingular.form.view.richtext.SViewByRichText;
+import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
+import org.opensingular.lib.commons.ui.Icon;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.requirement.sei30.features.SILinkSEI;
+import org.opensingular.requirement.sei30.features.SIModeloSEI;
+import org.opensingular.requirement.sei30.features.SViewSEIRichText;
+
+import javax.annotation.Nonnull;
+import java.util.Optional;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
@@ -57,6 +72,21 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         naoTenhoFotoCachorro = this.addFieldBoolean("naoTenhoFotoCachorro");
         naoTenhoFotoCachorro.asAtr().label("Não tenho cachorro").subtitle("teste subtitle");
         naoTenhoFotoCachorro.asAtr().required(false);
+
+        fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
+        fotoDoCachorro.withView(SViewAttachmentImage::new);
+        fotoDoCachorro.asAtr().required(false);
+        fotoDoCachorro.asAtr().label("Foto do cachorro").subtitle("teste subtitle");
+        fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
+        fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
+
+        documentacaoComprobatoria = this.addFieldListOfAttachment("documentacaoComprobatoria", "documento");
+        documentacaoComprobatoria.asAtr().label("Documentação comprobatória de que não possui cachorro");
+        documentacaoComprobatoria.asAtr().dependsOn(naoTenhoFotoCachorro);
+        documentacaoComprobatoria.getElementsType().asAtr().allowedFileTypes("pdf");
+        documentacaoComprobatoria.asAtr().required(false);
+        documentacaoComprobatoria.withMiniumSizeOf(0);
+        documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         brasileiro = this.addFieldBoolean("brasileiro");
         brasileiro.asAtr().label("Brasileiro").subtitle("teste subtitle");

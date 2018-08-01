@@ -28,13 +28,15 @@ import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 
 /**
  * Valores iniciais para os componentes do formulário.
  */
-@CaseItem(componentName = "InitValue", subCaseName = "Init Value", group = Group.INTERACTION)
+/*hidden*/@CaseItem(componentName = "InitValue", subCaseName = "Init Value", group = Group.INTERACTION,
+/*hidden*/        resources = @Resource(CaseInteractionPackage.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "InitValue")
 public class CaseInitValueSType extends STypeComposite<SIComposite> {
 
@@ -45,29 +47,28 @@ public class CaseInitValueSType extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Valores Iniciais");
-
         nome = this.addFieldString("nome");
+        idade = this.addFieldInteger("idade");
+        date = this.addFieldDate("date");
+        genero = addFieldBoolean("genero");
+
         nome.asAtr().label("Nome");
       //@destacar
         nome.setInitialValue("João Da Silva");
 
-        idade = this.addFieldInteger("idade");
         idade.asAtr().label("Idade");
       //@destacar
         idade.setInitialValue(32);
-        
-        date = this.addFieldDate("date");
+
         date.asAtr().label("Data");
         //@destacar
         date.setInitialValue(new Date());
-        
-        genero = addFieldBoolean("genero");
+
         genero.withRadioView("Masculino", "Feminino");
         //@destacar
         genero.setInitialValue(Boolean.TRUE);
-        
+
+        this.asAtr().label("Valores Iniciais");
     }
 
-   
 }
