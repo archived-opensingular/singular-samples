@@ -21,45 +21,32 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
-import org.opensingular.form.type.core.STypeDate;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.interaction.form.STypeRecord;
 
 import javax.annotation.Nonnull;
 
 /**
  * Exibe campos visíveis dinamicamente.
  */
-@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Visible", group = Group.INTERACTION)
+/*hidden*/@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Visible", group = Group.INTERACTION,
+/*hidden*/        resources = {@Resource(STypeRecord.class), @Resource(CaseInteractionPackage.class)})
 @SInfoType(spackage = CaseInteractionPackage.class, name = "Visible")
 public class CaseInteractionVisibleSType extends STypeComposite<SIComposite> {
 
     public STypeBoolean visible;
-    public STypeComposite<SIComposite> record;
-    public STypeString recordText;
-    public STypeDate recordDate;
+    public STypeRecord record;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         visible = this.addFieldBoolean("visible");
-
-        record = this.addFieldComposite("record");
-        recordText = record.addFieldString("text");
-        recordDate = record.addFieldDate("date");
+        record = this.addField("record", STypeRecord.class);
 
         visible.asAtr().label("Visible");
 
-        record.asAtr()
-                .visible(ins -> ins.findNearestValue(visible, Boolean.class).orElse(Boolean.FALSE))
-                .dependsOn(visible);
-
-        recordText.asAtr()
-                .label("Text")
-                .asAtrBootstrap().colPreference(3);
-
-        recordDate.asAtr()
-                .label("Date")
-                .asAtrBootstrap().colPreference(2);
+        record.asAtr().dependsOn(visible)
+              .visible(ins -> ins.findNearestValue(visible, Boolean.class).orElse(Boolean.FALSE));
     }
 }

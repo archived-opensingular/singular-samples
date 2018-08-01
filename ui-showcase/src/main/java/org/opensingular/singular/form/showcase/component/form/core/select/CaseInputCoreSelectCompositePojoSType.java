@@ -22,36 +22,35 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.select.form.IngredienteQuimico;
+import org.opensingular.singular.form.showcase.component.form.core.select.form.IngredienteQuimicoFilteredProvider;
+import org.opensingular.singular.form.showcase.component.form.core.select.form.STIngredienteQuimico;
 
 /**
  * É possivel utilizar objetos serializaveis para realizar a seleção, porem neste caso, é necessario informar o conversor.
  */
-@CaseItem(componentName = "Select", subCaseName = "Tipo composto com objetos serializaveis.", group = Group.INPUT,
-        resources = {@Resource(IngredienteQuimico.class), @Resource(IngredienteQuimicoFilteredProvider.class)})
+/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Tipo composto com objetos serializaveis.", group = Group.INPUT,
+/*hidden*/        resources = {@Resource(IngredienteQuimico.class), @Resource(STIngredienteQuimico.class),@Resource(CaseInputCorePackage.class),
+/*hidden*/        @Resource(IngredienteQuimicoFilteredProvider.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectCompositePojo")
 public class CaseInputCoreSelectCompositePojoSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite<SIComposite> ingredienteQuimico;
+    public STIngredienteQuimico ingredienteQuimico;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        STypeComposite<SIComposite> ingredienteQuimico = this.addFieldComposite("ingredienteQuimico");
-
-        ingredienteQuimico.asAtr().label("Ingrediente Quimico");
-
-        ingredienteQuimico.addFieldString("formulaQuimica");
-        ingredienteQuimico.addFieldString("nome");
+        ingredienteQuimico = this.addField("ingredienteQuimico", STIngredienteQuimico.class);
 
         ingredienteQuimico.selectionOf(IngredienteQuimico.class)
                 .id(IngredienteQuimico::getNome)
                 .display("${nome} - ${formulaQuimica}")
+                //@destacar
                 .autoConverterOf(IngredienteQuimico.class)
                 .simpleProvider(new IngredienteQuimicoFilteredProvider());
-
     }
 
 }
