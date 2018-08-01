@@ -60,8 +60,10 @@ public class RequirementsampleModule implements StudioSingularModule {
         @Override
         public void configure(Workspace workspace) {
             workspace
-                    .addBox(DefaultInbox.class)
-                    .addBox(DefaultDonebox.class);
+                    .menu()
+                    .addCategory("Worklist", category -> category
+                            .addBox(DefaultInbox.class)
+                            .addBox(DefaultDonebox.class));
         }
     }
 
@@ -69,10 +71,13 @@ public class RequirementsampleModule implements StudioSingularModule {
         @Override
         public void configure(Workspace workspace) {
             workspace
-                    .addBox(DefaultDraftbox.class, box -> box
-                            .newFor(DadosPessoaisRequirement.class)
-                            .newFor(EngRequirement.class))
-                    .addBox(DefaultOngoingbox.class);
+                    .menu()
+                    .addCategory("Categoria A", catA -> catA
+                            .addBox(DefaultDraftbox.class, box -> box
+                                    .newFor(DadosPessoaisRequirement.class)
+                                    .newFor(EngRequirement.class)))
+                    .addCategory("Categoria B", catB -> catB
+                            .addBox(DefaultOngoingbox.class));
         }
     }
 
