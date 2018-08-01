@@ -23,7 +23,7 @@ class MyProject {
         this.name = name;
         this.start = ConversorToolkit.getDateFromDate(startDate);
         this.end = ConversorToolkit.getDateFromDate(endDate);
-        this.expenses = new BigDecimal(expenses);
+        this.expenses = BigDecimal.valueOf(expenses);
     }
 
     public String getName() {
