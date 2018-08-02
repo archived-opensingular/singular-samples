@@ -18,8 +18,6 @@
 
 package org.opensingular.requirementsamplemodule.flow;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.flow.core.DefinitionInfo;
 import org.opensingular.flow.core.FlowInstance;
 import org.opensingular.flow.core.ITaskDefinition;
@@ -29,6 +27,9 @@ import org.opensingular.requirement.module.flow.builder.RequirementFlowDefinitio
 import org.opensingular.requirement.module.wicket.view.form.FormPage;
 import org.opensingular.requirementsamplemodule.RequirementsampleModule;
 
+import javax.annotation.Nonnull;
+
+import static org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow.RequirementSampleTasks.AJUSTAR;
 import static org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow.RequirementSampleTasks.ANALISAR;
 import static org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow.RequirementSampleTasks.APROVADO;
 import static org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow.RequirementSampleTasks.REPROVADO;
@@ -40,6 +41,7 @@ public class RequirementSampleFlow extends RequirementFlowDefinition<FlowInstanc
     public enum RequirementSampleTasks implements ITaskDefinition {
 
         ANALISAR("Analisar"),
+        AJUSTAR("Solicitar Ajustes"),
         APROVADO("Aprovado"),
         REPROVADO("Reprovado");
 
@@ -67,6 +69,10 @@ public class RequirementSampleFlow extends RequirementFlowDefinition<FlowInstanc
 
         builder.addHumanTask(ANALISAR)
                 .uiAccess(new PermissiveTaskAccessStrategy())
+                .withExecutionPage(SampleFormPage.class);
+
+        builder.addHumanTask(AJUSTAR)
+                .uiAccess(new PermissiveTaskAccessStrategy())
                 .withExecutionPage(FormPage.class);
 
         builder.addEndTask(REPROVADO);
@@ -75,8 +81,11 @@ public class RequirementSampleFlow extends RequirementFlowDefinition<FlowInstanc
 
         builder.setStartTask(ANALISAR);
 
+        builder.from(ANALISAR).go("Solicitar ajustes", AJUSTAR);
         builder.from(ANALISAR).go("Aprovar", APROVADO);
         builder.from(ANALISAR).go("Reprovar", REPROVADO);
+
+        builder.from(AJUSTAR).go("Concluir Pendência", ANALISAR);
     }
 
 }
