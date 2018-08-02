@@ -75,9 +75,12 @@ public class RequirementsampleModule implements StudioSingularModule {
                     .addCategory("Categoria A", catA -> catA
                             .addBox(DefaultDraftbox.class, box -> box
                                     .newFor(DadosPessoaisRequirement.class)
-                                    .newFor(EngRequirement.class)))
+                                    .newFor(EngRequirement.class))
+                            .addBox(DefaultOngoingbox.class))
                     .addCategory("Categoria B", catB -> catB
-                            .addBox(DefaultOngoingbox.class));
+                            .add(SampleMenuItem.class)
+                            .add(SampleStudioMenuItem.class));
+
         }
     }
 
