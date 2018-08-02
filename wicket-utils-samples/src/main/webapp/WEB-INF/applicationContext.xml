@@ -11,15 +11,10 @@
   <bean class="org.opensingular.lib.context.singleton.SpringBoundedSingletonStrategy" />
   <bean class="org.opensingular.lib.support.spring.util.ApplicationContextProvider" lazy-init="false" />
 
-  <context:component-scan base-package="org.opensingular.formsamples.crud" />
+  <context:component-scan base-package="org.opensingular.samples.wicketutils" />
 
   <bean id="springServiceRegistry" class="org.opensingular.lib.commons.context.spring.SpringServiceRegistry" />
 
   <bean id="documentFactory" class="org.opensingular.form.spring.SpringSDocumentFactoryEmpty" />
-
-  <bean id="formPersistence" class="org.opensingular.form.spring.SpringFormPersistenceInMemory">
-    <constructor-arg type="java.lang.Class" value="org.opensingular.formsamples.crud.types.toxicologia.EstudoResiduoForm"></constructor-arg>
-    <property name="documentFactory" ref="documentFactory" />
-  </bean>
 
 </beans>
