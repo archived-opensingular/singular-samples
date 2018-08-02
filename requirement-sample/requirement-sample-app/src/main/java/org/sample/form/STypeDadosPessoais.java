@@ -1,8 +1,6 @@
 package org.sample.form;
 
-import java.util.Optional;
-import javax.annotation.Nonnull;
-
+import org.apache.commons.lang3.StringUtils;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
@@ -21,7 +19,7 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypeLatitudeLongitudeGMaps;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
-import org.opensingular.form.view.SViewCheckBoxLabelAbove;
+import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.view.richtext.RichTextAction;
 import org.opensingular.form.view.richtext.RichTextContentContext;
@@ -34,6 +32,9 @@ import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.requirement.sei30.features.SILinkSEI;
 import org.opensingular.requirement.sei30.features.SIModeloSEI;
 import org.opensingular.requirement.sei30.features.SViewSEIRichText;
+
+import javax.annotation.Nonnull;
+import java.util.Optional;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
@@ -113,7 +114,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
         fotoDoCachorro.withView(SViewAttachmentImage::new);
         fotoDoCachorro.asAtr().required(false);
-        fotoDoCachorro.asAtr().label("Foto do cachorro").subtitle("teste subtitle");;
+        fotoDoCachorro.asAtr().label("Foto do cachorro").subtitle("teste subtitle");
         fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
         fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
@@ -127,7 +128,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         brasileiro = this.addFieldBoolean("brasileiro");
         brasileiro.asAtr().label("Brasileiro").subtitle("teste subtitle");
-        brasileiro.withView(SViewCheckBoxLabelAbove::new);
+        brasileiro.withView(SViewCheckBox::new);
         brasileiro.asAtr().enabled(true);
 
         listEnderecos = this.addFieldListOf("listEnderecos", STypeAddress.class);
@@ -201,7 +202,16 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
             @Override
             public void onAction(RichTextInsertContext richTextContext, Optional<SInstance> sInstance) {
-                richTextContext.setReturnValue("teste");
+                sInstance.ifPresent(s -> {
+                    STypeListaExemplo sTypeModal = (STypeListaExemplo) sInstance.get().getType();
+                    String value = s.getField(sTypeModal.nome2).getValue();
+                    if(StringUtils.isNotEmpty(value)){
+                        richTextContext.setReturnValue(value);
+                    } else {
+                        richTextContext.setReturnValue("");
+                        /*Por default se o valor returnValue for null então não é realizado nenhuma ação*/
+                    }
+                });
             }
 
         };
