@@ -11,19 +11,16 @@ public class RequirementsampleForm extends STypeComposite<SIComposite> {
 
     public STypeDadosPessoais dadosPessoais;
     public STypeDadosPessoais exemplo21;
-    public STypeListaExemploMultiTab exemplo;
 
     @Override
     protected void onLoadType(TypeBuilder tb) {
         this.asAtrIndex().indexed(Boolean.TRUE);
         dadosPessoais = addField("dadosPessoais", STypeDadosPessoais.class);
         exemplo21 = addField("exemplo21", STypeDadosPessoais.class);
-        exemplo = addField("exemplo", STypeListaExemploMultiTab.class);
         dadosPessoais.asAtrIndex().indexed(Boolean.TRUE);
         SViewTab sViewTab = new SViewTab();
         sViewTab.addTab(dadosPessoais);
         sViewTab.addTab(exemplo21);
-        sViewTab.addTab(exemplo);
         this.withView(sViewTab);
         this.asAtr().label("Formulário de Requerimento").displayString("Requerimento de ${dadosPessoais.nomeCompleto!}");
     }

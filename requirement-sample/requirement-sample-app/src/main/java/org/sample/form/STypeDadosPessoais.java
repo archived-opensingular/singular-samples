@@ -44,13 +44,9 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeHTML richText2;
     public STypeHTML richText3;
 
-//    public STypeList<STypeListaExemplo, SIComposite> listaExemplo;
-
     public STypeString campo1;
     public STypeString campo2;
     public STypeLatitudeLongitudeGMaps coordenada;
-
-//    public STypeListaExemplo list;
 
 
     @Override
@@ -72,10 +68,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .enabled(t -> !t.findNearest(campo2).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
         campo1.asAtrAnnotation().setAnnotated();
         campo2.asAtrAnnotation().setAnnotated();
-
-//        listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
-//        listaExemplo.withView(SViewListByMasterDetail::new);
-//        listaExemplo.asAtr().label("Lista Exemplo");
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
         nomeMae = addField("nomeMae", STypeString.class);
@@ -155,8 +147,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .setDoubleClickDisabledForCssClasses("")
                 .getView());
 
-
-//        list = addField("list", STypeListaExemplo.class);
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(campo1).add(campo2)
