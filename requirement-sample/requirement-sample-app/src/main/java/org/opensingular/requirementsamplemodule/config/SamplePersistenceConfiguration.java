@@ -18,12 +18,12 @@
 
 package org.opensingular.requirementsamplemodule.config;
 
-import java.util.List;
-
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.H2Dialect;
 import org.opensingular.app.commons.spring.persistence.database.PackageScanConfiguration;
 import org.opensingular.app.commons.spring.persistence.database.SingularPersistenceConfiguration;
+
+import java.util.List;
 
 public class SamplePersistenceConfiguration implements SingularPersistenceConfiguration {
 

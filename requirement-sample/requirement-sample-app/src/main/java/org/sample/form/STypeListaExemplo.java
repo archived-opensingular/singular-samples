@@ -1,36 +1,33 @@
 package org.sample.form;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeBoolean;
-import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeDateTime;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.core.STypeTime;
-import org.opensingular.form.view.SViewCheckBox;
-import org.opensingular.lib.commons.ui.Alignment;
 import org.opensingular.form.util.SingularPredicates;
+import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.form.view.date.SViewDate;
 import org.opensingular.form.view.date.SViewDateTime;
-import org.opensingular.form.view.date.SViewTime;
+import org.opensingular.lib.commons.ui.Alignment;
 import org.opensingular.lib.commons.util.Loggable;
+
+import javax.annotation.Nonnull;
 
 @SInfoType(name = "ListaExemplo", spackage = RequirementsamplePackage.class)
 public class STypeListaExemplo extends STypeComposite<SIComposite> implements Loggable {
 
-    public STypeString nome2;
-    public STypeString  sobrenome2;
-    public STypeString  nomeMae2;
-    public STypeString  nomeGato2;
-    public STypeString  nomeDog2;
+    public STypeString   nome2;
+    public STypeString   sobrenome2;
+    public STypeString   nomeMae2;
+    public STypeString   nomeGato2;
+    public STypeString   nomeDog2;
     public STypeDateTime dataHoraInicio;
-    public STypeDate data;
-    public STypeTime time;
+    public STypeDate     data;
+    public STypeTime     time;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -52,18 +49,19 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         nomeMae2.asAtrAnnotation().setAnnotated();
 
         dataHoraInicio = this.addFieldDateTime("dataHoraInicio");
-        dataHoraInicio.asAtr().label("Data/Hora InÃ­cio").required();
+        dataHoraInicio.asAtr().label("Data/Hora Início").required();
 
         SViewDateTime sViewDateTime = new SViewDateTime();
         sViewDateTime.setClearBtn(true);
         sViewDateTime.setTodayHighlight(true);
         sViewDateTime.setMode24hs(false);
+        sViewDateTime.hideModalTimePicker(Boolean.TRUE);
+        sViewDateTime.hideModalDatePicker(Boolean.TRUE);
         dataHoraInicio.withView(sViewDateTime);
 
 
         data = this.addFieldDate("data");
         data.asAtr().label("Data");
-        data.asAtr().required();
 
         SViewCheckBox sView = new SViewCheckBox();
         sView.setAlignLabelOfCheckBox(Alignment.CENTER);
@@ -75,10 +73,7 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         data.withView(sViewDate);
 
         time = this.addFieldTime("time");
-        SViewTime sViewTime = new SViewTime();
-        sViewTime.setMinuteStep(20);
-        sViewTime.setMode24hs(true);
-        time.withView(sViewTime);
+
         time.asAtr().label("time").required();
 
         nomeGato2.asAtr().dependsOn(time).exists(SingularPredicates.typeValueIsNull(time));
