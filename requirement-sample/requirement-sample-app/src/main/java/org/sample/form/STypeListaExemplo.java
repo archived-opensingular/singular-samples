@@ -55,8 +55,8 @@ public class STypeListaExemplo extends STypeComposite<SIComposite> implements Lo
         sViewDateTime.setClearBtn(true);
         sViewDateTime.setTodayHighlight(true);
         sViewDateTime.setMode24hs(false);
-        sViewDateTime.hideModalTimePicker(true);
-        sViewDateTime.hideModalDatePicker(true);
+        sViewDateTime.hideModalTimePicker(Boolean.TRUE);
+        sViewDateTime.hideModalDatePicker(Boolean.TRUE);
         dataHoraInicio.withView(sViewDateTime);
 
 
