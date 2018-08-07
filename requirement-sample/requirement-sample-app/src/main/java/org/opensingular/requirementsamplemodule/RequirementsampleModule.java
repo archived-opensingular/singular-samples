@@ -18,6 +18,7 @@
 
 package org.opensingular.requirementsamplemodule;
 
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.requirement.module.RequirementRegistry;
 import org.opensingular.requirement.module.config.DefaultContexts;
 import org.opensingular.requirement.module.config.workspace.Workspace;
@@ -27,6 +28,7 @@ import org.opensingular.requirement.module.workspace.DefaultInbox;
 import org.opensingular.requirement.module.workspace.DefaultOngoingbox;
 import org.opensingular.requirement.module.workspace.WorkspaceRegistry;
 import org.opensingular.requirement.studio.init.StudioSingularModule;
+import org.opensingular.requirementsamplemodule.config.StudioRequirementConfig.EngenheiroFormDefinition;
 
 public class RequirementsampleModule implements StudioSingularModule {
 
@@ -62,6 +64,7 @@ public class RequirementsampleModule implements StudioSingularModule {
             workspace
                     .menu()
                     .addCategory("Worklist", category -> category
+                            .icon(DefaultIcons.FOLDER)
                             .addBox(DefaultInbox.class)
                             .addBox(DefaultDonebox.class));
         }
@@ -72,14 +75,17 @@ public class RequirementsampleModule implements StudioSingularModule {
         public void configure(Workspace workspace) {
             workspace
                     .menu()
-                    .addCategory("Categoria A", catA -> catA
+                    .addCategory("Requerimentos", reqs -> reqs
+                            .icon(DefaultIcons.ROCKET)
                             .addBox(DefaultDraftbox.class, box -> box
                                     .newFor(DadosPessoaisRequirement.class)
                                     .newFor(EngRequirement.class))
                             .addBox(DefaultOngoingbox.class))
-                    .addCategory("Categoria B", catB -> catB
+                    .addCategory("Cadastros", cadastros -> cadastros
+                            .icon(DefaultIcons.MAGIC)
                             .add(SampleMenuItem.class)
-                            .add(SampleStudioMenuItem.class));
+                            .addCRUD(EngenheiroFormDefinition.class, engCRUD ->
+                                    engCRUD.icon(DefaultIcons.USERS3)));
 
         }
     }
