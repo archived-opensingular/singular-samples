@@ -23,16 +23,17 @@ import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Campo para anexar vários arquivos
  */
-@CaseItem(componentName = "Multiple Attachments", subCaseName = "Default", group = Group.FILE, resources = @Resource(PageWithAttachment.class))
+/*hidden*/@CaseItem(componentName = "Multiple Attachments", subCaseName = "Default", group = Group.FILE,
+/*hidden*/        resources = {@Resource(PageWithAttachment.class), @Resource(CaseFilePackage.class)})
 @SInfoType(spackage = CaseFilePackage.class, name = "MultipleAttachments")
 public class CaseFileMultipleAttachmentsSType extends STypeComposite<SIComposite> {
 
@@ -40,15 +41,12 @@ public class CaseFileMultipleAttachmentsSType extends STypeComposite<SIComposite
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        layoutsRotulagem = this
-            .addFieldListOfAttachment("layoutsRotulagem", "layout");
+        layoutsRotulagem = this.addFieldListOfAttachment("layoutsRotulagem", "layout");
 
         layoutsRotulagem
-            .withMiniumSizeOf(1)
-            .withMaximumSizeOf(4);
-
-        layoutsRotulagem.asAtr()
-            .label("Layouts Rotulagem");
+                .withMiniumSizeOf(1)
+                .withMaximumSizeOf(4)
+                .asAtr().label("Layouts Rotulagem");
 
         layoutsRotulagem.getElementsType().asAtr()
             .allowedFileTypes("image/png", "image/jpeg", "pdf", "zip");

@@ -16,65 +16,57 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.search;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.converter.ValueToSICompositeConverter;
-import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewSearchModal;
-import org.opensingular.singular.form.showcase.component.CaseItem;
-import org.opensingular.singular.form.showcase.component.Group;
-import org.opensingular.singular.form.showcase.component.Resource;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.Funcionario;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.FuncionarioProvider;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.FuncionarioRepository;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.SIFuncionario;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.SIFuncionarioConverter;
+import org.opensingular.singular.form.showcase.component.form.core.search.form.STFuncionario;
+
+import javax.annotation.Nonnull;
 
 /**
  * Permite a seleção a partir de uma busca filtrada, fazendo o controle de paginação de forma automatica.
  */
-@CaseItem(componentName = "Search Select", subCaseName = "In Memory Pagination", group = Group.INPUT,
-resources = {@Resource(Funcionario.class), @Resource(FuncionarioProvider.class), @Resource(FuncionarioRepository.class)})
+/*hidden*/@CaseItem(componentName = "Search Select", subCaseName = "In Memory Pagination", group = Group.INPUT,
+/*hidden*/resources = {@Resource(Funcionario.class), @Resource(STFuncionario.class), @Resource(SIFuncionario.class), @Resource(CaseInputCorePackage.class),
+/*hidden*/        @Resource(FuncionarioProvider.class), @Resource(FuncionarioRepository.class), @Resource(SIFuncionarioConverter.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "InMemoryPagination")
 public class CaseInputModalSearchSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite funcionario;
-    public STypeComposite funcionarioClickedColumn;
+    public STFuncionario funcionario;
+    public STFuncionario funcionarioClickedColumn;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        funcionario = this.addFieldComposite("funcionario");
+        funcionario = this.addField("funcionario", STFuncionario.class);
+        funcionarioClickedColumn = this.addField("funcionarioClickedColumn", STFuncionario.class);
+
         funcionario.asAtr().label("Funcionario").displayString("${nome} - ${funcao}");
-
-        final STypeString nome  = funcionario.addFieldString("nome");//NOSONAR
-        final STypeString funcao = funcionario.addFieldString("funcao");//NOSONAR
-
         funcionario.withView(new SViewSearchModal().title("Buscar Profissionais"))
                 .asAtrProvider()
                 //@destacar
                 .filteredProvider(new FuncionarioProvider())
-                .converter((ValueToSICompositeConverter<Funcionario>) (newFunc, func) -> {
-                    newFunc.setValue(nome, func.getNome());
-                    newFunc.setValue(funcao, func.getFuncao());
-                });
+                .converter(new SIFuncionarioConverter());
 
-
-        funcionarioClickedColumn = this.addFieldComposite("funcionarioClickedColumn");
-        funcionarioClickedColumn.asAtr().label("Funcionario")
-                .subtitle("Habilitado o clique nas linhas").displayString("${nome} - ${funcao}");
-
-        final STypeString nomeFuncionario  = funcionarioClickedColumn.addFieldString("nome");//NOSONAR
-        final STypeString funcaoFuncionario = funcionarioClickedColumn.addFieldString("funcao");//NOSONAR
-
-        funcionarioClickedColumn.withView(new SViewSearchModal()
+        SViewSearchModal funcionarioClickedColumnView = new SViewSearchModal()
                 //@destacar
                 .enableRowClick(true)
-                .title("Buscar Profissionais"))
-                .asAtrProvider()
-                .filteredProvider(new FuncionarioProvider())
-                .converter((ValueToSICompositeConverter<Funcionario>) (newFunc, func) -> {
-                    newFunc.setValue(nomeFuncionario, func.getNome());
-                    newFunc.setValue(funcaoFuncionario, func.getFuncao());
-                });
+                .title("Buscar Profissionais");
+        funcionarioClickedColumn.withView(funcionarioClickedColumnView)
+                .asAtrProvider().filteredProvider(new FuncionarioProvider())
+                .converter(new SIFuncionarioConverter());
+
+        funcionarioClickedColumn.asAtr().label("Funcionario")
+                .subtitle("Habilitado o clique nas linhas").displayString("${nome} - ${funcao}");
     }
 }
