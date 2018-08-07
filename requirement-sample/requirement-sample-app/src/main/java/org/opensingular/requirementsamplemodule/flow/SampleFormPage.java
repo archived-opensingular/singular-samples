@@ -45,8 +45,9 @@ public class SampleFormPage extends AbstractFormPage<RequirementEntity, Requirem
     }
 
     @Override
-    protected SimpleMessageFlowConfirmModal getSimpleMessageFLowConfirmModal(String id, String transitionName, AbstractFormPage<RequirementEntity, RequirementInstance> formPage) {
-        if (transitionName.equalsIgnoreCase("Solicitar ajustes")) {
+    protected SimpleMessageFlowConfirmModal<RequirementEntity, RequirementInstance> getSimpleMessageFLowConfirmModal(
+            String id, String transitionName, AbstractFormPage<RequirementEntity, RequirementInstance> formPage) {
+        if ("Solicitar ajustes".equalsIgnoreCase((transitionName))) {
            return new SimpleMessageFlowConfirmModal(id, transitionName, formPage, false, "mensagem");
         }
         return super.getSimpleMessageFLowConfirmModal(id, transitionName, formPage);
