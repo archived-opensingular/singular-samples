@@ -82,7 +82,7 @@ public class RequirementsampleModule implements StudioSingularModule {
                             .addBox(DefaultOngoingbox.class))
                     .addCategory("Cadastros", cadastros -> cadastros
                             .icon(DefaultIcons.MAGIC)
-                            .add(SampleMenuItem.class)
+                            .addItem(SampleMenuItem.class)
                             .addCRUD(EngenheiroFormDefinition.class, engCRUD ->
                                     engCRUD.icon(DefaultIcons.USERS3)));
 
