@@ -76,6 +76,7 @@ public class RequirementsampleModule implements StudioSingularModule {
                     .addCategory("Requerimentos", reqs -> reqs
                             .icon(DefaultIcons.ROCKET)
                             .addBox(DefaultDraftbox.class, box -> box
+                                    .displayCounters(false)
                                     .newFor(DadosPessoaisRequirement.class)
                                     .newFor(EngRequirement.class))
                             .addBox(DefaultOngoingbox.class))
