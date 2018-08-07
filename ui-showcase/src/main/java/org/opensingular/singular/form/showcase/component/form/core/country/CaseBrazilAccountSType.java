@@ -16,8 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.country;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -25,13 +23,15 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.country.brazil.STypeBankAccount;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+
+import javax.annotation.Nonnull;
 
 /**
  * Campos de conta bancária- Brasil
  */
-
-@CaseItem(componentName = "Brazil", subCaseName = "Conta", group = Group.COUNTRY)
+@CaseItem(componentName = "Brazil", subCaseName = "Conta", group = Group.COUNTRY, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Conta")
 public class CaseBrazilAccountSType extends STypeComposite<SIComposite> {
 

@@ -32,7 +32,8 @@ import javax.annotation.Nonnull;
 /**
  * Campo para anexar vários arquivos
  */
-@CaseItem(componentName = "Multiple Attachments", subCaseName = "Default", group = Group.FILE, resources = @Resource(PageWithAttachment.class))
+@CaseItem(componentName = "Multiple Attachments", subCaseName = "Default", group = Group.FILE,
+        resources = {@Resource(PageWithAttachment.class), @Resource(CaseFilePackage.class)})
 @SInfoType(spackage = CaseFilePackage.class, name = "MultipleAttachments")
 public class CaseFileMultipleAttachmentsSType extends STypeComposite<SIComposite> {
 
@@ -40,15 +41,12 @@ public class CaseFileMultipleAttachmentsSType extends STypeComposite<SIComposite
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        layoutsRotulagem = this
-            .addFieldListOfAttachment("layoutsRotulagem", "layout");
+        layoutsRotulagem = this.addFieldListOfAttachment("layoutsRotulagem", "layout");
 
         layoutsRotulagem
-            .withMiniumSizeOf(1)
-            .withMaximumSizeOf(4);
-
-        layoutsRotulagem.asAtr()
-            .label("Layouts Rotulagem");
+                .withMiniumSizeOf(1)
+                .withMaximumSizeOf(4)
+                .asAtr().label("Layouts Rotulagem");
 
         layoutsRotulagem.getElementsType().asAtr()
             .allowedFileTypes("image/png", "image/jpeg", "pdf", "zip");

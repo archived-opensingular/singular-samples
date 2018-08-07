@@ -16,10 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component.form.interaction;
 
-import java.util.Date;
-
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -30,11 +26,16 @@ import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+
+import javax.annotation.Nonnull;
+import java.util.Date;
 
 /**
  * Valores iniciais para os componentes do formulário.
  */
-@CaseItem(componentName = "InitValue", subCaseName = "Init Value", group = Group.INTERACTION)
+@CaseItem(componentName = "InitValue", subCaseName = "Init Value", group = Group.INTERACTION,
+        resources = @Resource(CaseInteractionPackage.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "InitValue")
 public class CaseInitValueSType extends STypeComposite<SIComposite> {
 
@@ -45,29 +46,28 @@ public class CaseInitValueSType extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Valores Iniciais");
-
         nome = this.addFieldString("nome");
+        idade = this.addFieldInteger("idade");
+        date = this.addFieldDate("date");
+        genero = addFieldBoolean("genero");
+
         nome.asAtr().label("Nome");
       //@destacar
         nome.setInitialValue("João Da Silva");
 
-        idade = this.addFieldInteger("idade");
         idade.asAtr().label("Idade");
       //@destacar
         idade.setInitialValue(32);
-        
-        date = this.addFieldDate("date");
+
         date.asAtr().label("Data");
         //@destacar
         date.setInitialValue(new Date());
-        
-        genero = addFieldBoolean("genero");
+
         genero.withRadioView("Masculino", "Feminino");
         //@destacar
         genero.setInitialValue(Boolean.TRUE);
-        
+
+        this.asAtr().label("Valores Iniciais");
     }
 
-   
 }

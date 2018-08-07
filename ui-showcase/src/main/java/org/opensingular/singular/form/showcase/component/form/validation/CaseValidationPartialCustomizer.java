@@ -16,16 +16,16 @@
 
 package org.opensingular.singular.form.showcase.component.form.validation;
 
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
-
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.opensingular.singular.form.showcase.component.CaseBase;
 import org.opensingular.singular.form.showcase.component.CaseCustomizer;
 
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
+
 public class CaseValidationPartialCustomizer implements CaseCustomizer {
 
     @Override
-    public void customize(CaseBase caseBase) {
+    public void customize(CaseBase<?> caseBase) {
         caseBase.getBotoes().add((id, currentInstance) -> {
             final AjaxButton aj = new PartialValidationButton(id, currentInstance);
 

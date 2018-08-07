@@ -16,8 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component.form.importer;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -29,12 +27,14 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 
+import javax.annotation.Nonnull;
+
 /**
  * Importador de atributos através de arquivos XML.<br/>
  * Exemplo básico de importação. 
  */
-
-@CaseItem(componentName = "ImporterXML", subCaseName = "Default", group = Group.IMPORTER, resources = @Resource(value = CaseImporterSType.class, extension = "xml"))
+@CaseItem(componentName = "ImporterXML", subCaseName = "Default", group = Group.IMPORTER,
+        resources = {@Resource(value = CaseImporterSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLDefault")
 public class CaseImporterSType extends STypeComposite<SIComposite> {
 
@@ -49,7 +49,6 @@ public class CaseImporterSType extends STypeComposite<SIComposite> {
         idade = this.addFieldInteger("idade");
         email = this.addFieldEmail("email");
         descricao = this.addFieldString("descricao");
-
     }
 
 }

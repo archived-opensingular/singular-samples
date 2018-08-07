@@ -1,13 +1,8 @@
 package org.sample.form;
 
-import java.util.Optional;
-import javax.annotation.Nonnull;
-
-import org.apache.commons.lang3.StringUtils;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.SInstance;
-import org.opensingular.form.SType;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
@@ -24,19 +19,13 @@ import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.form.view.SViewListByTable;
-import org.opensingular.form.view.SViewPassword;
-import org.opensingular.form.view.richtext.RichTextAction;
-import org.opensingular.form.view.richtext.RichTextContentContext;
-import org.opensingular.form.view.richtext.RichTextInsertContext;
-import org.opensingular.form.view.richtext.RichTextSelectionContext;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
-import org.opensingular.lib.commons.ui.Icon;
-import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.requirement.sei30.features.SILinkSEI;
 import org.opensingular.requirement.sei30.features.SIModeloSEI;
 import org.opensingular.requirement.sei30.features.SViewSEIRichText;
+
+import javax.annotation.Nonnull;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
@@ -55,8 +44,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeHTML richText2;
     public STypeHTML richText3;
 
-    public STypeList<STypeListaExemplo, SIComposite> listaExemplo;
-
     public STypeString campo1;
     public STypeString campo2;
     public STypeLatitudeLongitudeGMaps coordenada;
@@ -66,6 +53,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         this.asAtr().label("Dados Pessoais");
         this.asAtrAnnotation().setAnnotated();
+
 
         coordenada = this.addField("coordenada", STypeLatitudeLongitudeGMaps.class);
         coordenada
@@ -80,10 +68,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .enabled(t -> !t.findNearest(campo2).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
         campo1.asAtrAnnotation().setAnnotated();
         campo2.asAtrAnnotation().setAnnotated();
-
-        listaExemplo = this.addFieldListOf("listaExemplo", STypeListaExemplo.class);
-        listaExemplo.withView(SViewListByMasterDetail::new);
-        listaExemplo.asAtr().label("Lista Exemplo");
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
         nomeMae = addField("nomeMae", STypeString.class);
@@ -116,7 +100,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         fotoDoCachorro = this.addFieldAttachment("fotoDoCachorro");
         fotoDoCachorro.withView(SViewAttachmentImage::new);
         fotoDoCachorro.asAtr().required(false);
-        fotoDoCachorro.asAtr().label("Foto do cachorro").subtitle("teste subtitle");;
+        fotoDoCachorro.asAtr().label("Foto do cachorro").subtitle("teste subtitle");
         fotoDoCachorro.asAtr().dependsOn(naoTenhoFotoCachorro);
         fotoDoCachorro.asAtr().enabled(fci -> !fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
@@ -153,9 +137,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         richText3.asAtr().label("TESTE RICHT TEXT 3");
 
         SViewByRichTextNewTab sViewByRichText2 = new SViewByRichTextNewTab();
-        sViewByRichText2.addAction(createMockInsertButton("Inserir"));
-        sViewByRichText2.addAction(createMockSelectButton("selecionar"));
-        sViewByRichText2.addAction(createMockContentButton("conteudo"));
         richText2.withView(sViewByRichText2);
 
 
@@ -168,8 +149,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
-                .add(campo1).add(campo2).add(listaExemplo)
-                .add(nomeCompleto)
+                .add(campo1).add(campo2)
                 .add(nomeMae)
                 .add(nomePai)
                 .add(telefone)
@@ -179,105 +159,4 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     }
 
 
-    private RichTextAction createMockInsertButton(String label) {
-
-        return new RichTextAction<RichTextInsertContext>() {
-            @Override
-            public String getLabel() {
-                return label;
-            }
-
-            @Override
-            public Icon getIcon() {
-                return DefaultIcons.ARCHIVE;
-            }
-
-            @Override
-            public Optional<Class<? extends SType<?>>> getForm() {
-                return Optional.of(STypeListaExemplo.class);
-            }
-
-            @Override
-            public Class<? extends RichTextInsertContext> getType() {
-                return RichTextInsertContext.class;
-            }
-
-            @Override
-            public void onAction(RichTextInsertContext richTextContext, Optional<SInstance> sInstance) {
-                sInstance.ifPresent(s -> {
-                    STypeListaExemplo sTypeModal = (STypeListaExemplo) sInstance.get().getType();
-                    String value = s.getField(sTypeModal.nome2).getValue();
-                    if(StringUtils.isNotEmpty(value)){
-                        richTextContext.setReturnValue(value);
-                    } else {
-                        richTextContext.setReturnValue("");
-                        /*Por default se o valor returnValue for null então não é realizado nenhuma ação*/
-                    }
-                });
-            }
-
-        };
-    }
-
-    private RichTextAction createMockSelectButton(String label) {
-
-        return new RichTextAction<RichTextSelectionContext>() {
-            @Override
-            public String getLabel() {
-                return label;
-            }
-
-            @Override
-            public Icon getIcon() {
-                return DefaultIcons.USERS;
-            }
-
-            @Override
-            public Optional<Class<? extends SType<?>>> getForm() {
-                return Optional.of(STypeListaExemplo.class);
-            }
-
-            @Override
-            public Class<? extends RichTextSelectionContext> getType() {
-                return RichTextSelectionContext.class;
-            }
-
-            @Override
-            public void onAction(RichTextSelectionContext richTextContext, Optional<SInstance> sInstance) {
-                richTextContext.setReturnValue(richTextContext.getTextSelected().toUpperCase());
-            }
-
-        };
-    }
-
-    private RichTextAction createMockContentButton(String label) {
-
-        return new RichTextAction<RichTextContentContext>() {
-            @Override
-            public String getLabel() {
-                return label;
-            }
-
-            @Override
-            public Icon getIcon() {
-                return DefaultIcons.ROCKET;
-            }
-
-            @Override
-            public Optional<Class<? extends SType<?>>> getForm() {
-                return Optional.of(STypeListaExemplo.class);
-            }
-
-            @Override
-            public Class<? extends RichTextContentContext> getType() {
-                return RichTextContentContext.class;
-            }
-
-            @Override
-            public void onAction(RichTextContentContext richTextContext, Optional<SInstance> sInstance) {
-                richTextContext.setReturnValue(richTextContext.getContent() + " FIM.");
-            }
-
-        };
-    }
 }

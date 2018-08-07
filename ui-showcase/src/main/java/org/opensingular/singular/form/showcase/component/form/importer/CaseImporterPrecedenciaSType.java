@@ -16,8 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component.form.importer;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -29,12 +27,14 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 
+import javax.annotation.Nonnull;
+
 /**
  * Importador de atributos através de arquivos XML. <br/>
  * Utilizando a precedencia, onde o xml tem maior prioridade entre os demais.
  */
-
-@CaseItem(componentName = "ImporterXML", subCaseName = "Precedência", group = Group.IMPORTER, resources = @Resource(value = CaseImporterPrecedenciaSType.class, extension = "xml") )
+@CaseItem(componentName = "ImporterXML", subCaseName = "Precedência", group = Group.IMPORTER,
+        resources = {@Resource(value = CaseImporterPrecedenciaSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLPrecedencia")
 public class CaseImporterPrecedenciaSType extends STypeComposite<SIComposite> {
 
@@ -42,21 +42,17 @@ public class CaseImporterPrecedenciaSType extends STypeComposite<SIComposite> {
     public STypeInteger idade;
     public STypeEMail email;
     public STypeString descricao;
-    
-    
+
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        
         nome = this.addFieldString("nome");
-        nome.asAtr().label("Nome (este label não será mostrado, o que tem precedência é o do xml)");
-        
         idade = this.addFieldInteger("idade");
-        idade.asAtr().label("idade (este label não será mostrado, o que tem precedência é o do xml)");
-        
         email = this.addFieldEmail("email");
-        email.asAtr().label("email (este label não será mostrado, o que tem precedência é o do xml)");
-        
         descricao = this.addFieldString("descricao");
+
+        nome.asAtr().label("Nome (este label não será mostrado, o que tem precedência é o do xml)");
+        idade.asAtr().label("idade (este label não será mostrado, o que tem precedência é o do xml)");
+        email.asAtr().label("email (este label não será mostrado, o que tem precedência é o do xml)");
         descricao.asAtr().label("descrição (este label não será mostrado, o que tem precedência é o do xml)");
     }
   

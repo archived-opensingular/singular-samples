@@ -20,12 +20,8 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.country.brazil.STypeCEP;
 import org.opensingular.form.type.country.brazil.STypeCPF;
-import org.opensingular.form.view.SViewBooleanSwitch;
-import org.opensingular.form.view.SViewListByMasterDetail;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
@@ -37,16 +33,18 @@ import javax.annotation.Nonnull;
 /**
  * Anotações e comentários associados a elementos de um form
  */
-@CaseItem(componentName = "Annotation", group = Group.CUSTOM, annotation = AnnotationMode.EDIT, resources = @Resource(PageWithAnnotation.class))
+@CaseItem(componentName = "Annotation", group = Group.CUSTOM, annotation = AnnotationMode.EDIT,
+        resources = {@Resource(PageWithAnnotation.class), @Resource(STypeCliente.class), @Resource(STypeEndereco.class),
+                @Resource(STypeRequest.class), @Resource(STypeId.class), @Resource(CaseCustomPackage.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "Annotation")
 public class CaseAnnotationSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite<SIComposite> cliente;
-    public STypeComposite<SIComposite> endereco;
-    public STypeComposite<SIComposite> request;
-    public STypeComposite<SIComposite> id;
-    public STypeAttachmentList         anexoMultiplo;
-    public STypeCPF                    cpf;
+    public STypeCliente        cliente;
+    public STypeEndereco       endereco;
+    public STypeRequest        request;
+    public STypeId             id;
+    public STypeAttachmentList anexoMultiplo;
+    public STypeCPF            cpf;
 
     /*
      * Observe que as anotações só estão disponíveis quando devidamente configuradas no
@@ -55,60 +53,36 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        this.asAtr().label("Pedido");
-
-        id = this.addFieldComposite("id");
-        id.asAtr().label("Identificador");
-        id.addFieldInteger("numero");
-        id.asAtrAnnotation().setAnnotated();
-
-        cliente = this.addFieldComposite("cliente");
-        cliente.asAtr().label("Dados do cliente");
-        cliente.addField("cpf", STypeCPF.class);
-        cliente.addFieldEmail("email").asAtr().label("E-Mail");
-        //@destacar
-        cliente.asAtrAnnotation().setAnnotated(); // Usará o rótulo do campo para a anotação
-        cliente.asAtrBootstrap().colPreference(6);
-
-        endereco = this.addFieldComposite("endereco");
-        endereco.asAtr().label("Endereço do cliente");
-        endereco.addField("cep", STypeCEP.class).asAtrAnnotation().setAnnotated();
-        endereco.addFieldString("Logradouro").asAtr().label("Logradouro");
-        endereco.asAtrBootstrap().colPreference(6);
-
-        request = this.addFieldComposite("request");
-        request.asAtr().label("Dados do pedido");
-
-        request.addFieldBoolean("paraPresente")
-            .asAtr().label("Para presente")
-            .asAtrAnnotation().setAnnotated();
-
-        request.addFieldBoolean("entregaUrgente")
-            .withView(SViewBooleanSwitch::new)
-            .asAtr().label("Entrega urgente")
-            .asAtrAnnotation().setAnnotated();
-
-        STypeList<STypeComposite<SIComposite>, SIComposite> itens = request.addFieldListOfComposite("itens", "item");
-        itens.asAtr().label("Itens");
-        itens.asAtrAnnotation().setAnnotated();
-
-        STypeComposite<SIComposite> item = itens.getElementsType();
-        item.addFieldString("descricao").asAtr().label("Descrição");
-        item.addFieldString("obs").asAtr().label("Observações");
-        item.asAtrAnnotation().setAnnotated();
-
-        itens.withView(() -> new SViewListByMasterDetail());
-
-        //@destacar
-        request.asAtrAnnotation().setAnnotated().label("Observações Finais"); //Permite definir seu pŕoprio rótulo
-
+        id = this.addField("id", STypeId.class);
+        cliente = this.addField("cliente", STypeCliente.class);
+        endereco = this.addField("endereco", STypeEndereco.class);
+        request = this.addField("request", STypeRequest.class);
         anexoMultiplo = this.addFieldListOfAttachment("anexoMultiplo", "anexo");
-        anexoMultiplo.asAtr().label("Anexos de qualquer coisa");
-        anexoMultiplo.asAtrAnnotation().setAnnotated();
-
         cpf = this.addField("cpf", STypeCPF.class);
+
+        id
+                .asAtr().label("Identificador")
+                .asAtrAnnotation().setAnnotated();
+
+        cliente
+                .asAtr().label("Dados do cliente")
+                //@destacar
+                .asAtrAnnotation().setAnnotated() // Usará o rótulo do campo para a anotação
+                .asAtrBootstrap().colPreference(6);
+
+        endereco.asAtr().label("Endereço do cliente")
+                .asAtrBootstrap().colPreference(6);
+
+        request.asAtr().label("Dados do pedido")
+                //@destacar
+                .asAtrAnnotation().setAnnotated().label("Observações Finais"); //Permite definir seu pŕoprio rótulo
+
+        anexoMultiplo
+                .asAtr().label("Anexos de qualquer coisa")
+                .asAtrAnnotation().setAnnotated();
+
         cpf.asAtrAnnotation().setAnnotated();
 
-        
+        this.asAtr().label("Pedido");
     }
 }

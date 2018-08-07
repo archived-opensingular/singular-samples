@@ -20,19 +20,25 @@ import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.opensingular.lib.wicket.util.tab.BSTabPanel;
+import org.opensingular.singular.form.showcase.ShowCaseException;
+import org.opensingular.singular.form.showcase.component.CaseBase;
 import org.opensingular.singular.form.showcase.component.CaseBaseForm;
 import org.opensingular.singular.form.showcase.component.CaseBaseStudio;
+import org.opensingular.singular.form.showcase.component.CaseBaseWicket;
 import org.opensingular.singular.form.showcase.component.ShowCaseTable;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.form.FormItemCasePanel;
 import org.opensingular.singular.form.showcase.view.page.studio.StudioItemCasePanel;
+import org.opensingular.singular.form.showcase.view.page.wicket.WicketItemCasePanel;
 import org.opensingular.singular.form.showcase.view.template.ShowcaseTemplate;
 import org.wicketstuff.annotation.mount.MountPath;
 
+import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
@@ -65,6 +71,9 @@ public class ComponentPage extends ShowcaseTemplate {
 
         WebMarkupContainer casesContainer = new WebMarkupContainer("casesContainer");
 
+        if (caseUrlIsWrong()) {
+            return casesContainer;
+        }
         if (showCaseItem.getCases().size() > 1) {
 
             BSTabPanel bsTabPanel = new BSTabPanel("cases");
@@ -74,23 +83,31 @@ public class ComponentPage extends ShowcaseTemplate {
                 if (name == null) {
                     name = c.getComponentName();
                 }
-                if (ShowCaseType.FORM == showCaseItem.getShowCaseType()) {
-                    bsTabPanel.addTab(name, new FormItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseForm) c)));
-                } else if (ShowCaseType.STUDIO == showCaseItem.getShowCaseType()) {
-                    bsTabPanel.addTab(name, new StudioItemCasePanel(BSTabPanel.TAB_PANEL_ID, $m.ofValue((CaseBaseStudio) c)));
-                }
+                bsTabPanel.addTab(name, c.getSubCaseName(), createHandlerPanel(BSTabPanel.TAB_PANEL_ID, c));
             });
             casesContainer.add(bsTabPanel);
 
         } else if (!showCaseItem.getCases().isEmpty()) {
-            if (ShowCaseType.STUDIO == showCaseItem.getShowCaseType()) {
-                   casesContainer.add(new StudioItemCasePanel("cases", $m.ofValue((CaseBaseStudio) showCaseItem.getCases().get(0))));
-            } else {
-                casesContainer.add(new FormItemCasePanel("cases", $m.ofValue((CaseBaseForm) showCaseItem.getCases().get(0))));
-            }
+            casesContainer.add(createHandlerPanel("cases", showCaseItem.getCases().get(0)));
         }
-
         return casesContainer;
+    }
+
+    /** Finds the panel that is able to display the example case. */
+    @Nonnull
+    private Panel createHandlerPanel(@Nonnull String id, @Nonnull CaseBase<?> c) {
+        if (c instanceof CaseBaseForm) {
+            return new FormItemCasePanel(id, $m.ofValue((CaseBaseForm) c));
+        } else if (c instanceof CaseBaseStudio) {
+            return new StudioItemCasePanel(id, $m.ofValue((CaseBaseStudio) c));
+        } else if (c instanceof CaseBaseWicket) {
+            return new WicketItemCasePanel(id, $m.ofValue((CaseBaseWicket) c));
+        }
+        throw new ShowCaseException("There is no handler panel defined for " + c.getClass());
+    }
+
+    private boolean caseUrlIsWrong() {
+        return showCaseItem == null || showCaseItem.getCases() == null;
     }
 
     @Override

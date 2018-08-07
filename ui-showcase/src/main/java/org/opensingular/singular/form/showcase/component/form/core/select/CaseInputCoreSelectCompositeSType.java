@@ -20,39 +20,38 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeString;
+import org.opensingular.form.provider.SSimpleProviderListBuilder;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.select.form.STIngredienteQuimico;
 
 import javax.annotation.Nonnull;
 
 /**
  * Pemite a seleção de valores compostos de varios tipos diferentes.
  */
-@CaseItem(componentName = "Select", subCaseName = "Tipo Composto", group = Group.INPUT)
+@CaseItem(componentName = "Select", subCaseName = "Tipo Composto", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectComposite")
 public class CaseInputCoreSelectCompositeSType extends STypeComposite<SIComposite> {
 
-    public STypeComposite<SIComposite> ingredienteQuimico;
+    public STIngredienteQuimico ingredienteQuimico;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        ingredienteQuimico = this.addFieldComposite("ingredienteQuimico");
-
-        ingredienteQuimico.asAtr().label("Ingrediente Quimico");
-
-        final STypeString formulaQuimica = ingredienteQuimico.addFieldString("formulaQuimica");
-        final STypeString nome           = ingredienteQuimico.addFieldString("nome");
+        ingredienteQuimico = this.addField("ingredienteQuimico", STIngredienteQuimico.class);
 
         ingredienteQuimico.selection()
-                .id(formulaQuimica)
+                .id(ingredienteQuimico.formulaQuimica)
                 .display("${nome} - ${formulaQuimica}")
-                .simpleProvider(listBuilder -> {
-                    listBuilder.add().set(formulaQuimica, "H20").set(nome, "Água");
-                    listBuilder.add().set(formulaQuimica, "H2O2").set(nome, "Água Oxigenada");
-                    listBuilder.add().set(formulaQuimica, "O2").set(nome, "Gás Oxigênio");
-                    listBuilder.add().set(formulaQuimica, "C12H22O11").set(nome, "Açúcar");
-                });
+                .simpleProvider(this::populateProvider);
+    }
+
+    private void populateProvider(SSimpleProviderListBuilder listBuilder) {
+        listBuilder.add().set(ingredienteQuimico.formulaQuimica, "H20").set(ingredienteQuimico.nome, "Água");
+        listBuilder.add().set(ingredienteQuimico.formulaQuimica, "H2O2").set(ingredienteQuimico.nome, "Água Oxigenada");
+        listBuilder.add().set(ingredienteQuimico.formulaQuimica, "O2").set(ingredienteQuimico.nome, "Gás Oxigênio");
+        listBuilder.add().set(ingredienteQuimico.formulaQuimica, "C12H22O11").set(ingredienteQuimico.nome, "Açúcar");
     }
 }

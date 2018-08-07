@@ -21,46 +21,32 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
-import org.opensingular.form.type.core.STypeDate;
-import org.opensingular.form.type.core.STypeString;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.form.interaction.form.STypeRecord;
 
 import javax.annotation.Nonnull;
 
 /**
  * Habilita os componentes dinamicamente.
  */
-@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Enabled", group = Group.INTERACTION)
+@CaseItem(componentName = "Enabled, Visible, Required", subCaseName = "Enabled", group = Group.INTERACTION,
+        resources = {@Resource(STypeRecord.class), @Resource(CaseInteractionPackage.class)})
 @SInfoType(spackage = CaseInteractionPackage.class, name = "Enabled")
 public class CaseInteractionEnabledSType extends STypeComposite<SIComposite> {
 
     public STypeBoolean enabled;
-    public STypeComposite<SIComposite> record;
-    public STypeString recordText;
-    public STypeDate recordDate;
+    public STypeRecord record;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         enabled = this.addFieldBoolean("enabled");
+        record = this.addField("record", STypeRecord.class);
 
-        record = this.addFieldComposite("record");
-        recordText = record.addFieldString("text");
-        recordDate = record.addFieldDate("date");
+        enabled.asAtr().label("Enable");
 
-        enabled
-                .asAtr().label("Enable");
-
-        record.asAtr()
-                .enabled(ins -> ins.findNearestValue(enabled, Boolean.class).orElse(Boolean.FALSE))
-                .dependsOn(enabled);
-
-        recordText.asAtr()
-                .label("Text")
-                .asAtrBootstrap().colPreference(3);
-
-        recordDate.asAtr()
-                .label("Date")
-                .asAtrBootstrap().colPreference(2);
+        record.asAtr().dependsOn(enabled)
+              .enabled(ins -> ins.findNearestValue(enabled, Boolean.class).orElse(Boolean.FALSE));
     }
 }

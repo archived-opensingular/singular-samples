@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.opensingular</groupId>
         <artifactId>singular-samples</artifactId>
-        <version>1.8.0-SNAPSHOT</version>
+        <version>1.8.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>requirement-sample</artifactId>
@@ -23,6 +23,22 @@
                     <target>${jdk.version}</target>
                 </configuration>
                 <version>3.6.1</version>
+            </plugin>
+            <!--Exemplo de execução com jetty, utilize mvn jetty:run-war para execução-->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.11.v20180605</version>
+                <configuration>
+                    <war>${project.basedir}../../requirement-sample-app/target/requirement-sample-app.war</war>
+                    <contextHandlers>
+                        <contextHandler implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
+                            <war>${project.basedir}../../requirement-sample-static-resources/target/singular-static.war</war>
+                            <contextPath>/singular-static</contextPath>
+                        </contextHandler>
+                    </contextHandlers>
+                    <jettyXml>jetty/jetty.xml,jetty/jetty-ssl.xml,jetty/jetty-https.xml</jettyXml>
+                </configuration>
             </plugin>
         </plugins>
     </build>

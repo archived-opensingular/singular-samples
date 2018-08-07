@@ -16,22 +16,21 @@
 
 package org.opensingular.singular.form.showcase.component.form.validation;
 
-import org.opensingular.form.PackageBuilder;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.SPackage;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Demonstração de validação de campo obrigatório.
  */
-@CaseItem(componentName = "Required", group = Group.VALIDATION)
+@CaseItem(componentName = "Required", group = Group.VALIDATION, resources = @Resource(CaseValidationPackage.class))
 @SInfoType(spackage = CaseValidationPackage.class, name = "Required")
 public class CaseValidationRequiredSType extends STypeComposite<SIComposite> {
 
@@ -40,7 +39,9 @@ public class CaseValidationRequiredSType extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         qtd = this.addFieldInteger("qtd");
-        qtd.asAtr().label("Quantidade");
-        qtd.asAtr().required();
+
+        //@destacar
+        qtd.asAtr().required()
+                .label("Quantidade");
     }
 }

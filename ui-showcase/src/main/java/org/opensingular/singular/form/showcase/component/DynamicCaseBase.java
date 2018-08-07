@@ -29,14 +29,6 @@ public class DynamicCaseBase extends CaseBaseForm {
     private String packageName = "teste";
     private String typeName = "endereco";
 
-    public DynamicCaseBase(String componentName) {
-        super(componentName);
-    }
-
-    public DynamicCaseBase(String componentName, String subCaseName) {
-        super(componentName, subCaseName);
-    }
-
     @Override
     public String getTypeName() {
         return packageName + "." + typeName;

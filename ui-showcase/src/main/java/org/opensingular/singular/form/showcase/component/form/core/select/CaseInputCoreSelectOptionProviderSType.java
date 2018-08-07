@@ -16,15 +16,12 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.select;
 
-import java.text.DateFormat;
-
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.SIFieldRef;
 import org.opensingular.form.type.core.STypeFieldRef;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewListByTable;
@@ -32,8 +29,14 @@ import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
+import org.opensingular.singular.form.showcase.component.form.core.select.form.SIPessoa;
+import org.opensingular.singular.form.showcase.component.form.core.select.form.STypePessoa;
 
-@CaseItem(componentName = "Select", subCaseName = "Seleção de dados do próprio formulário", group = Group.INPUT, resources = { @Resource(STypePessoa.class), @Resource(SIPessoa.class) })
+import javax.annotation.Nonnull;
+import java.text.DateFormat;
+
+@CaseItem(componentName = "Select", subCaseName = "Seleção de dados do próprio formulário", group = Group.INPUT,
+        resources = { @Resource(STypePessoa.class), @Resource(SIPessoa.class), @Resource(CaseInputCorePackage.class) })
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectOptionProvider")
 public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SIComposite> {
 
@@ -44,9 +47,8 @@ public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SICom
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         pessoas = this.addFieldListOf("pessoas", STypePessoa.class);
-        //@destacar:bloco
+        //@destacar
         pessoaSelecionada = this.addFieldRef("pessoaSelecionada", STypePessoa.class);
-        //@destacar:fim
         detalhes = this.addFieldString("detalhes");
 
         STypePessoa pessoa = pessoas.getElementsType();
@@ -58,11 +60,10 @@ public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SICom
 
         detalhes.withUpdateListener(ins -> ins.setValue(
             ins.root().find(pessoaSelecionada)
-                //@destacar:bloco
-                .flatMap(it -> it.findSourceInstance())
-                //@destacar:fim
-                .map(it -> it.getDataNascimento())
-                .map(it -> DateFormat.getDateInstance().format(it))
+                //@destacar
+                .flatMap(SIFieldRef::findSourceInstance)
+                .map(SIPessoa::getDataNascimento)
+                .map(it -> DateFormat.getDateInstance().format(it.getDate()))
                 .orElse("")));
 
         pessoas.withView(new SViewListByTable())
@@ -71,8 +72,10 @@ public class CaseInputCoreSelectOptionProviderSType extends STypeComposite<SICom
         pessoaSelecionada
             .asAtr().label("Seleção").dependsOn(pessoas, pessoa.nome)
             .asAtrBootstrap().colPreference(6);
+
         detalhes
-            .asAtr().label("Detalhes").enabled(false).dependsOn(pessoaSelecionada, pessoa.dataNascimento)
+            .asAtr().label("Detalhes").enabled(false)
+            .dependsOn(pessoaSelecionada, pessoa.dataNascimento)
             .asAtrBootstrap().colPreference(6);
     }
 }
