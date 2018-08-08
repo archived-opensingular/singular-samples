@@ -22,17 +22,17 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewListByForm;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * É possivel colocar as informações do help em um arquivo XML
  */
-/*hidden*/@CaseItem(componentName = "Help", subCaseName = "Help with XML", group = Group.HELP, resources = {@Resource(STypeExperiencia.class),
-/*hidden*/        @Resource(value = CaseHelpWithXMLSType.class, extension = "xml"), @Resource(CaseHelpPackage.class)})
+@CaseItem(componentName = "Help", subCaseName = "Help with XML", group = Group.HELP, resources = {@Resource(STypeExperiencia.class),
+        @Resource(value = CaseHelpWithXMLSType.class, extension = "xml"), @Resource(CaseHelpPackage.class)})
 @SInfoType(spackage = CaseHelpPackage.class, name = "HelpWithXML")
 public class CaseHelpWithXMLSType extends STypeComposite<SIComposite> {
     public STypeList<STypeExperiencia, SIComposite> experienciasProfissionais;

@@ -22,9 +22,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewBreadcrumb;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeComponente;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeSubComponente;
@@ -34,8 +34,8 @@ import javax.annotation.Nonnull;
 /**
  * Breadcrumb
  */
-/*hidden*/@CaseItem(componentName = "Breadcrumb", subCaseName = "Complexo", group = Group.LAYOUT, resources = {@Resource(STypeComponente.class),
-/*hidden*/        @Resource(STypeSubComponente.class), @Resource(CaseLayoutPackage.class)})
+@CaseItem(componentName = "Breadcrumb", subCaseName = "Complexo", group = Group.LAYOUT, resources = {@Resource(STypeComponente.class),
+        @Resource(STypeSubComponente.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "Complexo")
 public class CaseComplexListByBreadcrumbSType extends STypeComposite<SIComposite> {
 

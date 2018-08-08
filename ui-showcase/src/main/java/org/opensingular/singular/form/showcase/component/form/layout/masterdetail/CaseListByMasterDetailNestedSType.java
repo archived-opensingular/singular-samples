@@ -22,9 +22,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewListByMasterDetail;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeCargo;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissionalWithCargos;
@@ -35,9 +35,9 @@ import javax.annotation.Nonnull;
 /**
  * List by Master Detail
  */
-/*hidden*/@CaseItem(componentName = "List by Master Detail", subCaseName = "Aninhado", group = Group.LAYOUT,
-/*hidden*/        resources = {@Resource(STypeExperienciaProfissionalWithCargos.class), @Resource(STypeCargo.class),
-/*hidden*/        @Resource(STypePet.class), @Resource(CaseLayoutPackage.class)})
+@CaseItem(componentName = "List by Master Detail", subCaseName = "Aninhado", group = Group.LAYOUT,
+        resources = {@Resource(STypeExperienciaProfissionalWithCargos.class), @Resource(STypeCargo.class),
+        @Resource(STypePet.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "MasterDetailNested")
 public class CaseListByMasterDetailNestedSType extends STypeComposite<SIComposite> {
 

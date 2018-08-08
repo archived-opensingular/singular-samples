@@ -24,9 +24,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewListByForm;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.interaction.form.SIItem;
 import org.opensingular.singular.form.showcase.component.form.interaction.form.STItem;
 
@@ -36,8 +36,8 @@ import java.util.Arrays;
 /**
  * Listener que é executado ao criar uma nova instância de um tipo
  */
-/*hidden*/@CaseItem(componentName = "Listeners", subCaseName = "Init Listener", group = Group.INTERACTION,
-/*hidden*/        resources = {@Resource(STItem.class), @Resource(SIItem.class), @Resource(CaseInteractionPackage.class)})
+@CaseItem(componentName = "Listeners", subCaseName = "Init Listener", group = Group.INTERACTION,
+        resources = {@Resource(STItem.class), @Resource(SIItem.class), @Resource(CaseInteractionPackage.class)})
 @SInfoType(spackage = CaseInteractionPackage.class, name = "InitListener")
 public class CaseInitListenerSType extends STypeComposite<SIComposite> {
 

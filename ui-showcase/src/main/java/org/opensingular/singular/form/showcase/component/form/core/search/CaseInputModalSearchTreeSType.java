@@ -20,9 +20,9 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 import org.opensingular.singular.form.showcase.component.form.core.search.form.Processo;
 import org.opensingular.singular.form.showcase.component.form.core.search.form.ProcessoProvider;
@@ -34,9 +34,9 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção a partir de uma busca no modo de tree em mémoria
  */
-/*hidden*/@CaseItem(componentName = "Search Select", subCaseName = "TreeView in Memory", group = Group.INPUT,
-/*hidden*/        resources = {@Resource(STProcesso.class), @Resource(Processo.class), @Resource(CaseInputCorePackage.class),
-/*hidden*/                @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
+@CaseItem(componentName = "Search Select", subCaseName = "TreeView in Memory", group = Group.INPUT,
+        resources = {@Resource(STProcesso.class), @Resource(Processo.class), @Resource(CaseInputCorePackage.class),
+                @Resource(ProcessoProvider.class), @Resource(ProcessoRepository.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TreeViewMemory")
 public class CaseInputModalSearchTreeSType extends STypeComposite<SIComposite> {
 

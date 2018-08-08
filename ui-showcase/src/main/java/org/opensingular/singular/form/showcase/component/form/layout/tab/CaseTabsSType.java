@@ -31,15 +31,11 @@ import org.opensingular.singular.form.showcase.component.form.layout.stypes.STyp
 
 import javax.annotation.Nonnull;
 
-/*hidden*/
-/*hidden*/
-/*hidden*/
-
 /**
  * Tabs
  */
-/*hidden*/@CaseItem(componentName = "Tabs", subCaseName ="Default", group = Group.LAYOUT, resources = {@Resource(STypeInformacaoPessoal.class),
-/*hidden*/        @Resource(STypeExperienciaProfissional.class), @Resource(STypeExperienciaList.class), @Resource(CaseLayoutPackage.class)})
+@CaseItem(componentName = "Tabs", subCaseName ="Default", group = Group.LAYOUT, resources = {@Resource(STypeInformacaoPessoal.class),
+        @Resource(STypeExperienciaProfissional.class), @Resource(STypeExperienciaList.class), @Resource(CaseLayoutPackage.class)})
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTabs")
 public class CaseTabsSType extends STypeComposite<SIComposite> {
 

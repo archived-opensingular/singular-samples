@@ -23,9 +23,9 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeEMail;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
@@ -33,8 +33,8 @@ import javax.annotation.Nonnull;
  * Importador de atributos através de arquivos XML. <br/>
  * Este é um exemplo mais complexo que os demais, pois existe uma hierarquia de fields no form.
  */
-/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Complex", group = Group.IMPORTER, resources = {@Resource(STypeEndereco.class),
-/*hidden*/        @Resource(value = CaseImporterComplexSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
+@CaseItem(componentName = "ImporterXML", subCaseName = "Complex", group = Group.IMPORTER, resources = {@Resource(STypeEndereco.class),
+        @Resource(value = CaseImporterComplexSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLComplex")
 public class CaseImporterComplexSType extends STypeComposite<SIComposite> {
 

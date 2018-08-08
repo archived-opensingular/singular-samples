@@ -16,10 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component.form.interaction;
 
-import java.util.Date;
-
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -28,15 +24,18 @@ import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+
+import javax.annotation.Nonnull;
+import java.util.Date;
 
 /**
  * Valores iniciais para os componentes do formulário.
  */
-/*hidden*/@CaseItem(componentName = "InitValue", subCaseName = "Init Value", group = Group.INTERACTION,
-/*hidden*/        resources = @Resource(CaseInteractionPackage.class))
+@CaseItem(componentName = "InitValue", subCaseName = "Init Value", group = Group.INTERACTION,
+        resources = @Resource(CaseInteractionPackage.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "InitValue")
 public class CaseInitValueSType extends STypeComposite<SIComposite> {
 
