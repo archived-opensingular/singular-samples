@@ -74,6 +74,7 @@ public class ShowCaseTable {
         addGroup(Group.MAPS);
         addGroup(Group.IMPORTER);
         addGroup(Group.TABLE_TOOL);
+        addGroup(Group.MODAL);
 
         addGroup("XSD", DefaultIcons.CODE, ShowCaseType.FORM)
                 .addCase(new XsdCaseSimple())
@@ -101,7 +102,7 @@ public class ShowCaseTable {
         }
         for (Class<?> caseClass : classes) {
             final CaseItem caseItem = caseClass.getAnnotation(CaseItem.class);
-            CaseBase caseBase;
+            CaseBase<?> caseBase;
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
                 caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass);
             } else if (StudioDefinition.class.isAssignableFrom(caseClass)) {
@@ -188,7 +189,7 @@ public class ShowCaseTable {
             return groupName;
         }
 
-        public <T extends CaseBase> ShowCaseGroup addCase(Class<T> classCase) {
+        public <T extends CaseBase<?>> ShowCaseGroup addCase(Class<T> classCase) {
             try {
                 return addCase(classCase.newInstance());
             } catch (InstantiationException | IllegalAccessException e) {
@@ -196,7 +197,7 @@ public class ShowCaseTable {
             }
         }
 
-        private ShowCaseGroup addCase(CaseBase c) {
+        private ShowCaseGroup addCase(CaseBase<?> c) {
             ShowCaseItem item = itens.computeIfAbsent(c.getComponentName(), k -> new ShowCaseItem(c.getComponentName(), c.getShowCaseType()));
             item.addCase(c);
             return this;
@@ -239,7 +240,7 @@ public class ShowCaseTable {
         public List<CaseBase<?>> getCases() {
             cases.sort( (case1, case2) ->  case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
 
-            CaseBase caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
+            CaseBase<?> caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
             if (caseBaseDefault != null) {
                 cases.remove(caseBaseDefault);
                 cases.add(0, caseBaseDefault);}
