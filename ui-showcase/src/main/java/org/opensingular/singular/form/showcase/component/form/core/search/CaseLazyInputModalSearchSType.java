@@ -20,11 +20,10 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.converter.SInstanceConverter;
 import org.opensingular.form.view.SViewSearchModal;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 import org.opensingular.singular.form.showcase.component.form.core.search.form.Funcionario;
 import org.opensingular.singular.form.showcase.component.form.core.search.form.FuncionarioRepository;
@@ -38,9 +37,9 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção a partir de uma busca filtrada, sendo necessario fazer o controle de paginação manualmente
  */
-/*hidden*/@CaseItem(componentName = "Search Select", subCaseName = "Lazy Pagination", group = Group.INPUT,
-/*hidden*/resources = {@Resource(Funcionario.class), @Resource(STFuncionario.class), @Resource(SIFuncionario.class), @Resource(CaseInputCorePackage.class),
-/*hidden*/        @Resource(LazyFuncionarioProvider.class), @Resource(FuncionarioRepository.class), @Resource(SIFuncionarioConverter.class)})
+@CaseItem(componentName = "Search Select", subCaseName = "Lazy Pagination", group = Group.INPUT,
+resources = {@Resource(Funcionario.class), @Resource(STFuncionario.class), @Resource(SIFuncionario.class), @Resource(CaseInputCorePackage.class),
+        @Resource(LazyFuncionarioProvider.class), @Resource(FuncionarioRepository.class), @Resource(SIFuncionarioConverter.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "LazyPagination")
 public class CaseLazyInputModalSearchSType extends STypeComposite<SIComposite> {
 

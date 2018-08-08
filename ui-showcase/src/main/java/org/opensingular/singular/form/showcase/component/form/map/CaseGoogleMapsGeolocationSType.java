@@ -22,9 +22,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.util.STypeLatitudeLongitudeGMaps;
 import org.opensingular.form.view.SViewCurrentLocation;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
@@ -32,8 +32,8 @@ import javax.annotation.Nonnull;
  * Nesse exemplo a posição é informada apenas de maneira automática pela geolocation API do browser.
  * Essa API exige que a aplicação esteja em HTTPS.
  */
-/*hidden*/@CaseItem(componentName = "Google Maps Geolocation", group = Group.MAPS, subCaseName = "Geolocation API",
-/*hidden*/        resources = @Resource(CaseMapsPackage.class))
+@CaseItem(componentName = "Google Maps Geolocation", group = Group.MAPS, subCaseName = "Geolocation API",
+        resources = @Resource(CaseMapsPackage.class))
 @SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMapsGeo")
 public class CaseGoogleMapsGeolocationSType extends STypeComposite<SIComposite> {
 

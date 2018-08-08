@@ -24,9 +24,9 @@ import org.opensingular.form.type.country.brazil.STypeCEP;
 import org.opensingular.form.type.country.brazil.STypeCNPJ;
 import org.opensingular.form.type.country.brazil.STypeCPF;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 import javax.annotation.Nonnull;
@@ -34,7 +34,7 @@ import javax.annotation.Nonnull;
 /**
  * Campos básicos regionais - Brasil
  */
-/*hidden*/@CaseItem(componentName = "Brazil", subCaseName = "Default", group = Group.COUNTRY, resources = @Resource(CaseInputCorePackage.class))
+@CaseItem(componentName = "Brazil", subCaseName = "Default", group = Group.COUNTRY, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Default")
 public class CaseBrazilBasicSType extends STypeComposite<SIComposite> {
 

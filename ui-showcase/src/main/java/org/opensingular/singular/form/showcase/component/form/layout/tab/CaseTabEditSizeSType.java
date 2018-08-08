@@ -22,9 +22,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.country.brazil.STypeAddress;
 import org.opensingular.form.view.SViewTab;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
@@ -33,8 +33,8 @@ import javax.annotation.Nonnull;
  * O tamanho da aba pode ser configurado utilizando o método navColPreference,
  * esse tamanho será aplicado para todas as resoluções.
  */
-/*hidden*/@CaseItem(componentName = "Tabs", subCaseName = "Tamanho da aba", group = Group.LAYOUT,
-/*hidden*/        resources = {@Resource(CaseLayoutPackage.class), @Resource(STypeInformacoesProfissionais.class)})
+@CaseItem(componentName = "Tabs", subCaseName = "Tamanho da aba", group = Group.LAYOUT,
+        resources = {@Resource(CaseLayoutPackage.class), @Resource(STypeInformacoesProfissionais.class)})
 @SInfoType(spackage = CaseLayoutPackage.class)
 public class CaseTabEditSizeSType extends STypeComposite<SIComposite> {
 

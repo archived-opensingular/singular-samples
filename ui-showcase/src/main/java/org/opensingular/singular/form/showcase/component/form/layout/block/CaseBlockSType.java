@@ -26,9 +26,9 @@ import org.opensingular.form.type.country.brazil.STypeCPF;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.form.view.SViewByBlock;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
@@ -36,7 +36,7 @@ import javax.annotation.Nonnull;
 /**
  * Block
  */
-/*hidden*/@CaseItem(componentName = "Block", subCaseName = "Default", group = Group.LAYOUT, resources = @Resource(CaseLayoutPackage.class))
+@CaseItem(componentName = "Block", subCaseName = "Default", group = Group.LAYOUT, resources = @Resource(CaseLayoutPackage.class))
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultBlock")
 public class CaseBlockSType extends STypeComposite<SIComposite> {
 

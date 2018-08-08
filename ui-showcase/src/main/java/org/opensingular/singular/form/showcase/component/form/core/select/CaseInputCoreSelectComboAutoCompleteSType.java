@@ -24,9 +24,9 @@ import org.opensingular.form.provider.SSimpleProviderListBuilder;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.SViewAutoComplete;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.SIPlanet;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.STPlanet;
@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * Auto-completar
  */
-/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Auto-completar", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
+@CaseItem(componentName = "Select", subCaseName = "Auto-completar", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "ComboAutoComplete")
 public class CaseInputCoreSelectComboAutoCompleteSType extends STypeComposite<SIComposite> {
 

@@ -21,9 +21,9 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.SViewTab;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 
 import javax.annotation.Nonnull;
@@ -31,8 +31,8 @@ import javax.annotation.Nonnull;
 /**
  * A SViewTab pode ser utilizada em conjunto com a SViewByBlock
  */
-/*hidden*/@CaseItem(componentName = "Tabs", subCaseName = "Composição de View", group = Group.LAYOUT, resources = {@Resource(CaseLayoutPackage.class),
-/*hidden*/        @Resource(STypeInformacoesProfissionais.class), @Resource(STypeInformacoesPessoais.class)})
+@CaseItem(componentName = "Tabs", subCaseName = "Composição de View", group = Group.LAYOUT, resources = {@Resource(CaseLayoutPackage.class),
+        @Resource(STypeInformacoesProfissionais.class), @Resource(STypeInformacoesPessoais.class)})
 @SInfoType(spackage = CaseLayoutPackage.class)
 public class CaseTabWithBlockSType extends STypeComposite<SIComposite> {
 

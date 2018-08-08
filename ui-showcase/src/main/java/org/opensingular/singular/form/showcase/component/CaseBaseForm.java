@@ -20,30 +20,23 @@ import org.opensingular.form.SDictionary;
 import org.opensingular.form.SFormUtil;
 import org.opensingular.form.SType;
 import org.opensingular.form.STypeComposite;
-import org.opensingular.form.wicket.enums.AnnotationMode;
 
 import java.util.Optional;
 
 
-public class CaseBaseForm extends CaseBase {
+public class CaseBaseForm extends CaseBase<STypeComposite<?>> {
 
     private transient SType<?> caseType;
 
-    public CaseBaseForm(Class<? extends STypeComposite<?>> caseClass, String componentName, String subCaseName, AnnotationMode annotation) {
-        super(caseClass, ShowCaseType.FORM, componentName, subCaseName, annotation);
+    public CaseBaseForm(Class<? extends STypeComposite<?>> caseClass) {
+        super(caseClass);
     }
 
-    public CaseBaseForm(String componentName) {
-        super(componentName);
-    }
-
-    public CaseBaseForm(String componentName, String subCaseName) {
-        super(componentName, subCaseName);
-    }
+    public CaseBaseForm() {}
 
     @SuppressWarnings("unchecked")
     private Class<? extends STypeComposite<?>> getSTypeClass() {
-        return (Class<? extends STypeComposite<?>>) caseClass;
+        return getCaseClass();
     }
 
     public String getTypeName() {

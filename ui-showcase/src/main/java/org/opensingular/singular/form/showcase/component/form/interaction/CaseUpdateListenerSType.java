@@ -22,9 +22,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
@@ -32,8 +32,8 @@ import java.util.Optional;
 /**
  * Listener que é executado quando um dependsOn é executado
  */
-/*hidden*/@CaseItem(componentName = "Listeners", subCaseName = "Update listener", group = Group.INTERACTION,
-/*hidden*/        resources = @Resource(CaseInteractionPackage.class))
+@CaseItem(componentName = "Listeners", subCaseName = "Update listener", group = Group.INTERACTION,
+        resources = @Resource(CaseInteractionPackage.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "UpdateListener")
 public class CaseUpdateListenerSType extends STypeComposite<SIComposite> {
 

@@ -32,11 +32,7 @@ public abstract class XsdCaseBase extends CaseBaseForm {
     private String typeName;
 
     public XsdCaseBase(String componentName) {
-        super(componentName, null);
-    }
-
-    public XsdCaseBase(String componentName, String subCaseName) {
-        super(componentName, subCaseName);
+        setComponentName(componentName);
     }
 
     @Override

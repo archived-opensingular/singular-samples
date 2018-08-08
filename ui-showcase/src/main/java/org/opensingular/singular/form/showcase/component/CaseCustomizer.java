@@ -18,6 +18,6 @@ package org.opensingular.singular.form.showcase.component;
 
 public interface CaseCustomizer {
 
-    void customize(CaseBase caseBase);
+    void customize(CaseBase<?> caseBase);
 
 }

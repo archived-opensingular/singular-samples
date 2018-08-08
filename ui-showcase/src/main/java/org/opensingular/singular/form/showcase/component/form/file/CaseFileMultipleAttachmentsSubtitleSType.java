@@ -23,16 +23,16 @@ import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Campo para anexar vários arquivos
  */
-/*hidden*/@CaseItem(componentName = "Multiple Attachments", group = Group.FILE, subCaseName = "Subtitle", resources = @Resource(CaseFilePackage.class))
+@CaseItem(componentName = "Multiple Attachments", group = Group.FILE, subCaseName = "Subtitle", resources = @Resource(CaseFilePackage.class))
 @SInfoType(spackage = CaseFilePackage.class, name = "MultipleAttachmentsSubtitle")
 public class CaseFileMultipleAttachmentsSubtitleSType extends STypeComposite<SIComposite> {
 

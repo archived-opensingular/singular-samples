@@ -33,15 +33,15 @@ import org.opensingular.form.view.date.SViewDate;
 import org.opensingular.form.view.date.SViewTime;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
 /**
  * Componentes personalizados para inserção de data
  */
-/*hidden*/@CaseItem(componentName = "Date", subCaseName = "Personalizados", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
+@CaseItem(componentName = "Date", subCaseName = "Personalizados", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Date")
 public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
 

@@ -31,9 +31,9 @@ import org.opensingular.form.wicket.WicketBuildContext;
 import org.opensingular.form.wicket.model.SInstanceFieldModel;
 import org.opensingular.lib.wicket.util.bootstrap.layout.BSContainer;
 import org.opensingular.lib.wicket.util.model.IReadOnlyModel;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
 
 import javax.annotation.Nonnull;
@@ -43,9 +43,9 @@ import java.util.List;
 /**
  * Custom String Mapper
  */
-/*hidden*/@CaseItem(componentName = "Custom Mapper", subCaseName = "Tabbed Panel", group = Group.CUSTOM, resources = {
-/*hidden*/    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html"),@Resource(STypeContainer.class),
-/*hidden*/        @Resource(STypeContainerString.class), @Resource(STypeContainerInteger.class), @Resource(STypeContainerBoolean.class), @Resource(CaseCustomPackage.class)})
+@CaseItem(componentName = "Custom Mapper", subCaseName = "Tabbed Panel", group = Group.CUSTOM, resources = {
+    @Resource(value = CaseCustomTabbedPanelMapperSType.CustomAjaxTabbedPanel.class, extension = "html"),@Resource(STypeContainer.class),
+        @Resource(STypeContainerString.class), @Resource(STypeContainerInteger.class), @Resource(STypeContainerBoolean.class), @Resource(CaseCustomPackage.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "TabbedPanel")
 public class CaseCustomTabbedPanelMapperSType extends STypeComposite<SIComposite> {
 

@@ -17,10 +17,9 @@
 package org.opensingular.singular.form.showcase.component.studio.simplepersistence;
 
 import org.opensingular.form.studio.StudioCRUDPermissionStrategy;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
-import org.opensingular.singular.form.showcase.component.form.importer.CaseImporterSType;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.studio.core.definition.StudioDefinition;
 import org.opensingular.studio.core.definition.StudioTableDefinition;
 
