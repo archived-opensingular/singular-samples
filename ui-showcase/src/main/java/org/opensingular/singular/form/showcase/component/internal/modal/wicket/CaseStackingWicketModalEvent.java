@@ -1,22 +1,4 @@
-/*
- *
- *  * Copyright (C) 2016 Singular Studios (a.k.a Atom Tecnologia) - www.opensingular.com
- *  *
- *  * Licensed under the Apache License, Version 2.0 (the "License");
- *  *  you may not use this file except in compliance with the License.
- *  * You may obtain a copy of the License at
- *  *
- *  * http://www.apache.org/licenses/LICENSE-2.0
- *  *
- *  * Unless required by applicable law or agreed to in writing, software
- *  * distributed under the License is distributed on an "AS IS" BASIS,
- *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  * See the License for the specific language governing permissions and
- *  * limitations under the License.
- *
- */
-
-package org.opensingular.samples.wicketutils.ui.page.modal.fragment;
+package org.opensingular.singular.form.showcase.component.internal.modal.wicket;
 
 import java.io.Serializable;
 
@@ -28,6 +10,7 @@ import org.apache.wicket.markup.html.form.NumberTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Fragment;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -38,34 +21,42 @@ import org.opensingular.lib.wicket.util.modal.BSModalEventListenerBehavior;
 import org.opensingular.lib.wicket.util.modal.OpenModalEvent;
 import org.opensingular.lib.wicket.util.modal.OpenModalEvent.ConfigureCallback;
 import org.opensingular.lib.wicket.util.modal.OpenModalEvent.ModalDelegate;
-import org.opensingular.lib.wicket.util.template.SingularTemplate;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
 
-public class SimpleFragmentModalPage extends SingularTemplate {
+/**
+ * Opening a modal window populated with wicket components by bubbling an event to a listening parent container
+ *
+ * @author Ronald Tetsuo Miura
+ * @since 2018-08-02
+ */
+@CaseItem(componentName = "Open Modal Event", subCaseName = "Stacking modals", group = Group.MODAL)
+public class CaseStackingWicketModalEvent extends Panel {
 
-    public SimpleFragmentModalPage() {
+    public CaseStackingWicketModalEvent(String id) {
+        super(id);
 
+        // Basic setup
         BSContainer<?> modalItemsContainer = new BSContainer<>("modalItemsContainer");
-        add(modalItemsContainer);//);
-        add(new BSModalEventListenerBehavior(modalItemsContainer));
+        add(modalItemsContainer);
+        add(new BSModalEventListenerBehavior(modalItemsContainer)); // required listener
 
         add(new AjaxLink<Void>("simpleFormLink") {
             @Override
             public void onClick(AjaxRequestTarget target) {
-                openModal(target, new SimpleTO());
+                openModal(target, Model.of(new SimpleTO()));
             }
         });
     }
 
-    private void openModal(AjaxRequestTarget target, SimpleTO to) {
-        IModel<SimpleTO> model = Model.of(to);
-
+    private void openModal(AjaxRequestTarget target, IModel<SimpleTO> model) {
         IFunction<String, Component> bodyContentFactory = id -> newBodyFragment(id, model);
         ConfigureCallback<SimpleTO> configureCallback = (ConfigureCallback<SimpleTO>) md -> {
             md.setTitle("Simple Fragment");
             md.addButton("Accept", (t, d, m) -> onAccept(d, t, m));
             md.addButton("AaR", Model.of("Accept and repeat"), ButtonStyle.DEFAULT, (t, d, m) -> {
                 onAccept(d, t, m);
-                openModal(t, new SimpleTO());
+                openModal(t, Model.of(new SimpleTO()));
             });
             md.addCloseLink("Close");
         };
@@ -85,7 +76,7 @@ public class SimpleFragmentModalPage extends SingularTemplate {
                 .add(new AjaxLink<SimpleTO>("open") {
                     @Override
                     public void onClick(AjaxRequestTarget target) {
-                        openModal(target, new SimpleTO());
+                        openModal(target, Model.of(new SimpleTO()));
                     }
                 }));
     }

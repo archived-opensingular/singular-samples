@@ -1,4 +1,4 @@
-package org.opensingular.singular.form.showcase.component.internal.modal;
+package org.opensingular.singular.form.showcase.component.internal.modal.sform;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -14,8 +14,8 @@ import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.wicket.modal.OpenSingularFormModalEvent;
 import org.opensingular.form.wicket.model.SInstanceRootModel;
+import org.opensingular.form.wicket.panel.SFormModalEventListenerBehavior;
 import org.opensingular.lib.wicket.util.bootstrap.layout.BSContainer;
-import org.opensingular.lib.wicket.util.modal.BSModalEventListenerBehavior;
 import org.opensingular.lib.wicket.util.modal.OpenModalEvent;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
@@ -26,18 +26,19 @@ import org.opensingular.singular.form.showcase.component.Group;
  * @author Ronald Tetsuo Miura
  * @since 2018-08-02
  */
-@CaseItem(componentName = "Modal by Event", subCaseName = "Singular Form", group = Group.MODAL)
-public class CaseSingularFormModalByEvent extends Panel {
+@CaseItem(componentName = "Open Singular Form Modal Event", subCaseName = "Ad Hoc Form", group = Group.MODAL)
+public class CaseAdHocSingularFormModalEvent extends Panel {
 
     private final IModel<String> textModel           = new Model<>("...");
     private final BSContainer<?> modalItemsContainer = new BSContainer<>("modalItemsContainer");
     private final Label          textLabel           = new Label("textLabel", textModel);
 
-    public CaseSingularFormModalByEvent(String id) {
+    public CaseAdHocSingularFormModalEvent(String id) {
         super(id);
 
+        // Basic setup
         add(modalItemsContainer);
-        add(new BSModalEventListenerBehavior(modalItemsContainer));
+        add(new SFormModalEventListenerBehavior(modalItemsContainer)); // required listener
 
         add(textLabel);
         add(new AjaxLink<Void>("change") {

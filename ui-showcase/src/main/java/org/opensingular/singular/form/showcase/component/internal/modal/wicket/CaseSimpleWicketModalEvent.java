@@ -1,4 +1,4 @@
-package org.opensingular.singular.form.showcase.component.internal.modal;
+package org.opensingular.singular.form.showcase.component.internal.modal.wicket;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -20,18 +20,19 @@ import org.opensingular.singular.form.showcase.component.Group;
  * @author Ronald Tetsuo Miura
  * @since 2018-08-02
  */
-@CaseItem(componentName = "Modal by Event", subCaseName = "Wicket", group = Group.MODAL)
-public class CaseWicketModalByEvent extends Panel {
+@CaseItem(componentName = "Open Modal Event", subCaseName = "Simple modal", group = Group.MODAL)
+public class CaseSimpleWicketModalEvent extends Panel {
 
     private final IModel<String> textModel           = new Model<>("...");
     private final BSContainer<?> modalItemsContainer = new BSContainer<>("modalItemsContainer");
     private final Label          textLabel           = new Label("textLabel", textModel);
 
-    public CaseWicketModalByEvent(String id) {
+    public CaseSimpleWicketModalEvent(String id) {
         super(id);
 
+        // Basic setup
         add(modalItemsContainer);
-        add(new BSModalEventListenerBehavior(modalItemsContainer));
+        add(new BSModalEventListenerBehavior(modalItemsContainer)); // required listener
 
         add(textLabel);
         add(new AjaxLink<Void>("change") {
@@ -61,7 +62,7 @@ public class CaseWicketModalByEvent extends Panel {
 
     private class MyModalFragment extends Fragment {
         public MyModalFragment(String id, IModel<String> model) {
-            super(id, "MyModalFragment", CaseWicketModalByEvent.this);
+            super(id, "MyModalFragment", CaseSimpleWicketModalEvent.this);
             add(new TextField<>("text", model));
         }
     }

@@ -16,7 +16,7 @@
  *
  */
 
-package org.opensingular.samples.wicketutils.types.simpleform;
+package org.opensingular.singular.form.showcase.component.internal.modal.sform;
 
 import javax.annotation.Nonnull;
 
@@ -27,8 +27,8 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 
-@SInfoType(spackage = SimpleFormPackage.class, name = "EstudoResiduo")
-public class STSimpleForm extends STypeComposite<SIComposite> {
+@SInfoType(spackage = SimpleFormPackage.class, name = "CodDesc")
+public class STCodDesc extends STypeComposite<SIComposite> {
 
     public STypeString  description;
     public STypeInteger code;
