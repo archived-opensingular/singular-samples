@@ -16,17 +16,22 @@
 
 package org.opensingular.requirementsamplemodule;
 
+import org.apache.wicket.Page;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.requirement.module.RequirementRegistry;
 import org.opensingular.requirement.module.config.DefaultContexts;
+import org.opensingular.requirement.module.config.ServerContext;
 import org.opensingular.requirement.module.config.workspace.Workspace;
+import org.opensingular.requirement.module.config.workspace.WorkspaceSettings;
+import org.opensingular.requirement.module.wicket.SingularRequirementApplication;
 import org.opensingular.requirement.module.workspace.DefaultDonebox;
 import org.opensingular.requirement.module.workspace.DefaultDraftbox;
 import org.opensingular.requirement.module.workspace.DefaultInbox;
 import org.opensingular.requirement.module.workspace.DefaultOngoingbox;
 import org.opensingular.requirement.module.workspace.WorkspaceRegistry;
 import org.opensingular.requirement.studio.init.StudioSingularModule;
-import org.opensingular.requirementsamplemodule.config.StudioRequirementConfig.EngenheiroFormDefinition;
+import org.opensingular.requirementsamplemodule.config.EngenheiroFormDefinition;
+import org.opensingular.requirementsamplemodule.report.SampleReportPage;
 
 public class RequirementsampleModule implements StudioSingularModule {
 
@@ -53,7 +58,8 @@ public class RequirementsampleModule implements StudioSingularModule {
     public void workspace(WorkspaceRegistry workspaceRegistry) {
         workspaceRegistry
                 .add(RequirementSampleModuleRequirementContext.class)
-                .add(RequirementSampleWorklistContext.class);
+                .add(RequirementSampleWorklistContext.class)
+                .add(RequirementSampleReportContext.class);
     }
 
     public static class RequirementSampleWorklistContext extends DefaultContexts.WorklistContext {
@@ -83,9 +89,35 @@ public class RequirementsampleModule implements StudioSingularModule {
                     .addCategory("Cadastros", cadastros -> cadastros
                             .icon(DefaultIcons.MAGIC)
                             .addItem(SampleMenuItem.class)
-                            .addCRUD(EngenheiroFormDefinition.class, engCRUD ->
-                                    engCRUD.icon(DefaultIcons.USERS3)));
+                            .addCRUD(EngenheiroFormDefinition.class, engCRUD -> engCRUD.icon(DefaultIcons.USERS3)));
 
+        }
+    }
+
+    public static class RequirementSampleReportContext extends ServerContext {
+        public RequirementSampleReportContext() {
+            super("REPORTS");
+        }
+
+        @Override
+        public void configure(WorkspaceSettings settings) {
+            settings
+                    .contextPath("/reports/*")
+                    .wicketApplicationClass(ReportWicketApplication.class)
+                    .springSecurityConfigClass(null)
+                    .checkOwner(true);
+        }
+
+        @Override
+        public void configure(Workspace workspace) {
+
+        }
+    }
+
+    public static class ReportWicketApplication extends SingularRequirementApplication {
+        @Override
+        public Class<? extends Page> getHomePage() {
+            return SampleReportPage.class;
         }
     }
 

@@ -14,17 +14,26 @@
  * limitations under the License.
  */
 
-package org.opensingular.requirementsamplemodule.report;
+package org.opensingular.requirementsamplemodule.config;
 
-import javax.inject.Inject;
+import org.opensingular.form.persistence.FormRespository;
+import org.opensingular.studio.core.definition.StudioDefinition;
+import org.opensingular.studio.core.definition.StudioTableDefinition;
 
-public class SimpleReportPage extends AbstractRelatorioPage {
-    @Inject
-    private SimpleReport relatorioProdutividadePorAssunto;
+public class EngenheiroFormDefinition implements StudioDefinition {
+    @Override
+    public Class<? extends FormRespository> getRepositoryClass() {
+        return EngenheiroRepository.class;
+    }
 
     @Override
-    public SimpleReport getSingularFormReport() {
-        return relatorioProdutividadePorAssunto;
+    public void configureStudioDataTable(StudioTableDefinition studioDataTable) {
+        studioDataTable.add("Nome", "nome");
+    }
+
+    @Override
+    public String getTitle() {
+        return "Cadastro de Engenheiros";
     }
 
 }
