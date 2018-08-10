@@ -32,14 +32,8 @@ public class EngenheiroForm extends STypeComposite<SIComposite> {
         STypeExperienciaProfissional stExperienciaProfissional = experienciasProfissionais.getElementsType();
         //@destacar:bloco
         SViewListByMasterDetail experienciaView = new SViewListByMasterDetail()
-//                .col(stExperienciaProfissional.empresa, "Empresa em que trabalhou") // Desta forma, será utilizado rótulo personalizado para esta coluna.
-//                .col(stExperienciaProfissional.inicio) //Nos demais, a coluna terá o mesmo rótulo do tipo que a define.
-//                .col(stExperienciaProfissional.fim)
-//                .col("Valor Empenhado", instance -> {
-//                    final BigDecimal valorEmpenhado = new BigDecimal(100);
-//
-//                    return ConversorToolkit.printNumber(valorEmpenhado, 2);
-//                })
+                .setSortableColumn(stExperienciaProfissional.inicio, false)
+                .setDisableSort(true)
                 .label("Informar Experiência Anterior");
 
         experienciasProfissionais.withView(experienciaView).withInitListener(this::fillWithBlankValues);
@@ -47,10 +41,10 @@ public class EngenheiroForm extends STypeComposite<SIComposite> {
 
     private void fillWithBlankValues(SIList<SIComposite> list) {
         STypeExperienciaProfissional type = experienciasProfissionais.getElementsType();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 15; i++) {
             SIComposite experiencia = list.addNew();
-            experiencia.setValue(type.atividades, "Reuniões" + i * i * i);
-            experiencia.setValue(type.empresa, "Corp." +  i * i * i);
+            experiencia.setValue(type.atividades, "Reuniões" + i );
+            experiencia.setValue(type.empresa, "Corp." +  i );
             experiencia.setValue(type.cargo, "Gerente");
             LocalDate localDate = LocalDate.now();
             experiencia.setValue(type.fim, Date.from(localDate.plusMonths(i).atStartOfDay(ZoneId.systemDefault()).toInstant()));
