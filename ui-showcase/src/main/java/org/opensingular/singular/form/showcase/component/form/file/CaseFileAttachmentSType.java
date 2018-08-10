@@ -20,19 +20,18 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.basic.AtrBootstrap;
 import org.opensingular.form.type.core.attachment.STypeAttachment;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Campo para anexar arquivos
  */
-/*hidden*/@CaseItem(componentName = "Attachment", group = Group.FILE,
-/*hidden*/        resources = {@Resource(PageWithAttachment.class), @Resource(CaseFilePackage.class)})
+@CaseItem(componentName = "Attachment", group = Group.FILE, resources = {@Resource(PageWithAttachment.class),
+        @Resource(CaseFilePackage.class)})
 @SInfoType(spackage = CaseFilePackage.class, name = "Attachment")
 public class CaseFileAttachmentSType extends STypeComposite<SIComposite> {
 

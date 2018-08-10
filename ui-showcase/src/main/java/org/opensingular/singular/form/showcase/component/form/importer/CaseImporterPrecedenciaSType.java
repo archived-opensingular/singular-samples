@@ -16,8 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component.form.importer;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -25,16 +23,18 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeEMail;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
+
+import javax.annotation.Nonnull;
 
 /**
  * Importador de atributos através de arquivos XML. <br/>
  * Utilizando a precedencia, onde o xml tem maior prioridade entre os demais.
  */
-/*hidden*/@CaseItem(componentName = "ImporterXML", subCaseName = "Precedência", group = Group.IMPORTER,
-/*hidden*/        resources = {@Resource(value = CaseImporterPrecedenciaSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
+@CaseItem(componentName = "ImporterXML", subCaseName = "Precedência", group = Group.IMPORTER,
+        resources = {@Resource(value = CaseImporterPrecedenciaSType.class, extension = "xml"), @Resource(CaseImporterPackage.class)})
 @SInfoType(spackage = CaseImporterPackage.class, name = "ImporterXMLPrecedencia")
 public class CaseImporterPrecedenciaSType extends STypeComposite<SIComposite> {
 

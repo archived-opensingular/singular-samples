@@ -28,35 +28,43 @@ import java.util.Optional;
  * Representa um exemplo de um componente ou solução junto com os respectivo
  * códigos e explicações.
  */
-public abstract class CaseBase implements Serializable {
+public abstract class CaseBase<TARGET> implements Serializable {
 
-    private final String componentName;
-    private final String subCaseName;
+    private String componentName;
+    private String subCaseName;
     private String descriptionHtml;
     private final List<ItemCasePanel.ItemCaseButton> botoes = new ArrayList<>();
-    private final List<ResourceRef> aditionalSources = new ArrayList<>();
-    protected Class<?> caseClass;
+    private final List<ResourceRef> additionalSources = new ArrayList<>();
+    private Class<? extends TARGET> caseClass;
     private AnnotationMode annotationMode = AnnotationMode.NONE;
 
     private ShowCaseType showCaseType;
 
-    public CaseBase(String componentName) {
-        this(componentName, null);
-    }
+    public CaseBase() {}
 
-    public CaseBase(String componentName, String subCaseName) {
-        this.componentName = componentName;
-        this.subCaseName = subCaseName;
-    }
-
-    public CaseBase(Class<?> caseClass, ShowCaseType type, String componentName, String subCaseName, AnnotationMode annotation) {
+    public CaseBase(Class<? extends TARGET> caseClass) {
         this.caseClass = caseClass;
-        this.componentName = componentName;
-        this.subCaseName = subCaseName;
-        this.showCaseType = type;
-        this.annotationMode = annotation;
     }
 
+    public Class<? extends TARGET> getCaseClass() {
+        return caseClass;
+    }
+
+    public void setAnnotationMode(AnnotationMode annotationMode) {
+        this.annotationMode = annotationMode;
+    }
+
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
+    }
+
+    public void setSubCaseName(String subCaseName) {
+        this.subCaseName = subCaseName;
+    }
+
+    public void setShowCaseType(ShowCaseType showCaseType) {
+        this.showCaseType = showCaseType;
+    }
 
     public String getComponentName() {
         return componentName;
@@ -81,8 +89,8 @@ public abstract class CaseBase implements Serializable {
         return ResourceRef.forClassWithExtension(getClass(), "html");
     }
 
-    public List<ResourceRef> getAditionalSources() {
-        return aditionalSources;
+    public List<ResourceRef> getAdditionalSources() {
+        return additionalSources;
     }
 
     public List<ItemCasePanel.ItemCaseButton> getBotoes() {

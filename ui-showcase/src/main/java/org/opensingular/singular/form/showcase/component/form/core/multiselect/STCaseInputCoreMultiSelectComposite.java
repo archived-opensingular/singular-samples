@@ -22,9 +22,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.converter.SInstanceConverter;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 import org.opensingular.singular.form.showcase.component.form.core.multiselect.form.SIComponenteQuimico;
 import org.opensingular.singular.form.showcase.component.form.core.multiselect.form.STComponenteQuimico;
@@ -36,8 +36,8 @@ import java.io.Serializable;
  * Para usar um tipo composto na seleção, este deve extender o STypeComposite. <br/>
  * É permitido se mudar quais campos serão utilizados como chave e valor.
  */
-/*hidden*/@CaseItem(componentName = "Multi Select", subCaseName = "Tipo Composto", group = Group.INPUT,
-/*hidden*/        resources = {@Resource(STComponenteQuimico.class), @Resource(SIComponenteQuimico.class), @Resource(CaseInputCorePackage.class)})
+@CaseItem(componentName = "Multi Select", subCaseName = "Tipo Composto", group = Group.INPUT,
+        resources = {@Resource(STComponenteQuimico.class), @Resource(SIComponenteQuimico.class), @Resource(CaseInputCorePackage.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "TipoComposto")
 public class STCaseInputCoreMultiSelectComposite extends STypeComposite<SIComposite> {
 

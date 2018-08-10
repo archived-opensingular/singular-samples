@@ -16,26 +16,26 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.select;
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.IngredienteQuimico;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.IngredienteQuimicoFilteredProvider;
 import org.opensingular.singular.form.showcase.component.form.core.select.form.STIngredienteQuimico;
 
+import javax.annotation.Nonnull;
+
 /**
  * É possivel utilizar objetos serializaveis para realizar a seleção, porem neste caso, é necessario informar o conversor.
  */
-/*hidden*/@CaseItem(componentName = "Select", subCaseName = "Tipo composto com objetos serializaveis.", group = Group.INPUT,
-/*hidden*/        resources = {@Resource(IngredienteQuimico.class), @Resource(STIngredienteQuimico.class),@Resource(CaseInputCorePackage.class),
-/*hidden*/        @Resource(IngredienteQuimicoFilteredProvider.class)})
+@CaseItem(componentName = "Select", subCaseName = "Tipo composto com objetos serializaveis.", group = Group.INPUT,
+        resources = {@Resource(IngredienteQuimico.class), @Resource(STIngredienteQuimico.class),@Resource(CaseInputCorePackage.class),
+        @Resource(IngredienteQuimicoFilteredProvider.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "SelectCompositePojo")
 public class CaseInputCoreSelectCompositePojoSType extends STypeComposite<SIComposite> {
 

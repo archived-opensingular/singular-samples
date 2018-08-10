@@ -16,14 +16,14 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import com.google.common.base.Throwables;
-import org.apache.wicket.util.string.StringValue;
+import org.apache.wicket.Component;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.lib.commons.base.SingularException;
 import org.opensingular.lib.commons.base.SingularUtil;
 import org.opensingular.lib.commons.scan.SingularClassPathScanner;
 import org.opensingular.lib.commons.ui.Icon;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.singular.form.showcase.ShowCaseException;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
 import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
 import org.opensingular.studio.core.definition.StudioDefinition;
@@ -73,6 +73,7 @@ public class ShowCaseTable {
         addGroup(Group.CUSTOM);
         addGroup(Group.MAPS);
         addGroup(Group.IMPORTER);
+        addGroup(Group.TABLE_TOOL);
 
         addGroup("XSD", DefaultIcons.CODE, ShowCaseType.FORM)
                 .addCase(new XsdCaseSimple())
@@ -102,12 +103,19 @@ public class ShowCaseTable {
             final CaseItem caseItem = caseClass.getAnnotation(CaseItem.class);
             CaseBase caseBase;
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
-                caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
+                caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass);
             } else if (StudioDefinition.class.isAssignableFrom(caseClass)) {
-                caseBase = new CaseBaseStudio((Class<? extends StudioDefinition>) caseClass, caseItem.componentName(), caseItem.subCaseName(), caseItem.annotation());
+                caseBase = new CaseBaseStudio((Class<? extends StudioDefinition>) caseClass);
+            } else if (Component.class.isAssignableFrom(caseClass)) {
+                caseBase = new CaseBaseWicket((Class<? extends Component>) caseClass);
             } else {
-                throw new SingularException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() + " podem ser anotadas com @" + CaseItem.class.getName());
+                throw new ShowCaseException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() +
+                        " podem ser anotadas com @" + CaseItem.class.getSimpleName());
             }
+            caseBase.setShowCaseType(group.getTipo());
+            caseBase.setComponentName(caseItem.componentName());
+            caseBase.setSubCaseName(caseItem.subCaseName());
+            caseBase.setAnnotationMode(caseItem.annotation());
 
             if (!caseItem.customizer().isInterface()) {
                 createInstance(caseItem).customize(caseBase);
@@ -119,7 +127,7 @@ public class ShowCaseTable {
                 } else {
                     resourceRef = ResourceRef.forClassWithExtension(resource.value(), resource.extension());
                 }
-                resourceRef.ifPresent(resourceRef1 -> caseBase.getAditionalSources().add(resourceRef1));
+                resourceRef.ifPresent(resourceRef1 -> caseBase.getAdditionalSources().add(resourceRef1));
             }
             group.addCase(caseBase);
         }
@@ -129,7 +137,7 @@ public class ShowCaseTable {
         try {
             return caseItem.customizer().newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
-            throw Throwables.propagate(e);
+            throw SingularException.rethrow(e);
         }
     }
 
@@ -211,7 +219,7 @@ public class ShowCaseTable {
 
         private final String componentName;
 
-        private final List<CaseBase> cases = new ArrayList<>();
+        private final List<CaseBase<?>> cases = new ArrayList<>();
 
         private ShowCaseType showCaseType;
 
@@ -224,11 +232,11 @@ public class ShowCaseTable {
             return componentName;
         }
 
-        public void addCase(CaseBase c) {
+        public void addCase(CaseBase<?> c) {
             cases.add(c);
         }
 
-        public List<CaseBase> getCases() {
+        public List<CaseBase<?>> getCases() {
             cases.sort( (case1, case2) ->  case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
 
             CaseBase caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);

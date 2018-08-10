@@ -22,7 +22,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.opensingular.form.SInstance;
-import org.opensingular.form.wicket.util.SourceCodeProcessor;
 import org.opensingular.lib.wicket.util.tab.BSTabPanel;
 import org.opensingular.singular.form.showcase.component.CaseBase;
 import org.opensingular.singular.form.showcase.component.ResourceRef;
@@ -34,7 +33,7 @@ import java.util.Optional;
 
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
-public abstract class ItemCasePanel<T extends CaseBase> extends Panel {
+public abstract class ItemCasePanel<T extends CaseBase<?>> extends Panel {
 
     private static final long serialVersionUID = 3200319871613673285L;
 
@@ -73,11 +72,9 @@ public abstract class ItemCasePanel<T extends CaseBase> extends Panel {
         final List<ResourceRef> sources = new ArrayList<>();
         final Optional<ResourceRef> mainSource = caseBase.getObject().getMainSourceResourceName();
 
-        if (mainSource.isPresent()) {
-            sources.add(mainSource.get());
-        }
+        mainSource.ifPresent(sources::add);
 
-        sources.addAll(caseBase.getObject().getAditionalSources());
+        sources.addAll(caseBase.getObject().getAdditionalSources());
 
         for (ResourceRef rr : sources) {
             bsTabPanel.addTab(rr.getDisplayName(), new ItemCodePanel(

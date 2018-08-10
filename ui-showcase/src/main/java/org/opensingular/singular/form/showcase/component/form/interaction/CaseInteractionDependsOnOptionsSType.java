@@ -21,9 +21,9 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
@@ -35,7 +35,7 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * Combos interdependentes
  */
-/*hidden*/@CaseItem(componentName = "Combos interdependentes", group = Group.INTERACTION, resources = @Resource(CaseInteractionPackage.class))
+@CaseItem(componentName = "Combos interdependentes", group = Group.INTERACTION, resources = @Resource(CaseInteractionPackage.class))
 @SInfoType(spackage = CaseInteractionPackage.class, name = "DependsOnOptions")
 public class CaseInteractionDependsOnOptionsSType extends STypeComposite<SIComposite> {
 
