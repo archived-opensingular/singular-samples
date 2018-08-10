@@ -16,20 +16,19 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.lib.commons.base.SingularException;
 import org.opensingular.studio.core.definition.StudioDefinition;
 
-public class CaseBaseStudio extends CaseBase {
+public class CaseBaseStudio extends CaseBase<StudioDefinition> {
 
-    public CaseBaseStudio(Class<? extends StudioDefinition> caseClass, String componentName, String subCaseName, AnnotationMode annotation) {
-        super(caseClass, ShowCaseType.STUDIO, componentName, subCaseName, annotation);
+    public CaseBaseStudio(Class<? extends StudioDefinition> caseClass) {
+        super(caseClass);
     }
 
 
     public StudioDefinition getStudioDefinition() {
         try {
-            return (StudioDefinition) caseClass.newInstance();
+            return getCaseClass().newInstance();
         } catch (Exception e) {
             throw SingularException.rethrow(e.getMessage(), e);
         }

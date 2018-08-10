@@ -18,12 +18,6 @@
 
 package org.opensingular.singular.form.showcase.view.page.showcase;
 
-import static org.junit.Assert.assertNotNull;
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -33,11 +27,17 @@ import org.junit.runner.RunWith;
 import org.opensingular.form.context.SFormConfig;
 import org.opensingular.singular.form.showcase.SpringWicketTester;
 import org.opensingular.singular.form.showcase.component.CaseBaseForm;
-import org.opensingular.singular.form.showcase.view.page.form.FormItemCasePanel;
 import org.opensingular.singular.form.showcase.view.page.ItemCasePanel;
+import org.opensingular.singular.form.showcase.view.page.form.FormItemCasePanel;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import static org.junit.Assert.assertNotNull;
+import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
 /**
  * TODO TESTE BUGADO, QUEBRA A BUILD NO SERVER??
@@ -63,14 +63,14 @@ public class ItemCasePanelTest {
 
     @Test
     public void testRendering() {
-        ItemCasePanel icp = new FormItemCasePanel("icp", $m.ofValue(cb));
+        ItemCasePanel<?> icp = new FormItemCasePanel("icp", $m.ofValue(cb));
         assertNotNull(icp);
     }
 
     @Test
-    public void testeSaveForm() {
+    public void testSaveForm() {
         final WicketTester wt = springWicketTester.wt();
-        ItemCasePanel icp = new FormItemCasePanel("icp", $m.ofValue(cb));
+        ItemCasePanel<?> icp = new FormItemCasePanel("icp", $m.ofValue(cb));
         wt.startComponentInPage(icp);
         FormTester formTester = wt.newFormTester("icp:form");
         assertNotNull(formTester);

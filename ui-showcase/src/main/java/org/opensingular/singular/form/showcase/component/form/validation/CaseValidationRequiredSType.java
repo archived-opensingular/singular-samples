@@ -21,16 +21,16 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Demonstração de validação de campo obrigatório.
  */
-/*hidden*/@CaseItem(componentName = "Required", group = Group.VALIDATION, resources = @Resource(CaseValidationPackage.class))
+@CaseItem(componentName = "Required", group = Group.VALIDATION, resources = @Resource(CaseValidationPackage.class))
 @SInfoType(spackage = CaseValidationPackage.class, name = "Required")
 public class CaseValidationRequiredSType extends STypeComposite<SIComposite> {
 

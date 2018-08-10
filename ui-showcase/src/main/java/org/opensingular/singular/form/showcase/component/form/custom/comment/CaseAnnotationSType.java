@@ -23,9 +23,9 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.country.brazil.STypeCPF;
 import org.opensingular.form.wicket.enums.AnnotationMode;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
 
 import javax.annotation.Nonnull;
@@ -33,9 +33,9 @@ import javax.annotation.Nonnull;
 /**
  * Anotações e comentários associados a elementos de um form
  */
-/*hidden*/@CaseItem(componentName = "Annotation", group = Group.CUSTOM, annotation = AnnotationMode.EDIT,
-/*hidden*/        resources = {@Resource(PageWithAnnotation.class), @Resource(STypeCliente.class), @Resource(STypeEndereco.class),
-/*hidden*/                @Resource(STypeRequest.class), @Resource(STypeId.class), @Resource(CaseCustomPackage.class)})
+@CaseItem(componentName = "Annotation", group = Group.CUSTOM, annotation = AnnotationMode.EDIT,
+        resources = {@Resource(PageWithAnnotation.class), @Resource(STypeCliente.class), @Resource(STypeEndereco.class),
+                @Resource(STypeRequest.class), @Resource(STypeId.class), @Resource(CaseCustomPackage.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "Annotation")
 public class CaseAnnotationSType extends STypeComposite<SIComposite> {
 

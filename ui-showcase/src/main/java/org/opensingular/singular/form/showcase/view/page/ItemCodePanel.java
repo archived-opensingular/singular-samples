@@ -19,18 +19,25 @@ package org.opensingular.singular.form.showcase.view.page;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.opensingular.form.wicket.util.SourceCodeProcessor;
 import org.opensingular.lib.wicket.util.util.WicketUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ItemCodePanel extends Panel {
 
     public ItemCodePanel(String id, IModel<String> code, String extension) {
         super(id);
-        final SourceCodeProcessor pcf = new SourceCodeProcessor(code.getObject());
-        add(new Label("code", pcf.getResultSourceCode())
-                .add(WicketUtils.$b.classAppender(getSyntaxHighlighterConfig(pcf.getLinesToBeHighlighted(), extension))));
+        String source = code.getObject();
+        String append;
+        if("java".equalsIgnoreCase(extension)) {
+            SourceCodeProcessor pcf = new SourceCodeProcessor(source);
+            source = pcf.getResultSourceCode();
+            append = getSyntaxHighlighterConfig(pcf.getLinesToBeHighlighted(), extension);
+        } else {
+            append = getSyntaxHighlighterConfig(Collections.emptyList(), extension);
+        }
+        add(new Label("code", source).add(WicketUtils.$b.classAppender(append)));
     }
 
     private String getSyntaxHighlighterConfig(List<Integer> linesToBeHighlighted, String extensionParam) {

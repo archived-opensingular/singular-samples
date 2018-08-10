@@ -22,16 +22,16 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.validation.InstanceValidatable;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Between Fields
  */
-/*hidden*/@CaseItem(componentName = "Between Fields", group = Group.VALIDATION, resources = @Resource(CaseValidationPackage.class))
+@CaseItem(componentName = "Between Fields", group = Group.VALIDATION, resources = @Resource(CaseValidationPackage.class))
 @SInfoType(spackage = CaseValidationPackage.class, name = "BetweenFields")
 public class CaseValidationBetweenFieldsSType extends STypeComposite<SIComposite> {
 

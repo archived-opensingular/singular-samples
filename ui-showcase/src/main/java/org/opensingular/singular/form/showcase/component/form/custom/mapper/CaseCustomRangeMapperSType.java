@@ -21,9 +21,9 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.wicket.IWicketComponentMapper;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
 
 import javax.annotation.Nonnull;
@@ -31,9 +31,9 @@ import javax.annotation.Nonnull;
 /**
  * Custom Range Mapper
  */
-/*hidden*/@CaseItem(componentName = "Custom Mapper", subCaseName = "Range Slider", group = Group.CUSTOM,
-/*hidden*/resources = {@Resource(RangeSliderMapper.class), @Resource(value = RangeSliderMapper.class, extension = "js"),
-/*hidden*/        @Resource(value = STypeFaixaIdade.class), @Resource(value = CaseCustomPackage.class)})
+@CaseItem(componentName = "Custom Mapper", subCaseName = "Range Slider", group = Group.CUSTOM,
+resources = {@Resource(RangeSliderMapper.class), @Resource(value = RangeSliderMapper.class, extension = "js"),
+        @Resource(value = STypeFaixaIdade.class), @Resource(value = CaseCustomPackage.class)})
 @SInfoType(spackage = CaseCustomPackage.class, name = "RangeSlider")
 public class CaseCustomRangeMapperSType extends STypeComposite<SIComposite> {
 

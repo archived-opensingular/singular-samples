@@ -29,15 +29,11 @@ import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutP
 
 import javax.annotation.Nonnull;
 
-/*hidden*/
-/*hidden*/
-/*hidden*/
-
 /**
  * O tamanho da aba pode ser configurado especificamente para cada resolução.
  */
-/*hidden*/@CaseItem(componentName = "Tabs", subCaseName = "Tamanho da aba em diferentes resoluções", group = Group.LAYOUT,
-/*hidden*/        resources = {@Resource(CaseLayoutPackage.class), @Resource(STypeInformacoesProfissionais.class)})
+@CaseItem(componentName = "Tabs", subCaseName = "Tamanho da aba em diferentes resoluções", group = Group.LAYOUT,
+        resources = {@Resource(CaseLayoutPackage.class), @Resource(STypeInformacoesProfissionais.class)})
 @SInfoType(spackage = CaseLayoutPackage.class)
 public class CaseTabEditSizeDifferentResolutionSType extends STypeComposite<SIComposite> {
 

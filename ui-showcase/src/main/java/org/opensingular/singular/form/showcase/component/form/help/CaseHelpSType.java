@@ -21,20 +21,18 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.form.view.SViewListByForm;
-/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
-/*hidden*/import org.opensingular.singular.form.showcase.component.Resource;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
+import org.opensingular.singular.form.showcase.component.Resource;
 
 import javax.annotation.Nonnull;
 
 /**
  * Help
  */
-/*hidden*/@CaseItem(componentName = "Help", subCaseName = "Help", group = Group.HELP,
-/*hidden*/        resources = {@Resource(STypeExperienciaProfissional.class), @Resource(CaseHelpPackage.class)})
+@CaseItem(componentName = "Help", subCaseName = "Help", group = Group.HELP, resources = {
+        @Resource(STypeExperienciaProfissional.class), @Resource(CaseHelpPackage.class)})
 @SInfoType(spackage = CaseHelpPackage.class, name = "Help")
 public class CaseHelpSType extends STypeComposite<SIComposite> {
 
