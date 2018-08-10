@@ -50,7 +50,7 @@ public class CaseListByMasterDetailColumnsSType extends STypeComposite<SIComposi
                 .col(stExperienciaProfissional.empresa, "Empresa em que trabalhou") // Desta forma, será utilizado rótulo personalizado para esta coluna.
                 .col(stExperienciaProfissional.inicio) //Nos demais, a coluna terá o mesmo rótulo do tipo que a define.
                 .col(stExperienciaProfissional.fim)
-                .label("Informar Experiência Anterior");
+                .label("Experiência Anterior");
 
         experienciasProfissionais.withView(experienciaView)
                 //@destacar:fim

@@ -58,7 +58,7 @@ public class CaseListByMasterDetailSortSType extends STypeComposite<SIComposite>
 
         experienciasProfissionais
                 .asAtr()
-                .label("Informar Experiência Anterior");
+                .label("Experiência Anterior");
         experienciasProfissionais
                 .withView(experienciaView)
                 .withInitListener(this::fillWithBlankValues);
