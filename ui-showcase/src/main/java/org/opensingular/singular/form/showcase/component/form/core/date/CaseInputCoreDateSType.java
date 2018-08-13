@@ -16,6 +16,11 @@
 
 package org.opensingular.singular.form.showcase.component.form.core.date;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.annotation.Nonnull;
+
 import org.apache.commons.lang3.time.DateUtils;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -25,20 +30,18 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeTime;
 import org.opensingular.form.view.date.SViewDate;
+import org.opensingular.form.view.date.SViewTime;
+import org.opensingular.singular.form.showcase.component.CaseItem;
+import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.core.CaseInputCorePackage;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 /**
- * Componente para inserção de data
+ * Componentes personalizados para inserção de data
  */
-@CaseItem(componentName = "Date", subCaseName = "Simples", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
+@CaseItem(componentName = "Date", subCaseName = "Personalizados", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "Date")
 public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
 
@@ -48,7 +51,9 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
     public STypeDate botaoHoje;
     public STypeDate hojeRealcado;
     public STypeDate datasHabilitadas;
+    public STypeDate datasSemPicker;
     public STypeTime hora;
+    public STypeTime horaSemPicker;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -58,7 +63,9 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
         botaoHoje = this.addFieldDate("botaoHoje");
         hojeRealcado = this.addFieldDate("hojeRealcado");
         datasHabilitadas = this.addFieldDate("datasHabilitadas");
+        datasSemPicker = this.addFieldDate("datasSemPicker");
         hora = this.addField("hora", STypeTime.class);
+        horaSemPicker = this.addFieldTime("horaSemPicker");
 
         livre
                 .asAtr().label("Seleção Livre");
@@ -84,6 +91,20 @@ public class CaseInputCoreDateSType extends STypeComposite<SIComposite> {
                 .asAtr().label("Data habilitadas").subtitle("três dias antes e depois da data atual");
 
         hora.asAtr().label("Hora");
+
+        horaSemPicker
+                .withView(new SViewTime().hideModalTimePicker(Boolean.TRUE))
+                .asAtr().label("Hora máscara simples")
+                .asAtrBootstrap()
+                .colMd(3);
+
+        datasSemPicker
+                .withView(new SViewDate().hideModalDatePicker(Boolean.TRUE))
+                .asAtr()
+                .label("Data máscara simples")
+                .asAtrBootstrap()
+                .colMd(3);
+
     }
 
     private List<Date> tresDiasAntesDepoisAtual(SInstance inst) {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component.form.help;
+package org.sample.form;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
@@ -25,42 +25,44 @@ import org.opensingular.form.type.util.STypeYearMonth;
 
 import javax.annotation.Nonnull;
 
-@SInfoType(spackage = CaseHelpPackage.class, name = "experiencia")
-public class STypeExperiencia extends STypeComposite<SIComposite> {
+@SInfoType(spackage = RequirementsamplePackage.class)
+public class STypeExperienciaProfissional extends STypeComposite<SIComposite> {
 
-    public STypeYearMonth dtInicioExperiencia;
-    public STypeYearMonth dtFimExperiencia;
-    public STypeString empresa;
-    public STypeString cargo;
-    public STypeString atividades;
+    public STypeYearMonth inicio;
+    public STypeYearMonth fim;
+    public STypeString    empresa;
+    public STypeString    cargo;
+    public STypeString    atividades;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        dtInicioExperiencia = this.addField("dtInicioExperiencia", STypeYearMonth.class, true);
-        dtFimExperiencia = this.addField("dtFimExperiencia", STypeYearMonth.class);
-        empresa = this.addFieldString("empresa", true);
-        cargo = this.addFieldString("cargo", true);
-        atividades = this.addFieldString("atividades");
+        inicio = addField("inicio", STypeYearMonth.class, true);
+        fim = addField("fim", STypeYearMonth.class);
+        empresa = addFieldString("empresa", true);
+        cargo = addFieldString("cargo", true);
+        atividades = addFieldString("atividades");
 
-        dtInicioExperiencia
+        inicio
                 .asAtr().label("Data inicial")
-                .asAtrBootstrap().colPreference(2);
+                .asAtrBootstrap().colPreference(3);
 
-        dtFimExperiencia
+        fim
                 .asAtr().label("Data final")
-                .asAtrBootstrap().colPreference(2);
+                .asAtrBootstrap().colPreference(3);
 
         empresa
                 .asAtr().label("Empresa")
-                .asAtrBootstrap().colPreference(8);
+                .asAtrBootstrap().newRow().colPreference(6);
 
         cargo
-                .asAtr().label("Cargo");
+                .asAtr().label("Cargo")
+                .asAtrBootstrap().colPreference(6);
 
         atividades
                 .withTextAreaView()
-                .asAtr().label("Atividades Desenvolvidas");
+                .asAtr().label("Atividades Desenvolvidas")
+                .asAtrBootstrap().colPreference(12);
 
-        this.asAtr().label("Experiência");
+        this.asAtr().label("Experiências profissionais");
     }
 }
