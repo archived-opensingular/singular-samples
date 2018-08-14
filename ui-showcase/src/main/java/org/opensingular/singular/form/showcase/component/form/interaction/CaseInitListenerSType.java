@@ -23,7 +23,7 @@ import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.view.SViewListByForm;
+import org.opensingular.form.view.list.SViewListByForm;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -48,7 +48,7 @@ public class CaseInitListenerSType extends STypeComposite<SIComposite> {
         itens = this.addFieldListOf("itens", STItem.class);
 
         itens
-                .withView(new SViewListByForm().disableDelete().disableNew())
+                .withView(new SViewListByForm().configureDeleteButton(f -> false).disableNew())
                 .asAtr().label("Itens");
 
         //@destacar

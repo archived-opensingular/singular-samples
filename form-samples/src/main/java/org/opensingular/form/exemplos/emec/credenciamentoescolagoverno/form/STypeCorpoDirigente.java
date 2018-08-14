@@ -26,7 +26,7 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewByBlock;
-import org.opensingular.form.view.SViewListByForm;
+import org.opensingular.form.view.list.SViewListByForm;
 
 @SInfoType(spackage = SPackageCredenciamentoEscolaGoverno.class)
 public class STypeCorpoDirigente extends STypeComposite<SIComposite> {

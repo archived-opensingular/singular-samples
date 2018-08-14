@@ -30,8 +30,8 @@ import org.opensingular.form.type.country.brazil.STypeCPF;
 import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypePersonName;
 import org.opensingular.form.validation.validator.InstanceValidators;
-import org.opensingular.form.view.SViewListByForm;
 import org.opensingular.form.view.SViewSelectionBySelect;
+import org.opensingular.form.view.list.SViewListByForm;
 
 @SInfoType(spackage = ExamplePackage.class, name = "STypeExample")
 public class STypeExample extends STypeComposite<SIComposite> {

@@ -15,14 +15,6 @@
  */
 package org.opensingular.form.exemplos.emec.credenciamentoescolagoverno.form;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
-import org.opensingular.lib.commons.lambda.IFunction;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SIList;
 import org.opensingular.form.SInfoType;
@@ -30,13 +22,21 @@ import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.internal.lib.commons.xml.ConversorToolkit;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.country.brazil.STypeCEP;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewByBlock;
-import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.form.view.SViewListByTable;
+import org.opensingular.form.view.list.SViewListByMasterDetail;
+import org.opensingular.form.view.list.SViewListByTable;
+import org.opensingular.internal.lib.commons.xml.ConversorToolkit;
+import org.opensingular.lib.commons.lambda.IFunction;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @SInfoType(spackage = SPackageCredenciamentoEscolaGoverno.class)
 public class STypePDI extends STypeComposite<SIComposite>{
@@ -189,13 +189,13 @@ public class STypePDI extends STypeComposite<SIComposite>{
         ano.asAtr().label("Demonstrativo Financeiro").enabled(false);
         
         final STypeList<STypeComposite<SIComposite>, SIComposite> receitas = demonstrativo.addFieldListOfComposite("receitas", "receita");
-        receitas.withView(new SViewListByTable().disableNew().disableDelete());
+        receitas.withView(new SViewListByTable().disableNew().configureDeleteButton(f -> false));
         receitas.asAtr().label("Receitas");
         receitas.getElementsType().addFieldString("tipo").asAtr().enabled(false);
         receitas.getElementsType().addFieldMonetary("valor");
 
         final STypeList<STypeComposite<SIComposite>, SIComposite> despesas = demonstrativo.addFieldListOfComposite("despesas", "despesa");
-        despesas.withView(new SViewListByTable().disableNew().disableDelete());
+        despesas.withView(new SViewListByTable().disableNew().configureDeleteButton(f -> false));
         despesas.asAtr().label("Despesas");
         despesas.getElementsType().addFieldString("tipo").asAtr().enabled(false);
         despesas.getElementsType().addFieldMonetary("valor");
@@ -218,7 +218,7 @@ public class STypePDI extends STypeComposite<SIComposite>{
                 .col("Receitas", calcularTotal("receitas"))
                 .col("Despesas", calcularTotal("despesas"))
                 .col("Total Geral", calcularTotal())
-                .disableNew().disableDelete());
+                .disableNew().configureDeleteButton(f -> false));
     }
     
     @SuppressWarnings("unchecked")

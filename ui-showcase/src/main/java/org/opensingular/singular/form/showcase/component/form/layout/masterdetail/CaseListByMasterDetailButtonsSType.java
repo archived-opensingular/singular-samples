@@ -21,7 +21,7 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.list.SViewListByMasterDetail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -47,7 +47,7 @@ public class CaseListByMasterDetailButtonsSType extends STypeComposite<SIComposi
         //@destacar:bloco
         experienciasProfissionais.withView(new SViewListByMasterDetail()
                 //.disableNew() // o botão de adicionar pode ser desabilitado também.
-                .disableDelete()
+                .configureDeleteButton(f -> false)
                 .disableEdit())
                 //@destacar:fim
                 .asAtr().label("Experiências profissionais");

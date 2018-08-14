@@ -24,7 +24,7 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIFieldRef;
 import org.opensingular.form.type.core.STypeFieldRef;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewListByTable;
+import org.opensingular.form.view.list.SViewListByTable;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;

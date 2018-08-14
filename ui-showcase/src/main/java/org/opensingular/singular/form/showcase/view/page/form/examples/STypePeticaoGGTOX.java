@@ -34,12 +34,12 @@ import org.opensingular.form.view.SMultiSelectionByCheckboxView;
 import org.opensingular.form.view.SMultiSelectionByPicklistView;
 import org.opensingular.form.view.SMultiSelectionBySelectView;
 import org.opensingular.form.view.SViewAutoComplete;
-import org.opensingular.form.view.SViewListByForm;
-import org.opensingular.form.view.SViewListByMasterDetail;
-import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.SViewSelectionByRadio;
 import org.opensingular.form.view.SViewSelectionBySelect;
 import org.opensingular.form.view.SViewTab;
+import org.opensingular.form.view.list.SViewListByForm;
+import org.opensingular.form.view.list.SViewListByMasterDetail;
+import org.opensingular.form.view.list.SViewListByTable;
 
 @SInfoType(spackage = SPackagePeticaoGGTOX.class, name = "STypePeticaoGGTOX")
 public class STypePeticaoGGTOX extends STypeComposite<SIComposite> {

@@ -26,7 +26,7 @@ import org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.enums.A
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.util.transformer.Value;
 import org.opensingular.form.view.SViewByBlock;
-import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.list.SViewListByMasterDetail;
 import org.opensingular.internal.lib.commons.xml.ConversorToolkit;
 
 import java.math.BigDecimal;

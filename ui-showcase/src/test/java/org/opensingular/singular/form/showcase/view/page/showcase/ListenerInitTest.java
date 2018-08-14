@@ -18,14 +18,6 @@
 
 package org.opensingular.singular.form.showcase.view.page.showcase;
 
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.junit.Assert.assertThat;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.junit.Test;
 import org.opensingular.form.SIComposite;
@@ -34,8 +26,16 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewListByForm;
+import org.opensingular.form.view.list.SViewListByForm;
 import org.opensingular.form.wicket.helpers.SingularFormBaseTest;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.junit.Assert.assertThat;
 
 public class ListenerInitTest extends SingularFormBaseTest {
 
@@ -46,7 +46,7 @@ public class ListenerInitTest extends SingularFormBaseTest {
 
         STypeList<STypeComposite<SIComposite>, SIComposite> itens = baseType.addFieldListOfComposite("itens", "itenm");
         itens.asAtr().label("Itens");
-        itens.withView(new SViewListByForm().disableDelete().disableNew());
+        itens.withView(new SViewListByForm().configureDeleteButton(f -> false).disableNew());
 
         final STypeComposite<SIComposite> item = itens.getElementsType();
         nome = item.addFieldString("nome");

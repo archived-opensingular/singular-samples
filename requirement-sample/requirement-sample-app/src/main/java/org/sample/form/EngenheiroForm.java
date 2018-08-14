@@ -7,7 +7,7 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.list.SViewListByMasterDetail;
 
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
@@ -34,6 +34,8 @@ public class EngenheiroForm extends STypeComposite<SIComposite> {
         SViewListByMasterDetail experienciaView = new SViewListByMasterDetail()
                 .setSortableColumn(stExperienciaProfissional.inicio, false)
                 .setDisableSort(true)
+                .configureEditButton("la", null, null)
+                .configureDeleteButton(f -> false)
                 .label("Informar Experiência Anterior");
 
         experienciasProfissionais.withView(experienciaView).withInitListener(this::fillWithBlankValues);

@@ -42,7 +42,7 @@ import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.form.type.util.STypeLatitudeLongitude;
 import org.opensingular.form.type.util.STypePersonName;
 import org.opensingular.form.type.util.STypeYearMonth;
-import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.list.SViewListByMasterDetail;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;

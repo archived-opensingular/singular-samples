@@ -15,15 +15,15 @@
  */
 package org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.form;
 
-import org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.enums.AcaoGestaoObras;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.exemplos.opas.gestaoobrasservicosaquisicoes.enums.AcaoGestaoObras;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewListByTable;
+import org.opensingular.form.view.list.SViewListByTable;
 
 @SInfoType(spackage = SPackageGestaoObrasServicosAquisicoes.class)
 public class STypeChecklist extends STypeComposite<SIComposite> {
@@ -43,7 +43,7 @@ public class STypeChecklist extends STypeComposite<SIComposite> {
                 SIString acaoInstance = itensInstance.findNearest(acao).get();
                 return acaoInstance.getValue() != null;
             });
-        itens.withView(new SViewListByTable().setDeleteEnabled(false).setNewEnabled(false));
+        itens.withView(new SViewListByTable().configureDeleteButton(f -> false).setNewEnabled(false));
 
         final STypeComposite<SIComposite> item = itens.getElementsType();
         final STypeString descrItem = item.addFieldString("descricao");

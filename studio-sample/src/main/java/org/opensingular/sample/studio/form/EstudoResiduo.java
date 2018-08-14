@@ -17,8 +17,6 @@
 package org.opensingular.sample.studio.form;
 
 
-import javax.annotation.Nonnull;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -27,8 +25,10 @@ import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeBoolean;
 import org.opensingular.form.type.core.STypeInteger;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewListByMasterDetail;
+import org.opensingular.form.view.list.SViewListByMasterDetail;
 import org.opensingular.sample.studio.entity.SimNaoConverter;
+
+import javax.annotation.Nonnull;
 
 @SInfoType(name = "EstudoResiduo", spackage = ResiduoPackage.class)
 public class EstudoResiduo extends STypeComposite<SIComposite> {

@@ -16,12 +16,6 @@
 
 package org.opensingular.formsamples.crud.types.antaq;
 
-import static org.apache.commons.lang3.StringUtils.*;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -29,9 +23,15 @@ import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.SIString;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.SViewTab;
+import org.opensingular.form.view.list.SViewListByTable;
 import org.opensingular.lib.commons.base.SingularProperties;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.apache.commons.lang3.StringUtils.leftPad;
 
 @SInfoType(spackage = AntaqPackage.class, label = "Navegação Interior Passageiro/Misto no Longitudinal", name = "InteriorPassageirosCargasLong")
 public class Resolucao912Form extends STypeComposite<SIComposite> {
@@ -61,8 +61,9 @@ public class Resolucao912Form extends STypeComposite<SIComposite> {
         telefones.asAtr().label("Telefones");
         telefones.withView(() -> new SViewListByTable()
             .enableNew()
-            .enabledInsert()
-            .enableDelete());
+                //TODO VERIFICAR NECESSIDADE DESSE TRUE...
+                .configureEditButton(t -> true)
+                .configureDeleteButton(t -> true));
 
         SViewTab tabbed = new SViewTab();
 

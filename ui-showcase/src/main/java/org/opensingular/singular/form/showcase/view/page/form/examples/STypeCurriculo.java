@@ -33,9 +33,9 @@ import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.form.type.util.STypePersonName;
 import org.opensingular.form.type.util.STypeYearMonth;
 import org.opensingular.form.view.SMultiSelectionBySelectView;
-import org.opensingular.form.view.SViewListByForm;
-import org.opensingular.form.view.SViewListByTable;
 import org.opensingular.form.view.SViewTab;
+import org.opensingular.form.view.list.SViewListByForm;
+import org.opensingular.form.view.list.SViewListByTable;
 
 @SInfoType(spackage = SPackageCurriculo.class, name = "STypeCurriculo")
 public class STypeCurriculo extends STypeComposite<SIComposite> {
