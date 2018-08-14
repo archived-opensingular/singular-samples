@@ -46,7 +46,7 @@ public class CaseListByMasterDetailDefaultSType extends STypeComposite<SIComposi
 
         experienciasProfissionais
                 //@destacar
-                .withView(SViewListByMasterDetail::new)
+                .withView(new SViewListByMasterDetail().configureDeleteButton(s -> true))
                 .asAtr().label("Experiências profissionais").itemLabel("Experiência Profissional");
     }
 }

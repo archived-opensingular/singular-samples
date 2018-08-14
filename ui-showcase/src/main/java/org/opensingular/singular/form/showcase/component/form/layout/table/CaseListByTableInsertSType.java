@@ -35,7 +35,7 @@ import javax.annotation.Nonnull;
  */
 @CaseItem(componentName = "List by Table", subCaseName = "Line Insert", group = Group.LAYOUT,
         resources = {@Resource(STypeCertificacao.class), @Resource(CaseLayoutPackage.class)})
-@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTable")
+@SInfoType(spackage = CaseLayoutPackage.class, name = "LineTable")
 public class CaseListByTableInsertSType extends STypeComposite<SIComposite> {
 
     public STypeList<STypeCertificacao, SIComposite> certificacoes;
@@ -46,7 +46,7 @@ public class CaseListByTableInsertSType extends STypeComposite<SIComposite> {
 
         certificacoes
                 //@destacar
-                .withView(new SViewListByTable().configureEditButton(f -> true))
+                .withView(new SViewListByTable().configureEditButton(s -> true))
                 .asAtr().label("Certificações");
     }
 }
