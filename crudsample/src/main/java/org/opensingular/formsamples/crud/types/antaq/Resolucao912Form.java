@@ -62,8 +62,8 @@ public class Resolucao912Form extends STypeComposite<SIComposite> {
         telefones.withView(() -> new SViewListByTable()
             .enableNew()
                 //TODO VERIFICAR NECESSIDADE DESSE TRUE...
-                .configureEditButton(t -> true)
-                .configureDeleteButton(t -> true));
+                .configureEditButtonPerRow(t -> true)
+                .configureDeleteButtonPerRow(t -> true));
 
         SViewTab tabbed = new SViewTab();
 

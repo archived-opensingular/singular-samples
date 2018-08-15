@@ -17,6 +17,7 @@
 package org.opensingular.singular.form.showcase.component.form.layout.masterdetail;
 
 import org.opensingular.form.SIComposite;
+import org.opensingular.form.SIList;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
@@ -29,6 +30,7 @@ import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutP
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
 
 import javax.annotation.Nonnull;
+import java.util.Date;
 
 /**
  * List by Master Detail
@@ -47,9 +49,24 @@ public class CaseListByMasterDetailButtonsSType extends STypeComposite<SIComposi
         //@destacar:bloco
         experienciasProfissionais.withView(new SViewListByMasterDetail()
                 //.disableNew() // o botão de adicionar pode ser desabilitado também.
-                .configureDeleteButton(f -> false)
-                .disableEdit())
+                .configureDeleteButtonPerRow(f -> false)
+                .configureEditButtonPerRow(f -> false)
+                .disableNew()
+                .configureViewButtonInEditionPerRow(f -> true))
                 //@destacar:fim
                 .asAtr().label("Experiências profissionais");
+        experienciasProfissionais.withInitListener(this::fillWithBlankValues);
+    }
+
+    private void fillWithBlankValues(SIList<SIComposite> list) {
+        STypeExperienciaProfissional type = experienciasProfissionais.getElementsType();
+        for (int i = 0; i < 3; i++) {
+            SIComposite experiencia = list.addNew();
+            experiencia.setValue(type.atividades, "Reuniões");
+            experiencia.setValue(type.empresa, "Corp.");
+            experiencia.setValue(type.cargo, "Gerente");
+            experiencia.setValue(type.fim, new Date());
+            experiencia.setValue(type.inicio, new Date());
+        }
     }
 }

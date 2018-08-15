@@ -39,7 +39,7 @@ import java.util.Date;
  * */
 @CaseItem(componentName = "List by Master Detail", subCaseName = "Ordenação desabilitada", group = Group.LAYOUT,
         resources = {@Resource(STypeExperienciaProfissional.class), @Resource(CaseLayoutPackage.class)})
-@SInfoType(spackage = CaseLayoutPackage.class, name = "DisableButtonMasterDetail")
+@SInfoType(spackage = CaseLayoutPackage.class, name = "SortButtonMasterDetail")
 public class CaseListByMasterDetailSortSType extends STypeComposite<SIComposite> {
 
     public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
