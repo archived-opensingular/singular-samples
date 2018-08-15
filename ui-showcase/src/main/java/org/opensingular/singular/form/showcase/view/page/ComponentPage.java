@@ -53,6 +53,11 @@ public class ComponentPage extends ShowcaseTemplate {
     private ShowCaseTable.ShowCaseItem showCaseItem;
 
     public ComponentPage(PageParameters parameters) {
+        this(null, parameters);
+    }
+    
+    public ComponentPage(ShowCaseType showCaseType, PageParameters parameters) {
+        super(showCaseType, parameters);
         String componentName = parameters.get(ShowCaseType.COMPONENT_NAME).toString();
         if (componentName == null) {
             throw new RestartResponseAtInterceptPageException(getApplication().getHomePage());

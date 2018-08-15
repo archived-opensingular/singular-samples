@@ -33,7 +33,7 @@ public enum Group {
     STUDIO_PERSISTENCE  ("Persistence"  , DefaultIcons.ARROW_DOWN   , ShowCaseType.STUDIO),
     IMPORTER            ("Importer"     , DefaultIcons.CODE         , ShowCaseType.FORM  ),
     TABLE_TOOL          ("Table Tool"   , DefaultIcons.CALENDAR     , ShowCaseType.STUDIO),
-    MODAL               ("Modal"        , DefaultIcons.DESKTOP      , ShowCaseType.STUDIO)
+    MODAL               ("Modal"        , DefaultIcons.DESKTOP      , ShowCaseType.WICKET_UTILS)
     //@formatter:on
     ;
 

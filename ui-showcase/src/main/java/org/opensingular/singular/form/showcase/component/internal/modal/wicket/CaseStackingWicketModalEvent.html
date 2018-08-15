@@ -1,44 +1,11 @@
 <wicket:panel xmlns:wicket="http://wicket.apache.org">
 
-  <div class="container" style="padding-top: 70px;">
-    <table class="table">
-      <tr>
-        <th></th>
-      </tr>
-      <tr>
-        <td>
-          <a wicket:id="simpleFormLink">Open simple modal</a>
-        </td>
-      </tr>
-    </table>
-  </div>
-
   <div wicket:id="modalItemsContainer" class="singular-form-panel-modal-items" ></div>
 
+  <a wicket:id="open">Open...</a>
+
 <wicket:fragment wicket:id="BodyFragment">
-  <form wicket:id="form">
-    <div wicket:id="feedback"></div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label wicket:for="code">Code</label>
-          <input type="number" wicket:id="code" class="form-control">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label wicket:for="description">Description</label>
-          <input type="text" wicket:id="description" class="form-control">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label>&nbsp;</label>
-          <a wicket:id="open">Open...</a>
-        </div>
-      </div>
-    </div>
-  </form>
+  <h3 wicket:id="count" style="text-align: center;"></h3>
 </wicket:fragment>
 
 </wicket:panel>
