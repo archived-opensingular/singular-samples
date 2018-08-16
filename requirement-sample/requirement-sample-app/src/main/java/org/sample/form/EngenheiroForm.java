@@ -8,6 +8,7 @@ import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.view.list.SViewListByMasterDetail;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ public class EngenheiroForm extends STypeComposite<SIComposite> {
         SViewListByMasterDetail experienciaView = new SViewListByMasterDetail()
                 .setSortableColumn(stExperienciaProfissional.inicio, false)
                 .setDisableSort(true)
-                .configureEditButtonPerRow("la", null, null)
+                .configureEditButtonPerRow("Editando", null, DefaultIcons.FOLDER_OPEN, true)
                 .configureDeleteButtonPerRow(f -> false)
                 .label("Informar Experiência Anterior");
 
