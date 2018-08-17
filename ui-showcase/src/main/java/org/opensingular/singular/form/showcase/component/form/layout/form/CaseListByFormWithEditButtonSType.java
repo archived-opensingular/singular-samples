@@ -23,6 +23,7 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.view.list.SViewListByForm;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -48,11 +49,13 @@ public class CaseListByFormWithEditButtonSType extends STypeComposite<SIComposit
         experienciasProfissionais
                 .withMiniumSizeOf(1)
                 .withMaximumSizeOf(3)
-                //@destacar
                 .withView(() -> new SViewListByForm()
                         .setInitialNumberOfLines(1)
+                        //@destacar:bloco
+                        .configureDeleteButtonPerRow("Deletar", null, DefaultIcons.TRASH)
                         .configureEditButtonPerRow(s -> true)
                         .setNewEnabled(s -> s.size() == 0))
+                //@destacar:fim
                 .asAtr().label("Experiências profissionais");
     }
 }
