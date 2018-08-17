@@ -26,7 +26,7 @@ import org.sample.form.RequirementsampleForm;
 public class DadosPessoaisRequirement extends RequirementDefinition<RequirementInstance> {
 
     public DadosPessoaisRequirement() {
-        super("Requirementsample", RequirementInstance.class);
+        super(DadosPessoaisRequirement.class.getSimpleName(), RequirementInstance.class);
     }
 
     @Override

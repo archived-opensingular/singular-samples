@@ -29,7 +29,7 @@ import org.sample.form.RequirementsampleForm;
 public class EngenheiroRequirement extends RequirementDefinition<RequirementInstance> {
 
     public EngenheiroRequirement() {
-        super("Requirementsample", RequirementInstance.class);
+        super(EngenheiroRequirement.class.getSimpleName(), RequirementInstance.class);
     }
 
     @Override
