@@ -35,7 +35,7 @@ public class EngenheiroForm extends STypeComposite<SIComposite> {
         SViewListByMasterDetail experienciaView = new SViewListByMasterDetail()
                 .setSortableColumn(stExperienciaProfissional.inicio, false)
                 .setDisableSort(true)
-                .configureEditButtonPerRow("Editando", null, DefaultIcons.FOLDER_OPEN, true)
+                .configureEditButtonPerRow("Editando", null, DefaultIcons.FOLDER_OPEN)
                 .configureDeleteButtonPerRow(f -> false)
                 .label("Informar Experiência Anterior");
 
