@@ -37,7 +37,7 @@ import javax.annotation.Nonnull;
 /**
  * Permite a seleção a partir de uma busca filtrada, fazendo o controle de paginação de forma automatica.
  */
-@CaseItem(componentName = "Search Select", subCaseName = "Change button Label", group = Group.INPUT,
+@CaseItem(componentName = "Search Select", subCaseName = "Change Label of Button", group = Group.INPUT,
 resources = {@Resource(Funcionario.class), @Resource(STFuncionario.class), @Resource(SIFuncionario.class), @Resource(CaseInputCorePackage.class),
         @Resource(FuncionarioProvider.class), @Resource(FuncionarioRepository.class), @Resource(SIFuncionarioConverter.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "ChangeButton")
