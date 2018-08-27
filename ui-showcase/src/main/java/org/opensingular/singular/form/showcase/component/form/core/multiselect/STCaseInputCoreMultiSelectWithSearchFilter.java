@@ -34,7 +34,7 @@ import javax.annotation.Nonnull;
 /**
  * O multi select default permite a inclusão de um filtro em tempo real.
  */
-@CaseItem(componentName = "Multi Select", subCaseName = "LiveFilter", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
+@CaseItem(componentName = "Multi Select", subCaseName = "Live Filter", group = Group.INPUT, resources = @Resource(CaseInputCorePackage.class))
 @SInfoType(spackage = CaseInputCorePackage.class, name = "MultiSelectLiveFilter")
 public class STCaseInputCoreMultiSelectWithSearchFilter extends STypeComposite<SIComposite> {
 
