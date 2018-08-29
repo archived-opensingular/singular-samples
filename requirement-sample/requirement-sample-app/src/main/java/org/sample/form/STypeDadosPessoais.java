@@ -2,7 +2,6 @@ package org.sample.form;
 
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
-import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
@@ -43,9 +42,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeHTML richText;
     public STypeHTML richText2;
     public STypeHTML richText3;
-
-    public STypeString campo1;
-    public STypeString campo2;
     public STypeLatitudeLongitudeGMaps coordenada;
 
 
@@ -59,15 +55,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         coordenada
                 .asAtr().subtitle("subtitle maps").label("Maps").required();
 
-        campo1 = addFieldString("campo1");
-        campo2 = addFieldString("campo2");
-        campo1.asAtr().label("CAMPO 1").asAtrBootstrap().colPreference(6);
-        campo2.asAtr().label("CAMPO 2").asAtrBootstrap().colPreference(6);
-
-        campo1.asAtr().dependsOn(campo2)
-                .enabled(t -> !t.findNearest(campo2).map(SInstance::isEmptyOfData).orElse(Boolean.TRUE));
-        campo1.asAtrAnnotation().setAnnotated();
-        campo2.asAtrAnnotation().setAnnotated();
 
         nomeCompleto = addField("nomeCompleto", STypeString.class);
         nomeMae = addField("nomeMae", STypeString.class);
@@ -122,6 +109,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         listEnderecos.withView(SViewListByMasterDetail::new);
         listEnderecos.asAtrIndex().indexed(Boolean.TRUE);
 
+
         richText = this.addField("richText", STypeHTML.class);
         SViewByRichText sViewByRichText = new SViewByRichText();
         sViewByRichText.setDisablePageLayout(true);
@@ -149,7 +137,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
-                .add(campo1).add(campo2)
                 .add(nomeMae)
                 .add(nomePai)
                 .add(telefone)
@@ -157,6 +144,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .add(coordenada)
                 .add(richText));
     }
+
+
 
 
 }

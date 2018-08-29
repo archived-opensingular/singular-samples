@@ -6,7 +6,7 @@
     <groupId>org.opensingular</groupId>
     <artifactId>singular-samples</artifactId>
 
-    <version>1.8.1-SNAPSHOT</version>
+    <version>1.8.2-SNAPSHOT</version>
     <name>[singular-samples]</name>
     <description>Singular Samples and Showcase</description>
     <url>http://opensingular.org</url>
@@ -39,7 +39,6 @@
     </developers>
 
     <modules>
-        <module>wicket-utils-samples</module>
         <module>form-samples</module>
 	    <module>ui-showcase</module>
         <module>crudsample</module>
@@ -187,7 +186,7 @@
             <dependency>
                 <groupId>org.opensingular</groupId>
                 <artifactId>bom</artifactId>
-                <version>1.8.1-SNAPSHOT</version>
+                <version>1.8.2-SNAPSHOT</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>

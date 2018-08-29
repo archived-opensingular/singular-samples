@@ -16,7 +16,7 @@
  *
  */
 
-package org.opensingular.samples.wicketutils.types.simpleform;
+package org.opensingular.singular.form.showcase.component.internal.modal.sform;
 
 import javax.annotation.Nonnull;
 
@@ -30,6 +30,6 @@ public class SimpleFormPackage extends SPackage {
     @Override
     protected void onLoadPackage(@Nonnull PackageBuilder pb) {
         super.onLoadPackage(pb);
-        pb.createType(STSimpleForm.class);
+        pb.createType(STCodDesc.class);
     }
 }

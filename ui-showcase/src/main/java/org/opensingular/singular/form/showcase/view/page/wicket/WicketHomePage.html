@@ -14,29 +14,22 @@
   ~ limitations under the License.
   -->
 
-<html xmlns:wicket="http://wicket.apache.org">
-<head>
-<wicket:head>
-</wicket:head>
-</head>
-<body>
-  <wicket:extend>
+<html xmlns:wicket="http://git-wip-us.apache.org/repos/asf/wicket/repo?p=wicket.git;a=blob_plain;f=wicket-core/src/main/resources/META-INF/wicket-1.5.xsd">
+<wicket:extend>
 
-    <div class="container" style="padding-top: 70px;">
-      <table class="table">
-        <tr>
-          <th></th>
-        </tr>
-        <tr>
-          <td>
-            <a wicket:id="simpleFormLink">Open simple form modal</a>
-          </td>
-        </tr>
-      </table>
+
+
+    <div class="table-scrollable">
     </div>
-
-    <div wicket:id="modalItemsContainer" class="singular-form-panel-modal-items" ></div>
-
-  </wicket:extend>
-</body>
+    <wicket:fragment wicket:id="breadcrumbForm">
+        <li>
+            <a href="#">
+                <wicket:message key="breadcrumb.form"/>
+            </a><i class="fa fa-circle"></i>
+        </li>
+        <li class="active">
+            <wicket:message key="breadcrumb.form"/>
+        </li>
+    </wicket:fragment>
+</wicket:extend>
 </html>

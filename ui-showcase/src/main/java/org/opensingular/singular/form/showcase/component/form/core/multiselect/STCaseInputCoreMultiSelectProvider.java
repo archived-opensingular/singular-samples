@@ -21,7 +21,6 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.view.SMultiSelectionByPicklistView;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -35,7 +34,7 @@ import javax.annotation.Nonnull;
  * É permitido alterar o provedor de dados de forma que estes sejam carregados de forma dinâmica ou de outras fontes de informação.
  */
 //@formatter:off
-@CaseItem(componentName = "Multi Select", subCaseName = "Provedor Dinâmico", group = Group.INPUT,
+@CaseItem(componentName = "Multi Select", subCaseName = "Dynamic Provider", group = Group.INPUT,
         resources = {@Resource(MFileIdsOptionsProvider.class), @Resource(STypeArquivo.class), @Resource(CaseInputCorePackage.class)})
 @SInfoType(spackage = CaseInputCorePackage.class, name = "ProvedorDinamico")
 public class STCaseInputCoreMultiSelectProvider extends STypeComposite<SIComposite> {
@@ -51,8 +50,7 @@ public class STCaseInputCoreMultiSelectProvider extends STypeComposite<SIComposi
          * cadastrado através do Document.bindLocalService
          */
 
-        arquivos.withView(SMultiSelectionByPicklistView::new)
-                .asAtr().label("Seleção de Arquivos Persistidos");
+        arquivos.asAtr().label("Seleção de Arquivos Persistidos");
 
         STypeArquivo stArquivo = arquivos.getElementsType();
         arquivos.selection()
