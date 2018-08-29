@@ -39,7 +39,6 @@
     </developers>
 
     <modules>
-        <module>wicket-utils-samples</module>
         <module>form-samples</module>
 	    <module>ui-showcase</module>
         <module>crudsample</module>
