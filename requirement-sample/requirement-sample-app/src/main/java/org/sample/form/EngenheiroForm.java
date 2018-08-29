@@ -7,8 +7,7 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.list.SViewListByMasterDetail;
-import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.form.view.SViewListByForm;
 
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
@@ -29,22 +28,12 @@ public class EngenheiroForm extends STypeComposite<SIComposite> {
 
         experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
-
-        STypeExperienciaProfissional stExperienciaProfissional = experienciasProfissionais.getElementsType();
-        //@destacar:bloco
-        SViewListByMasterDetail experienciaView = new SViewListByMasterDetail()
-                .setSortableColumn(stExperienciaProfissional.inicio, false)
-                .setDisableSort(true)
-                .configureEditButtonPerRow("Editando", null, DefaultIcons.FOLDER_OPEN)
-                .configureDeleteButtonPerRow(f -> false)
-                .label("Informar Experiência Anterior");
-
-        experienciasProfissionais.withView(experienciaView).withInitListener(this::fillWithBlankValues);
+        experienciasProfissionais.withView(SViewListByForm::new).withInitListener(this::fillWithBlankValues);
     }
 
     private void fillWithBlankValues(SIList<SIComposite> list) {
         STypeExperienciaProfissional type = experienciasProfissionais.getElementsType();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 1; i++) {
             SIComposite experiencia = list.addNew();
             experiencia.setValue(type.atividades, "Reuniões" + i );
             experiencia.setValue(type.empresa, "Corp." +  i );
