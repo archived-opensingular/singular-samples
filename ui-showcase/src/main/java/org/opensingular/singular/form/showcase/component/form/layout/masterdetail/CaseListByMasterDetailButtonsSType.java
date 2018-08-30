@@ -48,7 +48,7 @@ public class CaseListByMasterDetailButtonsSType extends STypeComposite<SIComposi
 
         //@destacar:bloco
         experienciasProfissionais.withView(new SViewListByMasterDetail()
-                .disableInsert()
+                .disableEdit()
                 .disableDelete()
                 .disableNew() // o botão de adicionar pode ser desabilitado também.
                 .enableView())
