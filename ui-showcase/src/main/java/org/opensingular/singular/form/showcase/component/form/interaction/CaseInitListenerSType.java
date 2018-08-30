@@ -48,7 +48,7 @@ public class CaseInitListenerSType extends STypeComposite<SIComposite> {
         itens = this.addFieldListOf("itens", STItem.class);
 
         itens
-                .withView(new SViewListByForm().configureDeleteButtonPerRow(f -> false).disableNew())
+                .withView(new SViewListByForm().disableDelete().disableNew())
                 .asAtr().label("Itens");
 
         //@destacar
