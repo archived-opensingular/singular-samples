@@ -18,13 +18,8 @@
   <bean id="documentFactory" class="org.opensingular.form.spring.SpringSDocumentFactoryEmpty" />
 
   <bean id="formPersistence" class="org.opensingular.form.spring.SpringFormPersistenceInMemory">
+    <constructor-arg type="java.lang.Class" value="org.opensingular.formsamples.crud.types.toxicologia.EstudoResiduoForm"></constructor-arg>
     <property name="documentFactory" ref="documentFactory" />
-    <property name="typeFullName" value="br.org.anvisa.toxicologia.EstudoResiduo" />
-    <property name="packageClasses">
-      <list>
-        <value>org.opensingular.formsamples.crud.types.toxicologia.ToxicologiaPackage</value>
-      </list>
-    </property>
   </bean>
 
 </beans>
