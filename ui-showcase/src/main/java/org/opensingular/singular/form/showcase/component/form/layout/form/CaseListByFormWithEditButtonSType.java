@@ -53,7 +53,7 @@ public class CaseListByFormWithEditButtonSType extends STypeComposite<SIComposit
                         .setInitialNumberOfLines(1)
                         //@destacar:bloco
                         .configureDeleteButtonPerRow("Deletar", null, DefaultIcons.TRASH)
-                        .configureEditButtonPerRow(s -> true)
+                        .enableInsert()
                         .setNewEnabled(s -> s.size() == 0))
                 //@destacar:fim
                 .asAtr().label("Experiências profissionais");

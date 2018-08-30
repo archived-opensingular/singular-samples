@@ -47,7 +47,7 @@ public class CaseListByTableInsertSType extends STypeComposite<SIComposite> {
         certificacoes
                 .withView(new SViewListByTable()
                         //@destacar
-                        .configureEditButtonPerRow(s -> true))
+                        .enableInsert())
                 .asAtr().label("Certificações");
     }
 }
