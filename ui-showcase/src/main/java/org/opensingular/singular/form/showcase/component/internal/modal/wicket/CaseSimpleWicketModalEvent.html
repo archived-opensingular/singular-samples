@@ -1,0 +1,16 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+
+  <div wicket:id="modalItemsContainer"></div>
+
+  <span wicket:id="textLabel"></span> [<a wicket:id="change">change</a>]
+
+  <wicket:fragment wicket:id="MyModalFragment">
+    <div class="container-fluid">
+      <div class="form-group">
+        <label wicket:for="text">Text</label>
+        <input wicket:id="text" type="text" class="form-control" />
+      </div>
+    </div>
+  </wicket:fragment>
+
+</wicket:panel>

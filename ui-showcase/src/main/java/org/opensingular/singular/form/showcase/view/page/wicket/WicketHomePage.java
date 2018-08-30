@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.view.page.studio;
+package org.opensingular.singular.form.showcase.view.page.wicket;
 
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
@@ -23,10 +23,10 @@ import org.opensingular.singular.form.showcase.view.SingularWicketContainer;
 import org.opensingular.singular.form.showcase.view.template.ShowcaseTemplate;
 import org.wicketstuff.annotation.mount.MountPath;
 
-@MountPath("studio")
-public class StudioHomePage extends ShowcaseTemplate implements SingularWicketContainer<StudioHomePage, Void> {
-    public StudioHomePage() {
-        super(ShowCaseType.STUDIO);
+@MountPath("wicket-utils")
+public class WicketHomePage extends ShowcaseTemplate implements SingularWicketContainer<WicketHomePage, Void> {
+    public WicketHomePage() {
+        super(ShowCaseType.WICKET_UTILS);
     }
 
     @Override

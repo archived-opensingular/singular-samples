@@ -17,6 +17,7 @@
 package org.opensingular.singular.form.showcase.view.template;
 
 import de.alpharogroup.wicket.js.addon.toastr.ToastrType;
+
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
@@ -28,11 +29,15 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminTemplate;
 import org.opensingular.lib.wicket.util.toastr.ToastrHelper;
+import org.opensingular.singular.form.showcase.component.ShowCaseType;
 
 import javax.annotation.Nonnull;
 
 @AuthorizeAction(action = Action.RENDER, roles = Roles.ADMIN)
 public abstract class ShowcaseTemplate extends SingularAdminTemplate {
+
+    private ShowCaseType showCaseType;
+
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
@@ -42,10 +47,20 @@ public abstract class ShowcaseTemplate extends SingularAdminTemplate {
     }
 
     public ShowcaseTemplate() {
+        this(null, null);
+    }
+
+    public ShowcaseTemplate(ShowCaseType showCaseType) {
+        this(showCaseType, null);
     }
 
     public ShowcaseTemplate(PageParameters parameters) {
+        this(null, parameters);
+    }
+
+    public ShowcaseTemplate(ShowCaseType showCaseType, PageParameters parameters) {
         super(parameters);
+        this.showCaseType = showCaseType;
     }
 
     @Override
@@ -55,32 +70,28 @@ public abstract class ShowcaseTemplate extends SingularAdminTemplate {
 
     @Override
     protected @Nonnull
-    WebMarkupContainer buildPageMenu(String id) {
+            WebMarkupContainer buildPageMenu(String id) {
         if (isWithMenu()) {
-            return new ShowcaseMenu("menu");
+            return new ShowcaseMenu(id, showCaseType);
         } else {
-            return new WebMarkupContainer("menu");
+            return new WebMarkupContainer(id);
         }
     }
 
     public void addToastrSuccessMessage(String messageKey, String... args) {
-        new ToastrHelper(this).
-                addToastrMessage(ToastrType.SUCCESS, messageKey, args);
+        new ToastrHelper(this).addToastrMessage(ToastrType.SUCCESS, messageKey, args);
     }
 
     public void addToastrErrorMessage(String messageKey, String... args) {
-        new ToastrHelper(this).
-                addToastrMessage(ToastrType.ERROR, messageKey, args);
+        new ToastrHelper(this).addToastrMessage(ToastrType.ERROR, messageKey, args);
     }
 
     public void addToastrWarningMessage(String messageKey, String... args) {
-        new ToastrHelper(this).
-                addToastrMessage(ToastrType.WARNING, messageKey, args);
+        new ToastrHelper(this).addToastrMessage(ToastrType.WARNING, messageKey, args);
     }
 
     public void addToastrInfoMessage(String messageKey, String... args) {
-        new ToastrHelper(this).
-                addToastrMessage(ToastrType.INFO, messageKey, args);
+        new ToastrHelper(this).addToastrMessage(ToastrType.INFO, messageKey, args);
     }
 
 }
