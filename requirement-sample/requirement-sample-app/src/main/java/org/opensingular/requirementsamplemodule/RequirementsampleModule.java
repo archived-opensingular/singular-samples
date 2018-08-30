@@ -84,7 +84,7 @@ public class RequirementsampleModule implements StudioSingularModule {
                             .addBox(DefaultDraftbox.class, box -> box
                                     .displayCounters(false)
                                     .newFor(DadosPessoaisRequirement.class)
-                                    .newFor(EngRequirement.class))
+                                    .newFor(EngenheiroRequirement.class))
                             .addBox(DefaultOngoingbox.class))
                     .addCategory("Cadastros", cadastros -> cadastros
                             .icon(DefaultIcons.MAGIC)
