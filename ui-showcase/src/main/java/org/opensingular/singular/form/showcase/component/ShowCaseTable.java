@@ -16,6 +16,19 @@
 
 package org.opensingular.singular.form.showcase.component;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.stream.Stream;
+
 import org.apache.wicket.Component;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.lib.commons.base.SingularException;
@@ -29,23 +42,12 @@ import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2
 import org.opensingular.studio.core.definition.StudioDefinition;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeMap;
-
 @Service
 public class ShowCaseTable {
 
-    private final Map<String, ShowCaseGroup> formGroups = new LinkedHashMap<>();
+    private final Map<String, ShowCaseGroup> formGroups   = new LinkedHashMap<>();
     private final Map<String, ShowCaseGroup> studioGroups = new LinkedHashMap<>();
+    private final Map<String, ShowCaseGroup> wicketGroups = new LinkedHashMap<>();
 
     private final Map<Group, List<Class<?>>> casePorGrupo = new EnumMap<>(Group.class);
 
@@ -63,17 +65,7 @@ public class ShowCaseTable {
         }
 
         // @formatter:off
-        addGroup(Group.INPUT);
-        addGroup(Group.COUNTRY);
-        addGroup(Group.FILE);
-        addGroup(Group.LAYOUT);
-        addGroup(Group.VALIDATION);
-        addGroup(Group.INTERACTION);
-        addGroup(Group.HELP);
-        addGroup(Group.CUSTOM);
-        addGroup(Group.MAPS);
-        addGroup(Group.IMPORTER);
-        addGroup(Group.TABLE_TOOL);
+        Stream.of(Group.values()).forEach(this::addGroup);
 
         addGroup("XSD", DefaultIcons.CODE, ShowCaseType.FORM)
                 .addCase(new XsdCaseSimple())
@@ -85,10 +77,10 @@ public class ShowCaseTable {
 
     public ShowCaseItem findCaseItemByComponentName(String name) {
         return getGroups().stream()
-                .map(ShowCaseGroup::getItens)
-                .flatMap(Collection::stream)
-                .filter(f -> name.equalsIgnoreCase(f.getComponentName()))
-                .findFirst().orElse(null);
+            .map(ShowCaseGroup::getItens)
+            .flatMap(Collection::stream)
+            .filter(f -> name.equalsIgnoreCase(f.getComponentName()))
+            .findFirst().orElse(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -101,7 +93,7 @@ public class ShowCaseTable {
         }
         for (Class<?> caseClass : classes) {
             final CaseItem caseItem = caseClass.getAnnotation(CaseItem.class);
-            CaseBase caseBase;
+            CaseBase<?> caseBase;
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
                 caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass);
             } else if (StudioDefinition.class.isAssignableFrom(caseClass)) {
@@ -110,7 +102,7 @@ public class ShowCaseTable {
                 caseBase = new CaseBaseWicket((Class<? extends Component>) caseClass);
             } else {
                 throw new ShowCaseException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() +
-                        " podem ser anotadas com @" + CaseItem.class.getSimpleName());
+                    " podem ser anotadas com @" + CaseItem.class.getSimpleName());
             }
             caseBase.setShowCaseType(group.getTipo());
             caseBase.setComponentName(caseItem.componentName());
@@ -142,41 +134,40 @@ public class ShowCaseTable {
     }
 
     private ShowCaseGroup addGroup(String groupName, Icon icon, ShowCaseType tipo) {
-        Map<String, ShowCaseGroup> groups;
-        if (ShowCaseType.FORM == tipo) {
-            groups = formGroups;
-        } else {
-            groups = studioGroups;
-        }
-
-        return groups.computeIfAbsent(groupName, n -> new ShowCaseGroup(n, icon, tipo));
+        return getGroupMap(tipo).computeIfAbsent(groupName, n -> new ShowCaseGroup(n, icon, tipo));
     }
 
     public Collection<ShowCaseGroup> getGroups() {
         final List<ShowCaseGroup> groups = new ArrayList<>(formGroups.values());
         groups.addAll(studioGroups.values());
+        groups.addAll(wicketGroups.values());
         return groups;
     }
 
-    public Collection<ShowCaseGroup> getGroups(ShowCaseType showCaseType) {
-        switch (showCaseType){
-            case STUDIO:
-                return studioGroups.values();
+    private Map<String, ShowCaseGroup> getGroupMap(ShowCaseType showCaseType) {
+        switch (showCaseType) {
             case FORM:
-                return formGroups.values();
+                return formGroups;
+            case STUDIO:
+                return studioGroups;
+            case WICKET_UTILS:
+                return wicketGroups;
             default:
-                return Collections.emptyList();
+                return Collections.emptyMap();
         }
+    }
+
+    public Collection<ShowCaseGroup> getGroups(ShowCaseType showCaseType) {
+        return getGroupMap(showCaseType).values();
     }
 
     public static class ShowCaseGroup implements Serializable {
 
-        private final String groupName;
-        private final Icon icon;
-        private final ShowCaseType tipo;
+        private final String                    groupName;
+        private final Icon                      icon;
+        private final ShowCaseType              tipo;
 
         private final Map<String, ShowCaseItem> itens = new TreeMap<>();
-
 
         public ShowCaseGroup(String groupName, Icon icon, ShowCaseType tipo) {
             this.groupName = groupName;
@@ -188,7 +179,7 @@ public class ShowCaseTable {
             return groupName;
         }
 
-        public <T extends CaseBase> ShowCaseGroup addCase(Class<T> classCase) {
+        public <T extends CaseBase<?>> ShowCaseGroup addCase(Class<T> classCase) {
             try {
                 return addCase(classCase.newInstance());
             } catch (InstantiationException | IllegalAccessException e) {
@@ -196,7 +187,7 @@ public class ShowCaseTable {
             }
         }
 
-        private ShowCaseGroup addCase(CaseBase c) {
+        private ShowCaseGroup addCase(CaseBase<?> c) {
             ShowCaseItem item = itens.computeIfAbsent(c.getComponentName(), k -> new ShowCaseItem(c.getComponentName(), c.getShowCaseType()));
             item.addCase(c);
             return this;
@@ -217,11 +208,11 @@ public class ShowCaseTable {
 
     public static class ShowCaseItem implements Serializable {
 
-        private final String componentName;
+        private final String            componentName;
 
         private final List<CaseBase<?>> cases = new ArrayList<>();
 
-        private ShowCaseType showCaseType;
+        private ShowCaseType            showCaseType;
 
         public ShowCaseItem(String componentName, ShowCaseType showCaseType) {
             this.componentName = componentName;
@@ -237,12 +228,13 @@ public class ShowCaseTable {
         }
 
         public List<CaseBase<?>> getCases() {
-            cases.sort( (case1, case2) ->  case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
+            cases.sort((case1, case2) -> case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
 
-            CaseBase caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
+            CaseBase<?> caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
             if (caseBaseDefault != null) {
                 cases.remove(caseBaseDefault);
-                cases.add(0, caseBaseDefault);}
+                cases.add(0, caseBaseDefault);
+            }
             return cases;
         }
 

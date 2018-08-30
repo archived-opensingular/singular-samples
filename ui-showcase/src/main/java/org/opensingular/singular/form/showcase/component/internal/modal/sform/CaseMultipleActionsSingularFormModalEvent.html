@@ -1,0 +1,27 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+
+  <div class="container" style="padding-top: 70px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr wicket:id="items">
+          <td wicket:id="code"></td>
+          <td wicket:id="description"></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"><a wicket:id="newItemLink">New...</a></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div wicket:id="modalItemsContainer" class="singular-form-panel-modal-items"></div>
+
+</wicket:panel>
