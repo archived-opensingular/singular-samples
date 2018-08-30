@@ -23,7 +23,8 @@ import org.apache.wicket.util.string.StringValue;
 
 public enum ShowCaseType {
     FORM,
-    STUDIO;
+    STUDIO,
+    WICKET_UTILS;
 
     public static final String SHOWCASE_TYPE_PARAM = "tp";
     public static final String COMPONENT_NAME = "cn";
