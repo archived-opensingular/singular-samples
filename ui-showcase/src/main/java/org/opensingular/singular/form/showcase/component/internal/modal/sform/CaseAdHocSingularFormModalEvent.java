@@ -30,13 +30,13 @@ import org.opensingular.singular.form.showcase.component.Group;
 public class CaseAdHocSingularFormModalEvent extends Panel {
 
     private final IModel<String> textModel           = new Model<>("...");
-    private final BSContainer<?> modalItemsContainer = new BSContainer<>("modalItemsContainer");
     private final Label          textLabel           = new Label("textLabel", textModel);
 
     public CaseAdHocSingularFormModalEvent(String id) {
         super(id);
 
         // Basic setup
+        final BSContainer<?> modalItemsContainer = new BSContainer<>("modalItemsContainer");
         add(modalItemsContainer);
         add(new SFormModalEventListenerBehavior(modalItemsContainer)); // required listener
 
