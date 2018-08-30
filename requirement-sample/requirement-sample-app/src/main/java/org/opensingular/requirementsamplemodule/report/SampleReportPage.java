@@ -20,11 +20,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.opensingular.form.report.ReportPage;
 import org.opensingular.lib.commons.ui.Icon;
 import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.wicketstuff.annotation.mount.MountPath;
 
-import javax.inject.Inject;
-
-@MountPath(value = "/reports")
 public class SampleReportPage extends ReportPage {
 
     public SampleReportPage(PageParameters parameters) {

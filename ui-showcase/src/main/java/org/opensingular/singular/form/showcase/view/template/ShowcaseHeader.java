@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.view.template;
 
+import static org.opensingular.lib.wicket.util.util.WicketUtils.*;
+
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.Link;
@@ -26,9 +28,7 @@ import org.opensingular.lib.wicket.util.template.SkinOptions;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.form.ListPage;
 import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
-
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$b;
-import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
+import org.opensingular.singular.form.showcase.view.page.wicket.WicketHomePage;
 
 public class ShowcaseHeader extends Panel {
 
@@ -69,7 +69,6 @@ public class ShowcaseHeader extends Panel {
             public void onClick() {
                 setResponsePage(ListPage.class, ShowCaseType.buildPageParameters(ShowCaseType.FORM));
             }
-
             @Override
             public IModel<?> getBody() {
                 return $m.ofValue("Form");
@@ -80,10 +79,19 @@ public class ShowcaseHeader extends Panel {
             public void onClick() {
                 setResponsePage(StudioHomePage.class, ShowCaseType.buildPageParameters(ShowCaseType.STUDIO));
             }
-
             @Override
             public IModel<?> getBody() {
                 return $m.ofValue("Studio");
+            }
+        });
+        dropdownMenu.adicionarMenu(i -> new Link<String>(i) {
+            @Override
+            public void onClick() {
+                setResponsePage(WicketHomePage.class, ShowCaseType.buildPageParameters(ShowCaseType.WICKET_UTILS));
+            }
+            @Override
+            public IModel<?> getBody() {
+                return $m.ofValue("Wicket");
             }
         });
         return dropdownMenu;

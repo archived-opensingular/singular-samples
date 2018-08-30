@@ -64,5 +64,7 @@ public class STypeExperienciaProfissional extends STypeComposite<SIComposite> {
                 .asAtrBootstrap().colPreference(12);
 
         this.asAtr().label("Experiências profissionais");
+        this.asAtr().displayString("Empresa: ${empresa!} ").dependsOn(empresa);
+
     }
 }
