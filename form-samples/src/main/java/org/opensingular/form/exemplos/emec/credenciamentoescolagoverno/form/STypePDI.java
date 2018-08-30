@@ -189,13 +189,13 @@ public class STypePDI extends STypeComposite<SIComposite>{
         ano.asAtr().label("Demonstrativo Financeiro").enabled(false);
         
         final STypeList<STypeComposite<SIComposite>, SIComposite> receitas = demonstrativo.addFieldListOfComposite("receitas", "receita");
-        receitas.withView(new SViewListByTable().disableNew().disableDelete());
+        receitas.withView(new SViewListByTable().disableAdd().disableDelete());
         receitas.asAtr().label("Receitas");
         receitas.getElementsType().addFieldString("tipo").asAtr().enabled(false);
         receitas.getElementsType().addFieldMonetary("valor");
 
         final STypeList<STypeComposite<SIComposite>, SIComposite> despesas = demonstrativo.addFieldListOfComposite("despesas", "despesa");
-        despesas.withView(new SViewListByTable().disableNew().disableDelete());
+        despesas.withView(new SViewListByTable().disableAdd().disableDelete());
         despesas.asAtr().label("Despesas");
         despesas.getElementsType().addFieldString("tipo").asAtr().enabled(false);
         despesas.getElementsType().addFieldMonetary("valor");
@@ -218,7 +218,7 @@ public class STypePDI extends STypeComposite<SIComposite>{
                 .col("Receitas", calcularTotal("receitas"))
                 .col("Despesas", calcularTotal("despesas"))
                 .col("Total Geral", calcularTotal())
-                .disableNew().disableDelete());
+                .disableAdd().disableDelete());
     }
     
     @SuppressWarnings("unchecked")

@@ -48,7 +48,7 @@ public class CaseInitListenerSType extends STypeComposite<SIComposite> {
         itens = this.addFieldListOf("itens", STItem.class);
 
         itens
-                .withView(new SViewListByForm().disableDelete().disableNew())
+                .withView(new SViewListByForm().disableDelete().disableAdd())
                 .asAtr().label("Itens");
 
         //@destacar

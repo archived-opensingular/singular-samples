@@ -52,9 +52,9 @@ public class CaseListByFormWithEditButtonSType extends STypeComposite<SIComposit
                 .withView(() -> new SViewListByForm()
                         .setInitialNumberOfLines(1)
                         //@destacar:bloco
-                        .configureDeleteButtonPerRow("Deletar", null, DefaultIcons.TRASH)
+                        .enableDelete("Deletar", null, DefaultIcons.TRASH)
                         .enableInsert()
-                        .setNewEnabled(s -> s.size() == 0))
+                        .setAddEnabled(s -> s.size() == 0))
                 //@destacar:fim
                 .asAtr().label("Experiências profissionais");
     }

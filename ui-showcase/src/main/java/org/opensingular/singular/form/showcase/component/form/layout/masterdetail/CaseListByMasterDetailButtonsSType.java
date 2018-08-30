@@ -50,8 +50,8 @@ public class CaseListByMasterDetailButtonsSType extends STypeComposite<SIComposi
         experienciasProfissionais.withView(new SViewListByMasterDetail()
                 .disableEdit()
                 .disableDelete()
-                .disableNew() // o botão de adicionar pode ser desabilitado também.
-                .enableView())
+                .disableAdd() // o botão de adicionar pode ser desabilitado também.
+                .disableView())
                 //@destacar:fim
                 .asAtr().label("Experiências profissionais");
         experienciasProfissionais.withInitListener(this::fillWithBlankValues);

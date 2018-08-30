@@ -60,7 +60,7 @@ public class Resolucao912Form extends STypeComposite<SIComposite> {
         });
         telefones.asAtr().label("Telefones");
         telefones.withView(() -> new SViewListByTable()
-            .enableNew()
+            .enableAdd()
                 .enableInsert()
                 .enableDelete());
 

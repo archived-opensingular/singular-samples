@@ -46,7 +46,7 @@ public class ListenerInitTest extends SingularFormBaseTest {
 
         STypeList<STypeComposite<SIComposite>, SIComposite> itens = baseType.addFieldListOfComposite("itens", "itenm");
         itens.asAtr().label("Itens");
-        itens.withView(new SViewListByForm().disableDelete().disableNew());
+        itens.withView(new SViewListByForm().disableDelete().disableAdd());
 
         final STypeComposite<SIComposite> item = itens.getElementsType();
         nome = item.addFieldString("nome");

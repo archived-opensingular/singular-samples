@@ -43,7 +43,7 @@ public class STypeChecklist extends STypeComposite<SIComposite> {
                 SIString acaoInstance = itensInstance.findNearest(acao).get();
                 return acaoInstance.getValue() != null;
             });
-        itens.withView(new SViewListByTable().disableDelete().setNewEnabled(false));
+        itens.withView(new SViewListByTable().disableDelete().setAddEnabled(false));
 
         final STypeComposite<SIComposite> item = itens.getElementsType();
         final STypeString descrItem = item.addFieldString("descricao");
