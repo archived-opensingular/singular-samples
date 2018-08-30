@@ -16,27 +16,28 @@
 
 package org.opensingular.singular.form.showcase.component.form.map;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
-import org.opensingular.form.type.util.STypeLatitudeLongitudeList;
-
-import javax.annotation.Nonnull;
+import org.opensingular.form.type.util.STypeLatitudeLongitudeMultipleMarkable;
+/*hidden*/import org.opensingular.singular.form.showcase.component.CaseItem;
+/*hidden*/import org.opensingular.singular.form.showcase.component.Group;
 
 /**
- *
+ * Componente com multiplos marcadores e que aceita arquivo KML.
  */
-//@CaseItem(componentName = "Google Maps com multiplos marcadores", group = Group.MAPS)
+@CaseItem(componentName = "Google Maps com multiplos marcadores", group = Group.MAPS)
 @SInfoType(spackage = CaseMapsPackage.class, name = "GoogleMapsMultipleMarkers")
 public class CaseGoogleMapsMultipleMarkersSType extends STypeComposite<SIComposite> {
 
-    public STypeLatitudeLongitudeList coordenadas;
+    public STypeLatitudeLongitudeMultipleMarkable coordenadas;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
-        coordenadas = this.addField("coordenadas", STypeLatitudeLongitudeList.class);
-
+        coordenadas = this.addField("coordenadas", STypeLatitudeLongitudeMultipleMarkable.class);
         coordenadas
                 .asAtr().required();
     }
