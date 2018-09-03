@@ -65,7 +65,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         nomePai.asAtr().dependsOn(nomeCompleto);
         nomeCompleto.asAtr().label("Nome Completo").subtitle("teste subtitle").asAtrBootstrap().colPreference(4).colMd(4);
         nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(4).colMd(4);
-        nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(4).colMd(4);
+        nomePai.asAtr().label("Nome Pai").regexMask("[a-zA-Z\\u0410-\\u044f\\u0401\\u0451\\xc0-\\xff\\xb5 ]").asAtrBootstrap().colPreference(6).colMd(4);
         nomePai.asAtrIndex().indexed(Boolean.TRUE);
         telefone.asAtr().label("Telefone").asAtrBootstrap().colPreference(6);
         telefone.asAtrIndex().indexed(Boolean.TRUE);

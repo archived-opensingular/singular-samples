@@ -41,6 +41,7 @@ public class CaseInputCoreBasicMaskSType extends STypeComposite<SIComposite> {
     public STypeString mask4;
     public STypeString mask5;
     public STypeString mask6;
+    public STypeString mask7;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
@@ -55,6 +56,7 @@ public class CaseInputCoreBasicMaskSType extends STypeComposite<SIComposite> {
         mask4 = this.addFieldString("mask4");
         mask5 = this.addFieldString("mask5");
         mask6 = this.addFieldString("mask6");
+        mask7 = this.addFieldString("mask7");
 
         mask1.asAtr().label("Número Mask (9999-9999-99)");
         //@destacar
@@ -79,5 +81,9 @@ public class CaseInputCoreBasicMaskSType extends STypeComposite<SIComposite> {
         mask6.asAtr().label("Alfanumérico (9999-****])");
         //@destacar
         mask6.asAtr().basicMask("9999-****");
+
+        mask7.asAtr().label("Expressão regular para o campo todo [a-c1-3]");
+        //@destacar
+        mask7.asAtr().regexMask("[a-c1-3]");
     }
 }
