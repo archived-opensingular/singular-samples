@@ -16,8 +16,17 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout.masterdetail;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.YearMonth;
+import java.util.Comparator;
+import java.util.Optional;
+
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
+import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
@@ -28,13 +37,11 @@ import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeExperienciaProfissional;
 
-import javax.annotation.Nonnull;
-
 /**
  * List by Master Detail
  */
 @CaseItem(componentName = "List by Master Detail", subCaseName = "Configurar Colunas", group = Group.LAYOUT,
-        resources = {@Resource(STypeExperienciaProfissional.class), @Resource(CaseLayoutPackage.class)})
+        resources = { @Resource(STypeExperienciaProfissional.class), @Resource(CaseLayoutPackage.class) })
 @SInfoType(spackage = CaseLayoutPackage.class, name = "ConfigColMasterDetail")
 public class CaseListByMasterDetailColumnsSType extends STypeComposite<SIComposite> {
 
@@ -47,13 +54,24 @@ public class CaseListByMasterDetailColumnsSType extends STypeComposite<SIComposi
         STypeExperienciaProfissional stExperienciaProfissional = experienciasProfissionais.getElementsType();
         //@destacar:bloco
         SViewListByMasterDetail experienciaView = new SViewListByMasterDetail()
-                .col(stExperienciaProfissional.empresa, "Empresa em que trabalhou") // Desta forma, será utilizado rótulo personalizado para esta coluna.
-                .col(stExperienciaProfissional.inicio) //Nos demais, a coluna terá o mesmo rótulo do tipo que a define.
-                .col(stExperienciaProfissional.fim)
-                .label("Experiência Anterior");
+            .col(stExperienciaProfissional.empresa, "Empresa em que trabalhou") // Desta forma, será utilizado rótulo personalizado para esta coluna.
+            .col(stExperienciaProfissional.inicio) //Nos demais, a coluna terá o mesmo rótulo do tipo que a define.
+            .col(stExperienciaProfissional.fim)
+            .col("Tempo de experiência",
+                ins -> getPeriodoEmMeses(ins).map(it -> it + " meses").orElse(""),
+                Comparator.comparing(it -> getPeriodoEmMeses(it).orElse(-1)))
+            .label("Experiência Anterior");
 
         experienciasProfissionais.withView(experienciaView)
-                //@destacar:fim
-                .asAtr().label("Experiências profissionais");
+            //@destacar:fim
+            .asAtr().label("Experiências profissionais");
+    }
+
+    private static Optional<Integer> getPeriodoEmMeses(SInstance instance) {
+        Optional<LocalDate> inicio = Optional.ofNullable((YearMonth) instance.getField("inicio").getValue()).map(it -> it.atDay(1));
+        Optional<LocalDate> fim = Optional.ofNullable((YearMonth) instance.getField("fim").getValue()).map(it -> it.atDay(1));
+        return (inicio.isPresent() && fim.isPresent())
+            ? Optional.of(Period.between(inicio.get(), fim.get()).getMonths())
+            : Optional.empty();
     }
 }
