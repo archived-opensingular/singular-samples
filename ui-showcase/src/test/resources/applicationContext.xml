@@ -36,7 +36,7 @@
         <property name="documentFactory" ref="documentFactory"/>
     </bean>
 
-    <bean id="sessionProvider" class="org.opensingular.singular.form.showcase.SessionLocatorTest">
+    <bean id="sessionProvider" class="org.opensingular.singular.form.showcase.SessionLocatorImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
