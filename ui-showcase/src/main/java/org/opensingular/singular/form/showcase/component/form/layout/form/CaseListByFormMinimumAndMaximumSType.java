@@ -47,7 +47,7 @@ public class CaseListByFormMinimumAndMaximumSType extends STypeComposite<SICompo
 
         experienciasProfissionais
                 //@destacar:bloco
-                .withMiniumSizeOf(1)
+                .withMinimumSizeOf(1)
                 .withMaximumSizeOf(3)
                 //@destacar:fim
                 .withView(SViewListByForm::new)
