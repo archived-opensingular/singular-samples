@@ -75,7 +75,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentos = this.addFieldListOfAttachment("documentos", "documento");
         documentos.asAtr().label("Documentos");
         documentos.withMaximumSizeOf(10);
-        documentos.withMiniumSizeOf(0);
+        documentos.withMinimumSizeOf(0);
         documentos.asAtr().required(false);
         documentos.asAtr().dependsOn(nomeCompleto);
 
@@ -96,7 +96,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentacaoComprobatoria.asAtr().dependsOn(naoTenhoFotoCachorro);
         documentacaoComprobatoria.getElementsType().asAtr().allowedFileTypes("pdf");
         documentacaoComprobatoria.asAtr().required(false);
-        documentacaoComprobatoria.withMiniumSizeOf(0);
+        documentacaoComprobatoria.withMinimumSizeOf(0);
         documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         brasileiro = this.addFieldBoolean("brasileiro");
