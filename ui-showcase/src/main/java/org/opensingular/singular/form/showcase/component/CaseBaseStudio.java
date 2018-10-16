@@ -16,7 +16,7 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import org.opensingular.lib.commons.base.SingularException;
+import org.opensingular.lib.commons.util.ObjectUtils;
 import org.opensingular.studio.core.definition.StudioDefinition;
 
 public class CaseBaseStudio extends CaseBase<StudioDefinition> {
@@ -27,10 +27,6 @@ public class CaseBaseStudio extends CaseBase<StudioDefinition> {
 
 
     public StudioDefinition getStudioDefinition() {
-        try {
-            return getCaseClass().newInstance();
-        } catch (Exception e) {
-            throw SingularException.rethrow(e.getMessage(), e);
-        }
+        return ObjectUtils.newInstance(getCaseClass());
     }
 }
