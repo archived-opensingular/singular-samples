@@ -21,6 +21,7 @@ import org.opensingular.form.SFormUtil;
 import org.opensingular.form.SType;
 import org.opensingular.form.spring.SpringTypeLoader;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -30,8 +31,9 @@ public class ShowcaseStudioTypeLoader extends SpringTypeLoader<Class<SType<?>>> 
 
     private Map<String, SDictionary> dictionaries = new HashMap<>();
 
+    @Nonnull
     @Override
-    protected Optional<SType<?>> loadTypeImpl(Class<SType<?>> typeClass) {
+    protected Optional<SType<?>> loadTypeImpl(@Nonnull Class<SType<?>> typeClass) {
         String packageName = SFormUtil.getTypePackageName(typeClass);
         String typeName = SFormUtil.getTypeName(typeClass);
 
