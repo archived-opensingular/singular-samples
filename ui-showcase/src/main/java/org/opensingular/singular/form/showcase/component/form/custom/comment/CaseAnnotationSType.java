@@ -82,6 +82,7 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
                 .asAtrAnnotation().setAnnotated();
 
         cpf.asAtrAnnotation().setAnnotated();
+        cpf.asAtr().help("Texto de teste");
 
         this.asAtr().label("Pedido");
     }

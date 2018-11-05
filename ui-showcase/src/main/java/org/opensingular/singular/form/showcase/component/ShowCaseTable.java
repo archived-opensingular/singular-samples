@@ -16,19 +16,6 @@
 
 package org.opensingular.singular.form.showcase.component;
 
-import org.apache.wicket.Component;
-import org.opensingular.form.STypeComposite;
-import org.opensingular.lib.commons.base.SingularException;
-import org.opensingular.lib.commons.base.SingularUtil;
-import org.opensingular.lib.commons.scan.SingularClassPathScanner;
-import org.opensingular.lib.commons.ui.Icon;
-import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.opensingular.singular.form.showcase.ShowCaseException;
-import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
-import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
-import org.opensingular.studio.core.definition.StudioDefinition;
-import org.springframework.stereotype.Service;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,10 +28,30 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.apache.wicket.Component;
+import org.opensingular.form.SInstance;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.form.decorator.action.ISInstanceActionCapable;
+import org.opensingular.form.decorator.action.SInstanceAction;
+import org.opensingular.form.wicket.IWicketBuildListener;
+import org.opensingular.form.wicket.IWicketComponentMapper;
+import org.opensingular.form.wicket.WicketBuildContext;
+import org.opensingular.lib.commons.base.SingularException;
+import org.opensingular.lib.commons.base.SingularUtil;
+import org.opensingular.lib.commons.lambda.IFunction;
+import org.opensingular.lib.commons.scan.SingularClassPathScanner;
+import org.opensingular.lib.commons.ui.Icon;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.singular.form.showcase.ShowCaseException;
+import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
+import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
+import org.opensingular.studio.core.definition.StudioDefinition;
+import org.springframework.stereotype.Service;
+
 @Service
 public class ShowCaseTable {
 
-    private final Map<String, ShowCaseGroup> formGroups = new LinkedHashMap<>();
+    private final Map<String, ShowCaseGroup> formGroups   = new LinkedHashMap<>();
     private final Map<String, ShowCaseGroup> studioGroups = new LinkedHashMap<>();
 
     private final Map<Group, List<Class<?>>> casePorGrupo = new EnumMap<>(Group.class);
@@ -74,6 +81,7 @@ public class ShowCaseTable {
         addGroup(Group.MAPS);
         addGroup(Group.IMPORTER);
         addGroup(Group.TABLE_TOOL);
+        addGroup(Group.INTERNAL);
 
         addGroup("XSD", DefaultIcons.CODE, ShowCaseType.FORM)
                 .addCase(new XsdCaseSimple())
@@ -85,10 +93,10 @@ public class ShowCaseTable {
 
     public ShowCaseItem findCaseItemByComponentName(String name) {
         return getGroups().stream()
-                .map(ShowCaseGroup::getItens)
-                .flatMap(Collection::stream)
-                .filter(f -> name.equalsIgnoreCase(f.getComponentName()))
-                .findFirst().orElse(null);
+            .map(ShowCaseGroup::getItens)
+            .flatMap(Collection::stream)
+            .filter(f -> name.equalsIgnoreCase(f.getComponentName()))
+            .findFirst().orElse(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -96,12 +104,10 @@ public class ShowCaseTable {
         final ShowCaseGroup group = addGroup(groupEnum.getName(), groupEnum.getIcone(), groupEnum.getTipo());
 
         final List<Class<?>> classes = casePorGrupo.get(groupEnum);
-        if (classes == null) {
-            return;
-        }
+        if (classes == null) { return; }
         for (Class<?> caseClass : classes) {
             final CaseItem caseItem = caseClass.getAnnotation(CaseItem.class);
-            CaseBase caseBase;
+            CaseBase<?> caseBase;
             if (STypeComposite.class.isAssignableFrom(caseClass)) {
                 caseBase = new CaseBaseForm((Class<? extends STypeComposite<?>>) caseClass);
             } else if (StudioDefinition.class.isAssignableFrom(caseClass)) {
@@ -110,12 +116,13 @@ public class ShowCaseTable {
                 caseBase = new CaseBaseWicket((Class<? extends Component>) caseClass);
             } else {
                 throw new ShowCaseException("Apenas classes que estendem o tipo " + STypeComposite.class.getName() +
-                        " podem ser anotadas com @" + CaseItem.class.getSimpleName());
+                    " podem ser anotadas com @" + CaseItem.class.getSimpleName());
             }
             caseBase.setShowCaseType(group.getTipo());
             caseBase.setComponentName(caseItem.componentName());
             caseBase.setSubCaseName(caseItem.subCaseName());
             caseBase.setAnnotationMode(caseItem.annotation());
+            addBuildListeners(caseBase, caseItem);
 
             if (!caseItem.customizer().isInterface()) {
                 createInstance(caseItem).customize(caseBase);
@@ -130,6 +137,18 @@ public class ShowCaseTable {
                 resourceRef.ifPresent(resourceRef1 -> caseBase.getAdditionalSources().add(resourceRef1));
             }
             group.addCase(caseBase);
+        }
+    }
+
+    private void addBuildListeners(CaseBase<?> caseBase, CaseItem caseItem) {
+        final List<IWicketBuildListener> buildListeners = caseBase.getBuildListeners();
+        for (Class<? extends IFunction<SInstance, List<SInstanceAction>>> clz : caseItem.actionProviders()) {
+            try {
+                IFunction<SInstance, List<SInstanceAction>> function = clz.newInstance();
+                buildListeners.add(new ActionsBuildListener(function));
+            } catch (Exception ex) {
+                throw new RuntimeException(ex.getMessage(), ex);
+            }
         }
     }
 
@@ -159,7 +178,7 @@ public class ShowCaseTable {
     }
 
     public Collection<ShowCaseGroup> getGroups(ShowCaseType showCaseType) {
-        switch (showCaseType){
+        switch (showCaseType) {
             case STUDIO:
                 return studioGroups.values();
             case FORM:
@@ -169,14 +188,27 @@ public class ShowCaseTable {
         }
     }
 
+    private static final class ActionsBuildListener implements IWicketBuildListener {
+        private final IFunction<SInstance, List<SInstanceAction>> function;
+        private ActionsBuildListener(IFunction<SInstance, List<SInstanceAction>> function) {
+            this.function = function;
+        }
+        @Override
+        public void onBeforeBuild(WicketBuildContext ctx, IWicketComponentMapper mapper) {
+            if (mapper instanceof ISInstanceActionCapable) {
+                ISInstanceActionCapable iac = (ISInstanceActionCapable) mapper;
+                iac.addSInstanceActionsProvider(0, (t, i) -> function.apply(i));
+            }
+        }
+    }
+
     public static class ShowCaseGroup implements Serializable {
 
-        private final String groupName;
-        private final Icon icon;
-        private final ShowCaseType tipo;
+        private final String                    groupName;
+        private final Icon                      icon;
+        private final ShowCaseType              tipo;
 
         private final Map<String, ShowCaseItem> itens = new TreeMap<>();
-
 
         public ShowCaseGroup(String groupName, Icon icon, ShowCaseType tipo) {
             this.groupName = groupName;
@@ -188,7 +220,7 @@ public class ShowCaseTable {
             return groupName;
         }
 
-        public <T extends CaseBase> ShowCaseGroup addCase(Class<T> classCase) {
+        public <T extends CaseBase<?>> ShowCaseGroup addCase(Class<T> classCase) {
             try {
                 return addCase(classCase.newInstance());
             } catch (InstantiationException | IllegalAccessException e) {
@@ -196,7 +228,7 @@ public class ShowCaseTable {
             }
         }
 
-        private ShowCaseGroup addCase(CaseBase c) {
+        private ShowCaseGroup addCase(CaseBase<?> c) {
             ShowCaseItem item = itens.computeIfAbsent(c.getComponentName(), k -> new ShowCaseItem(c.getComponentName(), c.getShowCaseType()));
             item.addCase(c);
             return this;
@@ -217,11 +249,11 @@ public class ShowCaseTable {
 
     public static class ShowCaseItem implements Serializable {
 
-        private final String componentName;
+        private final String            componentName;
 
         private final List<CaseBase<?>> cases = new ArrayList<>();
 
-        private ShowCaseType showCaseType;
+        private ShowCaseType            showCaseType;
 
         public ShowCaseItem(String componentName, ShowCaseType showCaseType) {
             this.componentName = componentName;
@@ -237,12 +269,13 @@ public class ShowCaseTable {
         }
 
         public List<CaseBase<?>> getCases() {
-            cases.sort( (case1, case2) ->  case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
+            cases.sort((case1, case2) -> case1.getSubCaseName().compareToIgnoreCase(case2.getSubCaseName()));
 
-            CaseBase caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
+            CaseBase<?> caseBaseDefault = cases.stream().filter(ins -> "Default".equalsIgnoreCase(ins.getSubCaseName())).findFirst().orElse(null);
             if (caseBaseDefault != null) {
                 cases.remove(caseBaseDefault);
-                cases.add(0, caseBaseDefault);}
+                cases.add(0, caseBaseDefault);
+            }
             return cases;
         }
 
