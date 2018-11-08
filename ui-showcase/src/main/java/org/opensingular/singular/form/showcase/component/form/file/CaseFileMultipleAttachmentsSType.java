@@ -44,14 +44,14 @@ public class CaseFileMultipleAttachmentsSType extends STypeComposite<SIComposite
         layoutsRotulagem = this.addFieldListOfAttachment("layoutsRotulagem", "layout");
 
         layoutsRotulagem
-                .withMiniumSizeOf(1)
+                .withMinimumSizeOf(1)
                 .withMaximumSizeOf(4)
                 .asAtr().label("Layouts Rotulagem");
 
         layoutsRotulagem.getElementsType().asAtr()
             .allowedFileTypes("image/png", "image/jpeg", "pdf", "zip");
 
-        this.asAtr().displayString(cc -> cc.instance()
+        this.asAtr().displayString(cc -> cc.instanceContext()
             .findNearest(layoutsRotulagem)
             .map(SInstance::toStringDisplay)
             .orElse(StringUtils.EMPTY));

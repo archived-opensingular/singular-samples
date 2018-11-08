@@ -33,6 +33,7 @@ import org.opensingular.form.SInstance;
 import org.opensingular.form.context.SFormConfig;
 import org.opensingular.form.document.RefType;
 import org.opensingular.form.document.SDocument;
+import org.opensingular.form.io.AnnotationIOUtil;
 import org.opensingular.form.io.SFormXMLUtil;
 import org.opensingular.form.wicket.component.SingularFormWicket;
 import org.opensingular.form.wicket.component.SingularSaveButton;
@@ -153,10 +154,7 @@ public class FormPage extends ShowcaseTemplate implements SingularWicketContaine
     }
 
     private void loadAnnotationsIfNeeded(SDocument document) {
-        String annotationsXml = currentModel.getAnnnotations();
-        if (StringUtils.isNotBlank(annotationsXml)) {
-            SFormXMLUtil.annotationLoadFromXml(document, currentModel.getAnnnotations());
-        }
+        AnnotationIOUtil.loadFromXmlIfAvailable(document, currentModel.getAnnnotations());
     }
 
     private void loadOrbuildModel() {
@@ -215,7 +213,7 @@ public class FormPage extends ShowcaseTemplate implements SingularWicketContaine
     }
 
     private void addAnnotationsToModel(SInstance instance) {
-        Optional<String> xmlAnnotation = SFormXMLUtil.annotationToXmlString(instance);
+        Optional<String> xmlAnnotation = AnnotationIOUtil.toXmlString(instance);
         currentModel.setAnnotations(xmlAnnotation.orElse(null));
     }
 

@@ -34,6 +34,7 @@ import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.form.examples.STypeCurriculo;
 import org.opensingular.singular.form.showcase.view.page.form.examples.STypeExample;
 
+import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.Collection;
@@ -109,8 +110,9 @@ public class ShowcaseTypeLoader extends SpringTypeLoader<String> {
         entries.put(typeName, new TemplateEntry(displayName, typeSupplier, tipo));
     }
 
+    @Nonnull
     @Override
-    protected Optional<SType<?>> loadTypeImpl(String typeName) {
+    protected Optional<SType<?>> loadTypeImpl(@Nonnull String typeName) {
         return Optional.ofNullable(entries.get(typeName)).map(e -> e.getType());
     }
 

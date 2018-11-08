@@ -46,7 +46,7 @@ public class CaseListByMasterDetailMiniumAndMaximumSType extends STypeComposite<
 
         experienciasProfissionais
                 //@destacar:bloco
-                .withMiniumSizeOf(1)
+                .withMinimumSizeOf(1)
                 .withMaximumSizeOf(3)
                 //@destacar:fim
                 .withView(SViewListByMasterDetail::new)

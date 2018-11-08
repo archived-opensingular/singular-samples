@@ -37,7 +37,7 @@ public class STypeCorpoDirigente extends STypeComposite<SIComposite> {
         final STypeList<STypeComposite<SIComposite>, SIComposite> corpoDirigenteMembrosCPA = this.addFieldListOfComposite("corpoDirigenteMembrosCPA", "membro");
 
         corpoDirigenteMembrosCPA
-                .withMiniumSizeOf(3);
+                .withMinimumSizeOf(3);
 
         corpoDirigenteMembrosCPA
                 .withView(SViewListByForm::new)
