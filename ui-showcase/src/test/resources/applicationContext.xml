@@ -13,6 +13,8 @@
 
     <import resource="conf/database.xml"/>
 
+    <bean id="sessionLocator" class="org.opensingular.singular.form.showcase.SessionLocatorImpl"/>
+
     <bean id="uiAdminWicketFilterContext"
           class="org.opensingular.singular.form.showcase.wicket.UIAdminWicketFilterContext"/>
     <bean id="myWebApp" class="org.opensingular.singular.form.showcase.wicket.ShowcaseApplication"/>

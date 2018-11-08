@@ -20,13 +20,23 @@ package org.opensingular.singular.form.showcase.dao.form;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.opensingular.form.io.IOUtil;
 import org.opensingular.form.type.core.attachment.IAttachmentPersistenceHandler;
+import org.opensingular.form.type.core.attachment.IAttachmentRef;
+import org.opensingular.lib.commons.util.TempFileUtils;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+
+import static org.fest.assertions.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
@@ -35,14 +45,13 @@ public class TestCaseDatabasePersistenceHandler {
 
     @Inject private IAttachmentPersistenceHandler persistenceService;
     
-    @Test public void createProperReference(){
-        byte[] content = "i".getBytes();
-//        IAttachmentRef ref = persistenceService.addAttachment(new ByteArrayInputStream(content));
-//        assertThat(ref.getId()).isNotEmpty();
-//        assertThat(ref.getHashSHA1())
-//            .isEqualTo("042dc4512fa3d391c5170cf3aa61e6a638f84342");
-//        assertThat(ref.getContentAsByteArray()).isEqualTo(content);
-//        assertThat(ref.getSize()).isEqualTo(1);
+    @Test public void createProperReference() throws IOException {
+        byte[]         content = "i".getBytes();
+        File           f       = TempFileUtils.createTempFile(content);
+        IAttachmentRef ref     = persistenceService.addAttachment(f, 1, "teste", "1123123123123");
+        assertThat(ref.getId()).isNotEmpty();
+        assertThat(IOUtils.toByteArray(ref.getContentAsInputStream())).isEqualTo(content);
+        assertThat(ref.getSize()).isEqualTo(1);
     }
     
     @Test public void worksWithByteArrayAlso(){
