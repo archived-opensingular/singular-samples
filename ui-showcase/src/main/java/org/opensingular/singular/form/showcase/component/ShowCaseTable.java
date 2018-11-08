@@ -16,6 +16,19 @@
 
 package org.opensingular.singular.form.showcase.component;
 
+import org.apache.wicket.Component;
+import org.opensingular.form.STypeComposite;
+import org.opensingular.lib.commons.scan.SingularClassPathScanner;
+import org.opensingular.lib.commons.ui.Icon;
+import org.opensingular.lib.commons.util.ObjectUtils;
+import org.opensingular.lib.wicket.util.resource.DefaultIcons;
+import org.opensingular.singular.form.showcase.ShowCaseException;
+import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
+import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
+import org.opensingular.studio.core.definition.StudioDefinition;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Nonnull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,19 +41,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Stream;
-
-import org.apache.wicket.Component;
-import org.opensingular.form.STypeComposite;
-import org.opensingular.lib.commons.base.SingularException;
-import org.opensingular.lib.commons.base.SingularUtil;
-import org.opensingular.lib.commons.scan.SingularClassPathScanner;
-import org.opensingular.lib.commons.ui.Icon;
-import org.opensingular.lib.wicket.util.resource.DefaultIcons;
-import org.opensingular.singular.form.showcase.ShowCaseException;
-import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple;
-import org.opensingular.singular.form.showcase.component.form.xsd.XsdCaseSimple2;
-import org.opensingular.studio.core.definition.StudioDefinition;
-import org.springframework.stereotype.Service;
 
 @Service
 public class ShowCaseTable {
@@ -125,12 +125,9 @@ public class ShowCaseTable {
         }
     }
 
-    private CaseCustomizer createInstance(CaseItem caseItem) {
-        try {
-            return caseItem.customizer().newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            throw SingularException.rethrow(e);
-        }
+    @Nonnull
+    private CaseCustomizer createInstance(@Nonnull CaseItem caseItem) {
+        return ObjectUtils.newInstance(caseItem.customizer());
     }
 
     private ShowCaseGroup addGroup(String groupName, Icon icon, ShowCaseType tipo) {
@@ -180,11 +177,7 @@ public class ShowCaseTable {
         }
 
         public <T extends CaseBase<?>> ShowCaseGroup addCase(Class<T> classCase) {
-            try {
-                return addCase(classCase.newInstance());
-            } catch (InstantiationException | IllegalAccessException e) {
-                throw SingularUtil.propagate(e);
-            }
+            return addCase(ObjectUtils.newInstance(classCase));
         }
 
         private ShowCaseGroup addCase(CaseBase<?> c) {

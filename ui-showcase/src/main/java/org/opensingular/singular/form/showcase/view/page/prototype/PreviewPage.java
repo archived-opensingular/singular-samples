@@ -169,7 +169,7 @@ class TypeBuilder {
 
     private String generateJavaIdentifier(String name) {
         id++;
-        String javaIdentifier = SingularUtil.convertToJavaIdentity(name, true);
+        String javaIdentifier = SingularUtil.convertToJavaIdentifier(name);
         if (javaIdentifier.isEmpty()) {
             return "id" + id;
         }
