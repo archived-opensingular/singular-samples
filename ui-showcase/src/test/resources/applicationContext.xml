@@ -38,9 +38,8 @@
         <property name="documentFactory" ref="documentFactory"/>
     </bean>
 
-    <bean id="sessionProvider" class="org.opensingular.singular.form.showcase.SessionLocatorImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+    <bean id="sessionProvider" class="org.opensingular.singular.form.showcase.SessionLocatorImpl"/>
+
 
     <bean id="filePersistence" class="org.opensingular.form.persistence.service.AttachmentPersistenceService"/>
     <bean id="attachmentDao" class="org.opensingular.form.persistence.dao.AttachmentDao"/>
