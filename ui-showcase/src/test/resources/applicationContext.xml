@@ -13,6 +13,8 @@
 
     <import resource="conf/database.xml"/>
 
+    <bean id="sessionLocator" class="org.opensingular.singular.form.showcase.SessionLocatorImpl"/>
+
     <bean id="uiAdminWicketFilterContext"
           class="org.opensingular.singular.form.showcase.wicket.UIAdminWicketFilterContext"/>
     <bean id="myWebApp" class="org.opensingular.singular.form.showcase.wicket.ShowcaseApplication"/>
@@ -35,6 +37,9 @@
         <property name="typeLoader" ref="showcaseTypeLoader"/>
         <property name="documentFactory" ref="documentFactory"/>
     </bean>
+
+    <bean id="sessionProvider" class="org.opensingular.singular.form.showcase.SessionLocatorImpl"/>
+
 
     <bean id="filePersistence" class="org.opensingular.form.persistence.service.AttachmentPersistenceService"/>
     <bean id="attachmentDao" class="org.opensingular.form.persistence.dao.AttachmentDao"/>

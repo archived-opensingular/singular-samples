@@ -65,7 +65,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         nomePai.asAtr().dependsOn(nomeCompleto);
         nomeCompleto.asAtr().label("Nome Completo").subtitle("teste subtitle").asAtrBootstrap().colPreference(4).colMd(4);
         nomeMae.asAtr().label("Nome Mãe").asAtrBootstrap().colPreference(4).colMd(4);
-        nomePai.asAtr().label("Nome Pai").asAtrBootstrap().colPreference(4).colMd(4);
+        nomePai.asAtr().label("Nome Pai").regexMask("[a-zA-Z\\u0410-\\u044f\\u0401\\u0451\\xc0-\\xff\\xb5 ]").asAtrBootstrap().colPreference(6).colMd(4);
         nomePai.asAtrIndex().indexed(Boolean.TRUE);
         telefone.asAtr().label("Telefone").asAtrBootstrap().colPreference(6);
         telefone.asAtrIndex().indexed(Boolean.TRUE);
@@ -75,7 +75,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentos = this.addFieldListOfAttachment("documentos", "documento");
         documentos.asAtr().label("Documentos");
         documentos.withMaximumSizeOf(10);
-        documentos.withMiniumSizeOf(0);
+        documentos.withMinimumSizeOf(0);
         documentos.asAtr().required(false);
         documentos.asAtr().dependsOn(nomeCompleto);
 
@@ -96,7 +96,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
         documentacaoComprobatoria.asAtr().dependsOn(naoTenhoFotoCachorro);
         documentacaoComprobatoria.getElementsType().asAtr().allowedFileTypes("pdf");
         documentacaoComprobatoria.asAtr().required(false);
-        documentacaoComprobatoria.withMiniumSizeOf(0);
+        documentacaoComprobatoria.withMinimumSizeOf(0);
         documentacaoComprobatoria.asAtr().enabled(fci -> fci.findNearest(naoTenhoFotoCachorro).map(SIBoolean::getValue).orElse(Boolean.FALSE));
 
         brasileiro = this.addFieldBoolean("brasileiro");

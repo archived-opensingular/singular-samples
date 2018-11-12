@@ -16,30 +16,32 @@
 
 package org.opensingular.singular.form.showcase.dao.form.studio;
 
+import org.opensingular.form.SDictionary;
+import org.opensingular.form.SFormUtil;
+import org.opensingular.form.SType;
+import org.opensingular.form.spring.SpringTypeLoader;
+
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import org.opensingular.form.SDictionary;
-import org.opensingular.form.SFormUtil;
-import org.opensingular.form.SPackage;
-import org.opensingular.form.SType;
-import org.opensingular.form.spring.SpringTypeLoader;
-
 
 public class ShowcaseStudioTypeLoader extends SpringTypeLoader<Class<SType<?>>> {
 
-    private Map<Class<? extends SPackage>, SDictionary> dictionaries = new HashMap<>();
+    private Map<String, SDictionary> dictionaries = new HashMap<>();
 
+    @Nonnull
     @Override
-    protected Optional<SType<?>> loadTypeImpl(Class<SType<?>> typeClass) {
-        Class<? extends SPackage> packageClass = SFormUtil.getTypePackage(typeClass);
+    protected Optional<SType<?>> loadTypeImpl(@Nonnull Class<SType<?>> typeClass) {
+        String packageName = SFormUtil.getTypePackageName(typeClass);
         String typeName = SFormUtil.getTypeName(typeClass);
-        if (!dictionaries.containsKey(packageClass)) {
-            SDictionary d = SDictionary.create();
-            d.loadPackage(packageClass);
-            dictionaries.put(packageClass, d);
+
+        SDictionary d = dictionaries.get(packageName);
+        if (d == null) {
+            d = SDictionary.create();
+            dictionaries.put(packageName, d);
         }
-        return Optional.ofNullable(dictionaries.get(packageClass).getType(typeName));
+        return Optional.of(d.getType(typeName));
     }
 }

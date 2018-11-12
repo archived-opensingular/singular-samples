@@ -31,7 +31,7 @@ import java.util.Optional;
 
 import static org.opensingular.lib.wicket.util.util.WicketUtils.$m;
 
-public class SampleFormPage extends AbstractFormPage<RequirementEntity, RequirementInstance> {
+public class SampleFormPage extends AbstractFormPage<RequirementInstance> {
 
     public SampleFormPage(@Nullable ActionContext context) {
         super(context);
@@ -61,10 +61,10 @@ public class SampleFormPage extends AbstractFormPage<RequirementEntity, Requirem
     }
 
     @Override
-    protected SimpleMessageFlowConfirmModal<RequirementEntity, RequirementInstance> getSimpleMessageFLowConfirmModal(
-            String id, String transitionName, AbstractFormPage<RequirementEntity, RequirementInstance> formPage) {
+    protected SimpleMessageFlowConfirmModal<RequirementInstance> getSimpleMessageFLowConfirmModal(
+            String id, String transitionName, AbstractFormPage<RequirementInstance> formPage) {
         if ("Solicitar ajustes".equalsIgnoreCase((transitionName))) {
-           return new SimpleMessageFlowConfirmModal(id, transitionName, formPage, false, "mensagem");
+           return new SimpleMessageFlowConfirmModal<>(id, transitionName, formPage, false, "mensagem");
         }
         return super.getSimpleMessageFLowConfirmModal(id, transitionName, formPage);
     }

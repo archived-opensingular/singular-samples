@@ -16,12 +16,25 @@
 
 package org.opensingular.requirementsamplemodule;
 
-import org.opensingular.requirement.module.FormFlowSingularRequirement;
+import org.opensingular.requirement.module.builder.RequirementConfigurationBuilder;
+import org.opensingular.requirement.module.RequirementDefinition;
+import org.opensingular.requirement.module.builder.RequirementDefinitionConfiguration;
+import org.opensingular.requirement.module.service.RequirementInstance;
 import org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow;
 import org.sample.form.RequirementsampleForm;
 
-public class DadosPessoaisRequirement extends FormFlowSingularRequirement {
+public class DadosPessoaisRequirement extends RequirementDefinition<RequirementInstance> {
+
     public DadosPessoaisRequirement() {
-        super("Formulario dados pessoais", RequirementsampleForm.class, RequirementSampleFlow.class);
+        super(DadosPessoaisRequirement.class.getSimpleName(), RequirementInstance.class);
+    }
+
+    @Override
+    public RequirementDefinitionConfiguration configure(RequirementConfigurationBuilder conf) {
+        return conf
+                .name("Formulario dados pessoais")
+                .mainForm(RequirementsampleForm.class)
+                .flowDefintion(RequirementSampleFlow.class)
+                .build();
     }
 }

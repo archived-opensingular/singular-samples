@@ -14,15 +14,24 @@
  * limitations under the License.
  */
 
-package org.opensingular.requirementsamplemodule;
+package org.opensingular.singular.form.showcase.dao.form;
 
-import org.opensingular.requirement.module.FormFlowSingularRequirement;
-import org.opensingular.requirementsamplemodule.flow.RequirementSampleFlow;
-import org.sample.form.EngenheiroForm;
-import org.sample.form.RequirementsampleForm;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.opensingular.lib.support.persistence.SessionLocator;
+import org.springframework.stereotype.Component;
 
-public class EngRequirement extends FormFlowSingularRequirement {
-    public EngRequirement() {
-        super("Formulario Engenheiro", EngenheiroForm.class, RequirementSampleFlow.class);
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+
+
+@Component
+public class ShowcaseSessionLocator implements SessionLocator {
+    @Inject
+    private SessionFactory sessionFactory;
+
+    @Override
+    public Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
     }
 }

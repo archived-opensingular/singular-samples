@@ -62,7 +62,7 @@ public class STypeObra extends STypeComposite<SIComposite>{
 
     private void addValoresEmpenhados() {
         final STypeList<STypeValorEmpenhadoObra, SIComposite> valoresEmpenhados = addFieldListOf(FIELD_VALORES_EMPENHADOS, STypeValorEmpenhadoObra.class);
-        valoresEmpenhados.withMiniumSizeOf(1).withView(SViewListByTable::new);
+        valoresEmpenhados.withMinimumSizeOf(1).withView(SViewListByTable::new);
     }
     
     @SuppressWarnings("unchecked")

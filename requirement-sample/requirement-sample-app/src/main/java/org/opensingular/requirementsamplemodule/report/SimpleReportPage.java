@@ -16,11 +16,8 @@
 
 package org.opensingular.requirementsamplemodule.report;
 
-import org.wicketstuff.annotation.mount.MountPath;
-
 import javax.inject.Inject;
 
-@MountPath(value = "/relatorio/simples")
 public class SimpleReportPage extends AbstractRelatorioPage {
     @Inject
     private SimpleReport relatorioProdutividadePorAssunto;

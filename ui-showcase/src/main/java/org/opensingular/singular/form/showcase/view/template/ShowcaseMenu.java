@@ -16,12 +16,6 @@
 
 package org.opensingular.singular.form.showcase.view.template;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.function.Function;
-
-import javax.inject.Inject;
-
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.string.StringValue;
 import org.opensingular.lib.commons.ui.Icon;
@@ -36,6 +30,11 @@ import org.opensingular.singular.form.showcase.view.page.form.crud.CrudPage;
 import org.opensingular.singular.form.showcase.view.page.prototype.PrototypeListPage;
 import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
 import org.opensingular.singular.form.showcase.view.page.wicket.WicketHomePage;
+
+import javax.inject.Inject;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.function.Function;
 
 public class ShowcaseMenu extends Panel {
 
@@ -69,7 +68,9 @@ public class ShowcaseMenu extends Panel {
     }
 
     private static Function<? super String, ? extends MetronicMenuItem> menuFunction(ShowCaseType showCaseType) {
-        return name -> new MetronicMenuItem(null, name, () -> new ComponentPage(showCaseType, ShowCaseType.buildPageParameters(name.toLowerCase(), showCaseType)));
+        return name -> new MetronicMenuItem(null, name,
+                () -> new ComponentPage(showCaseType, ShowCaseType.buildPageParameters(name.toLowerCase(), showCaseType)),
+                ShowCaseType.buildPageParameters(name.toLowerCase(), showCaseType));
     }
 
     private MetronicMenu buildMenu() {
@@ -109,6 +110,7 @@ public class ShowcaseMenu extends Panel {
             final MetronicMenuGroup showCaseGroup = new MetronicMenuGroup(group.getIcon(), group.getGroupName());
             group.getItens().stream()
                 .map(ShowCaseTable.ShowCaseItem::getComponentName)
+//                    .map(name -> new MetronicMenuItem(null, name, ComponentPage.class, ShowCaseType.buildPageParameters(name.toLowerCase())))
                 .map(menuFunction)
                 .forEach(showCaseGroup::addItem);
             menu.addItem(showCaseGroup);

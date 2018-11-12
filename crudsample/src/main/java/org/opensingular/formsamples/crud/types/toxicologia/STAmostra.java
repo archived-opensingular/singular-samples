@@ -137,7 +137,7 @@ public class STAmostra extends STypeComposite<SIComposite> {
                 .label("Metabólito");
 
         metabolitos
-                .withMiniumSizeOf(1)
+                .withMinimumSizeOf(1)
                 .withView(SViewListByTable::new)
                 .asAtr()
                 .label("Metabólitos")

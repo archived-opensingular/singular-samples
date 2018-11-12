@@ -46,7 +46,7 @@ public class CaseListByTableMinimiumAndMaximumSType extends STypeComposite<SICom
 
         certificacoes
                 //@destacar:bloco
-                .withMiniumSizeOf(2)
+                .withMinimumSizeOf(2)
                 .withMaximumSizeOf(3)
                 //@destacar:fim
                 .withView(SViewListByTable::new)

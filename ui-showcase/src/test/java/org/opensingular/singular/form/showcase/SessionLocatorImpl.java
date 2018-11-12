@@ -14,19 +14,21 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component;
+package org.opensingular.singular.form.showcase;
 
-import org.opensingular.lib.commons.util.ObjectUtils;
-import org.opensingular.studio.core.definition.StudioDefinition;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.opensingular.lib.support.persistence.SessionLocator;
 
-public class CaseBaseStudio extends CaseBase<StudioDefinition> {
+import javax.inject.Inject;
 
-    public CaseBaseStudio(Class<? extends StudioDefinition> caseClass) {
-        super(caseClass);
-    }
+public class SessionLocatorImpl implements SessionLocator {
 
+    @Inject
+    private SessionFactory sessionFactory;
 
-    public StudioDefinition getStudioDefinition() {
-        return ObjectUtils.newInstance(getCaseClass());
+    @Override
+    public Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
     }
 }

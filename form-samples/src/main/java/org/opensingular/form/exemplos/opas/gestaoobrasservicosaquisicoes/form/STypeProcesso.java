@@ -113,7 +113,7 @@ public class STypeProcesso extends STypeComposite<SIComposite> {
 //        mapaPopulacao.put("Guaranis", 34350);
 //        mapaPopulacao.put("Uapixanas", 6589);
 //        mapaPopulacao.put("Caiapós", 7096);
-//        final STypeString aldeia = aldeias.withMiniumSizeOf(1).getElementsType().addFieldString(STypeAldeia.FIELD_NOME, true);
+//        final STypeString aldeia = aldeias.withMinimumSizeOf(1).getElementsType().addFieldString(STypeAldeia.FIELD_NOME, true);
 //        aldeia.asAtr().label("Aldeia");
 //        aldeia.selection()
 //            .selfIdAndDisplay()

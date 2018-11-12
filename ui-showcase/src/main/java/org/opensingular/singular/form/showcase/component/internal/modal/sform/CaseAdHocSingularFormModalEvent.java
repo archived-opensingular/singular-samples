@@ -7,7 +7,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.opensingular.form.PackageBuilder;
-import org.opensingular.form.SDictionary;
 import org.opensingular.form.document.RefType;
 import org.opensingular.form.document.SDocumentFactory;
 import org.opensingular.form.type.core.SIString;
@@ -54,7 +53,7 @@ public class CaseAdHocSingularFormModalEvent extends Panel {
         SInstanceRootModel<SIString> instanceModel = new SInstanceRootModel<>(
             (SIString) SDocumentFactory.empty().createInstance(newRefType()));
 
-        return new OpenSingularFormModalEvent<STypeString, SIString>(target, instanceModel, delegate -> {
+        return new OpenSingularFormModalEvent<>(target, instanceModel, delegate -> {
             instanceModel.getObject().setValue(textModel.getObject());
 
             delegate.setTitle("Singular Form modal opened by event");
@@ -70,9 +69,8 @@ public class CaseAdHocSingularFormModalEvent extends Panel {
     }
 
     private RefType newRefType() {
-        return RefType.of(() -> {
-            SDictionary dict = SDictionary.create();
-            PackageBuilder pkg = dict.createNewPackage("pkg");
+        return RefType.of(dic -> {
+            PackageBuilder pkg = dic.get().createNewPackage("pkg");
             STypeString textType = pkg.createType("text", STypeString.class);
             textType.asAtr().label("Text").required(true);
             return textType;

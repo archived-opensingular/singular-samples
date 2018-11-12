@@ -46,7 +46,7 @@ public class CaseListByFormPreAddLinesSType extends STypeComposite<SIComposite> 
         experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
         experienciasProfissionais
-                .withMiniumSizeOf(1)
+                .withMinimumSizeOf(1)
                 .withMaximumSizeOf(3)
                 //@destacar
                 .withView(() -> new SViewListByForm().setInitialNumberOfLines(2))

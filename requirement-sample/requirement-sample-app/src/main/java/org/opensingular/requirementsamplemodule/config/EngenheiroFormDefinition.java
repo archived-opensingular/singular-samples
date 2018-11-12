@@ -14,19 +14,26 @@
  * limitations under the License.
  */
 
-package org.opensingular.singular.form.showcase.component;
+package org.opensingular.requirementsamplemodule.config;
 
-import org.opensingular.lib.commons.util.ObjectUtils;
+import org.opensingular.form.persistence.FormRespository;
 import org.opensingular.studio.core.definition.StudioDefinition;
+import org.opensingular.studio.core.definition.StudioTableDefinition;
 
-public class CaseBaseStudio extends CaseBase<StudioDefinition> {
-
-    public CaseBaseStudio(Class<? extends StudioDefinition> caseClass) {
-        super(caseClass);
+public class EngenheiroFormDefinition implements StudioDefinition {
+    @Override
+    public Class<? extends FormRespository> getRepositoryClass() {
+        return EngenheiroRepository.class;
     }
 
-
-    public StudioDefinition getStudioDefinition() {
-        return ObjectUtils.newInstance(getCaseClass());
+    @Override
+    public void configureStudioDataTable(StudioTableDefinition studioDataTable) {
+        studioDataTable.add("Nome", "nome");
     }
+
+    @Override
+    public String getTitle() {
+        return "Cadastro de Engenheiros";
+    }
+
 }
