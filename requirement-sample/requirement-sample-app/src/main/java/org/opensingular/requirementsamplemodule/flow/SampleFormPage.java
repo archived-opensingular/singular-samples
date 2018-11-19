@@ -49,7 +49,7 @@ public class SampleFormPage extends AbstractFormPage<RequirementInstance> {
 
     @Nonnull
     @Override
-    protected Optional<String> getIdentifier() {
+    protected Optional<String> getRequirementIdentifier() {
         return getRequirementOptional()
                 .map(RequirementInstance::getCod)
                 .map(Object::toString);
