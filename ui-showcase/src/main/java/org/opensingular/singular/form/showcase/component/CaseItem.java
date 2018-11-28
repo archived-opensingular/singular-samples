@@ -21,8 +21,12 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.List;
 
+import org.opensingular.form.SInstance;
+import org.opensingular.form.decorator.action.SInstanceAction;
 import org.opensingular.form.wicket.enums.AnnotationMode;
+import org.opensingular.lib.commons.lambda.IFunction;
 
 @Inherited
 @Retention(value = RetentionPolicy.RUNTIME)
@@ -35,4 +39,5 @@ public @interface CaseItem {
     Resource[] resources() default {};
     AnnotationMode annotation() default AnnotationMode.NONE;
     Class<? extends CaseCustomizer> customizer() default CaseCustomizer.class;
+    Class<? extends IFunction<SInstance, List<SInstanceAction>>>[] actionProviders() default {};
 }

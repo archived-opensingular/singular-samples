@@ -16,6 +16,7 @@
 
 package org.opensingular.singular.form.showcase.component;
 
+import org.opensingular.form.wicket.IWicketBuildListener;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.singular.form.showcase.view.page.ItemCasePanel;
 
@@ -30,15 +31,16 @@ import java.util.Optional;
  */
 public abstract class CaseBase<TARGET> implements Serializable {
 
-    private String componentName;
-    private String subCaseName;
-    private String descriptionHtml;
-    private final List<ItemCasePanel.ItemCaseButton> botoes = new ArrayList<>();
-    private final List<ResourceRef> additionalSources = new ArrayList<>();
-    private Class<? extends TARGET> caseClass;
-    private AnnotationMode annotationMode = AnnotationMode.NONE;
+    private String                                   componentName;
+    private String                                   subCaseName;
+    private String                                   descriptionHtml;
+    private final List<ItemCasePanel.ItemCaseButton> botoes            = new ArrayList<>();
+    private final List<ResourceRef>                  additionalSources = new ArrayList<>();
+    private final List<IWicketBuildListener>         buildListeners    = new ArrayList<>();
+    private Class<? extends TARGET>                  caseClass;
+    private AnnotationMode                           annotationMode    = AnnotationMode.NONE;
 
-    private ShowCaseType showCaseType;
+    private ShowCaseType                             showCaseType;
 
     public CaseBase() {}
 
@@ -79,9 +81,7 @@ public abstract class CaseBase<TARGET> implements Serializable {
     }
 
     public Optional<String> getDescriptionHtml() {
-        if (descriptionHtml != null) {
-            return Optional.of(descriptionHtml);
-        }
+        if (descriptionHtml != null) { return Optional.of(descriptionHtml); }
         return getDescriptionResourceName().map(ResourceRef::getContent);
     }
 
@@ -96,7 +96,10 @@ public abstract class CaseBase<TARGET> implements Serializable {
     public List<ItemCasePanel.ItemCaseButton> getBotoes() {
         return botoes;
     }
-
+    
+    public List<IWicketBuildListener> getBuildListeners() {
+        return buildListeners;
+    }
 
     public AnnotationMode annotation() {
         return annotationMode;
@@ -106,11 +109,9 @@ public abstract class CaseBase<TARGET> implements Serializable {
         return false;
     }
 
-
     public ShowCaseType getShowCaseType() {
         return showCaseType;
     }
-
 
     public Optional<ResourceRef> getMainSourceResourceName() {
         return ResourceRef.forSource(caseClass);

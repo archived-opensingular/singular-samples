@@ -91,6 +91,7 @@ public class FormItemCasePanel extends ItemCasePanel<CaseBaseForm> implements Si
         singularFormPanel.setInstanceCreator(this::createInstance);
         singularFormPanel.setViewMode(ViewMode.EDIT);
         singularFormPanel.setAnnotationMode(getCaseBase().getObject().annotation());
+        getCaseBase().getObject().getBuildListeners().stream().forEach(singularFormPanel::addBuildListener);
         return singularFormPanel;
     }
 

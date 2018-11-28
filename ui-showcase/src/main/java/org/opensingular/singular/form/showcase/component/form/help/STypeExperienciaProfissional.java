@@ -43,11 +43,12 @@ public class STypeExperienciaProfissional extends STypeComposite<SIComposite> {
         atividades = this.addFieldString("atividades");
 
         dtInicioExperiencia
-                .asAtr().label("Data inicial")
+                .asAtr().label("Data inicial da experiência profissional")
                 .asAtrBootstrap().colPreference(2);
 
         dtFimExperiencia
-                .asAtr().label("Data final")
+                .asAtr().label("Data final da experiência profissional")
+                .subtitle("Data final da experiência profissional. Deixe em branco para indicar a permanência atual.")
                 //@destacar
                 .help("Data final da experiência profissional. Deixe em branco para indicar a permanência atual.")
                 .asAtrBootstrap().colPreference(2);

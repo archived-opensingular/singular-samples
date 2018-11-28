@@ -16,7 +16,20 @@
 
 package org.opensingular.singular.form.showcase.component;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
+
 import org.apache.wicket.Component;
+import org.opensingular.form.SInstance;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.lib.commons.scan.SingularClassPathScanner;
 import org.opensingular.lib.commons.ui.Icon;
@@ -66,6 +79,7 @@ public class ShowCaseTable {
 
         // @formatter:off
         Stream.of(Group.values()).forEach(this::addGroup);
+        addGroup(Group.INTERNAL);
 
         addGroup("XSD", DefaultIcons.CODE, ShowCaseType.FORM)
                 .addCase(new XsdCaseSimple())
@@ -88,9 +102,7 @@ public class ShowCaseTable {
         final ShowCaseGroup group = addGroup(groupEnum.getName(), groupEnum.getIcone(), groupEnum.getTipo());
 
         final List<Class<?>> classes = casePorGrupo.get(groupEnum);
-        if (classes == null) {
-            return;
-        }
+        if (classes == null) { return; }
         for (Class<?> caseClass : classes) {
             final CaseItem caseItem = caseClass.getAnnotation(CaseItem.class);
             CaseBase<?> caseBase;
@@ -108,6 +120,7 @@ public class ShowCaseTable {
             caseBase.setComponentName(caseItem.componentName());
             caseBase.setSubCaseName(caseItem.subCaseName());
             caseBase.setAnnotationMode(caseItem.annotation());
+            addBuildListeners(caseBase, caseItem);
 
             if (!caseItem.customizer().isInterface()) {
                 createInstance(caseItem).customize(caseBase);
@@ -122,6 +135,18 @@ public class ShowCaseTable {
                 resourceRef.ifPresent(resourceRef1 -> caseBase.getAdditionalSources().add(resourceRef1));
             }
             group.addCase(caseBase);
+        }
+    }
+
+    private void addBuildListeners(CaseBase<?> caseBase, CaseItem caseItem) {
+        final List<IWicketBuildListener> buildListeners = caseBase.getBuildListeners();
+        for (Class<? extends IFunction<SInstance, List<SInstanceAction>>> clz : caseItem.actionProviders()) {
+            try {
+                IFunction<SInstance, List<SInstanceAction>> function = clz.newInstance();
+                buildListeners.add(new ActionsBuildListener(function));
+            } catch (Exception ex) {
+                throw new RuntimeException(ex.getMessage(), ex);
+            }
         }
     }
 
@@ -156,6 +181,20 @@ public class ShowCaseTable {
 
     public Collection<ShowCaseGroup> getGroups(ShowCaseType showCaseType) {
         return getGroupMap(showCaseType).values();
+    }
+
+    private static final class ActionsBuildListener implements IWicketBuildListener {
+        private final IFunction<SInstance, List<SInstanceAction>> function;
+        private ActionsBuildListener(IFunction<SInstance, List<SInstanceAction>> function) {
+            this.function = function;
+        }
+        @Override
+        public void onBeforeBuild(WicketBuildContext ctx, IWicketComponentMapper mapper) {
+            if (mapper instanceof ISInstanceActionCapable) {
+                ISInstanceActionCapable iac = (ISInstanceActionCapable) mapper;
+                iac.addSInstanceActionsProvider(0, (t, i) -> function.apply(i));
+            }
+        }
     }
 
     public static class ShowCaseGroup implements Serializable {
