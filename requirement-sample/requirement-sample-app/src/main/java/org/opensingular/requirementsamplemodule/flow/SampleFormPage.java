@@ -18,7 +18,6 @@ package org.opensingular.requirementsamplemodule.flow;
 
 import org.apache.wicket.model.IModel;
 import org.opensingular.form.wicket.enums.ViewMode;
-import org.opensingular.requirement.module.persistence.entity.form.RequirementEntity;
 import org.opensingular.requirement.module.service.RequirementInstance;
 import org.opensingular.requirement.module.wicket.view.form.AbstractFormPage;
 import org.opensingular.requirement.module.wicket.view.form.FormPageExecutionContext;
