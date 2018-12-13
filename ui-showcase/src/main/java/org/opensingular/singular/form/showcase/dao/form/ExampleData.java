@@ -29,6 +29,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.apache.wicket.model.IModel;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "EXAMPLE_DATA")
@@ -46,6 +47,7 @@ public class ExampleData implements IModel {
     private String description;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column
     private String xml;
 
@@ -54,6 +56,7 @@ public class ExampleData implements IModel {
     private Date editionDate;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column
     private String annotations;
 

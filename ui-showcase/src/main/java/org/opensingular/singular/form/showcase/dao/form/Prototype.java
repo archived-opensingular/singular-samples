@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.dao.form;
 
+import org.hibernate.annotations.Type;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -39,6 +41,7 @@ public class Prototype implements Serializable {
     private String name;
 
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String xml;
 
     public Long getId() {
