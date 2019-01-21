@@ -19,6 +19,7 @@ package org.opensingular.singular.form.showcase.component.form.custom.comment;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SIList;
 import org.opensingular.form.SInstance;
+import org.opensingular.form.type.core.annotation.AnnotationClassifier;
 import org.opensingular.form.type.core.annotation.SIAnnotation;
 import org.opensingular.form.wicket.WicketBuildContext;
 import org.opensingular.form.wicket.enums.AnnotationMode;
@@ -43,14 +44,14 @@ public class PageWithAnnotation {
         pedido.getDocument().getDocumentAnnotations().loadAnnotations(annotations);
     }
 
-    public void saveAnnotations(SIComposite pedido){
+    public void saveAnnotations(SIComposite pedido, AnnotationClassifier annotationClassifier){
         CaseAnnotationSType pacote = (CaseAnnotationSType) pedido.getType();
 
         /**
          * Anotações são armazenadas junto a cada campo onde a mesma está habilitada.
          */
         SInstance instanceFieldClient = pedido.getDescendant(pacote.cliente);
-        instanceFieldClient.asAtrAnnotation().annotation();
+        instanceFieldClient.asAtrAnnotation().annotation(annotationClassifier);
 
         /**
          * As anotações podem ser persistidas separadamente ou de forma conjunta.
