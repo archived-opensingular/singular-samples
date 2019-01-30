@@ -151,7 +151,7 @@ public class ShowCaseTable {
                 IFunction<SInstance, List<SInstanceAction>> function = clz.newInstance();
                 buildListeners.add(new ActionsBuildListener(function));
             } catch (Exception ex) {
-                throw new RuntimeException(ex.getMessage(), ex);
+                throw new ShowCaseException(ex.getMessage(), ex);
             }
         }
     }

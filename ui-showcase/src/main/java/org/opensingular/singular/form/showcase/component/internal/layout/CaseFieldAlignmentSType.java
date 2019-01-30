@@ -41,6 +41,9 @@ import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 /**
  * Anotações e comentários associados a elementos de um form
  */
@@ -119,9 +122,9 @@ public class CaseFieldAlignmentSType extends STypeComposite<SIComposite> {
 
         row51.asAtr().subtitle("Short subtitle");
 
-        row52.selectionOf(true, false)
+        row52.selectionOf(TRUE, FALSE)
             .withView(new SViewBooleanByRadio().horizontalLayout())
-            .asAtrProvider().displayFunction(it -> (Boolean.TRUE.equals(it)) ? "yep" : "nope");
+                .asAtrProvider().displayFunction(it -> (TRUE.equals(it)) ? "yep" : "nope");
 
         row53.asAtr().label("Long long long long long long long long long long long long long long long long label");
 
