@@ -59,7 +59,7 @@ public class STypeCertificacao extends STypeComposite<SIComposite> {
                 .asAtrBootstrap().colPreference(2);
 
         nome
-                .asAtr().label("Nome")
+                .asAtr().label("Nome").help("Ajuda do campo nome")
                 .asAtrBootstrap().colPreference(4);
 
     }

@@ -16,6 +16,8 @@
 
 package org.opensingular.singular.form.showcase.component.form.layout.table;
 
+import javax.annotation.Nonnull;
+
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
@@ -28,13 +30,11 @@ import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
 import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeCertificacao;
 
-import javax.annotation.Nonnull;
-
 /**
  * List by Table
  */
-@CaseItem(componentName = "List by Table", subCaseName = "Default", group = Group.LAYOUT,
-        resources = {@Resource(STypeCertificacao.class), @Resource(CaseLayoutPackage.class) })
+@CaseItem(componentName = "List by Table", subCaseName = "Default", group = Group.LAYOUT, //
+    resources = { @Resource(STypeCertificacao.class), @Resource(CaseLayoutPackage.class) })
 @SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultTable")
 public class CaseListByTableDefaultSType extends STypeComposite<SIComposite> {
 
@@ -45,8 +45,8 @@ public class CaseListByTableDefaultSType extends STypeComposite<SIComposite> {
         certificacoes = this.addFieldListOf("certificacoes", STypeCertificacao.class);
 
         certificacoes
-                //@destacar
-                .withView(SViewListByTable::new)
-                .asAtr().label("Certificações");
+            //@destacar
+            .withView(SViewListByTable::new)
+            .asAtr().label("Certificações").help("Ajuda para Certificações");
     }
 }
