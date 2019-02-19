@@ -48,19 +48,23 @@ public class STypeCertificacao extends STypeComposite<SIComposite> {
 
         data
                 .asAtr().label("Data")
-                .asAtrBootstrap().colPreference(2);
+                .asAtrBootstrap().colPreference(2)
+                .asAtrAnnotation().setAnnotated();
 
         entidade
                 .asAtr().label("Entidade")
-                .asAtrBootstrap().colPreference(4);
+                .asAtrBootstrap().colPreference(4)
+                .asAtrAnnotation().setAnnotated();
 
         validade
                 .asAtr().label("Validade")
-                .asAtrBootstrap().colPreference(2);
+                .asAtrBootstrap().colPreference(2)
+                .asAtrAnnotation().setAnnotated();
 
         nome
                 .asAtr().label("Nome").help("Ajuda do campo nome")
-                .asAtrBootstrap().colPreference(4);
+                .asAtrBootstrap().colPreference(4)
+                .asAtrAnnotation().setAnnotated();
 
     }
 }

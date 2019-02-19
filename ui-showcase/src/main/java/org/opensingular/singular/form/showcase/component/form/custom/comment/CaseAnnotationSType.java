@@ -20,13 +20,16 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeAttachmentList;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.country.brazil.STypeCPF;
+import org.opensingular.form.view.list.SViewListByTable;
 import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
 import org.opensingular.singular.form.showcase.component.form.custom.CaseCustomPackage;
+import org.opensingular.singular.form.showcase.component.form.layout.stypes.STypeCertificacao;
 
 import javax.annotation.Nonnull;
 
@@ -45,6 +48,7 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
     public STypeId             id;
     public STypeAttachmentList anexoMultiplo;
     public STypeCPF            cpf;
+    public STypeList<STypeCertificacao, SIComposite> certificacoes;
 
     /*
      * Observe que as anotações só estão disponíveis quando devidamente configuradas no
@@ -80,6 +84,13 @@ public class CaseAnnotationSType extends STypeComposite<SIComposite> {
         anexoMultiplo
                 .asAtr().label("Anexos de qualquer coisa")
                 .asAtrAnnotation().setAnnotated();
+
+        certificacoes = this.addFieldListOf("certificacoes", STypeCertificacao.class);
+
+        certificacoes
+            //@destacar
+            .withView(SViewListByTable::new)
+            .asAtr().label("Certificações").help("Ajuda para Certificações");
 
         cpf.asAtrAnnotation().setAnnotated();
         cpf.asAtr().help("Texto de teste");
