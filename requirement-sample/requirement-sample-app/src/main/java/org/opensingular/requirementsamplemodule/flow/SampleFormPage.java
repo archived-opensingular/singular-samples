@@ -43,7 +43,7 @@ public class SampleFormPage extends AbstractFormPage<RequirementInstance> {
 
     @Override
     protected IModel<String> getContentTitle() {
-        return $m.get(() -> getSingularFormPanel().getRootTypeSubtitle());
+        return $m.get(() -> getInstanceModel().getObject().asAtr().getSubtitle());
     }
 
     @Nonnull
