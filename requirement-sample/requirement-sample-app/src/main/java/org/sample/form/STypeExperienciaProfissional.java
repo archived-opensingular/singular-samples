@@ -20,6 +20,8 @@ import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
+import org.opensingular.form.type.core.STypeBoolean;
+import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
 import org.opensingular.form.type.util.STypeYearMonth;
 
@@ -29,39 +31,38 @@ import javax.annotation.Nonnull;
 public class STypeExperienciaProfissional extends STypeComposite<SIComposite> {
 
     public STypeYearMonth inicio;
-    public STypeYearMonth fim;
+    public STypeDate fim;
     public STypeString    empresa;
     public STypeString    cargo;
-    public STypeString    atividades;
+    public STypeBoolean sTypeBoolean;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         inicio = addField("inicio", STypeYearMonth.class, true);
-        fim = addField("fim", STypeYearMonth.class);
+        fim = addFieldDate("fim");
         empresa = addFieldString("empresa", true);
         cargo = addFieldString("cargo", true);
-        atividades = addFieldString("atividades");
+        sTypeBoolean = addFieldBoolean("sTypeBoolean");
 
         inicio
                 .asAtr().label("Data inicial")
-                .asAtrBootstrap().colPreference(3);
+                .asAtrAnnotation().setAnnotated();
 
         fim
                 .asAtr().label("Data final")
-                .asAtrBootstrap().colPreference(3);
+                .asAtrAnnotation().setAnnotated();
 
         empresa
                 .asAtr().label("Empresa")
-                .asAtrBootstrap().newRow().colPreference(6);
+                .asAtrAnnotation().setAnnotated();
 
         cargo
-                .asAtr().label("Cargo")
-                .asAtrBootstrap().colPreference(6);
+                .asAtr().label("Cargo").help("TESTE CARACTER ESPECIAL ÇÃO.")
+                .asAtrAnnotation().setAnnotated();
 
-        atividades
-                .withTextAreaView()
-                .asAtr().label("Atividades Desenvolvidas")
-                .asAtrBootstrap().colPreference(12);
+        sTypeBoolean
+                .asAtrAnnotation().setAnnotated()
+                .asAtr().label("teste").visible(false);
 
         this.asAtr().label("Experiências profissionais");
         this.asAtr().displayString("Empresa: ${empresa!} ").dependsOn(empresa);

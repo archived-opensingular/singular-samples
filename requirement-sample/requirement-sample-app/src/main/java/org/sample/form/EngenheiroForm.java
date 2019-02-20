@@ -7,7 +7,8 @@ import org.opensingular.form.STypeComposite;
 import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeString;
-import org.opensingular.form.view.list.SViewListByForm;
+import org.opensingular.form.type.core.attachment.STypeAttachment;
+import org.opensingular.form.view.list.SViewListByTable;
 
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
@@ -20,26 +21,28 @@ public class EngenheiroForm extends STypeComposite<SIComposite> {
     public STypeList<STypeExperienciaProfissional, SIComposite> experienciasProfissionais;
 
     public STypeString nome;
+    public STypeAttachment attachment;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         nome = addField("nome", STypeString.class);
         nome.asAtr().label("Sobrenome");
 
+        attachment = addFieldAttachment("attachment");
         experienciasProfissionais = this.addFieldListOf("experienciasProfissionais", STypeExperienciaProfissional.class);
 
-        experienciasProfissionais.withView(SViewListByForm::new).withInitListener(this::fillWithBlankValues);
+        experienciasProfissionais.withView(SViewListByTable::new).withInitListener(this::fillWithBlankValues);
     }
 
     private void fillWithBlankValues(SIList<SIComposite> list) {
         STypeExperienciaProfissional type = experienciasProfissionais.getElementsType();
         for (int i = 0; i < 1; i++) {
             SIComposite experiencia = list.addNew();
-            experiencia.setValue(type.atividades, "Reuniões" + i );
+            experiencia.setValue(type.sTypeBoolean, Boolean.TRUE );
             experiencia.setValue(type.empresa, "Corp." +  i );
             experiencia.setValue(type.cargo, "Gerente");
             LocalDate localDate = LocalDate.now();
-            experiencia.setValue(type.fim, Date.from(localDate.plusMonths(i).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            experiencia.setValue(type.fim, new Date());
             experiencia.setValue(type.inicio, Date.from(localDate.minusMonths(i).atStartOfDay(ZoneId.systemDefault()).toInstant()));
         }
     }
