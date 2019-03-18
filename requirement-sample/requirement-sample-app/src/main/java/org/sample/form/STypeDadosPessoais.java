@@ -17,11 +17,10 @@ import org.opensingular.form.type.util.STypeLatitudeLongitudeGMaps;
 import org.opensingular.form.view.SViewAttachmentImage;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewCheckBox;
+import org.opensingular.form.view.list.SViewListChosen;
 import org.opensingular.form.view.list.SViewListByMasterDetail;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
-import org.opensingular.form.wicket.IWicketComponentMapper;
-import org.opensingular.form.wicket.mapper.chosen.ChosenMapper;
 import org.opensingular.requirement.sei30.features.SILinkSEI;
 import org.opensingular.requirement.sei30.features.SIModeloSEI;
 import org.opensingular.requirement.sei30.features.SViewSEIRichText;
@@ -143,10 +142,6 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
 
         paises = this.addFieldListOf("paises", STIdDescricao.class);
         paises
-                .asAtr()
-                .label("Países já visitados");
-
-        paises
                 .selection()
                 .id(paises.getElementsType().id)
                 .display(paises.getElementsType().descricao)
@@ -154,10 +149,10 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                         .forEach(pais -> builder.add()
                                 .set(paises.getElementsType().id, null)
                                 .set(paises.getElementsType().descricao, pais)));
-
         paises
-                .setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, () -> new ChosenMapper().setEmptyLabel("Selecione"));
-
+                .withView(new SViewListChosen().setEmptyLabel("Selecione"))
+                .asAtr()
+                .label("Países já visitados");
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(nomeMae)
