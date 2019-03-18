@@ -20,11 +20,16 @@ import org.opensingular.form.view.SViewCheckBox;
 import org.opensingular.form.view.list.SViewListByMasterDetail;
 import org.opensingular.form.view.richtext.SViewByRichText;
 import org.opensingular.form.view.richtext.SViewByRichTextNewTab;
+import org.opensingular.form.wicket.IWicketComponentMapper;
+import org.opensingular.form.wicket.mapper.chosen.ChosenMapper;
 import org.opensingular.requirement.sei30.features.SILinkSEI;
 import org.opensingular.requirement.sei30.features.SIModeloSEI;
 import org.opensingular.requirement.sei30.features.SViewSEIRichText;
+import org.sample.form.generic.SIIdDescricao;
+import org.sample.form.generic.STIdDescricao;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 
 @SInfoType(spackage = RequirementsamplePackage.class)
 public class STypeDadosPessoais extends STypeComposite<SIComposite> {
@@ -43,6 +48,7 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
     public STypeHTML richText2;
     public STypeHTML richText3;
     public STypeLatitudeLongitudeGMaps coordenada;
+    public STypeList<STIdDescricao, SIIdDescricao> paises;
 
 
     @Override
@@ -135,6 +141,23 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .setDoubleClickDisabledForCssClasses("")
                 .getView());
 
+        paises = this.addFieldListOf("paises", STIdDescricao.class);
+        paises
+                .asAtr()
+                .label("Países já visitados");
+
+        paises
+                .selection()
+                .id(paises.getElementsType().id)
+                .display(paises.getElementsType().descricao)
+                .simpleProvider(builder -> Arrays.asList("Argentina", "Brasil", "Canadá", "Estado Unidos", "Finlândia", "Grã Bretanha")
+                        .forEach(pais -> builder.add()
+                                .set(paises.getElementsType().id, null)
+                                .set(paises.getElementsType().descricao, pais)));
+
+        paises
+                .setAspect(IWicketComponentMapper.ASPECT_WICKET_MAPPER, () -> new ChosenMapper().setEmptyLabel("Selecione"));
+
 
         this.withView(new SViewByBlock(), block -> block.newBlock()
                 .add(nomeMae)
@@ -142,7 +165,8 @@ public class STypeDadosPessoais extends STypeComposite<SIComposite> {
                 .add(telefone)
                 .add(documentos)
                 .add(coordenada)
-                .add(richText));
+                .add(richText)
+                .add(paises));
     }
 
 
