@@ -25,8 +25,8 @@ import org.opensingular.lib.wicket.util.resource.DefaultIcons;
 import org.opensingular.sample.studio.repository.TipoDoseRepository;
 import org.opensingular.studio.core.definition.StudioDefinition;
 import org.opensingular.studio.core.definition.StudioTableDefinition;
-import org.opensingular.studio.core.panel.CrudListContent;
 import org.opensingular.studio.core.panel.CrudShellManager;
+import org.opensingular.studio.core.panel.ListAction;
 
 public class TipoDoseStudioDefinition implements StudioDefinition {
     @Override
@@ -37,7 +37,7 @@ public class TipoDoseStudioDefinition implements StudioDefinition {
     @Override
     public void configureStudioDataTable(StudioTableDefinition studioDataTable) {
         studioDataTable.add("Tipo de Dose", "nome");
-        studioDataTable.add(new CrudListContent.ListAction() {
+        studioDataTable.add(new ListAction() {
             @Override
             public void configure(BSActionPanel.ActionConfig<SInstance> config) {
                 config.iconeModel(Model.of(DefaultIcons.HAND_UP));
