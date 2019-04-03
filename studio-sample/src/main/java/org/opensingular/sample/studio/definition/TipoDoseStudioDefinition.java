@@ -26,7 +26,7 @@ import org.opensingular.sample.studio.repository.TipoDoseRepository;
 import org.opensingular.studio.core.definition.StudioDefinition;
 import org.opensingular.studio.core.definition.StudioTableDefinition;
 import org.opensingular.studio.core.panel.CrudShellManager;
-import org.opensingular.studio.core.panel.ListAction;
+import org.opensingular.studio.core.panel.action.ListAction;
 
 public class TipoDoseStudioDefinition implements StudioDefinition {
     @Override
