@@ -48,6 +48,8 @@ public class CaseCompositeModal extends STypeComposite<SIComposite> {
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         endereco = this.addField("endereco", STypeAddress.class);
+        endereco.asAtr()
+                .label("Endereço Residencial");
 
         //@destacar:bloco
         SViewCompositeModal view = new SViewCompositeModal();
