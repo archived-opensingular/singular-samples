@@ -19,6 +19,7 @@ package org.opensingular.singular.form.showcase.component.form.layout.composite;
 import org.opensingular.form.SIComposite;
 import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
+import org.opensingular.form.STypeList;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.core.STypeDate;
 import org.opensingular.form.type.core.STypeString;
@@ -28,6 +29,7 @@ import org.opensingular.form.type.country.brazil.STypeTelefoneNacional;
 import org.opensingular.form.type.util.STypeEMail;
 import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewCompositeModal;
+import org.opensingular.form.view.list.SViewListByMasterDetail;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.Resource;
@@ -44,12 +46,24 @@ public class CaseCompositeModal extends STypeComposite<SIComposite> {
 
     public STypeAddress endereco;
 
+    public STypeList<STypeAddress, SIComposite> enderecos;
+
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         endereco = this.addField("endereco", STypeAddress.class);
         endereco.asAtr()
+                .required()
                 .label("Endereço Residencial");
+
+        enderecos = this.addFieldListOf("enderecos", STypeAddress.class);
+
+        enderecos.getElementsType().asAtr()
+                .required()
+                .label("Endereço Comercial");
+
+        enderecos
+                .withView(SViewListByMasterDetail::new);
 
         //@destacar:bloco
         SViewCompositeModal view = new SViewCompositeModal();
