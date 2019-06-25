@@ -21,8 +21,8 @@ import org.opensingular.form.SInfoType;
 import org.opensingular.form.STypeComposite;
 import org.opensingular.form.TypeBuilder;
 import org.opensingular.form.type.country.brazil.STypeAddress;
-import org.opensingular.form.view.SViewByBlock;
 import org.opensingular.form.view.SViewCompositeModal;
+import org.opensingular.form.wicket.enums.AnnotationMode;
 import org.opensingular.singular.form.showcase.component.CaseItem;
 import org.opensingular.singular.form.showcase.component.Group;
 import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutPackage;
@@ -30,43 +30,44 @@ import org.opensingular.singular.form.showcase.component.form.layout.CaseLayoutP
 import javax.annotation.Nonnull;
 
 /**
- * Composite Modal Read Only
+ * Composite Modal with annotations
  */
-@CaseItem(componentName = "Composite Modal", subCaseName = "Somente Leitura", group = Group.LAYOUT)
-@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultReadOnlyCompositeModal")
-public class CaseReadOnlyCompositeModal extends STypeComposite<SIComposite> {
+@CaseItem(componentName = "Composite Modal", subCaseName = "Annotated", group = Group.LAYOUT,
+            annotation = AnnotationMode.EDIT)
+@SInfoType(spackage = CaseLayoutPackage.class, name = "DefaultAnnotatedCompositeModal")
+public class CaseAnnotatedCompositeModal extends STypeComposite<SIComposite> {
 
     public STypeAddress endereco;
-
-    public STypeAddress enderecoDesabilitado;
+    public STypeAddress enderecoNaoAnotado;
 
     @Override
     protected void onLoadType(@Nonnull TypeBuilder tb) {
         endereco = this.addField("endereco", STypeAddress.class);
         endereco.asAtr()
                 .required()
-                .label("Endereço Residencial");
+                .label("Endereço Residencial")
+                .asAtrAnnotation()
+                .setAnnotated();
+
+        endereco.cep.asAtrAnnotation().setAnnotated();
+        endereco.logradouro.asAtrAnnotation().setAnnotated();
+        endereco.numero.asAtrAnnotation().setAnnotated();
+        endereco.complemento.asAtrAnnotation().setAnnotated();
+        endereco.bairro.asAtrAnnotation().setAnnotated();
+        endereco.cidade.asAtrAnnotation().setAnnotated();
+        endereco.estado.asAtrAnnotation().setAnnotated();
 
 
-        enderecoDesabilitado = this.addField("enderecoDesabilitado", STypeAddress.class);
-        enderecoDesabilitado.asAtr()
-                .enabled(false)
-                .label("Endereço Desabilitado");
+        enderecoNaoAnotado = this.addField("enderecoNaoAnotado", STypeAddress.class);
+        enderecoNaoAnotado.asAtr()
+                .required()
+                .label("Endereço Comercial");
 
         //@destacar:bloco
-        SViewCompositeModal view = new SViewCompositeModal();
-        view.disabledEditFieldsInModal();
-        endereco.withView(view);
+        endereco.withView(SViewCompositeModal::new);
 
-        enderecoDesabilitado.withView(SViewCompositeModal::new);
+        enderecoNaoAnotado.withView(SViewCompositeModal::new);
         //@destacar:fim
 
-        SViewByBlock viewByBlock = new SViewByBlock();
-        viewByBlock.newBlock("Endereço desabilitado usando SView")
-            .add(endereco)
-            .newBlock("Endereço desabilitado no SType")
-            .add(enderecoDesabilitado);
-
-        this.withView(viewByBlock);
     }
 }
