@@ -46,6 +46,7 @@ public class CaseCompositeModal extends STypeComposite<SIComposite> {
 
         //@destacar:bloco
         SViewCompositeModal view = new SViewCompositeModal();
+        view.withDisplayString("Cidade do endereço: ${(cidade)!}/${(estado)!}");
         endereco.withView(view);
         //@destacar:fim
     }
