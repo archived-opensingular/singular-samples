@@ -61,7 +61,7 @@ public class STypeExperienciaProfissional extends STypeComposite<SIComposite> {
 
         atividades
                 .withTextAreaView()
-                .asAtr().label("Atividades Desenvolvidas")
+                .asAtr().label("Atividades Desenvolvidas").help("Descrição breve")
                 .asAtrBootstrap().colPreference(12);
 
         this.asAtr().label("Experiências profissionais");
