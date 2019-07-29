@@ -17,10 +17,16 @@
 package org.opensingular.requirementsamplemodule.config;
 
 import org.opensingular.requirement.studio.init.RequirementStudioAppInitializer;
+import org.opensingular.requirement.studio.spring.RequirementStudioBeanFactory;
 
 public class RequirementSampleInitializer extends RequirementStudioAppInitializer {
     @Override
     public String[] getSpringPackagesToScan() {
         return new String[]{"org.opensingular"};
+    }
+
+    @Override
+    protected Class<? extends RequirementStudioBeanFactory> getSingularBeanFactoryClass() {
+        return SampleBeanFactory.class;
     }
 }

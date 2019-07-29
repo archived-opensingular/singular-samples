@@ -27,7 +27,7 @@
         </plugins>
     </build>
     <modules>
-        <module>requirement-sample-static-resources</module>
         <module>requirement-sample-app</module>
+        <module>requirement-sample-resources</module>
     </modules>
 </project>

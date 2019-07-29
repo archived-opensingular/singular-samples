@@ -41,6 +41,7 @@
     <bean id="filePersistence" class="org.opensingular.form.persistence.service.AttachmentPersistenceService" />
 	<bean id="attachmentContentDao" class="org.opensingular.form.persistence.dao.AttachmentContentDao" />
     <bean id="attachmentDao" class="org.opensingular.form.persistence.dao.AttachmentDao" />
+    <bean id="singularWebResourcesFactory" class="org.opensingular.resources.DefaulSingularWebResourcesFactory" />
 
 
 </beans>

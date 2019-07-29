@@ -28,6 +28,11 @@
             <groupId>org.opensingular</groupId>
             <artifactId>singular-wkhtmltopdf-client</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.opensingular</groupId>
+            <artifactId>requirement-sample-resources</artifactId>
+            <version>1.9.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

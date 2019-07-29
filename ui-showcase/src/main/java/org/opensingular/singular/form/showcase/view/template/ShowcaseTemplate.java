@@ -17,32 +17,34 @@
 package org.opensingular.singular.form.showcase.view.template;
 
 import de.alpharogroup.wicket.js.addon.toastr.ToastrType;
-
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.PackageResourceReference;
+import org.opensingular.lib.wicket.SingularWebResourcesFactory;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminTemplate;
 import org.opensingular.lib.wicket.util.toastr.ToastrHelper;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 
 @AuthorizeAction(action = Action.RENDER, roles = Roles.ADMIN)
 public abstract class ShowcaseTemplate extends SingularAdminTemplate {
-
     private ShowCaseType showCaseType;
+
+    @Inject
+    private SingularWebResourcesFactory singularWebResourcesFactory;
 
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
-        response.render(CssHeaderItem.forUrl(skinnableResource("/plugins/syntaxHighlighter/theme.css")));
-        response.render(JavaScriptHeaderItem.forUrl(skinnableResource("/plugins/syntaxHighlighter/syntaxhighlighter.js")));
+        response.render(singularWebResourcesFactory.newCssHeader("plugins/syntaxHighlighter/theme.css"));
+        response.render(singularWebResourcesFactory.newJavaScriptHeader("plugins/syntaxHighlighter/syntaxhighlighter.js"));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(ShowcaseTemplate.class, "ShowcaseTemplate.css")));
     }
 
@@ -70,7 +72,7 @@ public abstract class ShowcaseTemplate extends SingularAdminTemplate {
 
     @Override
     protected @Nonnull
-            WebMarkupContainer buildPageMenu(String id) {
+    WebMarkupContainer buildPageMenu(String id) {
         if (isWithMenu()) {
             return new ShowcaseMenu(id, showCaseType);
         } else {

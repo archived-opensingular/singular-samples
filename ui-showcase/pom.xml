@@ -116,6 +116,10 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.opensingular</groupId>
+            <artifactId>singular-wicket-utils</artifactId>
+        </dependency>
 
     </dependencies>
 

@@ -24,7 +24,6 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.opensingular.lib.wicket.util.metronic.menu.DropdownMenu;
-import org.opensingular.lib.wicket.util.template.SkinOptions;
 import org.opensingular.singular.form.showcase.component.ShowCaseType;
 import org.opensingular.singular.form.showcase.view.page.form.ListPage;
 import org.opensingular.singular.form.showcase.view.page.studio.StudioHomePage;
@@ -33,17 +32,15 @@ import org.opensingular.singular.form.showcase.view.page.wicket.WicketHomePage;
 public class ShowcaseHeader extends Panel {
 
     private boolean withTogglerButton;
-    private SkinOptions option;
 
     public ShowcaseHeader(String id) {
         super(id);
         this.withTogglerButton = true;
     }
 
-    public ShowcaseHeader(String id, boolean withTogglerButton, SkinOptions option) {
+    public ShowcaseHeader(String id, boolean withTogglerButton) {
         super(id);
         this.withTogglerButton = withTogglerButton;
-        this.option = option;
     }
 
     @Override
@@ -57,7 +54,7 @@ public class ShowcaseHeader extends Panel {
         
     	DropdownMenu d = buildShowcaseOptions();	
     	add(d.add(devMode));
-    	ShowcaseTopMenu showcaseTopMenu = new ShowcaseTopMenu("_TopMenu",option);
+    	ShowcaseTopMenu showcaseTopMenu = new ShowcaseTopMenu("_TopMenu");
     	add(showcaseTopMenu.add(devMode));
         add(new WebMarkupContainer("brandLogo"));
     }

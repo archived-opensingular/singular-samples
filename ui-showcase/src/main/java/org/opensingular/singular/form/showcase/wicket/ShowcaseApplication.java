@@ -17,24 +17,26 @@
 package org.opensingular.singular.form.showcase.wicket;
 
 import org.apache.wicket.MarkupContainer;
+import org.apache.wicket.ResourceBundles;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
-import org.apache.wicket.markup.head.filter.JavaScriptFilteredIntoFooterHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.pages.AccessDeniedPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
+import org.apache.wicket.request.resource.SharedResourceReference;
+import org.apache.wicket.request.resource.caching.NoOpResourceCachingStrategy;
+import org.apache.wicket.resource.CssUrlReplacer;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.util.lang.Bytes;
 import org.apache.wicket.util.time.Duration;
 import org.opensingular.lib.commons.base.SingularProperties;
 import org.opensingular.lib.support.spring.util.ApplicationContextProvider;
+import org.opensingular.lib.wicket.SingularWebResourcesFactory;
 import org.opensingular.lib.wicket.util.application.SingularAnnotatedMountScanner;
-import org.opensingular.lib.wicket.util.application.SkinnableApplication;
-import org.opensingular.lib.wicket.util.template.SingularTemplate;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminApp;
 import org.opensingular.lib.wicket.util.template.admin.SingularAdminTemplate;
 import org.opensingular.singular.form.showcase.view.page.form.ListPage;
@@ -44,11 +46,9 @@ import org.opensingular.singular.form.showcase.view.template.ShowcaseHeader;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
-public class ShowcaseApplication extends AuthenticatedWebApplication implements SkinnableApplication, SingularAdminApp {
+import static org.opensingular.lib.wicket.util.template.SingularTemplate.JAVASCRIPT_DECORATOR;
 
-    public static final String BASE_FOLDER = "/tmp/fileUploader";
-
-
+public class ShowcaseApplication extends AuthenticatedWebApplication implements SingularAdminApp {
     public static ShowcaseApplication get() {
         return (ShowcaseApplication) WebApplication.get();
     }
@@ -86,8 +86,15 @@ public class ShowcaseApplication extends AuthenticatedWebApplication implements 
         }
         new SingularAnnotatedMountScanner().mountPages(this);
 
-        setHeaderResponseDecorator(r -> new JavaScriptFilteredIntoFooterHeaderResponse(r, SingularTemplate.JAVASCRIPT_CONTAINER));
+        setHeaderResponseDecorator(JAVASCRIPT_DECORATOR);
 
+        final SingularWebResourcesFactory singularWebResourcesFactory
+                = ApplicationContextProvider.get().getBean(SingularWebResourcesFactory.class);
+        getSharedResources().add("logo", singularWebResourcesFactory.getLogo());
+        getSharedResources().add("favicon", singularWebResourcesFactory.getFavicon());
+        getResourceSettings().setCssCompressor(new CssUrlReplacer());
+        getResourceSettings().setCachingStrategy(new NoOpResourceCachingStrategy());
+        getJavaScriptLibrarySettings().setJQueryReference(singularWebResourcesFactory.getJQuery());
     }
 
     @Override
@@ -116,7 +123,7 @@ public class ShowcaseApplication extends AuthenticatedWebApplication implements 
 
     @Override
     public MarkupContainer buildPageHeader(String id, boolean withMenu, SingularAdminTemplate adminTemplate) {
-        return new ShowcaseHeader(id, withMenu, adminTemplate.getSkinOptions());
+        return new ShowcaseHeader(id, withMenu);
     }
 
     @Override
