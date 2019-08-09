@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.opensingular</groupId>
         <artifactId>requirement-sample</artifactId>
-        <version>1.9.1-SNAPSHOT</version>
+        <version>1.9.1-RC10</version>
     </parent>
 
     <artifactId>requirement-sample-app</artifactId>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>org.opensingular</groupId>
             <artifactId>requirement-sample-resources</artifactId>
-            <version>1.9.1-SNAPSHOT</version>
+            <version>1.9.1-RC10</version>
         </dependency>
     </dependencies>
 
