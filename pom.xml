@@ -6,7 +6,7 @@
     <groupId>org.opensingular</groupId>
     <artifactId>singular-samples</artifactId>
 
-    <version>1.9.1-RC11</version>
+    <version>1.9.1-RC12</version>
     <name>[singular-samples]</name>
     <description>Singular Samples and Showcase</description>
     <url>http://opensingular.org</url>
@@ -170,7 +170,7 @@
             <dependency>
                 <groupId>org.opensingular</groupId>
                 <artifactId>bom</artifactId>
-                <version>1.9.1-RC11</version>
+                <version>1.9.1-RC12</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
